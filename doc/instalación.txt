@@ -1,0 +1,23 @@
+Configuración datasource
+
+1) Descargar conector mysql
+
+http://dev.mysql.com/downloads/connector/j/
+
+2) Crear carpeta y copiar mysql-connector-java-5.1.31-bin.jar
+
+<wildfly>/modules/system/layers/base/com/mysql/jdbc/main/
+
+3) Crear archivo module.xml
+
+<?xml version="1.0" ?>
+<module xmlns="urn:jboss:module:1.1" name="com.mysql.jdbc">    
+    <resources>
+        <resource-root path="mysql-connector-java-5.1.31-bin.jar"/>
+    </resources>
+
+    <dependencies>
+        <module name="javax.api"/>
+        <module name="javax.transaction.api"/>
+    </dependencies>
+</module>
