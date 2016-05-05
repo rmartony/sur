@@ -1,0 +1,54 @@
+.ajaxStatus {
+    position: fixed;
+    left: 49%;
+    top: 7px;
+    color: #222;
+    border: #f0c36d solid 1px;
+    background-color: #f9edbe;
+    display: block;
+    z-index: 9999999;
+    padding: 7px 13px 7px 13px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2)
+}
+
+.ui-widget, .ui-widget .ui-widget {
+    font-size: 12px !important;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.textCenter {
+    text-align: center;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.admin-dashboard-button {
+    width: 130px;
+    height: 130px;
+    margin: 10px;
+}
+
+.dataTableStyle {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 0;
+}
+
+.topAligned {
+    vertical-align: top;
+}
+
+.errorMsg {
+    background-color: #D97C7C;
+    color: #A30000;
+    display: block;
+    padding: 5px;
+}

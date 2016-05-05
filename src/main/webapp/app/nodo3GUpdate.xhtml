@@ -1,0 +1,610 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:of="http://omnifaces.org/functions"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns="http://www.w3.org/1999/xhtml"
+        >
+<ui:composition template="/templates/fullLayout.xhtml">
+    <ui:define name="content">
+
+        <h:form id="form">
+            <p:growl id="growl" showDetail="false" life="5000" autoUpdate="true"/>
+            <p:panelGrid id="displayNewItem" cellpadding="4" styleClass="center">
+                <f:facet name="header">
+                    <p:row><p:column colspan="2">
+                        <h:outputText value="Ver o Modificar Nodo 3G"/>
+                    </p:column>
+                    </p:row>
+                </f:facet>
+                <p:row>
+                    <p:column styleClass="topAligned">
+                        <p:panelGrid styleClass="center">
+                            <f:facet name="header">
+                                <p:row><p:column colspan="2">
+                                    <h:outputText value="Detalle"/>
+                                </p:column>
+                                </p:row>
+                            </f:facet>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="sitio" value="Sitio:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:autoComplete id="sitio" value="#{nodo3GController.item.sitio}" required="true"
+                                                    scrollHeight="250"
+                                                    requiredMessage="Por favor ingresar Sitio" dropdown="true"
+                                                    minQueryLength="1"
+                                                    completeMethod="#{nodo3GController.completeSitio}"
+                                                    forceSelection="true"
+                                                    var="s"
+                                                    itemLabel="#{s ne null ? s.sigla.concat(' - ').concat(s.nombre) : ''}"
+                                                    itemValue="#{s}"
+                                                    converter="genericMapConverter"
+                                                    readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                        <p:column headerText="Sigla">
+                                            #{s.sigla}
+                                        </p:column>
+                                        <p:column headerText="Nombre">
+                                            #{s.nombre} #{s.departamento.nombre}
+                                        </p:column>
+                                        <p:ajax event="itemSelect" update="sitioLink"/>
+                                    </p:autoComplete>
+                                    <p:commandButton id="sitioLink" action="#{nodo3GController.doViewSitio}"
+                                                     value="Ver sitio"
+                                                     icon="ui-icon-search" style="margin-left: 30px"
+                                                     disabled="#{nodo3GController.item.sitio == null}">
+                                        <f:setPropertyActionListener value="#{nodo3GController.item.sitio}"
+                                                                     target="#{sitioController.selectedItem}"/>
+                                    </p:commandButton>
+                                </p:column>
+                            </p:row>
+
+                            <!--
+                                    <p:row>
+                                        <p:column>
+                                            <p:outputLabel for="rnc" value="RNC:"/>
+                                        </p:column>
+                                        <p:column>
+                                            <p:selectOneMenu id="rnc" value="#{nodo3GController.item.rnc}" required="true"
+                                                             requiredMessage="Por favor ingresar RNC" disabled="#{not (authorizationChecker.admin or authorizationChecker.consola)}">
+                                                <o:converter converterId="entityListConverter" list="#{nodo3GController.rncList}"/>
+                                                <f:selectItem itemLabel="Seleccionar RNC..." noSelectionOption="true"/>
+                                                <f:selectItems value="#{nodo3GController.rncList}" var="rnc"
+                                                               itemLabel="#{rnc.nombre}" itemValue="#{rnc}"/>
+                                                <p:ajax update="ip"
+                                                        listener="#{nodo3GController.handleRncChange}"/>
+                                            </p:selectOneMenu>
+                                        </p:column>
+                                    </p:row>
+
+                                    <p:row>
+                                        <p:column>
+                                            <p:outputLabel for="ip" value="IP:"/>
+                                        </p:column>
+                                        <p:column>
+                                            <p:selectOneMenu id="ip" value="#{nodo3GController.item.ip}"
+                                                             disabled="#{not (authorizationChecker.admin or authorizationChecker.consola)}">
+                                                <f:selectItem itemLabel="Seleccionar IP..." noSelectionOption="true"/>
+                                                <o:converter converterId="entityListConverter" list="#{nodo3GController.ipList}"/>
+                                                <f:selectItems value="#{nodo3GController.ipList}" var="ip"
+                                                               itemLabel="#{ip.ip}" itemValue="#{ip}"/>
+                                            </p:selectOneMenu>
+                                        </p:column>
+                                    </p:row>
+                            -->
+
+                            <p:row>
+                                <p:column> <p:outputLabel for="sigla" value="Sigla:"/> </p:column>
+                                <p:column>
+                                    <p:inputText id="sigla" value="#{nodo3GController.item.sigla}" required="true"
+                                                 requiredMessage="Por favor ingresar sigla"
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}"/>
+                                </p:column>
+                            </p:row>
+
+                            <p:row>
+                                <p:column> <p:outputLabel for="fechaAlta" value="Fecha alta:"/> </p:column>
+                                <p:column><p:calendar id="fechaAlta" value="#{nodo3GController.item.fechaAlta}"
+                                                      required="true"
+                                                      pattern="#{msg.datePattern}" showOn="both" popupIconOnly="true"
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}"/></p:column>
+                            </p:row>
+
+
+                            <p:row>
+                                <p:column> <p:outputLabel for="fechaInstalacion" value="Fecha instalación:"/>
+                                </p:column>
+                                <p:column><p:calendar id="fechaInstalacion"
+                                                      value="#{nodo3GController.item.fechaInstalacion}"
+                                                      required="true"
+                                                      pattern="#{msg.datePattern}" showOn="both" popupIconOnly="true"
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}"/></p:column>
+                            </p:row>
+
+                            <p:row>
+                                <p:column> <p:outputLabel for="fechaAltaEthernet" value="Fecha alta Ethernet:"/>
+                                </p:column>
+                                <p:column><p:calendar id="fechaAltaEthernet"
+                                                      value="#{nodo3GController.item.fechaAltaEthernet}"
+                                                      required="true"
+                                                      pattern="#{msg.datePattern}" showOn="both" popupIconOnly="true"
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}"/></p:column>
+                            </p:row>
+
+                            <p:row>
+                                <p:column> <p:outputLabel for="tipoDeGabinete" value="Tipo de gabinete:"/> </p:column>
+                                <p:column>
+                                    <p:selectOneMenu id="tipoDeGabinete" value="#{nodo3GController.item.tipoBTS}"
+                                                     required="true"
+                                                     requiredMessage="Por favor ingrese tipo de gabinete"
+                                                     disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                        <o:converter converterId="entityListConverter"
+                                                     list="#{nodo3GController.tipoBTSList}"/>
+                                        <f:selectItem itemLabel="Seleccionar tipo de gabinete..."
+                                                      noSelectionOption="true"/>
+                                        <f:selectItems value="#{nodo3GController.tipoBTSList}" var="tipoDeGabinete"
+                                                       itemLabel="#{tipoDeGabinete.nombre}"
+                                                       itemValue="#{tipoDeGabinete}"/>
+                                    </p:selectOneMenu>
+                                </p:column>
+                            </p:row>
+                        </p:panelGrid>
+                    </p:column>
+                    <p:column styleClass="topAligned">
+                        <p:panelGrid styleClass="center">
+                            <f:facet name="header">
+                                <p:row><p:column colspan="2">
+                                    <h:outputText value="Información Ethernet"/>
+                                </p:column>
+                                </p:row>
+                            </f:facet>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="defaultGW" value="Default Gateway:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="defaultGW" value="#{nodo3GController.item.defaultGateway}"
+                                                 requiredMessage="Por favor ingresar default gateway"
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}"/>
+                                </p:column>
+                            </p:row>
+                            <!--
+                                    <p:row>
+                                        <p:column>
+                                            <p:outputLabel for="nServicio" value="Número servicio:"/>
+                                        </p:column>
+                                        <p:column>
+                                            <p:inputText id="nServicio" value="#{nodo3GController.item.NServicio}"
+                                                         requiredMessage="Por favor ingresar número servicio"
+                                                         readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}" />
+                                        </p:column>
+                                    </p:row>
+                            -->
+
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="ipOAM" value="IP OAM:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="ipOAM" value="#{nodo3GController.item.ipOAM}"
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                        <f:validator validatorId="ipValidator"/>
+                                    </p:inputText>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="maskOAM" value="Subnet Mask OAM:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="maskOAM" value="#{nodo3GController.item.maskOAM}"
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                        <f:validator validatorId="ipValidator"/>
+                                        <!--
+                                                            <pe:keyFilter
+                                                                    regEx="/((2[0-5][0-5]|1[\d][\d]|[\d][\d]|[\d])\.){3}(2[0-5][0-5]|1[\d][\d]|[\d][\d]|[\d])/"/>
+                                        -->
+                                        <!--
+                                                            <pe:keyFilter
+                                                                    regEx="/[0-5][0-5]/"/>
+                                        -->
+                                    </p:inputText>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="gwOAM" value="Gateway OAM:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="gwOAM" value="#{nodo3GController.item.gwOAM}"
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}"/>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="vlanOAM" value="VLAN OAM:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="vlanOAM" value="#{nodo3GController.item.vlanOAM}" required="true"
+                                                 requiredMessage="Ingrese número entero para VLAN"
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                        <pe:keyFilter preventPaste="false" mask="pint"/>
+                                    </p:inputText>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="ipTelecom" value="IP Telecom:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="ipTelecom" value="#{nodo3GController.item.ipTelecom}"
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                        <f:validator validatorId="ipValidator"/>
+                                    </p:inputText>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="maskTelecom" value="Subnet Mask Telecom:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="maskTelecom" value="#{nodo3GController.item.maskTelecom}"
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}"/>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="gwTelecom" value="Gateway Telecom:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="gwTelecom" value="#{nodo3GController.item.gwTelecom}"
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}"/>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="vlanTelecom" value="VLAN Telecom:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="vlanTelecom" value="#{nodo3GController.item.vlanTelecom}"
+                                                 required="true"
+                                                 requiredMessage="Ingrese número entero para VLAN"
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                        <pe:keyFilter preventPaste="false" mask="pint"/>
+                                    </p:inputText>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="ipGrandMaster" value="IP Grand Master:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="ipGrandMaster" value="#{nodo3GController.item.ipGrandMaster}"
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                        <f:validator validatorId="ipValidator"/>
+                                    </p:inputText>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="ipSecondaryMaster" value="IP Secondary Master:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="ipSecondaryMaster"
+                                                 value="#{nodo3GController.item.ipSecondaryMaster}"
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                        <f:validator validatorId="ipValidator"/>
+                                    </p:inputText>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="tinco" value="TINCO:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="tinco" value="#{nodo3GController.item.tinco}" required="true"
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}"/>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="EPLFlujoDABT" value="EPL / Flujo DABT:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="EPLFlujoDABT" value="#{nodo3GController.item.EPLFlujoDABT}"
+                                                 required="true"
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}"/>
+                                </p:column>
+                            </p:row>
+                        </p:panelGrid>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column styleClass="topAligned">
+                        <p:panelGrid styleClass="center">
+                            <f:facet name="header">
+                                <p:row><p:column colspan="2">
+                                    <h:outputText value="Información de acceso"/>
+                                </p:column>
+                                </p:row>
+                            </f:facet>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="numTorreros" value="Número torreros:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="numTorreros" value="#{nodo3GController.item.numTorreros}"
+                                                 required="true"
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                    </p:inputText>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="acceso" value="Acceso:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputTextarea id="acceso" value="#{nodo3GController.item.acceso}"
+                                                     autoResize="true"
+                                                     required="true"
+                                                     readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}"/>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="llaveMovistar" value="Llave Movistar:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:selectOneRadio id="llaveMovistar" value="#{nodo3GController.item.llaveMovistar}"
+                                                      required="true"
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                        <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
+                                        <f:selectItem itemValue="#{false}" itemLabel="No"/>
+                                    </p:selectOneRadio>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="llaveUnificada" value="Llave Unificada:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:selectOneRadio id="llaveUnificada"
+                                                      value="#{nodo3GController.item.llaveUnificada}"
+                                                      required="true"
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                        <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
+                                        <f:selectItem itemValue="#{false}" itemLabel="No"/>
+                                    </p:selectOneRadio>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="llaveExteriorAlcatel" value="Llave Outdoor Alcatel:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:selectOneRadio id="llaveExteriorAlcatel"
+                                                      value="#{nodo3GController.item.llaveExteriorAlcatel}"
+                                                      required="true"
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                        <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
+                                        <f:selectItem itemValue="#{false}" itemLabel="No"/>
+                                    </p:selectOneRadio>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="llaveExteriorEricsson" value="Llave Outdoor Ericsson:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:selectOneRadio id="llaveExteriorEricsson"
+                                                      value="#{nodo3GController.item.llaveExteriorEricsson}"
+                                                      required="true"
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                        <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
+                                        <f:selectItem itemValue="#{false}" itemLabel="No"/>
+                                    </p:selectOneRadio>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="llaveSitio" value="Llave Sitio:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:selectOneRadio id="llaveSitio" value="#{nodo3GController.item.llaveSitio}"
+                                                      required="true"
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                        <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
+                                        <f:selectItem itemValue="#{false}" itemLabel="No"/>
+                                    </p:selectOneRadio>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="tarjetaSitio" value="Tarjeta Sitio:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:selectOneRadio id="tarjetaSitio" value="#{nodo3GController.item.tarjetaSitio}"
+                                                      required="true"
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                        <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
+                                        <f:selectItem itemValue="#{false}" itemLabel="No"/>
+                                    </p:selectOneRadio>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="tarjetaProximidad" value="Tarjeta Proximidad:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:selectOneRadio id="tarjetaProximidad"
+                                                      value="#{nodo3GController.item.tarjetaProximidad}"
+                                                      required="true"
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                        <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
+                                        <f:selectItem itemValue="#{false}" itemLabel="No"/>
+                                    </p:selectOneRadio>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="accesoTormenta" value="Acceso tormenta:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:selectOneRadio id="accesoTormenta"
+                                                      value="#{nodo3GController.item.accesoTormenta}"
+                                                      required="true"
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                        <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
+                                        <f:selectItem itemValue="#{false}" itemLabel="No"/>
+                                    </p:selectOneRadio>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="numContadorUTE" value="Número cuenta UTE:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="numContadorUTE" value="#{nodo3GController.item.numContadorUTE}"
+                                                 required="true"
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                        <pe:keyFilter preventPaste="false" mask="alphanum"/>
+                                    </p:inputText>
+                                </p:column>
+                            </p:row>
+                        </p:panelGrid>
+                    </p:column>
+                    <p:column styleClass="topAligned">
+                        <p:panelGrid styleClass="center">
+                            <f:facet name="header">
+                                <p:row><p:column colspan="2">
+                                    <h:outputText value="Información adicional"/>
+                                </p:column>
+                                </p:row>
+                            </f:facet>
+
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="alimentacion" value="Alimentación:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="alimentacion" value="#{nodo3GController.item.alimentacion}"
+                                                 title="En volts"
+                                                 required="true" requiredMessage="Ingrese número entero en volts"
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                        <pe:keyFilter preventPaste="false" mask="int"/>
+                                    </p:inputText>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="observaciones" value="Observaciones:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputTextarea id="observaciones" value="#{nodo3GController.item.observaciones}"
+                                                     cols="55" rows="9"
+                                                     autoResize="true"
+                                                     readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}"/>
+                                </p:column>
+                            </p:row>
+                        </p:panelGrid>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column colspan="2" styleClass="topAligned">
+                        <p:panel id="celdaPanel" header="Celdas">
+                            <p:dataGrid var="celda" value="#{of:setToList(nodo3GController.item.celdas)}"
+                                        paginator="true"
+                                        rendered="#{not empty nodo3GController.item.celdas}"
+                                        readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                <h:panelGrid columns="2">
+                                    <f:facet name="header">
+                                        <p:outputLabel for="sector" value="Sector: "/>
+                                        <h:outputText id="sector" value="#{celda.sector}"/>
+                                    </f:facet>
+                                    <p:outputLabel for="idCelda" value="Id Celda"/>
+                                    <h:outputText id="idCelda" value="#{celda.idCelda}"/>
+                                    <p:outputLabel for="numAntenas" value="Número antenas"/>
+                                    <h:outputText id="numAntenas" value="#{celda.numAntenas}"/>
+                                    <p:outputLabel for="altura" value="Altura"/>
+                                    <h:outputText id="altura" value="#{celda.altura}"/>
+                                    <p:outputLabel for="azimut" value="Azimut"/>
+                                    <h:outputText id="azimut" value="#{celda.azimut}"/>
+                                    <p:outputLabel for="tiltM" value="Tilt M"/>
+                                    <h:outputText id="tiltM" value="#{celda.tiltM}"/>
+                                    <p:outputLabel for="tiltE" value="Tilt E"/>
+                                    <h:outputText id="tiltE" value="#{celda.tiltE}"/>
+                                    <p:outputLabel for="scramblingCode" value="Scrambling code"/>
+                                    <h:outputText id="scramblingCode" value="#{celda.scramblingCode}"/>
+                                    <p:outputLabel for="tipoFO" value="Tipo FO"/>
+                                    <h:outputText id="tipoFO" value="#{celda.tipoFO}"/>
+                                    <p:outputLabel for="ubicacion" value="Ubicación"/>
+                                    <h:outputText id="ubicacion" value="#{celda.ubicacion}"/>
+                                    <p:outputLabel for="antenaCompartida" value="Antena compartida"/>
+                                    <h:outputText id="antenaCompartida" value="#{celda.antenaCompartida}"/>
+                                    <p:outputLabel for="tipoAntena" value="Tipo antena"/>
+                                    <h:outputText id="tipoAntena" value="#{celda.tipoAntena.modelo}"/>
+                                    <p:outputLabel for="tipoFeeder" value="Tipo feeder"/>
+                                    <h:outputText id="tipoFeeder" value="#{celda.tipoFeeder.modelo}"/>
+                                    <p:outputLabel for="atenuacion" value="Atenuación"/>
+                                    <h:outputText id="atenuacion" value="#{celda.atenuacion}"/>
+                                </h:panelGrid>
+                                <p:commandButton value="Modificar celda" action="#{nodo3GController.updateCelda(celda)}"
+                                                 immediate="true" icon="ui-icon-pencil"
+                                                 rendered="#{(authorizationChecker.admin or authorizationChecker.consola) and not nodo3GController.readOnly}"/>
+                                <p:commandButton value="Eliminar celda" action="#{nodo3GController.deleteCelda(celda)}"
+                                                 icon="ui-icon-trash" update="@form" immediate="true"
+                                                 rendered="#{(authorizationChecker.admin or authorizationChecker.consola) and not nodo3GController.readOnly}">
+                                    <p:confirm header="Confirmación" message="#{msg.askConfirmAction}"
+                                               icon="ui-icon-alert"/>
+                                </p:commandButton>
+                            </p:dataGrid>
+                            <p:commandButton value="Agregar celda" action="#{nodo3GController.createCelda}"
+                                             validateClient="true"
+                                             icon="ui-icon-plusthick"
+                                             update="@form"
+                                             rendered="#{(authorizationChecker.admin or authorizationChecker.consola) and not nodo3GController.readOnly}"/>
+                        </p:panel>
+
+                    </p:column>
+                </p:row>
+
+                <f:facet name="footer">
+                    <p:row><p:column colspan="2" styleClass="textCenter">
+                        <p:commandButton value="Confirmar"
+                                         action="#{nodo3GController.doConfirmUpdate}" update="@form growl"
+                                         validateClient="true"
+                                         rendered="#{(authorizationChecker.admin or authorizationChecker.consola) and not nodo3GController.readOnly}"
+                                         ajax="false"/>
+                        <p:commandButton id="cancel" value="Cancelar" immediate="true"
+                                         action="#{nodo3GController.doCancel}"
+                                         rendered="#{not nodo3GController.readOnly}"/>
+                        <p:commandButton id="aceptar" value="Aceptar" immediate="true"
+                                         action="#{nodo3GController.doCancel}"
+                                         rendered="#{nodo3GController.readOnly}"/>
+                        <p:commandButton id="modificar" value="Modificar" immediate="true"
+                                         action="#{nodo3GController.doUpdate}"
+                                         icon="ui-icon-pencil" rendered="#{nodo3GController.readOnly}"/>
+
+                    </p:column>
+                    </p:row>
+                </f:facet>
+
+            </p:panelGrid>
+
+            <p:confirmDialog global="true">
+                <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes"
+                                 icon="ui-icon-check"/>
+                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"
+                                 icon="ui-icon-close"/>
+            </p:confirmDialog>
+
+        </h:form>
+
+    </ui:define>
+</ui:composition>
+</html>

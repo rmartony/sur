@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             version="1.0" xmlns="http://java.sun.com/xml/ns/persistence"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+    <persistence-unit name="swnoc" transaction-type="JTA">
+        <jta-data-source>java:jboss/datasources/swnocDS</jta-data-source>
+        <!--        <exclude-unlisted-classes>false</exclude-unlisted-classes>-->
+
+        <class>uy.gub.dgr.sur.entity.Sitio</class>
+        <class>uy.gub.dgr.sur.entity.Zona</class>
+        <class>uy.gub.dgr.sur.entity.Nodo</class>
+        <class>uy.gub.dgr.sur.entity.NodoLte</class>
+        <class>uy.gub.dgr.sur.entity.Nodo3G</class>
+        <class>uy.gub.dgr.sur.entity.Preventivo</class>
+        <class>uy.gub.dgr.sur.entity.EstadoPreventivo</class>
+        <class>uy.gub.dgr.sur.entity.Celda</class>
+        <class>uy.gub.dgr.sur.entity.Celda3G</class>
+        <class>uy.gub.dgr.sur.entity.CeldaLte</class>
+        <!--        <class>Rnc</class>-->
+        <class>uy.gub.dgr.sur.entity.Departamento</class>
+        <class>uy.gub.dgr.sur.entity.TipoAntena</class>
+        <class>uy.gub.dgr.sur.entity.TipoBTS</class>
+        <class>uy.gub.dgr.sur.entity.TipoFeeder</class>
+        <class>uy.gub.dgr.sur.entity.Departamento</class>
+        <class>uy.gub.dgr.sur.entity.Torrero</class>
+        <!--        <class>Ip</class>-->
+
+        <class>org.picketlink.idm.jpa.model.sample.simple.AttributedTypeEntity</class>
+        <class>org.picketlink.idm.jpa.model.sample.simple.AccountTypeEntity</class>
+        <class>org.picketlink.idm.jpa.model.sample.simple.RoleTypeEntity</class>
+        <class>org.picketlink.idm.jpa.model.sample.simple.GroupTypeEntity</class>
+        <class>org.picketlink.idm.jpa.model.sample.simple.IdentityTypeEntity</class>
+        <class>org.picketlink.idm.jpa.model.sample.simple.RelationshipTypeEntity</class>
+        <class>org.picketlink.idm.jpa.model.sample.simple.RelationshipIdentityTypeEntity</class>
+        <class>org.picketlink.idm.jpa.model.sample.simple.PartitionTypeEntity</class>
+        <class>org.picketlink.idm.jpa.model.sample.simple.PasswordCredentialTypeEntity</class>
+        <class>org.picketlink.idm.jpa.model.sample.simple.AttributeTypeEntity</class>
+
+        <!--<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>-->
+        <shared-cache-mode>ALL</shared-cache-mode>
+        <properties>
+            <!--<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>-->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.cache.use_second_level_cache" value="true"/>
+            <property name="hibernate.cache.use_query_cache" value="true"/>
+            <!--
+                        <property name="hibernate.cache.region.factory_class" value="org.jboss.as.jpa.hibernate4.infinispan.InfinispanRegionFactory"/>
+                        <property name="hibernate.cache.infinispan.cachemanager" value="java:jboss/infinispan/container/hibernate"/>
+                        <property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.JBossTransactionManagerLookup"/>
+            -->
+
+            <property name="org.hibernate.envers.track_entities_changed_in_revision" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
+

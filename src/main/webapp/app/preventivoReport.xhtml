@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+        >
+<ui:composition template="/templates/fullLayout.xhtml">
+    <ui:define name="content">
+        <h:form id="form">
+
+            <h:form id="reportForm">
+                <p:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">
+                    <f:facet name="header">
+                        <h:outputText value="Reporte últimos mantenimientos preventivos"/>
+                    </f:facet>
+                    <p:outputLabel for="fechaDesde" value="Fecha desde:"/>
+                    <p:calendar id="fechaDesde" value="#{preventivoReportController.fechaDesde}" required="true"
+                                requiredMessage="Ingrese fecha desde último preventivo">
+                    </p:calendar>
+                    <p:outputLabel for="fechaHasta" value="Fecha hasta:"/>
+                    <p:calendar id="fechaHasta" value="#{preventivoReportController.fechaHasta}" required="true"
+                                requiredMessage="Ingrese fecha hasta último preventivo">
+                    </p:calendar>
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Generar reporte" icon="ui-icon-print"
+                                         onclick="window.open('report')">
+                        </p:commandButton>
+                    </f:facet>
+                </p:panelGrid>
+            </h:form>
+        </h:form>
+
+        <p:growl id="growl" showDetail="false" life="5000" autoUpdate="true"/>
+
+    </ui:define>
+</ui:composition>
+</html>

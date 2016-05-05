@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns="http://www.w3.org/1999/xhtml"
+        >
+<ui:composition template="/templates/fullLayout.xhtml">
+    <ui:define name="content">
+        <h:form id="form">
+            <p:dataTable id="dataTable" var="item" value="#{nodoLteController.lazyModel}" styleClass="dataTableStyle"
+                         first="#{nodoLteController.lazyModel.first}" paginator="true" rows="10"
+                         selection="#{nodoLteController.selectedItems}"
+                         emptyMessage="#{msg.noRecordsFound}"
+                         paginatorTemplate="#{msg.paginatorTemplate}"
+                         currentPageReportTemplate="#{msg.currentPageReportTemplate}"
+                         lazy="true" rowsPerPageTemplate="10,25,50">
+                <f:facet name="header">
+                    Lista de Nodos LTE
+                </f:facet>
+                <p:column style="width:22px">
+                    <p:commandButton icon="ui-icon-search"
+                                     title="Ver" action="#{nodoLteController.doView}">
+                        <f:setPropertyActionListener value="#{item}" target="#{nodoLteController.selectedItem}"/>
+                    </p:commandButton>
+                </p:column>
+                <p:column style="width:22px" rendered="#{authorizationChecker.admin or authorizationChecker.consola}">
+                    <p:commandButton icon="ui-icon-pencil"
+                                     title="Modificar" action="#{nodoLteController.doUpdate}">
+                        <f:setPropertyActionListener value="#{item}" target="#{nodoLteController.selectedItem}"/>
+                    </p:commandButton>
+                </p:column>
+                <p:column selectionMode="multiple" style="width:18px"/>
+                <p:column sortBy="#{item.sigla}" filterBy="#{item.sigla}">
+                    <f:facet name="header">
+                        <h:outputText value="Sigla"/>
+                    </f:facet>
+                    <h:outputText value="#{item.sigla}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.sitio.nombre}" filterBy="#{item.sitio.nombre}">
+                    <f:facet name="header">
+                        <h:outputText value="Sitio"/>
+                    </f:facet>
+                    <h:outputText value="#{item.sitio.nombre}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.ipOAM}" filterBy="#{item.ipOAM}">
+                    <f:facet name="header">
+                        <h:outputText value="IP OAM"/>
+                    </f:facet>
+                    <h:outputText value="#{item.ipOAM}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.NServicio}" filterBy="#{item.NServicio}">
+                    <f:facet name="header">
+                        <h:outputText value="Número servicio"/>
+                    </f:facet>
+                    <h:outputText value="#{item.NServicio}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.numContadorUTE}" filterBy="#{item.numContadorUTE}">
+                    <f:facet name="header">
+                        <h:outputText value="Número cuenta UTE"/>
+                    </f:facet>
+                    <h:outputText value="#{item.numContadorUTE}"/>
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Nuevo Nodo LTE" icon="ui-icon-star" action="#{nodoLteController.doCreate}"
+                                     title="Crear nuevo Nodo LTE"
+                                     rendered="#{authorizationChecker.admin or authorizationChecker.consola}"/>
+                    <p:commandButton value="Modificar Nodo LTE" action="#{nodoLteController.doUpdate}"
+                                     icon="ui-icon-pencil"
+                                     title="Modificar Nodo LTE" disabled="#{nodoLteController.lazyModel.rowCount eq 0}"
+                                     rendered="#{authorizationChecker.admin or authorizationChecker.consola}">
+                        <f:setPropertyActionListener value="#{null}" target="#{nodoLteController.selectedItem}"/>
+                    </p:commandButton>
+                    <p:commandButton value="Ver Nodo LTE" action="#{nodoLteController.doView}"
+                                     icon="ui-icon-search"
+                                     title="Ver Nodo LTE" disabled="#{nodoLteController.lazyModel.rowCount eq 0}">
+                        <f:setPropertyActionListener value="#{null}" target="#{nodoLteController.selectedItem}"/>
+                    </p:commandButton>
+                    <p:commandButton value="Eliminar Nodo LTE" actionListener="#{nodoLteController.doDelete}"
+                                     update="dataTable" icon="ui-icon-trash"
+                                     disabled="#{nodoLteController.lazyModel.rowCount eq 0}"
+                                     rendered="#{authorizationChecker.admin}">
+                        <p:confirm header="Confirmación" message="#{msg.askConfirmAction}"
+                                   icon="ui-icon-alert"/>
+                    </p:commandButton>
+                </f:facet>
+            </p:dataTable>
+        </h:form>
+
+        <p:growl id="growl" showDetail="false" life="5000" autoUpdate="true"/>
+
+        <p:confirmDialog global="true">
+            <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes"
+                             icon="ui-icon-check"/>
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"
+                             icon="ui-icon-close"/>
+        </p:confirmDialog>
+
+    </ui:define>
+</ui:composition>
+</html>

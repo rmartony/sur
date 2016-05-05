@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+        >
+<ui:composition template="/templates/fullLayout.xhtml">
+    <ui:define name="content">
+        <h:form id="form">
+            <p:dataTable id="dataTable" var="item" value="#{sitioController.lazyModel}" styleClass="dataTableStyle"
+                         first="#{sitioController.lazyModel.first}" paginator="true" rows="10"
+                         selection="#{sitioController.selectedItems}"
+                         emptyMessage="#{msg.noRecordsFound}"
+                         paginatorTemplate="#{msg.paginatorTemplate}"
+                         currentPageReportTemplate="#{msg.currentPageReportTemplate}"
+                         lazy="true" rowsPerPageTemplate="10,25,50">
+                <f:facet name="header">
+                    Lista de Sitios
+                    <!--
+                                        <p:outputPanel>
+                                            <h:outputText value="Buscar:" />
+                                            <p:inputText id="globalFilter" onkeyup="dataTable.filter()" />
+                                        </p:outputPanel>
+                    -->
+                </f:facet>
+                <p:column style="width:22px">
+                    <p:commandButton icon="ui-icon-search" update=":SitioDetailForm:display"
+                                     title="Ver" action="#{sitioController.doView}">
+                        <f:setPropertyActionListener value="#{item}" target="#{sitioController.selectedItem}"/>
+                    </p:commandButton>
+                </p:column>
+                <p:column style="width:22px" rendered="#{authorizationChecker.admin or authorizationChecker.consola}">
+                    <p:commandButton icon="ui-icon-pencil" update=":SitioDetailForm:display"
+                                     title="Modificar" action="#{sitioController.doUpdate}">
+                        <f:setPropertyActionListener value="#{item}" target="#{sitioController.selectedItem}"/>
+                    </p:commandButton>
+                </p:column>
+                <p:column selectionMode="multiple" style="width:18px"/>
+                <p:column sortBy="#{item.sigla}" filterBy="#{item.sigla}">
+                    <f:facet name="header">
+                        <h:outputText value="Sigla"/>
+                    </f:facet>
+                    <h:outputText value="#{item.sigla}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.nombre}" filterBy="#{item.nombre}">
+                    <f:facet name="header">
+                        <h:outputText value="Nombre Sitio"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nombre}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.zona.nombre}" filterBy="#{item.zona.nombre}"
+                          filterOptions="#{sitioController.zonaListOptions}"
+                          filterMatchMode="exact">
+                    <f:facet name="header">
+                        <h:outputText value="Zona"/>
+                    </f:facet>
+                    <h:outputText value="#{item.zona.nombre}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.direccion}" filterBy="#{item.direccion}">
+                    <f:facet name="header">
+                        <h:outputText value="Dirección"/>
+                    </f:facet>
+                    <h:outputText value="#{item.direccion}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.departamento.nombre}" filterBy="#{item.departamento.nombre}"
+                          filterOptions="#{sitioController.departamentoListOptions}">
+                    <f:facet name="header">
+                        <h:outputText value="Departamento"/>
+                    </f:facet>
+                    <h:outputText value="#{item.departamento.nombre}"/>
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Nuevo Sitio" icon="ui-icon-star" action="#{sitioController.doCreate}"
+                                     title="Crear nuevo Sitio"
+                                     rendered="#{authorizationChecker.admin or authorizationChecker.consola}"/>
+                    <p:commandButton value="Modificar Sitio" action="#{sitioController.doUpdate}"
+                                     rendered="#{authorizationChecker.admin or authorizationChecker.consola}"
+                                     icon="ui-icon-pencil"
+                                     title="Modificar Sitio">
+                        <f:setPropertyActionListener value="#{null}" target="#{sitioController.selectedItem}"/>
+                    </p:commandButton>
+                    <p:commandButton value="Ver Sitio" action="#{sitioController.doView}"
+                                     icon="ui-icon-search"
+                                     title="Ver Sitio">
+                        <f:setPropertyActionListener value="#{null}" target="#{sitioController.selectedItem}"/>
+                    </p:commandButton>
+                    <p:commandButton value="Eliminar Sitio" actionListener="#{sitioController.doConfirmDelete}"
+                                     update="dataTable" icon="ui-icon-trash"
+                                     rendered="#{authorizationChecker.admin or authorizationChecker.consola}">
+                        <p:confirm header="Confirmación" message="#{msg.askConfirmAction}"
+                                   icon="ui-icon-alert"/>
+                    </p:commandButton>
+                </f:facet>
+            </p:dataTable>
+        </h:form>
+
+        <p:dialog header="Detalle de Sitio" widgetVar="SitioDialog" resizable="false" id="SitioDlg">
+            <h:form id="SitioDetailForm">
+                <p:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">
+                    <h:outputText value="Nombre:"/>
+                    <h:inputText value="#{sitioController.selectedItem.nombre}" required="true"/>
+                    <f:facet name="footer">
+                        <p:commandButton value="Actualizar" update=":form:dataTable, :growl"
+                                         oncomplete="handleSubmitRequest(xhr, status, args, 'SitioDlg','SitioDetailForm'); "
+                                         action="#{sitioController.doConfirmUpdate}"/>
+                    </f:facet>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+
+        <p:growl id="growl" showDetail="false" life="5000" autoUpdate="true"/>
+
+        <p:confirmDialog global="true">
+            <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes"
+                             icon="ui-icon-check"/>
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"
+                             icon="ui-icon-close"/>
+        </p:confirmDialog>
+
+        <script type="text/javascript">
+            function handleSubmitRequest(xhr, status, args, dialogName, formName) {
+                dialog = jQuery('#' + dialogName);
+                if (args.validationFailed) {
+                    dialog.effect("shake", {times: 3}, 100);
+                } else {
+                    clearForm(formName);
+                    PF('newSitioDialog').hide();
+                    PF('SitioDialog').hide();
+                }
+            }
+            function clearForm(formName) {
+                jQuery('#' + formName).each(function () {
+                    this.reset();
+                });
+            }
+        </script>
+    </ui:define>
+</ui:composition>
+</html>

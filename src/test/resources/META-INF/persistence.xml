@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0"
+             xmlns="http://java.sun.com/xml/ns/persistence">
+    <persistence-unit name="swnoc"
+                      transaction-type="RESOURCE_LOCAL">
+        <!--<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>-->
+        <class>uy.gub.dgr.sur.entity.Sitio</class>
+        <class>uy.gub.dgr.sur.entity.Zona</class>
+        <class>uy.gub.dgr.sur.entity.Nodo</class>
+        <class>uy.gub.dgr.sur.entity.NodoLte</class>
+        <class>uy.gub.dgr.sur.entity.Nodo3G</class>
+        <class>uy.gub.dgr.sur.entity.Preventivo</class>
+        <class>uy.gub.dgr.sur.entity.EstadoPreventivo</class>
+        <class>uy.gub.dgr.sur.entity.Celda</class>
+        <class>uy.gub.dgr.sur.entity.Celda3G</class>
+        <class>uy.gub.dgr.sur.entity.CeldaLte</class>
+        <class>uy.gub.dgr.sur.entity.Rnc</class>
+        <class>uy.gub.dgr.sur.entity.Departamento</class>
+        <class>uy.gub.dgr.sur.entity.TipoAntena</class>
+        <class>uy.gub.dgr.sur.entity.TipoBTS</class>
+        <class>uy.gub.dgr.sur.entity.TipoFeeder</class>
+        <class>uy.gub.dgr.sur.entity.Departamento</class>
+        <class>uy.gub.dgr.sur.entity.Torrero</class>
+        <class>uy.gub.dgr.sur.entity.Ip</class>
+
+        <class>org.picketlink.idm.jpa.model.sample.simple.AttributedTypeEntity</class>
+        <class>org.picketlink.idm.jpa.model.sample.simple.AccountTypeEntity</class>
+        <class>org.picketlink.idm.jpa.model.sample.simple.RoleTypeEntity</class>
+        <class>org.picketlink.idm.jpa.model.sample.simple.GroupTypeEntity</class>
+        <class>org.picketlink.idm.jpa.model.sample.simple.IdentityTypeEntity</class>
+        <class>org.picketlink.idm.jpa.model.sample.simple.RelationshipTypeEntity</class>
+        <class>org.picketlink.idm.jpa.model.sample.simple.RelationshipIdentityTypeEntity</class>
+        <class>org.picketlink.idm.jpa.model.sample.simple.PartitionTypeEntity</class>
+        <class>org.picketlink.idm.jpa.model.sample.simple.PasswordCredentialTypeEntity</class>
+        <class>org.picketlink.idm.jpa.model.sample.simple.AttributeTypeEntity</class>
+
+
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+
+            <property name="eclipselink.logging.level" value="FINE"/>
+            <property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.H2Platform"/>
+            <property name="eclipselink.ddl-generation" value="create-tables"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:swnoc"/>
+            <property name="javax.persistence.jdbc.user" value=""/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+        </properties>
+    </persistence-unit>
+</persistence>

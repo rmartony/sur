@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+        >
+<ui:composition template="/templates/fullLayout.xhtml">
+    <ui:define name="content">
+        <h:form id="form">
+            <p:dataTable id="dataTable" var="item" value="#{departamentoController.lazyModel}"
+                         styleClass="dataTableStyle"
+                         paginator="true" rows="10" selection="#{departamentoController.selectedItems}"
+                         emptyMessage="#{msg.noRecordsFound}"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         lazy="true" rowsPerPageTemplate="10,25,50">
+                <f:facet name="header">
+                    Lista de Departamentos
+                </f:facet>
+                <p:column style="width:22px">
+                    <p:commandButton icon="ui-icon-search" update=":itemDetailForm:display"
+                                     title="Ver"
+                                     oncomplete="PF('itemDialog').show()">
+                        <f:setPropertyActionListener value="#{item}" target="#{departamentoController.selectedItem}"/>
+                    </p:commandButton>
+                </p:column>
+                <p:column style="width:22px" rendered="#{authorizationChecker.admin}">
+                    <p:commandButton icon="ui-icon-pencil" update=":itemDetailForm:display"
+                                     title="Modificar"
+                                     oncomplete="PF('itemDialog').show()">
+                        <f:setPropertyActionListener value="#{item}" target="#{departamentoController.selectedItem}"/>
+                    </p:commandButton>
+                </p:column>
+
+                <p:column selectionMode="multiple" style="width:18px"/>
+                <p:column sortBy="#{item.nombre}" filterBy="#{item.nombre}">
+                    <f:facet name="header">
+                        <h:outputText value="Nombre"/>
+                    </f:facet>
+                    <p:commandLink value="#{item.nombre}" update=":itemDetailForm:display"
+                                   oncomplete="PF('itemDialog').show()" title="Ver">
+                        <f:setPropertyActionListener value="#{item}" target="#{departamentoController.selectedItem}"/>
+                    </p:commandLink>
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Nuevo Departamento" oncomplete="PF('newItemDialog').show()"
+                                     icon="ui-icon-star"
+                                     title="Crear nuevo Departamento" rendered="#{authorizationChecker.admin}"/>
+                    <p:commandButton value="Modificar Departamento" actionListener="#{departamentoController.doUpdate}"
+                                     update=":itemDetailForm:display"
+                                     icon="ui-icon-pencil"
+                                     title="Modificar Departamento"
+                                     oncomplete="if (!args.validationFailed) {PF('itemDialog').show()}"
+                                     rendered="#{authorizationChecker.admin}">
+                    </p:commandButton>
+                    <p:commandButton value="Ver Departamento" actionListener="#{departamentoController.doUpdate}"
+                                     update=":itemDetailForm:display"
+                                     icon="ui-icon-pencil"
+                                     title="Ver Departamento"
+                                     oncomplete="if (!args.validationFailed) {PF('itemDialog').show()}"
+                                     rendered="#{not authorizationChecker.admin}">
+                    </p:commandButton>
+                    <p:commandButton value="Eliminar Departamento" actionListener="#{departamentoController.doDelete}"
+                                     update="dataTable" icon="ui-icon-trash" rendered="#{authorizationChecker.admin}">
+                        <p:confirm header="Confirmación" message="#{msg.askConfirmAction}"
+                                   icon="ui-icon-alert"/>
+                    </p:commandButton>
+                </f:facet>
+            </p:dataTable>
+        </h:form>
+
+        <p:dialog header="Detalle de Departamento" widgetVar="itemDialog" resizable="false" id="itemDlg">
+            <h:form id="itemDetailForm">
+                <p:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">
+                    <p:outputLabel for="displayModelo" value="Nombre:"/>
+                    <p:inputText id="displayModelo" value="#{departamentoController.selectedItem.nombre}"
+                                 required="true"
+                                 requiredMessage="Por favor ingresar nombre"
+                                 readonly="#{not authorizationChecker.admin}"/>
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Actualizar" update=":form:dataTable, :growl"
+                                         oncomplete="handleSubmitRequest(xhr, status, args, 'itemDlg','itemDetailForm'); "
+                                         action="#{departamentoController.doConfirmUpdate}"
+                                         rendered="#{authorizationChecker.admin}"/>
+                        <p:commandButton value="Cancelar" onclick="itemDialog.hide()"
+                                         immediate="true" rendered="#{authorizationChecker.admin}"/>
+                        <p:commandButton value="Aceptar" onclick="itemDialog.hide()"
+                                         immediate="true" rendered="#{not authorizationChecker.admin}"/>
+                    </f:facet>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+
+        <p:dialog header="Crear nuevo Departamento" widgetVar="newItemDialog" resizable="false" id="newItemDlg">
+            <h:form id="newItemForm">
+                <p:panelGrid id="displayNewTipoAntena" columns="2" cellpadding="4" style="margin:0 auto;">
+                    <p:outputLabel for="newItemModelo" value="Nombre:"/>
+                    <p:inputText id="newItemModelo" value="#{departamentoController.newItem.nombre}" required="true"
+                                 requiredMessage="Por favor ingresar nombre"/>
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Confirmar" update=":form:dataTable, :growl"
+                                         oncomplete="handleSubmitRequest(xhr, status, args, 'newItemDlg','newItemForm');"
+                                         actionListener="#{departamentoController.doCreate}"/>
+                        <p:commandButton value="Cancelar" onclick="newItemDlg.hide()"
+                                         immediate="true"/>
+                    </f:facet>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+
+        <p:growl id="growl" showDetail="false" life="5000" autoUpdate="true"/>
+
+        <p:confirmDialog global="true">
+            <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes"
+                             icon="ui-icon-check"/>
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"
+                             icon="ui-icon-close"/>
+        </p:confirmDialog>
+
+        <script type="text/javascript">
+            function handleSubmitRequest(xhr, status, args, dialogName, formName) {
+                dialog = jQuery('#' + dialogName);
+                if (args.validationFailed) {
+                    dialog.effect("shake", {times: 3}, 100);
+                } else {
+                    clearForm(formName);
+                    PF('newItemDialog').hide();
+                    PF('itemDialog').hide();
+                }
+            }
+            function clearForm(formName) {
+                jQuery('#' + formName).each(function () {
+                    this.reset();
+                });
+            }
+        </script>
+    </ui:define>
+</ui:composition>
+</html>

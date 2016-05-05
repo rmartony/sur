@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="sur:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="sur.war">
+      <element id="artifact" artifact-name="sur:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="jpa-descriptors" facet="sur/jpa/JPA" />
+        </element>
+      </element>
+      <element id="artifact" artifact-name="sur:ejb exploded" />
+    </root>
+  </artifact>
+</component>

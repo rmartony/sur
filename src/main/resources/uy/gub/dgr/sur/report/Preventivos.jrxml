@@ -1,0 +1,618 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Preventivos" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e32fa068-6099-453e-ab8d-96bd83755bbf">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="swnocJDBC"/>
+	<parameter name="dateFrom" class="java.sql.Date"/>
+	<parameter name="dateTo" class="java.sql.Date"/>
+	<queryString language="SQL">
+		<![CDATA[select
+      p.fecha,
+	  p.observacionesPrivado,
+	  p.observacionesPublico,
+	  p.rutaFotos,
+      estadoprev1_.sigla as alarmaPuerta,
+      estadoprev2_.sigla as aterramientos,
+      estadoprev3_.sigla as balizas,
+      estadoprev4_.sigla as baterias,
+      estadoprev5_.sigla as burletePuerta,
+      estadoprev6_.sigla as cableFeederJumpers,
+      estadoprev7_.sigla as cableadoYConectorEth,
+      estadoprev8_.sigla as cableadoYConectores,
+      estadoprev9_.sigla as cerraduraPuerta,
+      estadoprev10_.sigla as conectores,
+      estadoprev11_.sigla as encintados,
+      estadoprev12_.sigla as estadoFiltro,
+      estadoprev13_.sigla as limpieza,
+      estadoprev19_.sigla as rrh,
+      estadoprev20_.sigla as seguridad,
+      estadoprev21_.sigla as tma,
+      nodo14_.sigla as nodo
+  from
+      UltimoPreventivo up inner join Preventivo p on up.preventivo_id = p.id
+  inner join
+      Nodo nodo14_ 
+          on p.nodo_id=nodo14_.id 	  
+  left join
+      EstadoPreventivo estadoprev1_ 
+          on p.alarmaPuerta_id=estadoprev1_.id 
+  left join
+      EstadoPreventivo estadoprev2_ 
+          on p.aterramientos_id=estadoprev2_.id 
+  left join
+      EstadoPreventivo estadoprev3_ 
+          on p.balizas_id=estadoprev3_.id 
+  left join
+      EstadoPreventivo estadoprev4_ 
+          on p.baterias_id=estadoprev4_.id 
+  left join
+      EstadoPreventivo estadoprev5_ 
+          on p.burletePuerta_id=estadoprev5_.id 
+  left join
+      EstadoPreventivo estadoprev6_ 
+          on p.cableFeederJumpers_id=estadoprev6_.id 
+  left join
+      EstadoPreventivo estadoprev7_ 
+          on p.cableadoYConectorEth_id=estadoprev7_.id 
+  left join
+      EstadoPreventivo estadoprev8_ 
+          on p.cableadoYConectores_id=estadoprev8_.id 
+  left join
+      EstadoPreventivo estadoprev9_ 
+          on p.cerraduraPuerta_id=estadoprev9_.id 
+  left join
+      EstadoPreventivo estadoprev10_ 
+          on p.conectores_id=estadoprev10_.id 
+  left join
+      EstadoPreventivo estadoprev11_ 
+          on p.encintados_id=estadoprev11_.id 
+  left join
+      EstadoPreventivo estadoprev12_ 
+          on p.estadoFiltro_id=estadoprev12_.id 
+  left join
+      EstadoPreventivo estadoprev13_ 
+          on p.limpieza_id=estadoprev13_.id 
+  left join
+      EstadoPreventivo estadoprev19_ 
+          on p.rrh_id=estadoprev19_.id 
+  left join
+      EstadoPreventivo estadoprev20_ 
+          on p.seguridad_id=estadoprev20_.id 
+  left join
+      EstadoPreventivo estadoprev21_ 
+          on p.tma_id=estadoprev21_.id 
+  where
+      p.fecha between $P{dateFrom} and $P{dateTo}
+  order by p.fecha desc]]>
+	</queryString>
+	<field name="fecha" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="observacionesPrivado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="observacionesPublico" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rutaFotos" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nodo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="alarmaPuerta" class="java.lang.String"/>
+	<field name="aterramientos" class="java.lang.String"/>
+	<field name="balizas" class="java.lang.String"/>
+	<field name="baterias" class="java.lang.String"/>
+	<field name="burletePuerta" class="java.lang.String"/>
+	<field name="cableFeederJumpers" class="java.lang.String"/>
+	<field name="cableadoYConectorEth" class="java.lang.String"/>
+	<field name="cableadoYConectores" class="java.lang.String"/>
+	<field name="cerraduraPuerta" class="java.lang.String"/>
+	<field name="conectores" class="java.lang.String"/>
+	<field name="encintados" class="java.lang.String"/>
+	<field name="estadoFiltro" class="java.lang.String"/>
+	<field name="limpieza" class="java.lang.String"/>
+	<field name="rrh" class="java.lang.String"/>
+	<field name="seguridad" class="java.lang.String"/>
+	<field name="tma" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="39" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="801" height="39" uuid="9d0d4225-617c-4cfb-b243-64792e57d84e"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Mantenimientos preventivos desde " + (DateFormat.getDateInstance(DateFormat.SHORT,$P{REPORT_LOCALE}).format($P{dateFrom})) + " hasta " + 
+(DateFormat.getDateInstance(DateFormat.SHORT,$P{REPORT_LOCALE}).format($P{dateTo}))]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="177" splitType="Stretch">
+			<staticText>
+				<reportElement x="50" y="160" width="50" height="17" uuid="40cb6655-185a-47c3-ad82-380ca3dd6009"/>
+				<box topPadding="2" leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="160" width="50" height="17" uuid="8a81a174-6b02-4222-8c1a-55b2844332ad"/>
+				<box topPadding="2" leftPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[BTS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="27" width="30" height="150" uuid="902ff926-8933-4333-9f30-2beda174c485"/>
+				<box leftPadding="0" bottomPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement rotation="Left"/>
+				<text><![CDATA[Alarma de puerta (reporte de la alarma al OMC)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="27" width="15" height="150" uuid="90b21ca0-d39e-448f-aef7-706632991acc"/>
+				<box leftPadding="0" bottomPadding="2">
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement rotation="Left"/>
+				<text><![CDATA[Burlete puerta (roturas, cortes)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="145" y="27" width="30" height="150" uuid="13565254-6fed-4756-a588-b89084ece60e"/>
+				<box leftPadding="0" bottomPadding="2">
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement rotation="Left"/>
+				<text><![CDATA[Bisagra de la puerta (óxido, 
+roturas)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="175" y="27" width="15" height="150" uuid="ba7142c2-54e6-4b79-baf5-efd12280f642"/>
+				<box leftPadding="0" bottomPadding="2">
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement rotation="Left"/>
+				<text><![CDATA[Cerradura puerta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="190" y="27" width="15" height="150" uuid="3909eda1-fb63-4c6e-8244-912c72afecb3"/>
+				<box leftPadding="0" bottomPadding="2">
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement rotation="Left"/>
+				<text><![CDATA[Baterías]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="205" y="27" width="40" height="150" uuid="61c9f17d-e6c3-4498-ad78-db536fc2e106"/>
+				<box leftPadding="0" bottomPadding="2">
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement rotation="Left"/>
+				<text><![CDATA[Cableado y conectores E1s (cortes en las aislaciones, óxido/sulfato en los conectores)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="10" width="214" height="17" uuid="0669442f-7d13-4219-8f59-5745cc68e615"/>
+				<box>
+					<pen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BTS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="245" y="27" width="54" height="150" uuid="ca09f1e6-4bd1-4c0f-89c5-008f4325d440"/>
+				<box leftPadding="0" bottomPadding="2">
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement rotation="Left"/>
+				<text><![CDATA[Cableado y conectores 
+Ethernet (cortes en la aislación, chequeo visual de los conectores)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="299" y="27" width="16" height="150" uuid="5dea090a-d213-4340-b0b8-716d2617d687"/>
+				<box leftPadding="0" bottomPadding="2">
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement rotation="Left"/>
+				<text><![CDATA[Filtro (roturas y suciedad)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="315" y="27" width="14" height="150" uuid="b192fbfb-7618-478b-a5ee-cbb4b1e53e06"/>
+				<box leftPadding="0" bottomPadding="2">
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement rotation="Left"/>
+				<text><![CDATA[Limpieza]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="329" y="27" width="16" height="150" uuid="e8e30698-74da-4adc-b8e4-64720b93d867"/>
+				<box leftPadding="0" bottomPadding="2">
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement rotation="Left"/>
+				<text><![CDATA[Seguridad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="10" width="30" height="17" uuid="cf0c73ba-1d71-4529-baf2-82234023c32a"/>
+				<box>
+					<pen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sitio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="345" y="10" width="264" height="17" uuid="c70665f3-3f71-4603-a53f-0f97597f1607"/>
+				<box>
+					<pen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Torre y sistema radiante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="345" y="27" width="30" height="150" uuid="d2481191-e327-4a45-acde-093e091389bc"/>
+				<box leftPadding="0" bottomPadding="2">
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement rotation="Left"/>
+				<text><![CDATA[Estado conectores  (chequeo visual)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="375" y="27" width="30" height="150" uuid="465ecabd-d9f9-45de-8003-0497874c3dc2"/>
+				<box leftPadding="0" bottomPadding="2">
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement rotation="Left"/>
+				<text><![CDATA[Estado de Balizas (chequeo 
+visual del estado de las mismas)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="405" y="27" width="40" height="150" uuid="6e448b3a-2d51-4986-a6ba-0d97f1366625"/>
+				<box leftPadding="0" bottomPadding="2">
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement rotation="Left"/>
+				<text><![CDATA[Estado cables, feeders, jumpers (sujeción, etiquetados, cortes, rotura de aislaciones)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="445" y="27" width="30" height="150" uuid="cdde6ea3-cdc9-4ef6-84ac-13d8f32217bb"/>
+				<box leftPadding="0" bottomPadding="2">
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement rotation="Left"/>
+				<text><![CDATA[Estado de Balizas (chequeo 
+visual del estado de las mismas)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="475" y="27" width="54" height="150" uuid="e86589fa-bfdf-4899-866a-1b493d17c8bc"/>
+				<box leftPadding="0" bottomPadding="2">
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement rotation="Left"/>
+				<text><![CDATA[Aterramientos de todos los elementos (cables faltantes, estado de las platinas, chequeo de las conexiones)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="529" y="27" width="26" height="150" uuid="18a0e7fc-a5ea-428c-a011-6652cceef2c4"/>
+				<box leftPadding="0" bottomPadding="2">
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement rotation="Left"/>
+				<text><![CDATA[Estado TMAs (sujeción, óxido, roturas)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="555" y="27" width="26" height="150" uuid="0e982307-6a02-4ac7-abdb-188ad6981a7d"/>
+				<box leftPadding="0" bottomPadding="2">
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement rotation="Left"/>
+				<text><![CDATA[Estado RRHs ( sujeción, óxido, roturas)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="581" y="27" width="28" height="150" uuid="91ef66b0-1b16-4870-8749-2649f42b18b0"/>
+				<box leftPadding="0" bottomPadding="2">
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement rotation="Left"/>
+				<text><![CDATA[Encintados de las conexiones y código de colores)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="609" y="10" width="192" height="17" uuid="b9d19a31-3afb-4cfa-b2a3-27eaa69a3713"/>
+				<box>
+					<pen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Observaciones]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField pattern="dd/MM/yy">
+				<reportElement x="50" y="0" width="50" height="20" uuid="e7a488b7-553c-4a23-99de-1f20cce1e273"/>
+				<box topPadding="2" leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="50" height="20" uuid="c688997b-5fab-4e44-a87e-40bcc3a97ff6"/>
+				<box topPadding="2" leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{nodo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="100" y="0" width="30" height="20" uuid="1c24f403-3c07-45ee-9ea3-598c4b082b86"/>
+				<box topPadding="2">
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{alarmaPuerta}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" x="609" y="0" width="193" height="20" isPrintWhenDetailOverflows="true" uuid="992330a2-93d5-49a0-9d7f-319aba9c72ce"/>
+				<box topPadding="2" leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{observacionesPublico}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="130" y="0" width="15" height="20" uuid="7390d427-0746-4860-bdcf-77a5f469bc71"/>
+				<box topPadding="2">
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{burletePuerta}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="205" y="0" width="40" height="20" uuid="e5817189-22da-4afe-af67-f6e55bc909e4"/>
+				<box topPadding="2">
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cableadoYConectores}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="190" y="0" width="15" height="20" uuid="4a03126b-439c-40a8-ae51-ef1123994770"/>
+				<box topPadding="2">
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{baterias}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="145" y="0" width="30" height="20" uuid="09fd60e1-ab0f-449f-a241-db86d68e9e60"/>
+				<box topPadding="2">
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{alarmaPuerta}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="175" y="0" width="15" height="20" uuid="0a8b86d6-f187-4b80-a865-4935d861e058"/>
+				<box topPadding="2">
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cerraduraPuerta}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="245" y="0" width="54" height="20" uuid="0d92109d-d566-429b-8ff6-fa39f7e3ac9b"/>
+				<box topPadding="2">
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cableadoYConectorEth}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="299" y="0" width="16" height="20" uuid="58aa9ec8-3193-4ae3-a737-fb41296f4d39"/>
+				<box topPadding="2">
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{estadoFiltro}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="315" y="0" width="14" height="20" uuid="147f015d-f7b9-45f1-a12d-7cb0f673e078"/>
+				<box topPadding="2">
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{limpieza}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="329" y="0" width="16" height="20" uuid="1ef921a4-16be-489b-82ff-acee12818727"/>
+				<box topPadding="2">
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{seguridad}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="345" y="0" width="30" height="20" uuid="8eff999e-b6a4-4412-b81e-27f0f6e9b6d3"/>
+				<box topPadding="2">
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{conectores}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="375" y="0" width="30" height="20" uuid="4ca59ed0-9fb9-4630-9b66-7cc8f7f0ac75"/>
+				<box topPadding="2">
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{balizas}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="445" y="0" width="30" height="20" uuid="15653323-8803-4f1d-a4f3-554316ab531d"/>
+				<box topPadding="2">
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{balizas}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="405" y="0" width="40" height="20" uuid="a1072447-927c-4ff0-b00e-accbe9b3e067"/>
+				<box topPadding="2">
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cableFeederJumpers}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="475" y="0" width="54" height="20" uuid="892ef4fc-1ef0-4d2c-ac76-0e53f31c75d1"/>
+				<box topPadding="2">
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{aterramientos}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="529" y="0" width="26" height="20" uuid="650dcbda-a5d8-4433-92b2-3a8d922bd737"/>
+				<box topPadding="2">
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tma}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="581" y="0" width="28" height="20" uuid="af6332b1-d25c-4dfa-a6d8-05e0153f1696"/>
+				<box topPadding="2">
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{encintados}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="555" y="0" width="26" height="20" uuid="57735d3f-09cd-4d2b-bffc-1e8351251d08"/>
+				<box topPadding="2">
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{rrh}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="0" width="100" height="13" uuid="64083267-cfe8-44df-a746-66f511972ead"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="0" y="0" width="762" height="13" backcolor="#E6E6E6" uuid="51cf529a-5548-4391-aa7f-a8de94c6105c"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="762" y="0" width="40" height="13" backcolor="#E6E6E6" uuid="4abee4f2-cb70-4a6c-8e26-0a8cac18d554"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="801" height="1" uuid="39c4ce94-3b0e-481a-b54c-58153bb75b3d"/>
+			</line>
+			<textField pattern="dd/MM/yyyy HH:mm">
+				<reportElement x="0" y="0" width="130" height="16" uuid="8f8a104c-ebab-4987-a50e-1cbb3b37733e"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

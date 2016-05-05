@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+        >
+<ui:composition template="/templates/fullLayout.xhtml">
+    <ui:define name="content">
+        <h:form id="form">
+            <p:dataTable id="dataTable" var="item" value="#{rncController.lazyModel}" styleClass="dataTableStyle"
+                         paginator="true" rows="10" selection="#{rncController.selectedItems}"
+                         emptyMessage="#{msg.noRecordsFound}"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         lazy="true" rowsPerPageTemplate="10,25,50">
+                <f:facet name="header">
+                    Lista de IP
+                </f:facet>
+                <p:column style="width:18px">
+                    <p:commandButton icon="ui-icon-pencil" update=":itemDetailForm:display"
+                                     title="Ver o modificar"
+                                     oncomplete="PF('itemDialog').show()">
+                        <f:setPropertyActionListener value="#{item}" target="#{rncController.selectedItem}"/>
+                    </p:commandButton>
+                </p:column>
+
+                <p:column selectionMode="multiple" style="width:18px"/>
+                <p:column sortBy="#{item.nombre}" filterBy="#{item.ip}">
+                    <f:facet name="header">
+                        <h:outputText value="Sigla"/>
+                    </f:facet>
+                    <p:commandLink value="#{item.sigla}" update=":itemDetailForm:display"
+                                   oncomplete="PF('itemDialog').show()" title="Ver">
+                        <f:setPropertyActionListener value="#{item}" target="#{rncController.selectedItem}"/>
+                    </p:commandLink>
+                </p:column>
+
+                <p:column sortBy="#{item.nombre}" filterBy="#{item.nombre}">
+                    <f:facet name="header">
+                        <h:outputText value="Nombre"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nombre}"/>
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Nuevo RNC" oncomplete="PF('newItemDialog').show()" icon="ui-icon-star"
+                                     title="Crear nuevo RNC" rendered="#{authorizationChecker.admin}"/>
+                    <p:commandButton value="Modificar RNC" actionListener="#{rncController.doUpdate}"
+                                     update=":itemDetailForm:display"
+                                     icon="ui-icon-pencil"
+                                     title="Modificar RNC"
+                                     oncomplete="if (!args.validationFailed) {PF('itemDialog').show()}"
+                                     rendered="#{authorizationChecker.admin}">
+                        <!--<f:setPropertyActionListener value="#{item}" target="#{rncController.selectedItem}"/>-->
+                    </p:commandButton>
+                    <p:commandButton value="Ver RNC" actionListener="#{rncController.doUpdate}"
+                                     update=":itemDetailForm:display"
+                                     icon="ui-icon-pencil"
+                                     title="Ver RNC" oncomplete="if (!args.validationFailed) {PF('itemDialog').show()}"
+                                     rendered="#{not authorizationChecker.admin}">
+                    </p:commandButton>
+                    <p:commandButton value="Eliminar RNC" actionListener="#{rncController.doDelete}"
+                                     update="dataTable" icon="ui-icon-trash" rendered="#{authorizationChecker.admin}">
+                        <p:confirm header="Confirmación" message="#{msg.askConfirmAction}"
+                                   icon="ui-icon-alert"/>
+                    </p:commandButton>
+                </f:facet>
+            </p:dataTable>
+        </h:form>
+
+        <p:dialog header="Detalle de RNC" widgetVar="itemDialog" resizable="false" id="itemDlg">
+            <h:form id="itemDetailForm">
+                <p:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">
+                    <h:outputLabel for="detailSigla" value="Sigla:"/>
+                    <h:inputText id="detailSigla" value="#{rncController.selectedItem.sigla}" required="true"
+                                 readonly="#{not authorizationChecker.admin}"/>
+                    <p:outputLabel for="detailNombre" value="Nombre"/>
+                    <h:inputText id="detailNombre" value="#{rncController.selectedItem.nombre}"
+                                 readonly="#{not authorizationChecker.admin}"/>
+                    <f:facet name="footer">
+                        <p:commandButton value="Actualizar" update=":form:dataTable, :growl"
+                                         oncomplete="handleSubmitRequest(xhr, status, args, 'itemDlg','itemDetailForm'); "
+                                         action="#{rncController.doConfirmUpdate}"
+                                         rendered="#{authorizationChecker.admin}"/>
+                        <p:commandButton value="Cancelar" onclick="itemDialog.hide()"
+                                         immediate="true" rendered="#{authorizationChecker.admin}"/>
+                        <p:commandButton value="Aceptar" onclick="itemDialog.hide();"
+                                         rendered="#{not authorizationChecker.admin}"/>
+                    </f:facet>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+
+        <p:dialog header="Crear nueva RNC" widgetVar="newItemDialog" resizable="false" id="newItemDlg">
+            <h:form id="newItemForm">
+                <p:panelGrid id="displayNewIp" columns="2" cellpadding="4" style="margin:0 auto;">
+                    <h:outputText value="Sigla:"/>
+                    <p:inputText value="#{rncController.newItem.sigla}" required="true"
+                                 requiredMessage="Por favor ingresar sigla"/>
+
+                    <p:outputLabel for="newRncNombre" value="Nombre:"/>
+                    <p:inputText id="newRncNombre" value="#{rncController.newItem.nombre}"/>
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Confirmar" update=":form:dataTable, :growl"
+                                         oncomplete="handleSubmitRequest(xhr, status, args, 'newItemDlg','newItemForm');"
+                                         actionListener="#{rncController.doCreate}"
+                                         rendered="#{authorizationChecker.admin}"/>
+                        <p:commandButton value="Cancelar" onclick="newItemDlg.hide()"
+                                         immediate="true"
+                                         rendered="#{authorizationChecker.admin}"/>
+                        <p:commandButton value="Aceptar" onclick="newItemDialog.hide();"
+                                         rendered="#{not authorizationChecker.admin}"/>
+                    </f:facet>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+
+        <p:growl id="growl" showDetail="false" life="5000" autoUpdate="true"/>
+
+        <p:confirmDialog global="true">
+            <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes"
+                             icon="ui-icon-check"/>
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"
+                             icon="ui-icon-close"/>
+        </p:confirmDialog>
+
+        <script type="text/javascript">
+            function handleSubmitRequest(xhr, status, args, dialogName, formName) {
+                dialog = jQuery('#' + dialogName);
+                if (args.validationFailed) {
+                    dialog.effect("shake", {times: 3}, 100);
+                } else {
+                    clearForm(formName);
+                    PF('newItemDialog').hide();
+                    PF('itemDialog').hide();
+                }
+            }
+            function clearForm(formName) {
+                jQuery('#' + formName).each(function () {
+                    this.reset();
+                });
+            }
+        </script>
+    </ui:define>
+</ui:composition>
+</html>

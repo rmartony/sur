@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+        >
+<ui:composition template="/templates/fullLayout.xhtml">
+    <ui:define name="content">
+        <h:form id="form">
+            <p:dataTable id="dataTable" var="item" value="#{estructuraController.lazyModel}"
+                         styleClass="dataTableStyle"
+                         paginator="true" rows="10" selection="#{estructuraController.selectedItems}"
+                         emptyMessage="#{msg.noRecordsFound}"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         lazy="true" rowsPerPageTemplate="10,25,50">
+                <f:facet name="header">
+                    Lista de Estructuras
+                </f:facet>
+                <p:column style="width:22px">
+                    <p:commandButton icon="ui-icon-search" update=":itemDetailForm:display"
+                                     title="Ver"
+                                     oncomplete="PF('itemDialog').show()"
+                                     actionListener="#{estructuraController.doView}">
+                        <f:setPropertyActionListener value="#{item}" target="#{estructuraController.selectedItem}"/>
+                    </p:commandButton>
+                </p:column>
+                <p:column style="width:22px" rendered="#{authorizationChecker.admin}">
+                    <p:commandButton icon="ui-icon-pencil" update=":itemDetailForm:display"
+                                     title="Modificar"
+                                     oncomplete="PF('itemDialog').show()"
+                                     actionListener="#{estructuraController.doUpdate}">
+                        <f:setPropertyActionListener value="#{item}" target="#{estructuraController.selectedItem}"/>
+                    </p:commandButton>
+                </p:column>
+
+                <p:column selectionMode="multiple" style="width:18px"/>
+                <p:column sortBy="#{item.nombre}" filterBy="#{item.nombre}">
+                    <f:facet name="header">
+                        <h:outputText value="Nombre"/>
+                    </f:facet>
+                    <p:commandLink value="#{item.nombre}" update=":itemDetailForm:display"
+                                   oncomplete="PF('itemDialog').show()" title="Ver">
+                        <f:setPropertyActionListener value="#{item}" target="#{estructuraController.selectedItem}"/>
+                    </p:commandLink>
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Nuevo Estructura" oncomplete="PF('newItemDialog').show()"
+                                     icon="ui-icon-star"
+                                     title="Crear nuevo Estructura" rendered="#{authorizationChecker.admin}"/>
+                    <p:commandButton value="Modificar Estructura" action="#{estructuraController.doUpdate}"
+                                     update=":itemDetailForm:display"
+                                     icon="ui-icon-pencil"
+                                     title="Modificar Estructura"
+                                     oncomplete="if (!args.validationFailed) {PF('itemDialog').show()}"
+                                     rendered="#{authorizationChecker.admin}">
+                        <f:setPropertyActionListener value="#{null}" target="#{estructuraController.selectedItem}"/>
+                    </p:commandButton>
+                    <p:commandButton value="Ver Estructura" action="#{estructuraController.doView}"
+                                     update=":itemDetailForm:display"
+                                     icon="ui-icon-search"
+                                     title="Ver Estructura"
+                                     oncomplete="if (!args.validationFailed) {PF('itemDialog').show()}">
+                        <f:setPropertyActionListener value="#{null}" target="#{estructuraController.selectedItem}"/>
+                    </p:commandButton>
+                    <p:commandButton value="Eliminar Estructura" actionListener="#{estructuraController.doDelete}"
+                                     update="dataTable" icon="ui-icon-trash" rendered="#{authorizationChecker.admin}">
+                        <p:confirm header="Confirmación" message="#{msg.askConfirmAction}"
+                                   icon="ui-icon-alert"/>
+                    </p:commandButton>
+                </f:facet>
+            </p:dataTable>
+        </h:form>
+
+        <p:dialog header="Detalle de Estructura" widgetVar="itemDialog" resizable="false" id="itemDlg">
+            <h:form id="itemDetailForm">
+                <p:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">
+                    <p:outputLabel for="displayModelo" value="Nombre:"/>
+                    <p:inputText id="displayModelo" value="#{estructuraController.selectedItem.nombre}"
+                                 required="true"
+                                 requiredMessage="Por favor ingresar nombre"
+                                 readonly="#{not authorizationChecker.admin or estructuraController.readOnly}"/>
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Actualizar" update=":form:dataTable, :growl"
+                                         oncomplete="handleSubmitRequest(xhr, status, args, 'itemDlg','itemDetailForm'); "
+                                         action="#{estructuraController.doConfirmUpdate}"
+                                         rendered="#{authorizationChecker.admin and not estructuraController.readOnly}"/>
+                        <p:commandButton value="Cancelar" onclick="itemDialog.hide()"
+                                         immediate="true"
+                                         rendered="#{authorizationChecker.admin and not estructuraController.readOnly}"/>
+                        <p:commandButton value="Aceptar" onclick="itemDialog.hide()"
+                                         immediate="true"
+                                         rendered="#{not authorizationChecker.admin or estructuraController.readOnly}"/>
+                    </f:facet>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+
+        <p:dialog header="Crear nuevo Estructura" widgetVar="newItemDialog" resizable="false" id="newItemDlg">
+            <h:form id="newItemForm">
+                <p:panelGrid id="displayNewTipoAntena" columns="2" cellpadding="4" style="margin:0 auto;">
+                    <p:outputLabel for="newItemModelo" value="Nombre:"/>
+                    <p:inputText id="newItemModelo" value="#{estructuraController.newItem.nombre}" required="true"
+                                 requiredMessage="Por favor ingresar nombre"/>
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Confirmar" update=":form:dataTable, :growl"
+                                         oncomplete="handleSubmitRequest(xhr, status, args, 'newItemDlg','newItemForm');"
+                                         actionListener="#{estructuraController.doCreate}"/>
+                        <p:commandButton value="Cancelar" onclick="newItemDlg.hide()"
+                                         immediate="true"/>
+                    </f:facet>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+
+        <p:growl id="growl" showDetail="false" life="5000" autoUpdate="true"/>
+
+        <p:confirmDialog global="true">
+            <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes"
+                             icon="ui-icon-check"/>
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"
+                             icon="ui-icon-close"/>
+        </p:confirmDialog>
+
+        <script type="text/javascript">
+            function handleSubmitRequest(xhr, status, args, dialogName, formName) {
+                dialog = jQuery('#' + dialogName);
+                if (args.validationFailed) {
+                    dialog.effect("shake", {times: 3}, 100);
+                } else {
+                    clearForm(formName);
+                    PF('newItemDialog').hide();
+                    PF('itemDialog').hide();
+                }
+            }
+            function clearForm(formName) {
+                jQuery('#' + formName).each(function () {
+                    this.reset();
+                });
+            }
+        </script>
+    </ui:define>
+</ui:composition>
+</html>

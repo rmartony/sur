@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+        >
+<ui:composition template="/templates/fullLayout.xhtml">
+    <ui:define name="content">
+        <h:form id="form">
+            <p:dataTable id="dataTable" var="item" value="#{zonaController.lazyModel}" styleClass="dataTableStyle"
+                         paginator="true" rows="10" selection="#{zonaController.selectedItems}"
+                         emptyMessage="#{msg.noRecordsFound}"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         lazy="true" rowsPerPageTemplate="10,25,50">
+                <f:facet name="header">
+                    Lista de Zonas
+                </f:facet>
+                <p:column style="width:22px">
+                    <p:commandButton icon="ui-icon-search" update=":zonaDetailForm:display"
+                                     title="Ver"
+                                     oncomplete="PF('zonaDialog').show()"
+                                     actionListener="#{zonaController.doView}">
+                        <f:setPropertyActionListener value="#{item}" target="#{zonaController.selectedItem}"/>
+                    </p:commandButton>
+                </p:column>
+                <p:column style="width:22px" rendered="#{authorizationChecker.admin}">
+                    <p:commandButton icon="ui-icon-pencil" update=":zonaDetailForm:display"
+                                     title="Modificar"
+                                     oncomplete="PF('zonaDialog').show()"
+                                     actionListener="#{zonaController.doUpdate}">
+                        <f:setPropertyActionListener value="#{item}" target="#{zonaController.selectedItem}"/>
+                    </p:commandButton>
+                </p:column>
+
+                <p:column selectionMode="multiple" style="width:18px"/>
+                <p:column sortBy="#{item.nombre}" filterBy="#{item.nombre}">
+                    <f:facet name="header">
+                        <h:outputText value="Nombre Zona"/>
+                    </f:facet>
+                    <p:commandLink value="#{item.nombre}" update=":zonaDetailForm:display"
+                                   oncomplete="PF('zonaDialog').show()" title="View">
+                        <f:setPropertyActionListener value="#{item}" target="#{zonaController.selectedItem}"/>
+                    </p:commandLink>
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Nueva zona" oncomplete="PF('newZonaDialog').show()" icon="ui-icon-star"
+                                     title="Crear nueva zona" rendered="#{authorizationChecker.admin}"/>
+                    <p:commandButton value="Modificar zona" action="#{zonaController.doUpdate}"
+                                     update=":zonaDetailForm:display"
+                                     icon="ui-icon-pencil"
+                                     title="Modificar zona"
+                                     oncomplete="if (!args.validationFailed) {PF('zonaDialog').show()}"
+                                     rendered="#{authorizationChecker.admin}">
+                        <f:setPropertyActionListener value="#{null}" target="#{zonaController.selectedItem}"/>
+                    </p:commandButton>
+                    <p:commandButton value="Ver zona" action="#{zonaController.doView}"
+                                     update=":zonaDetailForm:display"
+                                     icon="ui-icon-pencil"
+                                     title="Ver zona"
+                                     oncomplete="if (!args.validationFailed) {PF('zonaDialog').show()}">
+                        <f:setPropertyActionListener value="#{null}" target="#{zonaController.selectedItem}"/>
+                    </p:commandButton>
+                    <p:commandButton value="Eliminar zona" actionListener="#{zonaController.doDeleteZonas}"
+                                     update="dataTable" icon="ui-icon-trash" rendered="#{authorizationChecker.admin}">
+                        <p:confirm header="Confirmación" message="#{msg.askConfirmAction}"
+                                   icon="ui-icon-alert"/>
+                    </p:commandButton>
+                </f:facet>
+            </p:dataTable>
+        </h:form>
+
+        <p:dialog header="Detalle de Zona" widgetVar="zonaDialog" resizable="false" id="zonaDlg">
+            <h:form id="zonaDetailForm">
+                <p:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">
+                    <h:outputText value="Nombre:"/>
+                    <h:inputText value="#{zonaController.selectedItem.nombre}" required="true"
+                                 readonly="#{not authorizationChecker.admin or zonaController.readOnly}"/>
+                    <f:facet name="footer">
+                        <p:commandButton value="Actualizar" update=":form:dataTable, :growl"
+                                         oncomplete="handleSubmitRequest(xhr, status, args, 'zonaDlg','zonaDetailForm'); "
+                                         action="#{zonaController.doConfirmUpdate}"
+                                         rendered="#{authorizationChecker.admin and not zonaController.readOnly}"/>
+                        <p:commandButton value="Cancelar" onclick="zonaDialog.hide();"
+                                         rendered="#{authorizationChecker.admin and not zonaController.readOnly}"
+                                         immediate="true"/>
+                        <p:commandButton value="Aceptar" onclick="zonaDialog.hide();"
+                                         rendered="#{not authorizationChecker.admin or zonaController.readOnly}"/>
+                    </f:facet>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+
+        <p:dialog header="Crear nueva zona" widgetVar="newZonaDialog" resizable="false" id="newZonaDlg">
+            <h:form id="newZonaForm">
+                <p:panelGrid id="displayNewUser" columns="2" cellpadding="4" style="margin:0 auto;">
+                    <h:outputText value="Zona:"/>
+                    <p:inputText value="#{zonaController.newZona.nombre}" required="true"
+                                 requiredMessage="Por favor ingresar nombre de la zona"
+                                 disabled="#{not authorizationChecker.admin}"/>
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Confirmar" update=":form:dataTable, :growl"
+                                         oncomplete="handleSubmitRequest(xhr, status, args, 'newZonaDlg','newZonaForm');"
+                                         actionListener="#{zonaController.doConfirmCreate}"
+                                         rendered="#{authorizationChecker.admin}"/>
+                        <p:commandButton value="Aceptar" onclick="newZonaDialog.hide();"
+                                         rendered="#{not authorizationChecker.admin}" update=":growl"/>
+                    </f:facet>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+
+        <p:growl id="growl" showDetail="false" life="5000" autoUpdate="true"/>
+
+        <p:confirmDialog global="true">
+            <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes"
+                             icon="ui-icon-check"/>
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"
+                             icon="ui-icon-close"/>
+        </p:confirmDialog>
+
+        <script type="text/javascript">
+            function handleSubmitRequest(xhr, status, args, dialogName, formName) {
+                dialog = jQuery('#' + dialogName);
+                if (args.validationFailed) {
+                    dialog.effect("shake", {times: 3}, 100);
+                } else {
+                    clearForm(formName);
+                    PF('newZonaDialog').hide();
+                    PF('zonaDialog').hide();
+                }
+            }
+            function clearForm(formName) {
+                jQuery('#' + formName).each(function () {
+                    this.reset();
+                });
+            }
+        </script>
+    </ui:define>
+</ui:composition>
+</html>

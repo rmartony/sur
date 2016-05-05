@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:o="http://omnifaces.org/ui"
+        >
+<ui:composition template="/templates/fullLayout.xhtml">
+    <ui:define name="content">
+        <h:form id="form">
+            <p:panelGrid id="displayNewSitio" cellpadding="4" styleClass="center">
+                <f:facet name="header">
+                    <p:row><p:column colspan="2">
+                        <h:outputText value="Ver o Modificar Sitio"/>
+                    </p:column>
+                    </p:row>
+                </f:facet>
+                <p:row>
+                    <p:column> <p:outputLabel for="sigla" value="Sigla:"/> </p:column>
+                    <p:column>
+                        <p:inputText id="sigla" value="#{sitioController.selectedItem.sigla}" required="true"
+                                     requiredMessage="Por favor ingresar sigla"
+                                     readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or sitioController.readOnly}"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column> <p:outputLabel for="nombre" value="Nombre:"/> </p:column>
+                    <p:column>
+                        <p:inputText id="nombre" value="#{sitioController.selectedItem.nombre}" required="true"
+                                     requiredMessage="Por favor ingresar nombre"
+                                     readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or sitioController.readOnly}"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column>
+                        <p:outputLabel for="sitio" value="Zona:"/>
+                    </p:column>
+                    <p:column>
+                        <p:selectOneMenu id="sitio" value="#{sitioController.selectedItem.zona}" required="true"
+                                         requiredMessage="Por favor ingresar zona"
+                                         disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or sitioController.readOnly}">
+                            <o:converter converterId="entityListConverter" list="#{sitioController.zonaList}"/>
+                            <f:selectItem itemLabel="Seleccionar zona..." noSelectionOption="true"/>
+                            <f:selectItems value="#{sitioController.zonaList}" var="zona"
+                                           itemLabel="#{zona.nombre}" itemValue="#{zona}"/>
+                        </p:selectOneMenu>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column>
+                        <p:outputLabel for="direccion" value="Dirección:"/>
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="direccion" value="#{sitioController.selectedItem.direccion}"
+                                     style="width: 20em;"
+                                     required="true" requiredMessage="Por favor ingresar dirección"
+                                     readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or sitioController.readOnly}"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column> <p:outputLabel for="departamento" value="Departamento:"/> </p:column>
+                    <p:column>
+                        <p:selectOneMenu id="departamento" value="#{sitioController.selectedItem.departamento}"
+                                         required="true"
+                                         requiredMessage="Por favor ingrese un departamento"
+                                         disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or sitioController.readOnly}">
+                            <o:converter converterId="entityListConverter" list="#{sitioController.departamentoList}"/>
+                            <f:selectItem itemLabel="Seleccionar departamento..." noSelectionOption="true"/>
+                            <f:selectItems value="#{sitioController.departamentoList}" var="departamento"
+                                           itemLabel="#{departamento.nombre}" itemValue="#{departamento}"/>
+                        </p:selectOneMenu>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column colspan="2"> <h:outputText styleClass="bold" value="Información adicional"/> </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column> <p:outputLabel for="fecha" value="Fecha:"/> </p:column>
+                    <p:column><p:calendar id="fecha" value="#{sitioController.selectedItem.fecha}"
+                                          pattern="#{msg.datePattern}" showOn="both" popupIconOnly="true"
+                                          disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or sitioController.readOnly}"
+                                          required="true"/></p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column> <p:outputLabel for="localidad" value="Localidad:"/> </p:column>
+                    <p:column><p:inputText id="localidad" value="#{sitioController.selectedItem.localidad}"
+                                           readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or sitioController.readOnly}"
+                                           required="true"/></p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column><p:outputLabel for="latitud" value="Latitud:"/></p:column>
+                    <p:column><p:inputText id="latitud" value="#{sitioController.selectedItem.latitud}"
+                                           readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or sitioController.readOnly}"
+                                           required="true"/></p:column>
+                </p:row>
+                <p:row>
+                    <p:column><p:outputLabel for="longitud" value="Longitud:"/></p:column>
+                    <p:column><p:inputText id="longitud" value="#{sitioController.selectedItem.longitud}"
+                                           readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or sitioController.readOnly}"
+                                           required="true"/></p:column>
+                </p:row>
+
+                <!--
+                                <p:row>
+                                    <p:column><p:outputLabel for="tipoCoordenada" value="Tipo de coordenadas:"/></p:column>
+                                    <p:column><p:autoComplete id="tipoCoordenada" value="#{sitioController.selectedItem.tipoCoordenada}"
+                                                              maxResults="10"
+                                                              completeMethod="#{sitioController.getTipoCoordenadas}" dropdown="true"
+                                                              readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or sitioController.readOnly}">
+                                        <f:selectItem itemValue="WGS84" itemLabel="WGS84"/>
+                                        <f:selectItem itemValue="GPS" itemLabel="GPS"/>
+                                    </p:autoComplete></p:column>
+                                </p:row>
+                -->
+
+                <p:row>
+                    <p:column><p:outputLabel for="estructura" value="Estructura:"/></p:column>
+                    <p:column><p:selectOneMenu id="estructura" value="#{sitioController.selectedItem.estructura}"
+                                               required="true"
+                                               disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or sitioController.readOnly}"
+                                               requiredMessage="Por favor ingrese una estructura">
+                        <o:converter converterId="entityListConverter" list="#{sitioController.estructuraList}"/>
+                        <f:selectItem itemLabel="Seleccionar estructura..." noSelectionOption="true"/>
+                        <f:selectItems value="#{sitioController.estructuraList}" var="estructura"
+                                       itemLabel="#{estructura.nombre}" itemValue="#{estructura}"/>
+                    </p:selectOneMenu>
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column><p:outputLabel for="alturaEstructura" value="Altura estructura:"/></p:column>
+                    <p:column><p:inputText id="alturaEstructura"
+                                           value="#{sitioController.selectedItem.alturaEstructura}"
+                                           readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or sitioController.readOnly}"
+                                           required="true"/></p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column><p:outputLabel for="perteneceA" value="Pertenece a:"/></p:column>
+                    <p:column><p:inputText id="perteneceA"
+                                           value="#{sitioController.selectedItem.perteneceA}"
+                                           readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or sitioController.readOnly}"
+                                           required="true"/></p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column><p:outputLabel for="observaciones" value="Observaciones:"/></p:column>
+                    <p:column><p:inputTextarea id="observaciones" cols="45" rows="6" maxlength="255"
+                                               value="#{sitioController.selectedItem.observaciones}"
+                                               readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or sitioController.readOnly}"/></p:column>
+                </p:row>
+
+                <p:row><p:column colspan="2">
+                    <p:dataTable id="dataTable" var="item" value="#{sitioController.nodosSitio}"
+                                 styleClass="dataTableStyle"
+                                 paginator="true" rows="10"
+                                 emptyMessage="#{msg.noRecordsFound}"
+                                 paginatorTemplate="#{msg.paginatorTemplate}"
+                                 currentPageReportTemplate="#{msg.currentPageReportTemplate}">
+                        <f:facet name="header">
+                            Lista de Nodos asociados al sitio
+                        </f:facet>
+                        <p:column style="width:18px">
+                            <p:commandButton icon="ui-icon-search"
+                                             title="Ver nodo" action="#{sitioController.doNodoView}">
+                                <f:setPropertyActionListener value="#{item}"
+                                                             target="#{sitioController.selectedNodoItem}"/>
+                            </p:commandButton>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Sigla"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sigla}"/>
+                        </p:column>
+
+
+                    </p:dataTable>
+                </p:column>
+                </p:row>
+
+                <f:facet name="footer">
+                    <p:row><p:column colspan="2" styleClass="textCenter">
+                        <p:commandButton value="Confirmar"
+                                         action="#{sitioController.doConfirmUpdate()}" update="@form growl"
+                                         validateClient="true"
+                                         ajax="true"
+                                         rendered="#{(authorizationChecker.admin or authorizationChecker.consola) and not sitioController.readOnly}"/>
+                        <p:commandButton id="cancel" value="Cancelar" immediate="true" action="cancel"
+                                         rendered="#{(authorizationChecker.admin or authorizationChecker.consola) and not sitioController.readOnly}"/>
+                        <p:commandButton id="aceptar" value="Aceptar" immediate="true"
+                                         action="#{sitioController.doCancel}"
+                                         rendered="#{not (authorizationChecker.admin or authorizationChecker.consola) or sitioController.readOnly}"/>
+                        <p:commandButton icon="ui-icon-pencil" immediate="true"
+                                         value="Modificar" title="Modificar sitio" action="#{sitioController.doUpdate}"
+                                         rendered="#{not (authorizationChecker.admin or authorizationChecker.consola) or sitioController.readOnly}"/>
+                    </p:column>
+                    </p:row>
+                </f:facet>
+
+            </p:panelGrid>
+            <p:growl id="growl" showDetail="false" life="5000" autoUpdate="true"/>
+        </h:form>
+
+
+    </ui:define>
+</ui:composition>
+</html>

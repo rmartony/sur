@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+        >
+<ui:composition template="/templates/fullLayout.xhtml">
+    <ui:define name="content">
+        <p:growl id="growl" showDetail="false" life="5000" autoUpdate="true"/>
+        <h:form id="form">
+            <p:dataTable id="dataTable" var="item" value="#{preventivoController.lazyModel}" styleClass="dataTableStyle"
+                         first="#{preventivoController.lazyModel.first}" paginator="true" rows="25"
+                         selection="#{preventivoController.selectedItems}"
+                         emptyMessage="#{msg.noRecordsFound}"
+                         paginatorTemplate="#{msg.paginatorTemplate}"
+                         currentPageReportTemplate="#{msg.currentPageReportTemplate}"
+                         lazy="true" rowsPerPageTemplate="10,25,50">
+                <f:facet name="header">
+                    Lista de Mantenimientos preventivos
+                </f:facet>
+                <p:column style="width:22px !important">
+                    <p:commandButton icon="ui-icon-search"
+                                     title="Ver" action="#{preventivoController.doView}">
+                        <f:setPropertyActionListener value="#{item}" target="#{preventivoController.selectedItem}"/>
+                    </p:commandButton>
+                </p:column>
+                <p:column style="width:22px !important"
+                          rendered="#{authorizationChecker.admin or authorizationChecker.consola}">
+                    <p:commandButton icon="ui-icon-pencil"
+                                     title="Modificar" action="#{preventivoController.doUpdate}">
+                        <f:setPropertyActionListener value="#{item}" target="#{preventivoController.selectedItem}"/>
+                    </p:commandButton>
+                </p:column>
+                <p:column selectionMode="multiple" style="width:18px"/>
+                <p:column sortBy="#{item.fecha}" filterBy="#{item.fecha}" filterMatchMode="contains">
+                    <f:facet name="header">
+                        <h:outputText value="Fecha"/>
+                    </f:facet>
+                    <h:outputText value="#{item.fecha}">
+                        <f:convertDateTime pattern="d/M/yyyy"/>
+                    </h:outputText>
+                </p:column>
+
+                <p:column sortBy="#{item.nodo.sigla}" filterBy="#{item.nodo.sigla}">
+                    <f:facet name="header">
+                        <h:outputText value="Nodo"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nodo.sigla}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.nodo.sitio.sigla}" filterBy="#{item.nodo.sitio.sigla}">
+                    <f:facet name="header">
+                        <h:outputText value="Sitio"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nodo.sitio.sigla}"/>
+                </p:column>
+
+                <p:column filterBy="#{item.nodo.sitio.zona.nombre}"
+                          filterOptions="#{preventivoController.zonaListOptions}"
+                          filterMatchMode="exact">
+                    <f:facet name="header">
+                        <h:outputText value="Zona"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nodo.sitio.zona.nombre}"/>
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Carpeta fotos"/>
+                    </f:facet>
+                    <h:outputLink value="#{item.urlFotos}" target="_blank">
+                        <h:outputText value="#{item.urlFotos}"/>
+                    </h:outputLink>
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Nuevo Mantenimiento preventivo" icon="ui-icon-star"
+                                     action="#{preventivoController.doCreate}"
+                                     title="Crear nuevo Mantenimiento preventivo"
+                                     rendered="#{authorizationChecker.admin or authorizationChecker.tecnico}"/>
+                    <p:commandButton value="Modificar Mantenimiento preventivo"
+                                     action="#{preventivoController.doUpdate}"
+                                     icon="ui-icon-pencil"
+                                     title="Modificar Mantenimiento preventivo"
+                                     disabled="#{preventivoController.lazyModel.rowCount eq 0}"
+                                     rendered="#{authorizationChecker.admin or authorizationChecker.tecnico}">
+                        <f:setPropertyActionListener value="#{null}" target="#{preventivoController.selectedItem}"/>
+                    </p:commandButton>
+                    <p:commandButton value="Ver Mantenimiento preventivo" action="#{preventivoController.doView}"
+                                     icon="ui-icon-search"
+                                     title="Ver Mantenimiento preventivo"
+                                     disabled="#{preventivoController.lazyModel.rowCount eq 0}">
+                        <f:setPropertyActionListener value="#{null}" target="#{preventivoController.selectedItem}"/>
+                    </p:commandButton>
+                    <p:commandButton value="Eliminar Mantenimiento preventivo"
+                                     actionListener="#{preventivoController.doDelete}"
+                                     update="dataTable" icon="ui-icon-trash"
+                                     disabled="#{preventivoController.lazyModel.rowCount eq 0}"
+                                     rendered="#{authorizationChecker.admin}">
+                        <p:confirm header="Confirmación" message="#{msg.askConfirmAction}"
+                                   icon="ui-icon-alert"/>
+                    </p:commandButton>
+                </f:facet>
+            </p:dataTable>
+        </h:form>
+
+        <p:confirmDialog global="true">
+            <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes"
+                             icon="ui-icon-check"/>
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"
+                             icon="ui-icon-close"/>
+        </p:confirmDialog>
+
+    </ui:define>
+</ui:composition>
+</html>

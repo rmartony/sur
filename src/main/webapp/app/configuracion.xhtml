@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+        >
+<ui:composition template="/templates/fullLayout.xhtml">
+    <ui:define name="content">
+        <h:form id="form">
+
+            <h:form id="configuracionForm">
+                <p:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">
+                    <f:facet name="header">
+                        <h:outputText value="Configuración"/>
+                    </f:facet>
+                    <p:outputLabel for="prefijoMount" value="Ruta carpeta almacenaje fotos:"/>
+                    <p:inputText id="prefijoMount"
+                                 value="#{configuracionController.configuracion.prefijoRutaMontajeFotos}"
+                                 required="true"
+                                 requiredMessage="Ingrese ruta almacenaje fotos" title="Por ejemplo: /mnt/fotos">
+                        <p:ajax event="keyup" update="urlFotos"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="urlFotos" value="Ejemplo carpeta montaje fotos"/>
+                    <h:outputText id="urlFotos" value="#{configuracionController.carpetaAlmacenajeFotos}"/>
+
+                    <p:outputLabel for="prefijoRutaInterna" value="Prefijo ruta interna fotos:"/>
+                    <p:inputText id="prefijoRutaInterna"
+                                 value="#{configuracionController.configuracion.prefijoUrlInternaFotos}" required="true"
+                                 requiredMessage="Ingrese ruta interna fotos">
+                    </p:inputText>
+                    <p:outputLabel for="prefijoRutaExterna" value="Prefijo ruta externa fotos:"/>
+                    <p:inputText id="prefijoRutaExterna"
+                                 value="#{configuracionController.configuracion.prefijoUrlExternaFotos}" required="true"
+                                 requiredMessage="Ingrese ruta externa fotos">
+                    </p:inputText>
+
+                    <p:outputLabel for="redLocal" value="Subredes locales:"/>
+                    <p:inputText id="redLocal"
+                                 value="#{configuracionController.configuracion.subredesLocales}" required="false"
+                                 title="Ingrese subredes locales en formato CIDR separadas por punto y coma, por ejemplo: 192.168.0.1/16;128.251.166.252/24"
+                                 requiredMessage="Ingrese subredes locales, por ejemplo: 192.168.0.1/16;128.251.166.252/24">
+                    </p:inputText>
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Aceptar" action="#{configuracionController.doConfirmUpdate()}">
+                        </p:commandButton>
+                        <p:commandButton value="Cancelar" action="cancel" immediate="true"/>
+                    </f:facet>
+                </p:panelGrid>
+            </h:form>
+        </h:form>
+
+        <p:growl id="growl" showDetail="false" life="5000" autoUpdate="true"/>
+
+    </ui:define>
+</ui:composition>
+</html>

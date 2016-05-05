@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns="http://www.w3.org/1999/xhtml"
+        >
+<ui:composition template="/templates/simpleLayout.xhtml">
+    <ui:define name="title">Ingreso al sistema</ui:define>
+    <ui:define name="content">
+        <br/>
+        <h:form id="loginForm" rendered="#{not identity.loggedIn}">
+            <p:focus for="username"/>
+            <h:panelGrid columns="2" cellpadding="5" styleClass="center">
+
+                <h:outputLabel for="username" value="Usuario:"/>
+                <p:inputText value="#{loginCredentials.userId}"
+                             id="username" required="true" label="username">
+                    <f:validateLength minimum="1"/>
+                </p:inputText>
+
+                <h:outputLabel for="password" value="Contraseña:"/>
+                <p:password value="#{loginCredentials.password}"
+                            id="password" required="true" label="password">
+                    <f:validateLength minimum="1"/>
+                </p:password>
+
+                <f:facet name="footer">
+                    <div class="textCenter">
+                        <p:commandButton id="loginButton" value="Ingresar"
+                                         action="#{loginController.login}" update="messages"/>
+                    </div>
+                </f:facet>
+            </h:panelGrid>
+
+            <div class="center textCenter" style="width:50%;">
+                <p:messages id="messages"/>
+            </div>
+
+            <!--
+                        <p class="textCenter">
+                            Probar ingresar con:<br/>
+                            admin/demo<br/>
+                            adminlectura/demo<br/>
+                            cliente/demo<br/>
+                            tecnico1/demo<br/>
+                            tecnico2/demo<br/>
+                            consola/demo<br/>
+                        </p>
+            -->
+
+        </h:form>
+        <p:confirmDialog header="Atención !" severity="alert" appendTo="@(body)"
+                         visible="#{not empty param['expired']}"
+                         message="La sesión ha expirado." widgetVar="confirmDlg">
+            <p:commandButton type="button" value="OK" onclick="PF('confirmDlg').hide()"/>
+        </p:confirmDialog>
+        <!--<h:outputText value="#{requestScope['javax.servlet.forward.request_uri']}"/>-->
+
+        <br style="clear:both"/>
+
+    </ui:define>
+
+</ui:composition>
+</html>

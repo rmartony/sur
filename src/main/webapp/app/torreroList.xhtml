@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+        >
+<ui:composition template="/templates/fullLayout.xhtml">
+    <ui:define name="content">
+        <h:form id="form">
+            <p:dataTable id="dataTable" var="item" value="#{torreroController.lazyModel}" styleClass="dataTableStyle"
+                         paginator="true" rows="10" selection="#{torreroController.selectedItems}"
+                         emptyMessage="#{msg.noRecordsFound}"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         lazy="true" rowsPerPageTemplate="10,25,50">
+                <f:facet name="header">
+                    Lista de Torreros
+                </f:facet>
+                <p:column style="width:22px">
+                    <p:commandButton icon="ui-icon-search" update=":itemDetailForm:display"
+                                     title="Ver"
+                                     oncomplete="PF('itemDialog').show()"
+                                     action="#{torreroController.doView}">
+                        <f:setPropertyActionListener value="#{item}" target="#{torreroController.selectedItem}"/>
+                    </p:commandButton>
+                </p:column>
+                <p:column style="width:22px" rendered="#{authorizationChecker.admin}">
+                    <p:commandButton icon="ui-icon-pencil" update=":itemDetailForm:display"
+                                     title="Modificar"
+                                     oncomplete="PF('itemDialog').show()"
+                                     action="#{torreroController.doUpdate}">
+                        <f:setPropertyActionListener value="#{item}" target="#{torreroController.selectedItem}"/>
+                    </p:commandButton>
+                </p:column>
+
+                <p:column selectionMode="multiple" style="width:18px"/>
+                <p:column sortBy="#{item.nombre}" filterBy="#{item.ip}">
+                    <f:facet name="header">
+                        <h:outputText value="Nombre"/>
+                    </f:facet>
+                    <p:commandLink value="#{item.nombre}" update=":itemDetailForm:display"
+                                   oncomplete="PF('itemDialog').show()" title="Ver">
+                        <f:setPropertyActionListener value="#{item}" target="#{torreroController.selectedItem}"/>
+                    </p:commandLink>
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Nuevo Torrero" oncomplete="PF('newItemDialog').show()" icon="ui-icon-star"
+                                     title="Crear nuevo Torrero" rendered="#{authorizationChecker.admin}"/>
+                    <p:commandButton value="Modificar Torrero" action="#{torreroController.doUpdate}"
+                                     update=":itemDetailForm:display"
+                                     icon="ui-icon-pencil"
+                                     title="Modificar Torrero"
+                                     oncomplete="if (!args.validationFailed) {PF('itemDialog').show()}"
+                                     rendered="#{authorizationChecker.admin}">
+                        <f:setPropertyActionListener value="#{null}" target="#{torreroController.selectedItem}"/>
+                    </p:commandButton>
+                    <p:commandButton value="Ver Torrero" action="#{torreroController.doView}"
+                                     update=":itemDetailForm:display"
+                                     icon="ui-icon-search"
+                                     title="Ver Torrero"
+                                     oncomplete="if (!args.validationFailed) {PF('itemDialog').show()}">
+                        <f:setPropertyActionListener value="#{null}" target="#{torreroController.selectedItem}"/>
+                    </p:commandButton>
+                    <p:commandButton value="Eliminar Torrero" actionListener="#{torreroController.doDelete}"
+                                     update="dataTable" icon="ui-icon-trash" rendered="#{authorizationChecker.admin}">
+                        <p:confirm header="Confirmación" message="#{msg.askConfirmAction}"
+                                   icon="ui-icon-alert"/>
+                    </p:commandButton>
+                </f:facet>
+            </p:dataTable>
+        </h:form>
+
+        <p:dialog header="Detalle de Torrero" widgetVar="itemDialog" resizable="false" id="itemDlg">
+            <h:form id="itemDetailForm">
+                <p:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">
+                    <h:outputLabel for="detailNombre" value="Nombre:"/>
+                    <h:inputText id="detailNombre" value="#{torreroController.selectedItem.nombre}" required="true"
+                                 readonly="#{not authorizationChecker.admin or torreroController.readOnly}"/>
+                    <f:facet name="footer">
+                        <p:commandButton value="Actualizar" update=":form:dataTable, :growl"
+                                         oncomplete="handleSubmitRequest(xhr, status, args, 'itemDlg','itemDetailForm'); "
+                                         action="#{torreroController.doConfirmUpdate}"
+                                         rendered="#{authorizationChecker.admin and not torreroController.readOnly}"/>
+                        <p:commandButton value="Cancelar" onclick="itemDialog.hide()"
+                                         immediate="true"
+                                         rendered="#{authorizationChecker.admin and not torreroController.readOnly}"/>
+                        <p:commandButton value="Aceptar" onclick="itemDialog.hide();"
+                                         rendered="#{not authorizationChecker.admin or torreroController.readOnly}"/>
+                    </f:facet>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+
+        <p:dialog header="Ingresar nuevo Torrero" widgetVar="newItemDialog" resizable="false" id="newItemDlg">
+            <h:form id="newItemForm">
+                <p:panelGrid id="displayNewIp" columns="2" cellpadding="4" style="margin:0 auto;">
+                    <h:outputText value="Nombre:"/>
+                    <p:inputText value="#{torreroController.newItem.nombre}" required="true"
+                                 requiredMessage="Por favor ingresar nombre"/>
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Confirmar" update=":form:dataTable, :growl"
+                                         oncomplete="handleSubmitRequest(xhr, status, args, 'newItemDlg','newItemForm');"
+                                         actionListener="#{torreroController.doCreate}"
+                                         rendered="#{authorizationChecker.admin}"/>
+                        <p:commandButton value="Cancelar" onclick="newItemDlg.hide()"
+                                         immediate="true"
+                                         rendered="#{authorizationChecker.admin}"/>
+                        <p:commandButton value="Aceptar" onclick="newItemDialog.hide();"
+                                         rendered="#{not authorizationChecker.admin}"/>
+                    </f:facet>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+
+        <p:growl id="growl" showDetail="false" life="5000" autoUpdate="true"/>
+
+        <p:confirmDialog global="true">
+            <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes"
+                             icon="ui-icon-check"/>
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"
+                             icon="ui-icon-close"/>
+        </p:confirmDialog>
+
+        <script type="text/javascript">
+            function handleSubmitRequest(xhr, status, args, dialogName, formName) {
+                dialog = jQuery('#' + dialogName);
+                if (args.validationFailed) {
+                    dialog.effect("shake", {times: 3}, 100);
+                } else {
+                    clearForm(formName);
+                    PF('newItemDialog').hide();
+                    PF('itemDialog').hide();
+                }
+            }
+            function clearForm(formName) {
+                jQuery('#' + formName).each(function () {
+                    this.reset();
+                });
+            }
+        </script>
+    </ui:define>
+</ui:composition>
+</html>

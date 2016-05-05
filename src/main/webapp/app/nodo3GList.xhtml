@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+        >
+<ui:composition template="/templates/fullLayout.xhtml">
+    <ui:define name="content">
+        <h:form id="form">
+            <p:dataTable id="dataTable" var="item" value="#{nodo3GController.lazyModel}" styleClass="dataTableStyle"
+                         first="#{nodo3GController.lazyModel.first}" paginator="true" rows="10"
+                         selection="#{nodo3GController.selectedItems}"
+                         emptyMessage="#{msg.noRecordsFound}"
+                         paginatorTemplate="#{msg.paginatorTemplate}"
+                         currentPageReportTemplate="#{msg.currentPageReportTemplate}"
+                         lazy="true" rowsPerPageTemplate="10,25,50">
+                <f:facet name="header">
+                    Lista de Nodos 3G
+                </f:facet>
+                <p:column style="width:22px">
+                    <p:commandButton icon="ui-icon-search"
+                                     title="Ver" action="#{nodo3GController.doView()}">
+                        <f:setPropertyActionListener value="#{item}" target="#{nodo3GController.selectedItem}"/>
+                    </p:commandButton>
+                </p:column>
+                <p:column style="width:22px" rendered="#{authorizationChecker.admin or authorizationChecker.consola}">
+                    <p:commandButton icon="ui-icon-pencil"
+                                     title="Modificar" action="#{nodo3GController.doUpdate}">
+                        <f:setPropertyActionListener value="#{item}" target="#{nodo3GController.selectedItem}"/>
+                    </p:commandButton>
+                </p:column>
+                <p:column selectionMode="multiple" style="width:18px"/>
+                <p:column sortBy="#{item.sigla}" filterBy="#{item.sigla}">
+                    <f:facet name="header">
+                        <h:outputText value="Sigla"/>
+                    </f:facet>
+                    <h:outputText value="#{item.sigla}"/>
+                </p:column>
+
+                <!--
+                                <p:column sortBy="#{item.ip.ip}" filterBy="#{item.ip.ip}">
+                                    <f:facet name="header">
+                                        <h:outputText value="IP"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.ip.ip}"/>
+                                </p:column>
+                -->
+
+                <p:column sortBy="#{item.sitio.nombre}" filterBy="#{item.sitio.nombre}">
+                    <f:facet name="header">
+                        <h:outputText value="Sitio"/>
+                    </f:facet>
+                    <h:outputText value="#{item.sitio.nombre}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.numContadorUTE}" filterBy="#{item.numContadorUTE}">
+                    <f:facet name="header">
+                        <h:outputText value="Número cuenta UTE"/>
+                    </f:facet>
+                    <h:outputText value="#{item.numContadorUTE}"/>
+                </p:column>
+
+                <!--
+                                <p:column sortBy="#{item.rnc.nombre}" filterBy="#{item.rnc.nombre}"
+                                          filterOptions="#{nodo3GController.rncListOptions}"
+                                          filterMatchMode="exact">
+                                    <f:facet name="header">
+                                        <h:outputText value="RNC"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.rnc.nombre}"/>
+                                </p:column>
+                -->
+
+                <f:facet name="footer">
+                    <p:commandButton value="Nuevo Nodo 3G" icon="ui-icon-star" action="#{nodo3GController.doCreate}"
+                                     title="Crear nuevo Nodo 3G"
+                                     rendered="#{authorizationChecker.admin or authorizationChecker.consola}"/>
+                    <p:commandButton value="Modificar Nodo 3G" action="#{nodo3GController.doUpdate}"
+                                     icon="ui-icon-pencil"
+                                     title="Modificar Nodo 3G" disabled="#{nodo3GController.lazyModel.rowCount eq 0}"
+                                     rendered="#{authorizationChecker.admin or authorizationChecker.consola}">
+                        <f:setPropertyActionListener value="#{null}" target="#{nodo3GController.selectedItem}"/>
+                    </p:commandButton>
+                    <p:commandButton value="Ver Nodo 3G" action="#{nodo3GController.doView}"
+                                     icon="ui-icon-search"
+                                     title="Ver Nodo 3G" disabled="#{nodo3GController.lazyModel.rowCount eq 0}">
+                        <f:setPropertyActionListener value="#{null}" target="#{nodo3GController.selectedItem}"/>
+                    </p:commandButton>
+                    <p:commandButton value="Eliminar Nodo 3G" actionListener="#{nodo3GController.doDelete}"
+                                     update="dataTable" icon="ui-icon-trash"
+                                     disabled="#{nodo3GController.lazyModel.rowCount eq 0}"
+                                     rendered="#{authorizationChecker.admin}">
+                        <p:confirm header="Confirmación" message="#{msg.askConfirmAction}"
+                                   icon="ui-icon-alert"/>
+                    </p:commandButton>
+                </f:facet>
+            </p:dataTable>
+        </h:form>
+
+        <p:growl id="growl" showDetail="false" life="5000" autoUpdate="true"/>
+
+        <p:confirmDialog global="true">
+            <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes"
+                             icon="ui-icon-check"/>
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"
+                             icon="ui-icon-close"/>
+        </p:confirmDialog>
+
+    </ui:define>
+</ui:composition>
+</html>

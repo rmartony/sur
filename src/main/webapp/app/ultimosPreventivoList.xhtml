@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns="http://www.w3.org/1999/xhtml"
+        >
+<ui:composition template="/templates/fullLayout.xhtml">
+    <ui:define name="content">
+        <h:form id="form">
+            <br/>
+            <p:panelGrid>
+                <p:row>
+                    <p:column>
+                        <p:outputLabel for="zona" value="Ver mantenimientos preventivos por Zona:"/>
+                    </p:column>
+                    <p:column>
+                        <p:selectOneMenu id="zona" value="#{preventivoController.selectedZona}">
+                            <o:converter converterId="entityListConverter" list="#{preventivoController.zonaList}"/>
+                            <f:selectItem itemLabel="Todas" noSelectionOption="true"/>
+                            <f:selectItems value="#{preventivoController.zonaList}" var="zona"
+                                           itemLabel="#{zona.nombre}" itemValue="#{zona}"/>
+                            <p:ajax event="change" listener="#{preventivoController.handleZonaChange}"
+                                    update="dataTable"/>
+                        </p:selectOneMenu>
+                    </p:column>
+                </p:row>
+            </p:panelGrid>
+            <br/>
+            <p:dataTable id="dataTable" var="item" value="#{preventivoController.ultimoPreventivoLazyModel}"
+                         styleClass="dataTableStyle"
+                         first="#{preventivoController.ultimoPreventivoLazyModel.first}" paginator="true" rows="25"
+                         selection="#{preventivoController.selectedUltimosPreventivosItems}"
+                         emptyMessage="#{msg.noRecordsFound}"
+                         paginatorTemplate="#{msg.paginatorTemplate}"
+                         currentPageReportTemplate="#{msg.currentPageReportTemplate}"
+                         lazy="true" rowsPerPageTemplate="10,25,50">
+                <f:facet name="header">
+                    Lista de últimos mantenimientos preventivos
+                </f:facet>
+                <p:column style="width:22px">
+                    <p:commandButton icon="ui-icon-search"
+                                     title="Ver" action="#{preventivoController.doView}">
+                        <f:setPropertyActionListener value="#{item.preventivo}"
+                                                     target="#{preventivoController.selectedItem}"/>
+                    </p:commandButton>
+                </p:column>
+                <p:column style="width:14px"
+                          rendered="#{authorizationChecker.admin or authorizationChecker.tecnico or authorizationChecker.consola }">
+                    <p:commandButton icon="ui-icon-pencil"
+                                     title="Modificar" action="#{preventivoController.doUltimoPreventivoUpdate}">
+                        <f:setPropertyActionListener value="#{item.preventivo}"
+                                                     target="#{preventivoController.selectedItem}"/>
+                    </p:commandButton>
+                </p:column>
+                <p:column selectionMode="multiple" style="width:18px"/>
+                <p:column sortBy="#{item.nodo.sigla}" filterBy="#{item.nodo.sigla}">
+                    <f:facet name="header">
+                        <h:outputText value="Nodo"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nodo.sigla}"/>
+                </p:column>
+                <p:column sortBy="#{item.preventivo.fecha}">
+                    <f:facet name="header">
+                        <h:outputText value="Último mantenimiento"/>
+                    </f:facet>
+                    <h:outputText value="#{item.preventivo.fecha}">
+                        <f:convertDateTime pattern="d/MMMMM/yyyy"/>
+                    </h:outputText>
+                    <h:outputText value=" ("/>
+                    <!--
+                                        <h:outputText value="#{item.preventivo.fecha}">
+                                            <f:converter converterId="org.ocpsoft.PrettyTimeConverter"/>
+                                        </h:outputText>
+                    -->
+                    <h:outputText value="#{item.preventivo.getDaysFromFecha()} días"
+                                  rendered="#{item.preventivo.getDaysFromFecha() gt 0}"/>
+                    <h:outputText value="hoy" rendered="#{item.preventivo.getDaysFromFecha() eq 0}"/>
+                    <h:outputText value=")"/>
+
+                </p:column>
+                <p:column sortBy="#{item.nodo.sitio.zona.nombre}">
+                    <f:facet name="header">
+                        <h:outputText value="Zona"/>
+                    </f:facet>
+                    <h:outputText value="#{item.preventivo.nodo.sitio.zona.nombre}"/>
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Nuevo Mantenimiento preventivo" icon="ui-icon-star"
+                                     action="#{preventivoController.doCreate}"
+                                     title="Crear nuevo Mantenimiento preventivo"
+                                     rendered="#{authorizationChecker.admin or authorizationChecker.tecnico or authorizationChecker.consola }"/>
+                    <p:commandButton value="Modificar Mantenimiento preventivo"
+                                     action="#{preventivoController.doUltimoPreventivoUpdate}"
+                                     icon="ui-icon-pencil"
+                                     title="Modificar Mantenimiento preventivo"
+                                     disabled="#{preventivoController.ultimoPreventivoLazyModel.rowCount eq 0}"
+                                     rendered="#{authorizationChecker.admin or authorizationChecker.tecnico or authorizationChecker.consola }">
+                        <f:setPropertyActionListener value="#{null}" target="#{preventivoController.selectedItem}"/>
+                    </p:commandButton>
+                    <p:commandButton value="Ver Mantenimiento preventivo"
+                                     action="#{preventivoController.doUltimoPreventivoView}"
+                                     icon="ui-icon-pencil"
+                                     title="Ver Mantenimiento preventivo"
+                                     disabled="#{preventivoController.ultimoPreventivoLazyModel.rowCount eq 0}"
+                                     rendered="#{not authorizationChecker.admin or not authorizationChecker.tecnico}">
+                        <f:setPropertyActionListener value="#{null}" target="#{preventivoController.selectedItem}"/>
+                    </p:commandButton>
+                    <p:commandButton value="Eliminar Mantenimiento preventivo"
+                                     actionListener="#{preventivoController.doDelete}"
+                                     update="dataTable" icon="ui-icon-trash"
+                                     disabled="#{preventivoController.ultimoPreventivoLazyModel.rowCount eq 0}"
+                                     rendered="#{authorizationChecker.admin}">
+                        <p:confirm header="Confirmación" message="#{msg.askConfirmAction}"
+                                   icon="ui-icon-alert"/>
+                    </p:commandButton>
+                </f:facet>
+            </p:dataTable>
+        </h:form>
+
+        <p:growl id="growl" showDetail="false" life="5000" autoUpdate="true"/>
+
+        <p:confirmDialog global="true">
+            <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes"
+                             icon="ui-icon-check"/>
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"
+                             icon="ui-icon-close"/>
+        </p:confirmDialog>
+
+    </ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns="http://www.w3.org/1999/xhtml"
+        >
+<ui:composition template="/templates/fullLayout.xhtml">
+    <ui:define name="content">
+        <h:form id="form">
+            <p:dataTable id="dataTable" var="item" value="#{usuarioController.lazyModel}" styleClass="dataTableStyle"
+                         first="#{usuarioController.lazyModel.first}" paginator="true" rows="25"
+                         selection="#{usuarioController.selectedItems}"
+                         emptyMessage="#{msg.noRecordsFound}"
+                         paginatorTemplate="#{msg.paginatorTemplate}"
+                         currentPageReportTemplate="#{msg.currentPageReportTemplate}"
+                         lazy="true" rowsPerPageTemplate="10,25,50">
+                <f:facet name="header">
+                    Lista de Usuarios
+                </f:facet>
+                <p:column style="width:22px !important">
+                    <p:commandButton icon="ui-icon-search" update=":itemDetailForm:display"
+                                     title="Ver"
+                                     action="#{usuarioController.doView}"
+                                     oncomplete="if (!args.validationFailed) {PF('itemDialog').show()}">
+                        <f:setPropertyActionListener value="#{item}" target="#{usuarioController.selectedItem}"/>
+                    </p:commandButton>
+                </p:column>
+                <p:column style="width:22px !important" rendered="#{authorizationChecker.admin}">
+                    <p:commandButton icon="ui-icon-pencil" update=":itemDetailForm:display"
+                                     title="Modificar"
+                                     action="#{usuarioController.doUpdate}"
+                                     oncomplete="if (!args.validationFailed) {PF('itemDialog').show()}">
+                        <f:setPropertyActionListener value="#{item}" target="#{usuarioController.selectedItem}"/>
+                    </p:commandButton>
+                </p:column>
+                <p:column selectionMode="multiple" style="width:18px"/>
+
+                <p:column sortBy="#{item.loginName}" filterBy="#{item.loginName}">
+                    <f:facet name="header">
+                        <h:outputText value="Identificador usuario"/>
+                    </f:facet>
+                    <h:outputText value="#{item.loginName}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.firstName}" filterBy="#{item.firstName}">
+                    <f:facet name="header">
+                        <h:outputText value="Nombre"/>
+                    </f:facet>
+                    <h:outputText value="#{item.firstName}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.lastName}" filterBy="#{item.lastName}">
+                    <f:facet name="header">
+                        <h:outputText value="Apellido"/>
+                    </f:facet>
+                    <h:outputText value="#{item.lastName}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.email}" filterBy="#{item.email}">
+                    <f:facet name="header">
+                        <h:outputText value="Email"/>
+                    </f:facet>
+                    <h:outputText value="#{item.email}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.enabled}" filterBy="#{item.enabled}"
+                          filterOptions="#{usuarioController.siNoListOptions}"
+                          filterMatchMode="exact">
+                    <f:facet name="header">
+                        <h:outputText value="Habilitado"/>
+                    </f:facet>
+                    <h:outputText value="#{msg[item.enabled]}"/>
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Nuevo usuario" icon="ui-icon-star" oncomplete="PF('newItemDialog').show()"
+                                     title="Crear nuevo usuario" action="#{usuarioController.doCreate}"
+                                     rendered="#{authorizationChecker.admin}"/>
+                    <p:commandButton value="Modificar usuario" actionListener="#{usuarioController.doUpdate}"
+                                     update=":itemDetailForm:display"
+                                     icon="ui-icon-pencil"
+                                     title="Modificar usuario" disabled="#{usuarioController.lazyModel.rowCount eq 0}"
+                                     oncomplete="if (!args.validationFailed) {PF('itemDialog').show()}"
+                                     rendered="#{authorizationChecker.admin}">
+                    </p:commandButton>
+                    <p:commandButton value="Ver usuario" actionListener="#{usuarioController.doView}"
+                                     icon="ui-icon-search"
+                                     update=":itemDetailForm:display"
+                                     title="Ver usuario" disabled="#{usuarioController.lazyModel.rowCount eq 0}"
+                                     oncomplete="if (!args.validationFailed) {PF('itemDialog').show()}">
+                    </p:commandButton>
+                    <p:commandButton value="Eliminar usuario" actionListener="#{usuarioController.doDelete}"
+                                     update="dataTable" icon="ui-icon-trash"
+                                     disabled="#{usuarioController.lazyModel.rowCount eq 0}"
+                                     rendered="#{authorizationChecker.admin}">
+                        <p:confirm header="Confirmación" message="#{msg.askConfirmAction}"
+                                   icon="ui-icon-alert"/>
+                    </p:commandButton>
+                </f:facet>
+            </p:dataTable>
+        </h:form>
+
+        <p:dialog header="Detalle de Usuario" widgetVar="itemDialog" resizable="true" id="itemDlg">
+            <h:form id="itemDetailForm">
+                <p:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">
+                    <h:outputText value="Identificador usuario:"/>
+                    <p:inputText value="#{usuarioController.selectedItem.loginName}" required="true"
+                                 readonly="#{not authorizationChecker.admin or usuarioController.readOnly}"/>
+
+                    <h:outputText value="Nombre:"/>
+                    <p:inputText value="#{usuarioController.selectedItem.firstName}" required="true"
+                                 readonly="#{not authorizationChecker.admin or usuarioController.readOnly}"/>
+
+                    <h:outputText value="Apellido:"/>
+                    <p:inputText value="#{usuarioController.selectedItem.lastName}" required="true"
+                                 readonly="#{not authorizationChecker.admin or usuarioController.readOnly}"/>
+
+                    <h:outputText value="Email:"/>
+                    <p:inputText value="#{usuarioController.selectedItem.email}"
+                                 maxlength="60" style="width: 20em"
+                                 required="true" validatorMessage="Ingrese una dirección de email válida"
+                                 readonly="#{not authorizationChecker.admin or usuarioController.readOnly}">
+                        <f:validateRegex
+                                pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                    </p:inputText>
+
+                    <p:outputLabel value="Habilitado"/>
+                    <p:selectOneRadio value="#{usuarioController.selectedItem.enabled}"
+                                      disabled="#{not authorizationChecker.admin or usuarioController.readOnly}">
+                        <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
+                        <f:selectItem itemValue="#{false}" itemLabel="No"/>
+                    </p:selectOneRadio>
+
+                    <h:outputText value="Nueva contraseña:"/>
+                    <p:password value="#{usuarioController.password}"
+                                disabled="#{not authorizationChecker.admin or usuarioController.readOnly}"
+                                title="Ingrese nueva contraseña o dejar en blanco para no modificarla"/>
+
+                    <p:column>
+                        <p:outputLabel for="roles" value="Roles:"/>
+                    </p:column>
+                    <p:column>
+                        <p:selectManyCheckbox id="roles" value="#{usuarioController.selectedRoles}" layout="grid"
+                                              columns="3"
+                                              converter="genericMapConverter"
+                                              disabled="#{not authorizationChecker.admin or usuarioController.readOnly}">
+                            <f:selectItems value="#{usuarioController.sourceRoles}" var="rol" itemLabel="#{rol.name}"
+                                           itemValue="#{rol}"/>
+                            <p:ajax listener="#{usuarioController.handleSelectedRoles}" process="@this" event="change"
+                                    update="@form"/>
+                        </p:selectManyCheckbox>
+                    </p:column>
+
+                    <p:column
+                            rendered="#{not (empty usuarioController.zonaPickList.source and empty usuarioController.zonaPickList.target)}">
+                        <p:outputLabel for="zonaUsuario" value="Zonas técnico:"/>
+                    </p:column>
+                    <p:column
+                            rendered="#{not (empty usuarioController.zonaPickList.source and empty usuarioController.zonaPickList.target)}">
+                        <p:pickList id="zonaUsuario" value="#{usuarioController.zonaPickList}"
+                                    var="zona" itemLabel="#{zona.nombre}" itemValue="#{zona}"
+                                    disabled="#{not authorizationChecker.admin or usuarioController.readOnly}"
+                                    showSourceFilter="false"
+                                    filterMatchMode="contains" converter="genericMapConverter">
+                            <f:facet name="sourceCaption">Disponibles</f:facet>
+                            <f:facet name="targetCaption">Seleccionadas</f:facet>
+
+                            <p:column>
+                                <h:outputText value="#{zona.nombre}"/>
+                            </p:column>
+                        </p:pickList>
+                    </p:column>
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Actualizar" update=":form:dataTable, :growl"
+                                         oncomplete="handleSubmitRequest(xhr, status, args, 'itemDlg','itemDetailForm'); "
+                                         action="#{usuarioController.doConfirmUpdate}"
+                                         rendered="#{authorizationChecker.admin and not usuarioController.readOnly}"/>
+                        <p:commandButton value="Cancelar" onclick="itemDialog.hide()"
+                                         immediate="true" action="#{usuarioController.doCancel}"
+                                         rendered="#{authorizationChecker.admin and not usuarioController.readOnly}"/>
+                        <p:commandButton value="Aceptar" onclick="itemDialog.hide()"
+                                         immediate="true"
+                                         rendered="#{not authorizationChecker.admin or usuarioController.readOnly}"/>
+                    </f:facet>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+
+        <p:dialog header="Crear nuevo Usuario" widgetVar="newItemDialog" resizable="true" id="newItemDlg">
+            <h:form id="newItemForm">
+                <p:panelGrid id="displayNew" columns="2" cellpadding="4" style="margin:0 auto;">
+                    <h:outputText value="Identificador usuario:"/>
+                    <p:inputText value="#{usuarioController.newItem.loginName}" required="true"/>
+
+                    <h:outputText value="Contraseña:"/>
+                    <p:password value="#{usuarioController.password}" required="true"/>
+
+                    <h:outputText value="Nombre:"/>
+                    <p:inputText value="#{usuarioController.newItem.firstName}" required="true"/>
+
+                    <h:outputText value="Apellido:"/>
+                    <p:inputText value="#{usuarioController.newItem.lastName}" required="true"/>
+
+                    <h:outputText value="Email:"/>
+                    <p:inputText value="#{usuarioController.newItem.email}" required="true" maxlength="60"
+                                 style="width: 20em"
+                                 validatorMessage="Ingrese una dirección de email válida">
+                        <f:validateRegex
+                                pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                    </p:inputText>
+
+                    <p:outputLabel value="Habilitado"/>
+                    <p:selectOneRadio value="#{usuarioController.newItem.enabled}">
+                        <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
+                        <f:selectItem itemValue="#{false}" itemLabel="No"/>
+                    </p:selectOneRadio>
+
+                    <p:column>
+                        <p:outputLabel for="newRoles" value="Roles:"/>
+                    </p:column>
+                    <p:column>
+                        <p:selectManyCheckbox id="newRoles" value="#{usuarioController.selectedRoles}" layout="grid"
+                                              columns="3"
+                                              converter="genericMapConverter"
+                                              disabled="#{not authorizationChecker.admin or usuarioController.readOnly}">
+                            <f:selectItems value="#{usuarioController.sourceRoles}" var="rol" itemLabel="#{rol.name}"
+                                           itemValue="#{rol}"/>
+                            <p:ajax listener="#{usuarioController.handleSelectedRoles}" process="@this" event="change"
+                                    update="newZonaUsuario"/>
+                        </p:selectManyCheckbox>
+                    </p:column>
+
+                    <p:column>
+                        <p:outputLabel for="newZonaUsuario" value="Zonas técnico:"/>
+                    </p:column>
+                    <p:column>
+                        <p:pickList id="newZonaUsuario" value="#{usuarioController.zonaPickList}"
+                                    var="zona" itemLabel="#{zona.nombre}" itemValue="#{zona}"
+                                    showSourceFilter="false"
+                                    filterMatchMode="contains" converter="genericMapConverter">
+                            <f:facet name="sourceCaption">Disponibles</f:facet>
+                            <f:facet name="targetCaption">Seleccionadas</f:facet>
+
+                            <p:column>
+                                <h:outputText value="#{zona.nombre}"/>
+                            </p:column>
+                        </p:pickList>
+                    </p:column>
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Confirmar" update=":form:dataTable, :growl"
+                                         oncomplete="handleSubmitRequest(xhr, status, args, 'newItemDlg','newItemForm');"
+                                         actionListener="#{usuarioController.doConfirmCreate}"/>
+                        <p:commandButton value="Cancelar" onclick="newItemDlg.hide()"
+                                         action="#{usuarioController.doCancel}"
+                                         immediate="true"/>
+                    </f:facet>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+
+        <p:growl id="growl" showDetail="false" life="5000" autoUpdate="true"/>
+
+        <p:confirmDialog global="true">
+            <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes"
+                             icon="ui-icon-check"/>
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"
+                             icon="ui-icon-close"/>
+        </p:confirmDialog>
+
+        <script type="text/javascript">
+            function handleSubmitRequest(xhr, status, args, dialogName, formName) {
+                dialog = jQuery('#' + dialogName);
+                if (args.validationFailed) {
+                    dialog.effect("shake", {times: 3}, 100);
+                } else {
+                    clearForm(formName);
+                    PF('newItemDialog').hide();
+                    PF('itemDialog').hide();
+                }
+            }
+            function clearForm(formName) {
+                jQuery('#' + formName).each(function () {
+                    this.reset();
+                });
+            }
+        </script>
+
+    </ui:define>
+</ui:composition>
+</html>

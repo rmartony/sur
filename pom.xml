@@ -1,0 +1,476 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>sur</groupId>
+    <artifactId>sur</artifactId>
+    <version>1.0</version>
+    <packaging>war</packaging>
+
+    <name>Sistema Único Registral</name>
+
+    <properties>
+        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- JBoss dependency versions -->
+
+        <!--<version.jboss.maven.plugin>7.4.Final</version.jboss.maven.plugin>-->
+        <!--<jboss.home>${env.JBOSS_HOME}</jboss.home>-->
+        <hibernate-entitymanager.version>4.3.7.Final</hibernate-entitymanager.version>
+        <hibernate-validator.version>5.1.3.Final</hibernate-validator.version>
+        <hibernate-envers.version>4.3.7.Final</hibernate-envers.version>
+        <lombok.version>RELEASE</lombok.version>
+        <omnifaces.version>RELEASE</omnifaces.version>
+        <!-- PicketLink dependency versions -->
+        <!--
+                <version.picketlink.javaee.bom>2.5.3.Beta1</version.picketlink.javaee.bom>
+                <version.picketlink.javaee.deltaspike.bom>2.5.3.Beta1</version.picketlink.javaee.deltaspike.bom>
+        -->
+        <version.picketlink.javaee.bom>RELEASE</version.picketlink.javaee.bom>
+        <version.picketlink.javaee.deltaspike.bom>RELEASE</version.picketlink.javaee.deltaspike.bom>
+        <primefaces.version>5.3</primefaces.version>
+        <primefaces-extensions.version>4.0.0</primefaces-extensions.version>
+        <!-- maven-compiler-plugin -->
+        <version.compiler.plugin>3.1</version.compiler.plugin>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <!-- JBoss dependency versions -->
+        <version.jboss.maven.plugin>7.4.Final</version.jboss.maven.plugin>
+        <skipTests>true</skipTests>
+    </properties>
+
+    <!--
+    <dependencyManagement>
+        <dependencies>
+            &lt;!&ndash; Dependency Management for PicketLink and Java EE 6.0. &ndash;&gt;
+            <dependency>
+                <groupId>org.picketlink</groupId>
+                <artifactId>picketlink-javaee-6.0</artifactId>
+                <version>${version.picketlink.javaee.bom}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    -->
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Dependency Management for PicketLink and Java EE 6.0. -->
+            <dependency>
+                <groupId>org.picketlink</groupId>
+                <artifactId>picketlink-javaee-6.0-with-deltaspike</artifactId>
+                <version>${version.picketlink.javaee.deltaspike.bom}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validator.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate-entitymanager.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-envers</artifactId>
+            <version>${hibernate-envers.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.omnifaces</groupId>
+            <artifactId>omnifaces</artifactId>
+            <version>${omnifaces.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+        <!--
+                <dependency>
+                    <groupId>commons-validator</groupId>
+                    <artifactId>commons-validator</artifactId>
+                    <version>RELEASE</version>
+                </dependency>
+        -->
+
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+
+        <!-- Import the PicketLink API, we deploy this as library with the application,
+              and can compile against it -->
+        <dependency>
+            <groupId>org.picketlink</groupId>
+            <artifactId>picketlink-api</artifactId>
+        </dependency>
+        <!-- Import the PicketLink implementation, we deploy this as library with
+          the application, but can't compile against it -->
+        <dependency>
+            <groupId>org.picketlink</groupId>
+            <artifactId>picketlink-impl</artifactId>
+        </dependency>
+        <!-- Import the PicketLink IDM API, we deploy this as library with the application,
+                and can compile against it -->
+        <dependency>
+            <groupId>org.picketlink</groupId>
+            <artifactId>picketlink-idm-api</artifactId>
+        </dependency>
+        <!-- Import the PicketLink IDM API, we deploy this as library with the application,
+              and can compile against it -->
+        <dependency>
+            <groupId>org.picketlink</groupId>
+            <artifactId>picketlink-idm-impl</artifactId>
+        </dependency>
+        <!-- Import the PicketLink IDM Simple Schema, which provides some built-in JPA entities for
+          the sample model -->
+        <dependency>
+            <groupId>org.picketlink</groupId>
+            <artifactId>picketlink-idm-simple-schema</artifactId>
+        </dependency>
+        <!-- Deltaspike API. We use compile scope as we need compile against its API -->
+        <dependency>
+            <groupId>org.apache.deltaspike.core</groupId>
+            <artifactId>deltaspike-core-api</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <!-- Deltaspike Impl. we use runtime scope as we need its implementation
+            dependencies only on runtime -->
+        <dependency>
+            <groupId>org.apache.deltaspike.core</groupId>
+            <artifactId>deltaspike-core-impl</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- Deltaspike Security Module API. We use compile scope as we need
+            to compile against its API -->
+        <dependency>
+            <groupId>org.apache.deltaspike.modules</groupId>
+            <artifactId>deltaspike-security-module-api</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <!-- Deltaspike Security Impl. we use runtime scope as we need its implementation
+            dependencies only on runtime -->
+        <dependency>
+            <groupId>org.apache.deltaspike.modules</groupId>
+            <artifactId>deltaspike-security-module-impl</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- pretty time -->
+        <!--
+                <dependency>
+                    <groupId>org.ocpsoft.prettytime</groupId>
+                    <artifactId>prettytime</artifactId>
+                    <version>RELEASE</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.ocpsoft.prettytime</groupId>
+                    <artifactId>prettytime-integration-jsf</artifactId>
+                    <version>RELEASE</version>
+                </dependency>
+        -->
+
+        <!-- test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.0-api</artifactId>
+            <version>1.0.1.Final</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate-entitymanager.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- JSF -->
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>${primefaces.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces.extensions</groupId>
+            <artifactId>primefaces-extensions</artifactId>
+            <version>${primefaces-extensions.version}</version>
+        </dependency>
+
+        <!-- Import the JSF API, we use provided scope as the API is included in JBoss AS 7 -->
+        <dependency>
+            <groupId>javax.faces</groupId>
+            <artifactId>javax.faces-api</artifactId>
+            <version>2.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Import the EJB API, we use provided scope as the API is included in JBoss AS 7 -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.ejb</groupId>
+            <artifactId>jboss-ejb-api_3.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <version>1.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Java EE 6 dependencies -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>el-api</artifactId>
+            <version>2.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>1.0.0.GA</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.6.1</version>
+            <scope>test</scope>
+        </dependency>
+        <!--
+                <dependency>
+                    <groupId>org.jboss.slf4j</groupId>
+                    <artifactId>slf4j-jboss-logmanager</artifactId>
+                    <version>RELEASE</version>
+                    <scope>provided</scope>
+                </dependency>
+        -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--<dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>eclipselink</artifactId>
+            <version>2.0.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>javax.persistence</artifactId>
+            <version>2.0.0</version>
+            <scope>test</scope>
+        </dependency>-->
+        <!--<dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>10.6.1.0</version>
+        </dependency>-->
+        <!--
+                <dependency>
+                    <groupId>com.h2database</groupId>
+                    <artifactId>h2</artifactId>
+                    <version>RELEASE</version>
+                    <scope>provided</scope>
+                </dependency>
+        -->
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <compilerArguments>
+                        <endorseddirs>${endorsed.dir}</endorseddirs>
+                    </compilerArguments>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.1</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${endorsed.dir}</outputDirectory>
+                            <silent>true</silent>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>javax</groupId>
+                                    <artifactId>javaee-endorsed-api</artifactId>
+                                    <version>6.0</version>
+                                    <type>jar</type>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-ejb-plugin</artifactId>
+                            <version>2.3</version>
+                            <configuration>
+                                <ejbVersion>3.1</ejbVersion>
+                                <archive>
+                                    <manifest>
+                                        <addClasspath>true</addClasspath>
+                                    </manifest>
+                                </archive>
+                            </configuration>
+                        </plugin>
+            -->
+            <!--
+                        <plugin>
+                            <artifactId>maven-antrun-plugin</artifactId>
+                            <version>1.3</version>
+                            <executions>
+                                <execution>
+                                    <id>copy-test-persistence</id>
+                                    <phase>process-test-resources</phase>
+                                    <configuration>
+                                        <tasks>
+                                            &lt;!&ndash; backup the "proper" persistence.xml &ndash;&gt;
+                                            <copy file="${project.build.outputDirectory}/META-INF/persistence.xml"
+                                                  tofile="${project.build.outputDirectory}/META-INF/persistence.xml.proper"/>
+                                            &lt;!&ndash; replace the "proper" persistence.xml with the "test" version &ndash;&gt;
+                                            <copy file="${project.build.testOutputDirectory}/META-INF/persistence.xml"
+                                                  tofile="${project.build.outputDirectory}/META-INF/persistence.xml"/>
+                                        </tasks>
+                                    </configuration>
+                                    <goals>
+                                        <goal>run</goal>
+                                    </goals>
+                                </execution>
+                                <execution>
+                                    <id>restore-persistence</id>
+                                    <phase>prepare-package</phase>
+                                    <configuration>
+                                        <tasks>
+                                            &lt;!&ndash;restore the "proper" persistence.xml&ndash;&gt;
+                                            <copy file="${project.build.outputDirectory}/META-INF/persistence.xml.proper"
+                                                  tofile="${project.build.outputDirectory}/META-INF/persistence.xml"/>
+                                        </tasks>
+                                    </configuration>
+                                    <goals>
+                                        <goal>run</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+            -->
+            <!-- JBoss AS plugin to deploy war -->
+            <!--
+                        <plugin>
+                            <groupId>org.jboss.as.plugins</groupId>
+                            <artifactId>jboss-as-maven-plugin</artifactId>
+                            <version>${version.jboss.maven.plugin}</version>
+                        </plugin>
+            -->
+        </plugins>
+        <finalName>${project.artifactId}</finalName>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>maven2-repository.dev.java.net</id>
+            <name>Java.net Repository for Maven</name>
+            <url>http://download.java.net/maven/2</url>
+        </repository>
+        <repository>
+            <id>JBoss repository</id>
+            <url>http://repository.jboss.com</url>
+        </repository>
+        <repository>
+            <id>EclipseLink Repo</id>
+            <name>EclipseLink Repository</name>
+            <url>http://download.eclipse.org/rt/eclipselink/maven.repo</url>
+        </repository>
+        <repository>
+            <id>prime-repo</id>
+            <name>Prime Technology Maven Repository</name>
+            <url>http://repository.primefaces.org</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+</project>

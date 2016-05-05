@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:o="http://omnifaces.org/ui"
+        >
+<ui:composition template="/templates/fullLayout.xhtml">
+    <ui:define name="content">
+        <h:form id="form">
+            <p:growl id="growl" showDetail="false" life="5000" autoUpdate="true"/>
+            <p:panelGrid id="displayNewSitio" cellpadding="4" styleClass="center">
+                <f:facet name="header">
+                    <p:row><p:column colspan="2">
+                        <h:outputText value="Crear nuevo Sitio"/>
+                    </p:column>
+                    </p:row>
+                </f:facet>
+                <p:row>
+                    <p:column> <p:outputLabel for="sigla" value="Sigla:"/> </p:column>
+                    <p:column>
+                        <p:inputText id="sigla" value="#{sitioController.newItem.sigla}" required="true"
+                                     requiredMessage="Por favor ingresar sigla"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column> <p:outputLabel for="nombre" value="Nombre:"/> </p:column>
+                    <p:column>
+                        <p:inputText id="nombre" value="#{sitioController.newItem.nombre}" required="true"
+                                     requiredMessage="Por favor ingresar nombre"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column>
+                        <p:outputLabel for="sitio" value="Zona:"/>
+                    </p:column>
+                    <p:column>
+                        <p:selectOneMenu id="sitio" value="#{sitioController.newItem.zona}" required="true"
+                                         requiredMessage="Por favor ingresar zona">
+                            <o:converter converterId="entityListConverter" list="#{sitioController.zonaList}"/>
+                            <f:selectItem itemLabel="Seleccionar zona..." noSelectionOption="true"/>
+                            <f:selectItems value="#{sitioController.zonaList}" var="zona"
+                                           itemLabel="#{zona.nombre}" itemValue="#{zona}"/>
+                        </p:selectOneMenu>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column>
+                        <p:outputLabel for="direccion" value="Dirección:"/>
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="direccion" value="#{sitioController.newItem.direccion}"
+                                     style="width: 20em;"
+                                     required="true" requiredMessage="Por favor ingresar dirección"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column> <p:outputLabel for="departamento" value="Departamento:"/> </p:column>
+                    <p:column>
+                        <p:selectOneMenu id="departamento" value="#{sitioController.newItem.departamento}"
+                                         required="true"
+                                         requiredMessage="Por favor ingrese un departamento">
+                            <o:converter converterId="entityListConverter" list="#{sitioController.departamentoList}"/>
+                            <f:selectItem itemLabel="Seleccionar departamento..." noSelectionOption="true"/>
+                            <f:selectItems value="#{sitioController.departamentoList}" var="departamento"
+                                           itemLabel="#{departamento.nombre}" itemValue="#{departamento}"/>
+                        </p:selectOneMenu>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column colspan="2"> <h:outputText styleClass="bold" value="Información adicional"/> </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column> <p:outputLabel for="fecha" value="Fecha:"/> </p:column>
+                    <p:column><p:calendar id="fecha" value="#{sitioController.newItem.fecha}"
+                                          pattern="#{msg.datePattern}" showOn="both" popupIconOnly="true"
+                                          required="true"/></p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column> <p:outputLabel for="localidad" value="Localidad:"/> </p:column>
+                    <p:column><p:inputText id="localidad" value="#{sitioController.newItem.localidad}"
+                                           required="true"/></p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column><p:outputLabel for="latitud" value="Latitud:"/></p:column>
+                    <p:column><p:inputText id="latitud" value="#{sitioController.newItem.latitud}"
+                                           required="true"/></p:column>
+                </p:row>
+                <p:row>
+                    <p:column><p:outputLabel for="longitud" value="Longitud:"/></p:column>
+                    <p:column><p:inputText id="longitud" value="#{sitioController.newItem.longitud}"
+                                           required="true"/></p:column>
+                </p:row>
+
+                <!--
+                                <p:row>
+                                    <p:column><p:outputLabel for="tipoCoordenada" value="Tipo de coordenadas:"/></p:column>
+                                    <p:column><p:autoComplete id="tipoCoordenada" value="#{sitioController.newItem.tipoCoordenada}"
+                                                              maxResults="10"
+                                                              completeMethod="#{sitioController.getTipoCoordenadas}" dropdown="true">
+                                        <f:selectItem itemValue="WGS84" itemLabel="WGS84"/>
+                                        <f:selectItem itemValue="GPS" itemLabel="GPS"/>
+                                    </p:autoComplete></p:column>
+                                </p:row>
+                -->
+
+                <p:row>
+                    <p:column><p:outputLabel for="estructura" value="Estructura:"/></p:column>
+                    <p:column><p:selectOneMenu id="estructura" value="#{sitioController.newItem.estructura}"
+                                               required="true"
+                                               requiredMessage="Por favor ingrese una estructura">
+                        <o:converter converterId="entityListConverter" list="#{sitioController.estructuraList}"/>
+                        <f:selectItem itemLabel="Seleccionar estructura..." noSelectionOption="true"/>
+                        <f:selectItems value="#{sitioController.estructuraList}" var="estructura"
+                                       itemLabel="#{estructura.nombre}" itemValue="#{estructura}"/>
+                    </p:selectOneMenu>
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column><p:outputLabel for="alturaEstructura" value="Altura estructura:"/></p:column>
+                    <p:column><p:inputText id="alturaEstructura"
+                                           value="#{sitioController.newItem.alturaEstructura}"
+                                           required="true"/></p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column><p:outputLabel for="perteneceA" value="Pertenece a:"/></p:column>
+                    <p:column><p:inputText id="perteneceA" value="#{sitioController.newItem.perteneceA}"
+                                           required="true"/></p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column><p:outputLabel for="observaciones" value="Observaciones:"/></p:column>
+                    <p:column><p:inputTextarea id="observaciones" cols="45" rows="6" maxlength="255"
+                                               value="#{sitioController.newItem.observaciones}"/></p:column>
+                </p:row>
+
+                <f:facet name="footer">
+                    <p:row><p:column colspan="2" styleClass="textCenter">
+                        <p:commandButton value="Confirmar"
+                                         action="#{sitioController.doConfirmCreate}" update="@form growl"
+                                         validateClient="true"
+                                         ajax="true"/>
+                        <p:commandButton id="cancel" value="Cancelar" immediate="true" action="cancel"/>
+                    </p:column>
+                    </p:row>
+                </f:facet>
+
+            </p:panelGrid>
+        </h:form>
+
+
+    </ui:define>
+</ui:composition>
+</html>

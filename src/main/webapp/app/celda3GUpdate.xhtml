@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+        >
+<ui:composition template="/templates/fullLayout.xhtml">
+    <ui:define name="content">
+        <h:form id="form">
+            <p:growl id="growl" showDetail="false" life="5000" autoUpdate="true"/>
+            <p:panelGrid cellpadding="4" styleClass="center">
+                <f:facet name="header">
+                    <p:row><p:column colspan="2">
+                        <h:outputText value="Modificar Celda 3G"/>
+                    </p:column>
+                    </p:row>
+                </f:facet>
+                <p:row>
+                    <p:column> <p:outputLabel for="idCelda" value="Id Celda:"/> </p:column>
+                    <p:column>
+                        <p:inputText id="idCelda" value="#{celda3GController.item.idCelda}" required="true"
+                                     requiredMessage="Por favor ingresar identificador celda">
+                            <pe:keyFilter preventPaste="false" mask="pint"/>
+                        </p:inputText>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column> <p:outputLabel for="sector" value="Sector:"/> </p:column>
+                    <p:column>
+                        <p:inputText id="sector" value="#{celda3GController.item.sector}" required="true"
+                                     requiredMessage="Por favor ingresar sector"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column> <p:outputLabel for="numeroAntenas" value="Número antenas:"/> </p:column>
+                    <p:column>
+                        <p:inputText id="numeroAntenas" value="#{celda3GController.item.numAntenas}" required="true">
+                            <pe:keyFilter preventPaste="false" mask="pint"/>
+                        </p:inputText>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column> <p:outputLabel for="altura" value="Altura:"/> </p:column>
+                    <p:column>
+                        <p:inputText id="altura" value="#{celda3GController.item.altura}" required="true">
+                            <pe:keyFilter preventPaste="false" mask="num"/>
+                        </p:inputText>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column> <p:outputLabel for="azimut" value="Azimut:"/> </p:column>
+                    <p:column>
+                        <p:inputText id="azimut" value="#{celda3GController.item.azimut}" required="true">
+                            <pe:keyFilter preventPaste="false" mask="num"/>
+                        </p:inputText>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column> <p:outputLabel for="tiltM" value="Tilt M:"/> </p:column>
+                    <p:column>
+                        <p:inputText id="tiltM" value="#{celda3GController.item.tiltM}" required="true">
+                            <pe:keyFilter preventPaste="false" mask="num"/>
+                        </p:inputText>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column> <p:outputLabel for="tiltE" value="Tilt E:"/> </p:column>
+                    <p:column>
+                        <p:inputText id="tiltE" value="#{celda3GController.item.tiltE}" required="true">
+                            <pe:keyFilter preventPaste="false" mask="num"/>
+                        </p:inputText>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column> <p:outputLabel for="scramblingCode" value="Scrambling code:"/> </p:column>
+                    <p:column>
+                        <p:inputText id="scramblingCode" value="#{celda3GController.item.scramblingCode}"
+                                     required="true">
+                            <pe:keyFilter preventPaste="false" mask="num"/>
+                        </p:inputText>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column> <p:outputLabel for="tipoFO" value="Tipo FO:"/> </p:column>
+                    <p:column>
+                        <p:inputText id="tipoFO" value="#{celda3GController.item.tipoFO}" required="true"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column> <p:outputLabel for="ubicacion" value="Ubicación:"/> </p:column>
+                    <p:column>
+                        <p:selectOneRadio id="ubicacion" value="#{celda3GController.item.ubicacion}" required="true">
+                            <f:selectItem itemValue="Indoor" itemLabel="Indoor"/>
+                            <f:selectItem itemValue="Outdoor" itemLabel="Outdoor"/>
+                        </p:selectOneRadio>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column> <p:outputLabel for="antenaCompartida" value="Antena compartida:"/> </p:column>
+                    <p:column>
+                        <p:inputText id="antenaCompartida" value="#{celda3GController.item.antenaCompartida}"
+                                     required="true"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column>
+                        <p:outputLabel for="tipoAntena" value="Modelo antena:"/>
+                    </p:column>
+                    <p:column>
+                        <p:selectOneMenu id="tipoAntena" value="#{celda3GController.item.tipoAntena}" required="true">
+                            <o:converter converterId="entityListConverter" list="#{celda3GController.tipoAntenaList}"/>
+                            <f:selectItem itemLabel="Seleccionar modelo antena..." noSelectionOption="true"/>
+                            <f:selectItems value="#{celda3GController.tipoAntenaList}" var="tipoAntena"
+                                           itemLabel="#{tipoAntena.modelo}" itemValue="#{tipoAntena}"/>
+                        </p:selectOneMenu>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column> <p:outputLabel for="feeder" value="Feeder:"/> </p:column>
+                    <p:column>
+                        <p:inputText id="feeder" value="#{celda3GController.item.feeder}" required="false"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column> <p:outputLabel for="largoFeeder" value="Largo Feeder:"/> </p:column>
+                    <p:column>
+                        <p:inputText id="largoFeeder" value="#{celda3GController.item.largoFeeder}" required="false"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column> <p:outputLabel for="tipoFeeder" value="Tipo feeder:"/> </p:column>
+                    <p:column>
+                        <p:selectOneMenu id="tipoFeeder" value="#{celda3GController.item.tipoFeeder}">
+                            <o:converter converterId="entityListConverter" list="#{celda3GController.tipoFeederList}"/>
+                            <f:selectItem itemLabel="Ninguno" noSelectionOption="true"/>
+                            <f:selectItems value="#{celda3GController.tipoFeederList}" var="tipoFeeder"
+                                           itemLabel="#{tipoFeeder.modelo}" itemValue="#{tipoFeeder}"/>
+                        </p:selectOneMenu>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column> <p:outputLabel for="atenuacion" value="Atenuación:"/> </p:column>
+                    <p:column>
+                        <p:inputText id="atenuacion" value="#{celda3GController.item.atenuacion}" required="true">
+                            <pe:keyFilter preventPaste="false" mask="num"/>
+                        </p:inputText>
+                    </p:column>
+                </p:row>
+
+                <f:facet name="footer">
+                    <p:row><p:column colspan="2" styleClass="textCenter">
+                        <p:commandButton value="Confirmar"
+                                         action="#{celda3GController.doConfirmUpdate}" update="@form growl"
+                                         validateClient="true"
+                                         ajax="false"/>
+                        <p:commandButton id="cancel" value="Cancelar" immediate="true"
+                                         action="#{celda3GController.doCancel}"/>
+                    </p:column>
+                    </p:row>
+                </f:facet>
+
+            </p:panelGrid>
+        </h:form>
+
+
+    </ui:define>
+</ui:composition>
+</html>
