@@ -12,6 +12,7 @@ import org.picketlink.idm.model.basic.BasicModel;
 import org.picketlink.idm.model.basic.Role;
 import org.picketlink.idm.model.basic.User;
 import org.picketlink.idm.query.IdentityQuery;
+import org.picketlink.idm.query.IdentityQueryBuilder;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -71,8 +72,9 @@ public class UsuarioService {
         }
     }
 
-    public IdentityQuery<User> createIdentityQuery() {
-        return identityManager.createIdentityQuery(User.class);
+    public IdentityQueryBuilder createIdentityQueryBuilder() {
+        IdentityQueryBuilder builder = identityManager.getQueryBuilder();
+        return builder;
     }
 
     public List<User> findUser(IdentityQuery<User> query) {

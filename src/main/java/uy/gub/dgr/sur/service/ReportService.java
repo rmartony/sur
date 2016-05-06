@@ -132,12 +132,12 @@ public class ReportService extends HttpServlet {
             PrintWriter out = response.getWriter();
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Swnoc - Reporte preventivos</title>");
+            out.println("<title>SUR - Sistema Único Registral</title>");
             out.println("</head>");
 
             out.println("<body>");
 
-            out.println("<span>Error al generar reporte últimos mantenimientos preventivos:</span>");
+            out.println("<span>Error al generar reporte:</span>");
             out.println("<pre>");
 
             e.printStackTrace(out);

@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="sur:war exploded">
+  <artifact type="exploded-war" build-on-make="true" name="sur:war exploded">
     <output-path>$PROJECT_DIR$/target/sur</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
@@ -52,12 +52,12 @@
           <element id="library" level="project" name="Maven: com.google.zxing:core:2.3.0" />
           <element id="library" level="project" name="Maven: com.ibm.icu:icu4j:57.1" />
           <element id="library" level="project" name="Maven: org.codehaus.groovy:groovy-all:2.4.6" />
-          <element id="library" level="project" name="Maven: org.picketlink:picketlink-api:2.6.1.Final" />
-          <element id="library" level="project" name="Maven: org.picketlink:picketlink-impl:2.6.1.Final" />
-          <element id="library" level="project" name="Maven: org.picketlink:picketlink-common:2.6.1.Final" />
-          <element id="library" level="project" name="Maven: org.picketlink:picketlink-idm-api:2.6.1.Final" />
-          <element id="library" level="project" name="Maven: org.picketlink:picketlink-idm-impl:2.6.1.Final" />
-          <element id="library" level="project" name="Maven: org.picketlink:picketlink-idm-simple-schema:2.6.1.Final" />
+          <element id="library" level="project" name="Maven: org.picketlink:picketlink-api:2.7.1.Final" />
+          <element id="library" level="project" name="Maven: org.picketlink:picketlink-impl:2.7.1.Final" />
+          <element id="library" level="project" name="Maven: org.picketlink:picketlink-common:2.7.1.Final" />
+          <element id="library" level="project" name="Maven: org.picketlink:picketlink-idm-api:2.7.1.Final" />
+          <element id="library" level="project" name="Maven: org.picketlink:picketlink-idm-impl:2.7.1.Final" />
+          <element id="library" level="project" name="Maven: org.picketlink:picketlink-idm-simple-schema:2.7.1.Final" />
           <element id="library" level="project" name="Maven: org.apache.deltaspike.core:deltaspike-core-api:1.0.0" />
           <element id="library" level="project" name="Maven: org.apache.deltaspike.core:deltaspike-core-impl:1.0.0" />
           <element id="library" level="project" name="Maven: org.apache.deltaspike.modules:deltaspike-security-module-api:1.0.0" />

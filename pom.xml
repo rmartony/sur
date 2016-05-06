@@ -13,8 +13,10 @@
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- JBoss dependency versions -->
+        <version.jboss.maven.plugin>7.4.Final</version.jboss.maven.plugin>
 
-        <!--<version.jboss.maven.plugin>7.4.Final</version.jboss.maven.plugin>-->
+        <!-- WildFly dependency versions -->
+        <version.wildfly.maven.plugin>1.0.1.Final</version.wildfly.maven.plugin>
         <!--<jboss.home>${env.JBOSS_HOME}</jboss.home>-->
         <hibernate-entitymanager.version>4.3.7.Final</hibernate-entitymanager.version>
         <hibernate-validator.version>5.1.3.Final</hibernate-validator.version>
@@ -22,10 +24,6 @@
         <lombok.version>RELEASE</lombok.version>
         <omnifaces.version>RELEASE</omnifaces.version>
         <!-- PicketLink dependency versions -->
-        <!--
-                <version.picketlink.javaee.bom>2.5.3.Beta1</version.picketlink.javaee.bom>
-                <version.picketlink.javaee.deltaspike.bom>2.5.3.Beta1</version.picketlink.javaee.deltaspike.bom>
-        -->
         <version.picketlink.javaee.bom>RELEASE</version.picketlink.javaee.bom>
         <version.picketlink.javaee.deltaspike.bom>RELEASE</version.picketlink.javaee.deltaspike.bom>
         <primefaces.version>5.3</primefaces.version>
@@ -34,33 +32,16 @@
         <version.compiler.plugin>3.1</version.compiler.plugin>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
-        <!-- JBoss dependency versions -->
-        <version.jboss.maven.plugin>7.4.Final</version.jboss.maven.plugin>
         <skipTests>true</skipTests>
     </properties>
 
-    <!--
     <dependencyManagement>
         <dependencies>
-            &lt;!&ndash; Dependency Management for PicketLink and Java EE 6.0. &ndash;&gt;
+            <!-- Dependency Management for PicketLink and Java EE 7.0. -->
             <dependency>
                 <groupId>org.picketlink</groupId>
-                <artifactId>picketlink-javaee-6.0</artifactId>
+                <artifactId>picketlink-javaee-7.0</artifactId>
                 <version>${version.picketlink.javaee.bom}</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-    -->
-
-    <dependencyManagement>
-        <dependencies>
-            <!-- Dependency Management for PicketLink and Java EE 6.0. -->
-            <dependency>
-                <groupId>org.picketlink</groupId>
-                <artifactId>picketlink-javaee-6.0-with-deltaspike</artifactId>
-                <version>${version.picketlink.javaee.deltaspike.bom}</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
@@ -244,17 +225,17 @@
             <version>${primefaces-extensions.version}</version>
         </dependency>
 
-        <!-- Import the JSF API, we use provided scope as the API is included in JBoss AS 7 -->
+        <!-- Import the JSF API, we use provided scope as the API is included in Wildfly 8 -->
         <dependency>
             <groupId>javax.faces</groupId>
             <artifactId>javax.faces-api</artifactId>
             <version>2.2</version>
             <scope>provided</scope>
         </dependency>
-        <!-- Import the EJB API, we use provided scope as the API is included in JBoss AS 7 -->
+        <!-- Import the EJB API, we use provided scope as the API is included in Wildfly 8 -->
         <dependency>
             <groupId>org.jboss.spec.javax.ejb</groupId>
-            <artifactId>jboss-ejb-api_3.1_spec</artifactId>
+            <artifactId>jboss-ejb-api_3.2_spec</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -279,7 +260,7 @@
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
-            <version>1.0.0.GA</version>
+            <version>1.1.0.Final</version>
             <scope>provided</scope>
         </dependency>
 
@@ -377,7 +358,7 @@
                                 <artifactItem>
                                     <groupId>javax</groupId>
                                     <artifactId>javaee-endorsed-api</artifactId>
-                                    <version>6.0</version>
+                                    <version>7.0</version>
                                     <type>jar</type>
                                 </artifactItem>
                             </artifactItems>
@@ -473,4 +454,23 @@
             <layout>default</layout>
         </repository>
     </repositories>
+
+    <profiles>
+        <profile>
+            <id>wildfly</id>
+            <properties>
+                <target.container>wildfly</target.container>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.wildfly.plugins</groupId>
+                        <artifactId>wildfly-maven-plugin</artifactId>
+                        <version>${version.wildfly.maven.plugin}</version>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 </project>

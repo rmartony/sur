@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="1.0"
              xmlns="http://java.sun.com/xml/ns/persistence">
-    <persistence-unit name="swnoc"
+    <persistence-unit name="sur"
                       transaction-type="RESOURCE_LOCAL">
         <!--<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>-->
         <class>uy.gub.dgr.sur.entity.Sitio</class>
@@ -46,7 +46,7 @@
             <property name="hibernate.hbm2ddl.auto" value="create"/>
 
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:swnoc"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:sur"/>
             <property name="javax.persistence.jdbc.user" value=""/>
             <property name="javax.persistence.jdbc.password" value=""/>
         </properties>

@@ -8,7 +8,7 @@
             <default-locale>es</default-locale>
         </locale-config>
         <resource-bundle>
-            <base-name>uy.swnoc.util.messages</base-name>
+            <base-name>uy.gub.dgr.sur.util.messages</base-name>
             <var>msg</var>
         </resource-bundle>
         <message-bundle>ValidationMessages</message-bundle>

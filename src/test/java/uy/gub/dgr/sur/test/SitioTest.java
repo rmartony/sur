@@ -36,7 +36,7 @@ public class SitioTest {
     public static void initTestFixture() throws Exception {
         // Get the entity manager for the tests.
 /*
-        mEmf = Persistence.createEntityManagerFactory("swnoc");
+        mEmf = Persistence.createEntityManagerFactory("sur");
         em = mEmf.createEntityManager();
 */
     }

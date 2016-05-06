@@ -36,9 +36,9 @@ import java.util.TimeZone;
 @Stateless
 public class Resources {
 
-    @Resource(mappedName = "java:jboss/datasources/swnocDS")
+    @Resource(mappedName = "java:jboss/datasources/surDS")
     DataSource datasource;
-    @PersistenceContext(unitName = "swnoc")
+    @PersistenceContext(unitName = "sur")
     private EntityManager em;
 
     @Produces
@@ -71,9 +71,9 @@ public class Resources {
     public ResourceBundle getResourceBundle() {
         FacesContext facesContext = produceFacesContext();
         if (facesContext == null) {
-            return ResourceBundle.getBundle("uy.swnoc.util.messages", Locale.getDefault());
+            return ResourceBundle.getBundle("uy.gub.dgr.sur.util.messages", Locale.getDefault());
         } else {
-            return ResourceBundle.getBundle("uy.swnoc.util.messages", facesContext.getViewRoot().getLocale());
+            return ResourceBundle.getBundle("uy.gub.dgr.sur.util.messages", facesContext.getViewRoot().getLocale());
         }
     }
 

@@ -6,6 +6,7 @@ import org.picketlink.idm.model.AttributedType;
 import org.picketlink.idm.model.basic.User;
 import org.picketlink.idm.query.AttributeParameter;
 import org.picketlink.idm.query.IdentityQuery;
+import org.picketlink.idm.query.IdentityQueryBuilder;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 import uy.gub.dgr.sur.service.UsuarioService;
@@ -60,19 +61,19 @@ public class LazyUsuarioDataModel extends LazyDataModel<User> implements Seriali
      */
     @Override
     public List<User> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-        IdentityQuery<User> query = crudService.createIdentityQuery();
+        IdentityQueryBuilder builder = crudService.createIdentityQueryBuilder();
+
         if (StringUtils.isNotEmpty(sortField)) {
-            query.setSortParameters(AttributedType.QUERY_ATTRIBUTE.byName(sortField));
-            query.setSortAscending(sortOrder.equals(SortOrder.ASCENDING));
+            builder.asc(AttributedType.QUERY_ATTRIBUTE.byName(sortField));
         } else {
-            query.setSortParameters(AttributedType.QUERY_ATTRIBUTE.byName("loginName"));
-            query.setSortAscending(sortOrder.equals(SortOrder.ASCENDING));
+            builder.asc(User.LOGIN_NAME);
         }
+        IdentityQuery<User> query = builder.createIdentityQuery(User.class);
 
         for (Map.Entry<String, Object> filter : filters.entrySet()) {
             String[] filterField = filter.getKey().split("\\.", 2);
             for (String s : filterField) {
-                query.setParameter(new AttributeParameter(s), filter.getValue());
+                query = query.where(builder.like(new AttributeParameter(s), filter.getValue().toString()));
             }
         }
         query.setLimit(pageSize);

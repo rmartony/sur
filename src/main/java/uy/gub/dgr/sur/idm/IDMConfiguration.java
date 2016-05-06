@@ -8,13 +8,9 @@ package uy.gub.dgr.sur.idm;
 
 import org.picketlink.idm.config.IdentityConfiguration;
 import org.picketlink.idm.config.IdentityConfigurationBuilder;
-import org.picketlink.idm.jpa.model.sample.simple.*;
-import org.picketlink.idm.model.Relationship;
-import org.picketlink.internal.EEJPAContextInitializer;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
-import javax.inject.Inject;
 
 /**
  * This bean produces the configuration for PicketLink IDM
@@ -24,8 +20,10 @@ import javax.inject.Inject;
 @ApplicationScoped
 public class IDMConfiguration {
 
+/*
     @Inject
     private EEJPAContextInitializer contextInitializer;
+*/
 
     private IdentityConfiguration identityConfig = null;
 
@@ -50,6 +48,7 @@ public class IDMConfiguration {
                 .named("default")
                 .stores()
                 .jpa()
+/*
                 .mappedEntity(
                         AccountTypeEntity.class,
                         RoleTypeEntity.class,
@@ -60,8 +59,10 @@ public class IDMConfiguration {
                         PartitionTypeEntity.class,
                         PasswordCredentialTypeEntity.class,
                         AttributeTypeEntity.class)
+
                 .supportGlobalRelationship(Relationship.class)
                 .addContextInitializer(this.contextInitializer)
+*/
                         // Specify that this identity store configuration supports all features
                 .supportAllFeatures();
 
