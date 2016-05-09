@@ -9,6 +9,7 @@ package uy.gub.dgr.sur.idm;
 import org.picketlink.Identity;
 import org.picketlink.idm.IdentityManager;
 import org.picketlink.idm.RelationshipManager;
+import org.picketlink.idm.model.Account;
 import org.picketlink.idm.model.basic.BasicModel;
 import org.picketlink.idm.model.basic.Group;
 import org.picketlink.idm.model.basic.Role;
@@ -44,8 +45,12 @@ public class AuthorizationChecker implements Serializable {
     public boolean hasApplicationRole(String roleName) {
         Boolean cachedRole = hasRoleCache.get(roleName);
         if (cachedRole == null) {
+            if (this.identity == null) return false;
+            final Account account = this.identity.getAccount();
+            if (account == null) return false;
+
             Role role = getRole(this.identityManager, roleName);
-            final boolean hasRole = hasRole(this.relationshipManager, this.identity.getAccount(), role);
+            final boolean hasRole = hasRole(this.relationshipManager, account, role);
             hasRoleCache.put(roleName, hasRole);
             return hasRole;
         } else {

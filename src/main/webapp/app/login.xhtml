@@ -10,19 +10,19 @@
     <ui:define name="title">Ingreso al sistema</ui:define>
     <ui:define name="content">
         <br/>
-        <h:form id="loginForm" rendered="#{not identity.loggedIn}">
+        <h:form id="loginForm" prependId="false" rendered="#{not identity.loggedIn}">
             <p:focus for="username"/>
             <h:panelGrid columns="2" cellpadding="5" styleClass="center">
 
-                <h:outputLabel for="username" value="Usuario:"/>
+                <h:outputLabel for="j_username" value="Usuario:"/>
                 <p:inputText value="#{loginCredentials.userId}"
-                             id="username" required="true" label="username">
+                             id="j_username" required="true" label="username">
                     <f:validateLength minimum="1"/>
                 </p:inputText>
 
-                <h:outputLabel for="password" value="Contraseña:"/>
+                <h:outputLabel for="j_password" value="Contraseña:"/>
                 <p:password value="#{loginCredentials.password}"
-                            id="password" required="true" label="password">
+                            id="j_password" required="true" label="password">
                     <f:validateLength minimum="1"/>
                 </p:password>
 

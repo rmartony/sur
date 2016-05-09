@@ -93,35 +93,6 @@
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
 
-    <!-- This filter is responsible for providing support for HTTP authentication schemes, such as BASIC, DIGEST,
-             CLIENT_CERT.-->
-    <filter>
-        <filter-name>PicketLink Authentication Filter</filter-name>
-        <filter-class>org.picketlink.authentication.web.AuthenticationFilter</filter-class>
-
-        <!-- This parameter is required. Here you specify which authentication scheme you want to use. This quickstart
-                      uses FORM. -->
-        <init-param>
-            <param-name>authType</param-name>
-            <param-value>FORM</param-value>
-        </init-param>
-
-        <init-param>
-            <param-name>form-login-page</param-name>
-            <param-value>login.xhtml</param-value>
-        </init-param>
-        <init-param>
-            <param-name>form-error-page</param-name>
-            <param-value>login.xhtml</param-value>
-        </init-param>
-
-    </filter>
-
-    <filter-mapping>
-        <filter-name>PicketLink Authentication Filter</filter-name>
-        <url-pattern>/app/*</url-pattern>
-    </filter-mapping>
-
     <!--
         <security-constraint>
             <web-resource-collection>
