@@ -25,7 +25,7 @@ public class HttpSecurityConfiguration {
                 .forPath("/app/*")
                 .authenticateWith()
                 .form()
-                .authenticationUri("/app/login.xhtml")
+                .authenticationUri("/app/init.xhtml")
                 .loginPage("/app/login.xhtml")
                 .errorPage("/app/login.xhtml")
                 .restoreOriginalRequest()

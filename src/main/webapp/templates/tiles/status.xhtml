@@ -12,7 +12,7 @@
     <ui:fragment rendered="#{identity.loggedIn}">
         <h:form>
 
-            <p:commandLink action="#{identity.logout}" ajax="false" title="Cerrar sesión...">
+            <p:commandLink action="/logout" ajax="false" title="Cerrar sesión...">
                 <h:outputText value="Cerrar sesión #{identity.account.loginName}..."/>
             </p:commandLink>
 

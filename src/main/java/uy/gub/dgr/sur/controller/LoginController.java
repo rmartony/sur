@@ -126,8 +126,8 @@ public class LoginController implements Serializable {
     public void afterLogout(@Observes final PostLoggedOutEvent event) throws IOException {
         auditLogin("logout");
 
-        Faces.invalidateSession();
-        Faces.redirect("app/init.xhtml");
+//        Faces.invalidateSession();
+//        Faces.redirect("app/init.xhtml");
     }
 
     public void keepSessionAlive() {
