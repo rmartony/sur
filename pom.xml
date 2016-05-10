@@ -24,8 +24,7 @@
         <lombok.version>RELEASE</lombok.version>
         <omnifaces.version>RELEASE</omnifaces.version>
         <!-- PicketLink dependency versions -->
-        <version.picketlink.javaee.bom>RELEASE</version.picketlink.javaee.bom>
-        <version.picketlink.javaee.deltaspike.bom>RELEASE</version.picketlink.javaee.deltaspike.bom>
+        <version.picketlink.javaee.bom>2.7.1.Final</version.picketlink.javaee.bom>
         <primefaces.version>5.3</primefaces.version>
         <primefaces-extensions.version>4.0.0</primefaces-extensions.version>
         <!-- maven-compiler-plugin -->

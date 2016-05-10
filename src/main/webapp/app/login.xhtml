@@ -10,8 +10,8 @@
     <ui:define name="title">Ingreso al sistema</ui:define>
     <ui:define name="content">
         <br/>
-        <h:form id="loginForm" prependId="false" rendered="#{not identity.loggedIn}">
-            <p:focus for="username"/>
+        <h:form id="loginForm" method="POST" prependId="false" rendered="#{not identity.loggedIn}">
+            <p:focus for="j_username"/>
             <h:panelGrid columns="2" cellpadding="5" styleClass="center">
 
                 <h:outputLabel for="j_username" value="Usuario:"/>

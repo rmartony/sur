@@ -25,15 +25,13 @@ public class HttpSecurityConfiguration {
                 .forPath("/app/*")
                 .authenticateWith()
                 .form()
-                .authenticationUri("/app/login.jsf")
-                .loginPage("/app/login.jsf")
-                .errorPage("/app/login.jsf")
+                .authenticationUri("/app/login.xhtml")
+                .loginPage("/app/login.xhtml")
+                .errorPage("/app/login.xhtml")
                 .restoreOriginalRequest()
                 .forPath("/logout")
                 .logout()
-                .redirectTo("/index.html")
-                .forPath("/")
-                .unprotected();
+                .redirectTo("/index.html");
     }
 
 }
