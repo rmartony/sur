@@ -57,7 +57,7 @@
             </c:if>
             <c:if test="#{identity.loggedIn}">
                 <p:menuitem value="Cambiar contraseña" action="cambioClave" ajax="false" icon="ui-icon-key"/>
-                <p:menuitem value="Cerrar sesión" action="/logout" icon="ui-icon-power"/>
+                <p:menuitem value="Cerrar sesión" icon="ui-icon-power" url="/logout"/>
             </c:if>
             <c:if test="#{not identity.loggedIn}">
                 <p:menuitem value="Ingresar" action="/login.xhtml?faces-redirect=true" icon="ui-icon-power"/>

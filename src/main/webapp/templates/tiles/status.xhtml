@@ -3,8 +3,7 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-        >
+>
 <h:head>
     <title>Title</title>
 </h:head>
@@ -12,9 +11,9 @@
     <ui:fragment rendered="#{identity.loggedIn}">
         <h:form>
 
-            <p:commandLink action="/logout" ajax="false" title="Cerrar sesión...">
+            <h:outputLink value="logout">
                 <h:outputText value="Cerrar sesión #{identity.account.loginName}..."/>
-            </p:commandLink>
+            </h:outputLink>
 
             <ui:fragment
                     rendered="#{authorizationChecker.hasApplicationRole('admin') or authorizationChecker.hasApplicationRole('adminLectura')}">
