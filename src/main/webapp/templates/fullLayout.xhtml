@@ -26,36 +26,18 @@
         </p:ajaxStatus>
         <h:outputScript library="js" name="primefaces.js" target="body"/>
         <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputStylesheet library="css" name="documentos.css"/>
         <ui:include src="../templates/sessionTimeOut.xhtml"/>
-        <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="78" resizable="false" closable="false" collapsible="false"
-                          style="padding:1px">
-                <h:panelGrid columns="3" cellpadding="0" style="width:100%; border-spacing: 0">
-                    <img src="#{resource[ 'img:logo.png' ]}" width="92" height="85" alt="Logo DGR"
-                         style="margin:0; padding:0"/>
-                    <h:panelGroup>
-                        <h2><ui:insert name="heading">#{msg.defaultTitle}</ui:insert></h2>
-                    </h:panelGroup>
-                    <h:panelGroup style="float: right;">
-                        <ui:insert name="status"><ui:include src="../templates/tiles/status.xhtml"/></ui:insert>
-                    </h:panelGroup>
-                </h:panelGrid>
-            </p:layoutUnit>
 
-            <p:layoutUnit position="south" size="60" resizable="true" closable="true"
-                          collapsible="true" styleClass="textCenter">
-                <h:outputText value="#{msg.defaultFooterTitle}"/>
-            </p:layoutUnit>
-
-            <p:layoutUnit position="west" size="210" header="Menú" resizable="true" closable="false"
-                          collapsible="false">
-                <ui:include src="../templates/tiles/leftMenu.xhtml"/>
-            </p:layoutUnit>
-
-            <p:layoutUnit position="center">
+        <h:body styleClass="dynWidth">
+            <div id="container">
+                <ui:include src="tiles/header.xhtml"/>
+                <ui:include src="tiles/menu.xhtml"/>
                 <ui:insert name="content">Put default content here, if any.</ui:insert>
-            </p:layoutUnit>
-        </p:layout>
+                <ui:include src="tiles/footer.xhtml"/>
+            </div>
+        </h:body>
+
     </h:body>
 </f:view>
 </html>

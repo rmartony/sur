@@ -17,6 +17,10 @@
     font-size: 12px !important;
 }
 
+.ui-panelgrid-footer {
+    text-align: center !important;
+}
+
 .center {
     margin-left: auto;
     margin-right: auto;
@@ -51,4 +55,141 @@
     color: #A30000;
     display: block;
     padding: 5px;
+}
+
+body {
+    font: 10pt Arial, Helvetica, sans-serif;
+    color: black;
+    margin: 15px 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+    padding: 0;
+    text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+    background: white;
+}
+
+.dynWidth #container {
+    width: 97%; /* this will create a container 80% of the browser width */
+    background: white;
+    margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
+    text-align: left; /* this overrides the text-align: center on the body element. */
+}
+
+.dynWidth #header {
+    background-color: #6c757a;
+    padding: 8px 15px; /* this padding matches the left alignment of the elements in the divs that appear beneath it. If an image is used in the #header instead of text, you may want to remove the padding. */
+}
+
+.dynWidth #header p {
+    margin: 0;
+    padding: 0;
+}
+
+.dynWidth #header a {
+    color: white;
+    text-decoration: underline;
+}
+
+.dynWidth #header a:hover {
+    text-decoration: underline;
+}
+
+.dynWidth #header h3 {
+    margin: 0; /* zeroing the margin of the last element in the #header div will avoid margin collapse - an unexplainable space between divs. If the div has a border around it, this is not necessary as that also avoids the margin collapse */
+    padding: 0 0 13px 0; /* using padding instead of margin will allow you to keep the element away from the edges of the div */
+}
+
+/* Tips for mainContent:
+1. The space between the mainContent and sidebar1 is created with the left margin on the mainContent div.  No matter how much content the sidebar1 div contains, the column space will remain. You can remove this left margin if you want the #mainContent div's text to fill the #sidebar1 space when the content in #sidebar1 ends.
+2. Be aware it is possible to cause float drop (the dropping of the non-floated mainContent area below the sidebar) if an element wider than it can contain is placed within the mainContent div. WIth a hybrid layout (percentage-based overall width with em-based sidebar), it may not be possible to calculate the exact width available. If the user's text size is larger than average, you will have a wider sidebar div and thus, less room in the mainContent div. You should be aware of this limitation - especially if the client is adding content with Contribute.
+3. In the Internet Explorer Conditional Comment below, the zoom property is used to give the mainContent "hasLayout." This may help avoid several IE-specific bugs.
+*/
+.dynWidth #mainContent {
+    margin-top: 5px;
+}
+
+.dynWidth #footer {
+    margin-top: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #808080;
+}
+
+.dynWidth #footer p {
+    margin: 0; /* zeroing the margins of the first element in the footer will avoid the possibility of margin collapse - a space between divs */
+    padding: 10px 0; /* padding on this element will create space, just as the the margin would have, without the margin collapse issue */
+}
+
+.dynWidth #footer a:link, #footer a:visited {
+    color: #333333;
+    text-decoration: none;
+}
+
+.dynWidth legend {
+    margin-left: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/* Miscellaneous classes for reuse */
+.top_padding {
+    padding-top: 4px !important;
+}
+
+.bottom_padding {
+    padding-bottom: 4px !important;
+}
+
+.left_padding {
+    padding-left: 5px !important;
+}
+
+.right_padding {
+    padding-right: 5px !important;
+}
+
+.no_padding {
+    padding: 0;
+}
+
+.no_margin {
+    margin: 0;
+}
+
+.top_margin {
+    margin-top: 8px !important;
+}
+
+.bottom_margin {
+    margin-bottom: 8px !important;
+}
+
+.left_margin {
+    margin-left: 5px !important;
+}
+
+.right_margin {
+    margin-right: 5px !important;
+}
+
+.fltrt {
+    /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+    float: right;
+    /* margin-left: 8px; */
+}
+
+.fltlft {
+    /* this class can be used to float an element left in your page */
+    float: left;
+    /* margin-right: 8px; */
+}
+
+.clearfloat {
+    /* this class should be placed on a div or break element and should be the final element before the close of a container that should fully contain a float */
+    clear: both;
+    height: 0;
+    font-size: 1px;
+    line-height: 0;
+}
+
+.clrrt {
+    clear: right;
 }

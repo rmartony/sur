@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition>
+    <h:form styleClass="no_margin no_padding">
+        <div id="header">
+            <div class="fltlft">
+                <p class="texto white">
+                    <h:outputLink value="http://www.dgr.gub.uy" target="_blank">
+                        <h:outputText value="#{msg['label_titulo']}"/>
+                    </h:outputLink>
+                    <!--<img src="#{resource[ 'img:logo.png' ]}" width="92" height="85" alt="Logo DGR"
+                         style="margin:0; padding:0"/>-->
+                </p>
+            </div>
+            <div class="fltrt clrrt">
+                <p class="texto white right">
+                    <ui:insert name="status"><ui:include src="status.xhtml"/></ui:insert>
+                </p>
+            </div>
+            <br class="clearfloat"/>
+            <h3 class="orange center">#{msg['defaultTitle']}</h3>
+        </div>
+    </h:form>
+</ui:composition>
+</html>
