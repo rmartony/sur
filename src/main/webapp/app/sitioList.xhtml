@@ -68,12 +68,12 @@
                     <h:outputText value="#{item.direccion}"/>
                 </p:column>
 
-                <p:column sortBy="#{item.departamento.nombre}" filterBy="#{item.departamento.nombre}"
+                <p:column sortBy="#{item.sede.nombre}" filterBy="#{item.sede.nombre}"
                           filterOptions="#{sitioController.departamentoListOptions}">
                     <f:facet name="header">
                         <h:outputText value="Departamento"/>
                     </f:facet>
-                    <h:outputText value="#{item.departamento.nombre}"/>
+                    <h:outputText value="#{item.sede.nombre}"/>
                 </p:column>
 
                 <f:facet name="footer">

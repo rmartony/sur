@@ -15,11 +15,11 @@
         <class>uy.gub.dgr.sur.entity.Celda3G</class>
         <class>uy.gub.dgr.sur.entity.CeldaLte</class>
         <class>uy.gub.dgr.sur.entity.Rnc</class>
-        <class>uy.gub.dgr.sur.entity.Departamento</class>
+        <class>uy.gub.dgr.sur.entity.Sede</class>
         <class>uy.gub.dgr.sur.entity.TipoAntena</class>
         <class>uy.gub.dgr.sur.entity.TipoBTS</class>
         <class>uy.gub.dgr.sur.entity.TipoFeeder</class>
-        <class>uy.gub.dgr.sur.entity.Departamento</class>
+        <class>uy.gub.dgr.sur.entity.Sede</class>
         <class>uy.gub.dgr.sur.entity.Torrero</class>
         <class>uy.gub.dgr.sur.entity.Ip</class>
 

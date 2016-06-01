@@ -11,7 +11,7 @@ import lombok.Setter;
 import org.omnifaces.util.Messages;
 import org.primefaces.context.RequestContext;
 import org.primefaces.model.LazyDataModel;
-import uy.gub.dgr.sur.entity.Departamento;
+import uy.gub.dgr.sur.entity.Sede;
 import uy.gub.dgr.sur.idm.annotations.Admin;
 import uy.gub.dgr.sur.model.LazyDepartamentoDataModel;
 import uy.gub.dgr.sur.service.DepartamentoService;
@@ -45,18 +45,18 @@ public class DepartamentoController implements Serializable {
     // Selected users that will be removed
     @Getter
     @Setter
-    private Departamento[] selectedItems;
+    private Sede[] selectedItems;
     // Creating new zona
     @Getter
     @Setter
-    private Departamento newItem = new Departamento();
+    private Sede newItem = new Sede();
     // Selected user that will be updated
     @Getter
     @Setter
-    private Departamento selectedItem = new Departamento();
+    private Sede selectedItem = new Sede();
     // Lazy loading user list
     @Getter
-    private LazyDataModel<Departamento> lazyModel;
+    private LazyDataModel<Sede> lazyModel;
 
     /**
      * Default constructor
@@ -80,7 +80,7 @@ public class DepartamentoController implements Serializable {
     @Admin
     public void doCreate() {
         das.create(newItem);
-        newItem = new Departamento();
+        newItem = new Sede();
     }
 
     /**
@@ -89,7 +89,7 @@ public class DepartamentoController implements Serializable {
     @Admin
     public void doConfirmUpdate() {
         das.update(selectedItem);
-        Messages.addFlashInfo(null, "Departamento actualizado con éxito.");
+        Messages.addFlashInfo(null, "Sede actualizado con éxito.");
     }
 
     public void doUpdate() {
@@ -109,7 +109,7 @@ public class DepartamentoController implements Serializable {
     public void doDelete() {
         if (selectedItems != null && selectedItems.length > 0) {
             das.deleteItems(selectedItems);
-            Messages.addInfo(null, "Departamento(s) eliminada(s) con éxito.");
+            Messages.addInfo(null, "Sede(s) eliminada(s) con éxito.");
         } else {
             Messages.addError(null, msg.getString("noRecordSelected"));
         }

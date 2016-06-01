@@ -4,7 +4,7 @@ package uy.gub.dgr.sur.model;
 import org.apache.commons.collections4.CollectionUtils;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
-import uy.gub.dgr.sur.entity.Departamento;
+import uy.gub.dgr.sur.entity.Sede;
 import uy.gub.dgr.sur.service.DataAccessService;
 
 import javax.persistence.criteria.*;
@@ -20,10 +20,10 @@ import java.util.Map;
  * For more information please visit http://www.primefaces.org/showcase-labs/ui/datatableLazy.jsf
  */
 
-public class LazyDepartamentoDataModel extends LazyDataModel<Departamento> implements Serializable {
+public class LazyDepartamentoDataModel extends LazyDataModel<Sede> implements Serializable {
 
     // Data Source for binding data to the DataTable
-    private List<Departamento> datasource;
+    private List<Sede> datasource;
     // Selected Page size in the DataTable
     private int pageSize;
     // Current row index number
@@ -53,17 +53,17 @@ public class LazyDepartamentoDataModel extends LazyDataModel<Departamento> imple
      * @return List<Zona>
      */
     @Override
-    public List<Departamento> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+    public List<Sede> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
         CriteriaBuilder criteriaBuilder = crudService.getCriteriaBuilder();
-        CriteriaQuery<Departamento> criteriaQuery = criteriaBuilder.createQuery(Departamento.class);
+        CriteriaQuery<Sede> criteriaQuery = criteriaBuilder.createQuery(Sede.class);
         Metamodel metamodel = crudService.getMetamodel();
-        EntityType<Departamento> entityType = metamodel.entity(Departamento.class);
-        Root<Departamento> from = criteriaQuery.from(entityType);
+        EntityType<Sede> entityType = metamodel.entity(Sede.class);
+        Root<Sede> from = criteriaQuery.from(entityType);
         List<Order> orders = new ArrayList<Order>();
 
         // count query
         CriteriaQuery<Long> cqCount = criteriaBuilder.createQuery(Long.class);
-        Root<Departamento> fromCount = cqCount.from(entityType);
+        Root<Sede> fromCount = cqCount.from(entityType);
         cqCount.select(criteriaBuilder.count(from));
 
         //Sorting
@@ -141,12 +141,12 @@ public class LazyDepartamentoDataModel extends LazyDataModel<Departamento> imple
     /**
      * Gets the Rnc object's primary key
      *
-     * @param departamento
+     * @param sede
      * @return Object
      */
     @Override
-    public Object getRowKey(Departamento departamento) {
-        return departamento.getId().toString();
+    public Object getRowKey(Sede sede) {
+        return sede.getId().toString();
     }
 
     /**
@@ -155,7 +155,7 @@ public class LazyDepartamentoDataModel extends LazyDataModel<Departamento> imple
      * @return
      */
     @Override
-    public Departamento getRowData() {
+    public Sede getRowData() {
         if (datasource == null)
             return null;
         int index = rowIndex % pageSize;
@@ -172,12 +172,12 @@ public class LazyDepartamentoDataModel extends LazyDataModel<Departamento> imple
      * @return
      */
     @Override
-    public Departamento getRowData(String rowKey) {
+    public Sede getRowData(String rowKey) {
         if (datasource == null)
             return null;
-        for (Departamento departamento : datasource) {
-            if (departamento.getId().toString().equals(rowKey))
-                return departamento;
+        for (Sede sede : datasource) {
+            if (sede.getId().toString().equals(rowKey))
+                return sede;
         }
         return null;
     }
@@ -270,7 +270,7 @@ public class LazyDepartamentoDataModel extends LazyDataModel<Departamento> imple
      */
     @Override
     public void setWrappedData(Object list) {
-        this.datasource = (List<Departamento>) list;
+        this.datasource = (List<Sede>) list;
     }
 }
                     

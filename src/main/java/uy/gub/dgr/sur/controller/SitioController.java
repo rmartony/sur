@@ -66,7 +66,7 @@ public class SitioController extends BaseController {
 
     // Available departamento list
     @Getter
-    private List<Departamento> departamentoList;
+    private List<Sede> sedeList;
     @Getter
     private List<Estructura> estructuraList;
 
@@ -105,11 +105,11 @@ public class SitioController extends BaseController {
     public void init() {
         log.log(Level.INFO, "SitioController is initializing");
         lazyModel = new LazySitioDataModel(das);
-        departamentoList = das.findWithNamedQuery(Departamento.ALL);
+        sedeList = das.findWithNamedQuery(Sede.ALL);
         estructuraList = das.findWithNamedQuery(Estructura.ALL);
         zonaList = das.findWithNamedQuery(Zona.ALL);
         zonaListOptions = createZonaFilterOptions(zonaList);
-        departamentoListOptions = createDepartamentoFilterOptions(departamentoList);
+        departamentoListOptions = createDepartamentoFilterOptions(sedeList);
     }
 
     /**
@@ -201,7 +201,7 @@ public class SitioController extends BaseController {
         return options;
     }
 
-    private SelectItem[] createDepartamentoFilterOptions(List<Departamento> data) {
+    private SelectItem[] createDepartamentoFilterOptions(List<Sede> data) {
         SelectItem[] options = null;
         if (CollectionUtils.isNotEmpty(data)) {
             options = new SelectItem[data.size() + 1];

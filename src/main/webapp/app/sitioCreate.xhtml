@@ -57,15 +57,15 @@
                     </p:column>
                 </p:row>
                 <p:row>
-                    <p:column> <p:outputLabel for="departamento" value="Departamento:"/> </p:column>
+                    <p:column> <p:outputLabel for="sede" value="Departamento:"/> </p:column>
                     <p:column>
-                        <p:selectOneMenu id="departamento" value="#{sitioController.newItem.departamento}"
+                        <p:selectOneMenu id="sede" value="#{sitioController.newItem.sede}"
                                          required="true"
-                                         requiredMessage="Por favor ingrese un departamento">
+                                         requiredMessage="Por favor ingrese un sede">
                             <o:converter converterId="entityListConverter" list="#{sitioController.departamentoList}"/>
-                            <f:selectItem itemLabel="Seleccionar departamento..." noSelectionOption="true"/>
-                            <f:selectItems value="#{sitioController.departamentoList}" var="departamento"
-                                           itemLabel="#{departamento.nombre}" itemValue="#{departamento}"/>
+                            <f:selectItem itemLabel="Seleccionar sede..." noSelectionOption="true"/>
+                            <f:selectItems value="#{sitioController.departamentoList}" var="sede"
+                                           itemLabel="#{sede.nombre}" itemValue="#{sede}"/>
                         </p:selectOneMenu>
                     </p:column>
                 </p:row>

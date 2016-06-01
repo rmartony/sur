@@ -1,6 +1,6 @@
 package uy.gub.dgr.sur.service;
 
-import uy.gub.dgr.sur.entity.Departamento;
+import uy.gub.dgr.sur.entity.Sede;
 
 import javax.ejb.Stateless;
 
@@ -9,9 +9,9 @@ import javax.ejb.Stateless;
  */
 
 @Stateless
-public class DepartamentoService extends DataAccessService<Departamento> {
+public class DepartamentoService extends DataAccessService<Sede> {
 
     public DepartamentoService() {
-        super(Departamento.class);
+        super(Sede.class);
     }
 }

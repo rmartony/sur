@@ -19,7 +19,7 @@ import java.util.Date;
  */
 @Entity
 @Data
-@EqualsAndHashCode(callSuper = true, exclude = {"nombre", "direccion", "latitud", "longitud", "departamento",
+@EqualsAndHashCode(callSuper = true, exclude = {"nombre", "direccion", "latitud", "longitud", "sede",
         "estructura", "alturaEstructura", "perteneceA", "observaciones", "fecha", "zona"})
 @NamedQueries({
         @NamedQuery(name = Sitio.ALL, query = "SELECT z FROM Sitio z order by z.nombre"),
@@ -56,7 +56,7 @@ public class Sitio extends BaseEntity implements Serializable {
 
     @ManyToOne
     @NotNull
-    private Departamento departamento;
+    private Sede sede;
 
     @ManyToOne
 //    @NotNull // Esto deberia descomentarse, por ahora se deja por un tema de inconsistencia de datos
