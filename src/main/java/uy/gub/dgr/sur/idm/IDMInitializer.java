@@ -91,7 +91,7 @@ public class IDMInitializer {
         if (!initialized) {
             initZonas();
             initUsersRoles();
-            initDepartamentos();
+            initSedes();
             initEstructura();
             initRnc();
             initTorrero();
@@ -372,7 +372,7 @@ public class IDMInitializer {
         zonaService.update(z);
     }
 
-    public void initDepartamentos() {
+    public void initSedes() {
         Sede sede = new Sede();
         sede.setId(1);
         sede.setNombre("Montevideo");
