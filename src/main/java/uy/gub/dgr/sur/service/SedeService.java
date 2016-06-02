@@ -9,9 +9,9 @@ import javax.ejb.Stateless;
  */
 
 @Stateless
-public class DepartamentoService extends DataAccessService<Sede> {
+public class SedeService extends DataAccessService<Sede> {
 
-    public DepartamentoService() {
+    public SedeService() {
         super(Sede.class);
     }
 }

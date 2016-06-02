@@ -45,7 +45,7 @@ public class IDMInitializer {
     @Inject
     private transient ZonaService zonaService;
     @Inject
-    private transient DepartamentoService departamentoService;
+    private transient SedeService sedeService;
     @Inject
     private transient EstructuraService estructuraService;
     @Inject
@@ -129,7 +129,7 @@ public class IDMInitializer {
         s1.setZona(z1);
         Map<String, Integer> departamentoParameters = new HashMap<>();
         departamentoParameters.put("id", 5);
-        Sede d1 = (Sede) (departamentoService.findWithNamedQuery(Sede.BY_ID, departamentoParameters).get(0));
+        Sede d1 = (Sede) (sedeService.findWithNamedQuery(Sede.BY_ID, departamentoParameters).get(0));
         s1.setSede(d1);
 
         Sitio s2 = new Sitio();
@@ -143,7 +143,7 @@ public class IDMInitializer {
         s2.setZona(z2);
         departamentoParameters.clear();
         departamentoParameters.put("id", 8);
-        Sede d2 = (Sede) (departamentoService.findWithNamedQuery(Sede.BY_ID, departamentoParameters).get(0));
+        Sede d2 = (Sede) (sedeService.findWithNamedQuery(Sede.BY_ID, departamentoParameters).get(0));
         s2.setSede(d2);
         s2.setEstructura(e1);
 
@@ -376,61 +376,61 @@ public class IDMInitializer {
         Sede sede = new Sede();
         sede.setId(1);
         sede.setNombre("Montevideo");
-        departamentoService.update(sede);
+        sedeService.update(sede);
         sede.setId(2);
         sede.setNombre("Paysandú");
-        departamentoService.update(sede);
+        sedeService.update(sede);
         sede.setId(3);
         sede.setNombre("Colonia");
-        departamentoService.update(sede);
+        sedeService.update(sede);
         sede.setId(4);
         sede.setNombre("Durazno");
-        departamentoService.update(sede);
+        sedeService.update(sede);
         sede.setId(5);
         sede.setNombre("Maldonado");
-        departamentoService.update(sede);
+        sedeService.update(sede);
         sede.setId(6);
         sede.setNombre("Canelones");
-        departamentoService.update(sede);
+        sedeService.update(sede);
         sede.setId(7);
         sede.setNombre("San José");
-        departamentoService.update(sede);
+        sedeService.update(sede);
         sede.setId(8);
         sede.setNombre("Rocha");
-        departamentoService.update(sede);
+        sedeService.update(sede);
         sede.setId(9);
         sede.setNombre("Soriano");
-        departamentoService.update(sede);
+        sedeService.update(sede);
         sede.setId(10);
         sede.setNombre("Salto");
-        departamentoService.update(sede);
+        sedeService.update(sede);
         sede.setId(11);
         sede.setNombre("Artigas");
-        departamentoService.update(sede);
+        sedeService.update(sede);
         sede.setId(12);
         sede.setNombre("Florida");
-        departamentoService.update(sede);
+        sedeService.update(sede);
         sede.setId(13);
         sede.setNombre("Río Negro");
-        departamentoService.update(sede);
+        sedeService.update(sede);
         sede.setId(14);
         sede.setNombre("Rivera");
-        departamentoService.update(sede);
+        sedeService.update(sede);
         sede.setId(15);
         sede.setNombre("Flores");
-        departamentoService.update(sede);
+        sedeService.update(sede);
         sede.setId(16);
         sede.setNombre("Cerro Largo");
-        departamentoService.update(sede);
+        sedeService.update(sede);
         sede.setId(17);
         sede.setNombre("Treinta y Tres");
-        departamentoService.update(sede);
+        sedeService.update(sede);
         sede.setId(18);
         sede.setNombre("Lavalleja");
-        departamentoService.update(sede);
+        sedeService.update(sede);
         sede.setId(19);
         sede.setNombre("Tacuarembó");
-        departamentoService.update(sede);
+        sedeService.update(sede);
     }
 
     public void initEstructura() {

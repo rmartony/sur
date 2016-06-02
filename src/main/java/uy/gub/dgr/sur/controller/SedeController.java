@@ -14,7 +14,7 @@ import org.primefaces.model.LazyDataModel;
 import uy.gub.dgr.sur.entity.Sede;
 import uy.gub.dgr.sur.idm.annotations.Admin;
 import uy.gub.dgr.sur.model.LazyDepartamentoDataModel;
-import uy.gub.dgr.sur.service.DepartamentoService;
+import uy.gub.dgr.sur.service.SedeService;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -34,14 +34,14 @@ import java.util.logging.Logger;
 
 @Named
 @SessionScoped
-public class DepartamentoController implements Serializable {
+public class SedeController implements Serializable {
     private
     @Inject
     transient Logger log;
     @Inject
     private transient ResourceBundle msg;
     @Inject
-    private transient DepartamentoService das;
+    private transient SedeService das;
     // Selected users that will be removed
     @Getter
     @Setter
@@ -61,7 +61,7 @@ public class DepartamentoController implements Serializable {
     /**
      * Default constructor
      */
-    public DepartamentoController() {
+    public SedeController() {
     }
 
     /**
@@ -70,7 +70,7 @@ public class DepartamentoController implements Serializable {
      */
     @PostConstruct
     public void init() {
-        log.log(Level.INFO, "DepartamentoController is initializing");
+        log.log(Level.INFO, "SedeController is initializing");
         lazyModel = new LazyDepartamentoDataModel(das);
     }
 
