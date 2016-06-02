@@ -17,7 +17,7 @@
                 <f:facet name="header">
                     Lista de Escribanos
                 </f:facet>
-                <p:column style="width:18px">
+                <p:column style="width:20px">
                     <p:commandButton icon="ui-icon-pencil" update=":itemDetailForm:display"
                                      title="Ver o modificar"
                                      oncomplete="PF('itemDialog').show()">
@@ -31,7 +31,7 @@
                     <f:facet name="header">
                         <h:outputText value="Código"/>
                     </f:facet>
-                    <h:outputText value="#{msg[item.codigo]}"/>
+                    <h:outputText value="#{item.codigo}"/>
                 </p:column>
 
                 <p:column sortBy="#{item.nombre}" filterBy="#{item.nombre}">
@@ -49,10 +49,9 @@
                     <f:facet name="header">
                         <h:outputText value="Inhabilitado desde"/>
                     </f:facet>
-                    <p:calendar id="fechaDesde" value="#{preventivoController.item.inhabilitadoFechaDesde}"
-                                pattern="#{msg.dateTimePattern}" showOn="both"
-                                popupIconOnly="true"
-                                required="false"/>
+                    <h:outputText value="#{item.inhabilitadoFechaDesde}">
+                        <f:convertDateTime pattern="d/M/yyyy"/>
+                    </h:outputText>
                 </p:column>
 
                 <p:column sortBy="#{item.inhabilitadoFechaHasta}" filterBy="#{item.inhabilitadoFechaHasta}"
@@ -60,10 +59,9 @@
                     <f:facet name="header">
                         <h:outputText value="Inhabilitado hasta"/>
                     </f:facet>
-                    <p:calendar id="fechaHasta" value="#{preventivoController.item.inhabilitadoFechaHasta}"
-                                pattern="#{msg.dateTimePattern}" showOn="both"
-                                popupIconOnly="true"
-                                required="false"/>
+                    <h:outputText value="#{item.inhabilitadoFechaHasta}">
+                        <f:convertDateTime pattern="d/M/yyyy"/>
+                    </h:outputText>
                 </p:column>
 
                 <f:facet name="footer">
@@ -105,13 +103,13 @@
                     </h:inputText>
 
                     <p:outputLabel value="Inhabilitado desde"/>
-                    <p:calendar id="fecha" value="#{escribanoController.selectedItem.inhabilitadoFechaDesde}"
+                    <p:calendar value="#{escribanoController.selectedItem.inhabilitadoFechaDesde}"
                                 pattern="#{msg.datePattern}" showOn="both"
                                 popupIconOnly="true"
                                 required="false"/>
 
                     <p:outputLabel value="Inhabilitado hasta"/>
-                    <p:calendar id="fecha" value="#{escribanoController.selectedItem.inhabilitadoFechaHasta}"
+                    <p:calendar value="#{escribanoController.selectedItem.inhabilitadoFechaHasta}"
                                 pattern="#{msg.datePattern}" showOn="both"
                                 popupIconOnly="true"
                                 required="false"/>
@@ -144,13 +142,13 @@
                     </p:inputText>
 
                     <p:outputLabel value="Inhabilitado desde"/>
-                    <p:calendar id="fecha" value="#{escribanoController.newItem.inhabilitadoFechaDesde}"
+                    <p:calendar id="fechaDesde" value="#{escribanoController.newItem.inhabilitadoFechaDesde}"
                                 pattern="#{msg.datePattern}" showOn="both"
                                 popupIconOnly="true"
                                 required="false"/>
 
                     <p:outputLabel value="Inhabilitado hasta"/>
-                    <p:calendar id="fecha" value="#{escribanoController.newItem.inhabilitadoFechaHasta}"
+                    <p:calendar id="fechaHasta" value="#{escribanoController.newItem.inhabilitadoFechaHasta}"
                                 pattern="#{msg.datePattern}" showOn="both"
                                 popupIconOnly="true"
                                 required="false"/>

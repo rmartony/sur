@@ -16,31 +16,33 @@
             </h:outputLink>
 
             <ui:fragment
-                    rendered="#{authorizationChecker.hasApplicationRole('admin') or authorizationChecker.hasApplicationRole('adminLectura')}">
+                    rendered="#{authorizationChecker.isAdmin()}">
                 <h:outputText value="(administrador)"/>
             </ui:fragment>
 
-            <ui:fragment rendered="#{authorizationChecker.hasApplicationRole('tecnico')}">
-                <h:outputText value="(técnico)"/>
+            <ui:fragment rendered="#{authorizationChecker.isVentanilla()}">
+                <h:outputText value="(ventanilla)"/>
             </ui:fragment>
 
-            <ui:fragment rendered="#{authorizationChecker.hasApplicationRole('consola')}">
-                <h:outputText value="(consola)"/>
+            <ui:fragment rendered="#{authorizationChecker.isVerificacion()}">
+                <h:outputText value="(verificación)"/>
             </ui:fragment>
 
-            <ui:fragment rendered="#{authorizationChecker.hasApplicationRole('cliente')}">
-                <h:outputText value="(cliente)"/>
+            <ui:fragment rendered="#{authorizationChecker.isCalificacion()}">
+                <h:outputText value="(calificación)"/>
             </ui:fragment>
 
-            <ui:fragment rendered="#{authorizationChecker.hasApplicationRole('lectura')}">
-                <h:outputText value="(lectura)"/>
+            <ui:fragment rendered="#{authorizationChecker.isCompletado()}">
+                <h:outputText value="(completado)"/>
             </ui:fragment>
 
-            <!--
-                        <ui:fragment rendered="#{authorizationChecker.isMember('clientes')}">
-                            <div>You are a member of the 'clientes' group.</div>
-                        </ui:fragment>
-            -->
+            <ui:fragment rendered="#{authorizationChecker.isHistorico()}">
+                <h:outputText value="(histórico)"/>
+            </ui:fragment>
+
+            <ui:fragment rendered="#{authorizationChecker.isConsulta()}">
+                <h:outputText value="(consulta)"/>
+            </ui:fragment>
 
         </h:form>
     </ui:fragment>

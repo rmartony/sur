@@ -2,16 +2,20 @@ package uy.gub.dgr.sur.model;
 
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 import uy.gub.dgr.sur.entity.Escribano;
+import uy.gub.dgr.sur.idm.IDMInitializer;
 import uy.gub.dgr.sur.service.DataAccessService;
 
 import javax.persistence.criteria.*;
 import javax.persistence.metamodel.EntityType;
 import javax.persistence.metamodel.Metamodel;
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -83,13 +87,29 @@ public class LazyEscribanoDataModel extends LazyDataModel<Escribano> implements 
 
         for (Map.Entry<String, Object> filter : filters.entrySet()) {
             String[] filterField = filter.getKey().split("\\.", 2);
+
+            Date dateFrom = null, dateTo = null;
             if (filterField.length < 2) {
+
                 Path path = from.get(filterField[0]);
-                if (filter.getKey().equals("ocupada")) {
-                    predicates.add(criteriaBuilder.equal(path, Boolean.parseBoolean((String) filter.getValue())));
+                if (filter.getKey().equals("inhabilitadoFechaDesde")) {
+                    try {
+                        dateFrom = DateUtils.parseDate((String) filter.getValue(), IDMInitializer.datePattern);
+                        predicates.add(criteriaBuilder.greaterThanOrEqualTo(path, dateFrom));
+                    } catch (ParseException e) {
+                        // ignore parse errors
+                    }
+                } else if (filter.getKey().equals("inhabilitadoFechaHasta")) {
+                    try {
+                        dateTo = DateUtils.parseDate((String) filter.getValue(), IDMInitializer.datePattern);
+                        predicates.add(criteriaBuilder.lessThanOrEqualTo(path, dateTo));
+                    } catch (ParseException e) {
+                        // ignore parse errors
+                    }
                 } else {
                     predicates.add(criteriaBuilder.like(criteriaBuilder.lower(path), ((String) filter.getValue()).toLowerCase() + "%"));
                 }
+
             } else {
                 // this is a join
                 final String entity = filterField[0];
@@ -118,7 +138,7 @@ public class LazyEscribanoDataModel extends LazyDataModel<Escribano> implements 
         if (CollectionUtils.isNotEmpty(orders)) {
             criteriaQuery.orderBy(orders);
         } else {
-            criteriaQuery.orderBy(criteriaBuilder.desc(from.get("ip")));
+            criteriaQuery.orderBy(criteriaBuilder.asc(from.get("nombre")));
         }
 
         datasource = crudService.findWithTypedQuery(criteriaQuery, first, pageSize);

@@ -238,43 +238,52 @@ public class IDMInitializer {
         identityManager.updateCredential(admin, new Password("demo"));
 
         // admin lectura
-        User adminLectura = new User("adminlectura");
-        adminLectura.setEmail("adminlectura@acme.com");
-        adminLectura.setFirstName("John");
-        adminLectura.setLastName("Smith");
-        identityManager.add(adminLectura);
-        identityManager.updateCredential(adminLectura, new Password("demo"));
+        User consulta = new User("consulta");
+        consulta.setEmail("consulta@acme.com");
+        consulta.setFirstName("John");
+        consulta.setLastName("Smith");
+        identityManager.add(consulta);
+        identityManager.updateCredential(consulta, new Password("demo"));
 
-        // Create user cliente
-        User cliente = new User("calificacion");
-        cliente.setEmail("cliente@acme.com");
-        cliente.setFirstName("Mary");
-        cliente.setLastName("Jones");
-        identityManager.add(cliente);
-        identityManager.updateCredential(cliente, new Password("demo"));
+        // Create user calificacion
+        User calificacion = new User("calificacion");
+        calificacion.setEmail("calificacion@acme.com");
+        calificacion.setFirstName("Mary");
+        calificacion.setLastName("Jones");
+        identityManager.add(calificacion);
+        identityManager.updateCredential(calificacion, new Password("demo"));
 
-        // Create user consola
-        User consola = new User("completado");
-        consola.setEmail("consola1@acme.com");
-        consola.setFirstName("Jane");
-        consola.setLastName("Doe");
-        identityManager.add(consola);
-        identityManager.updateCredential(consola, new Password("demo"));
+        // Create user completado
+        User completado = new User("completado");
+        completado.setEmail("completado@acme.com");
+        completado.setFirstName("Jane");
+        completado.setLastName("Doe");
+        identityManager.add(completado);
+        identityManager.updateCredential(completado, new Password("demo"));
 
-        // Create user cliente
-        User tecnico1 = new User("tecnico1");
-        tecnico1.setEmail("tecnico1@acme.com");
-        tecnico1.setFirstName("Harry");
-        tecnico1.setLastName("Jones");
-        identityManager.add(tecnico1);
-        identityManager.updateCredential(tecnico1, new Password("demo"));
+        // Create user ventanilla
+        User ventanilla = new User("ventanilla");
+        ventanilla.setEmail("ventanilla@acme.com");
+        ventanilla.setFirstName("Harry");
+        ventanilla.setLastName("Jones");
+        identityManager.add(ventanilla);
+        identityManager.updateCredential(ventanilla, new Password("demo"));
 
-        User tecnico2 = new User("tecnico2");
-        tecnico2.setEmail("tecnico2@acme.com");
-        tecnico2.setFirstName("Alex");
-        tecnico2.setLastName("Jones");
-        identityManager.add(tecnico2);
-        identityManager.updateCredential(tecnico2, new Password("demo"));
+        // Create user verificacion
+        User verificacion = new User("verificacion");
+        verificacion.setEmail("verificacion@acme.com");
+        verificacion.setFirstName("Marry");
+        verificacion.setLastName("Jones");
+        identityManager.add(verificacion);
+        identityManager.updateCredential(verificacion, new Password("demo"));
+
+        // Create user historico
+        User historico = new User("historico");
+        historico.setEmail("historico@acme.com");
+        historico.setFirstName("Alex");
+        historico.setLastName("Jones");
+        identityManager.add(historico);
+        identityManager.updateCredential(historico, new Password("demo"));
 
         RelationshipManager relationshipManager = this.partitionManager.createRelationshipManager();
 
@@ -283,52 +292,63 @@ public class IDMInitializer {
             Role clienteRol = new Role(UsuarioService.ROLE_CALIFICACION);
             identityManager.add(clienteRol);
 
+            // Create role "ventanilla"
+            Role ventanillaRol = new Role(UsuarioService.ROLE_VENTANILLA);
+            identityManager.add(ventanillaRol);
+
             // Create role "completado"
             Role consolaRol = new Role(UsuarioService.ROLE_COMPLETADO);
             identityManager.add(consolaRol);
 
             // Create role "verificacion"
-            Role tecnicoRol = new Role(UsuarioService.ROLE_VERIFICACION);
-            identityManager.add(tecnicoRol);
+            Role verificacionRol = new Role(UsuarioService.ROLE_VERIFICACION);
+            identityManager.add(verificacionRol);
 
             // Create application role "admin"
             Role adminRol = new Role(UsuarioService.ROLE_ADMIN);
             identityManager.add(adminRol);
 
-            // Create application role "adminlectura"
-            Role adminLecturaRol = new Role(UsuarioService.ROLE_VENTANILLA);
-            identityManager.add(adminLecturaRol);
+            // Create application role "historico"
+            Role historicoRol = new Role(UsuarioService.ROLE_HISTORICO);
+            identityManager.add(historicoRol);
 
             // Create application role "consulta"
-            Role lecturaRol = new Role(UsuarioService.ROLE_CONSULTA);
-            identityManager.add(lecturaRol);
+            Role consultaRol = new Role(UsuarioService.ROLE_CONSULTA);
+            identityManager.add(consultaRol);
 
-            // Grant the "admin" application role to admin
+
+            // Grant the "admin" application role to admin user
             grantRole(relationshipManager, admin, adminRol);
-            // Grant the "adminLecturaRol" application role to adminlecura
-            grantRole(relationshipManager, adminLectura, adminLecturaRol);
 
-            // Grant the "completado" application role to consola
-            grantRole(relationshipManager, consola, consolaRol);
+            // Grant the "consulta" application role to consulta user
+            grantRole(relationshipManager, consulta, consultaRol);
 
-            // Grant the "tecnicoRol" application role to tecnico1
-            grantRole(relationshipManager, tecnico1, tecnicoRol);
-            grantRole(relationshipManager, tecnico2, tecnicoRol);
+            // Grant the "completado" application role to completado user
+            grantRole(relationshipManager, completado, consolaRol);
 
-            // Al usuario tecnico1 le asigna zona 1 y 2
+            // Grant the "ventanilla" application role to ventanilla user
+            grantRole(relationshipManager, ventanilla, ventanillaRol);
+
+            // Grant the "verificacion" application role to verificacion user
+            grantRole(relationshipManager, verificacion, verificacionRol);
+
+            // Grant the "historico" application role to historico user
+            grantRole(relationshipManager, historico, historicoRol);
+
+            // Al usuario ventanilla le asigna zona 1 y 2
             Zona z1 = zonaService.find(1);
             Zona z2 = zonaService.find(2);
             Zona z3 = zonaService.find(3);
 
-            // tecnico1 esta en z1 y z2
+            // ventanilla esta en z1 y z2
             UsuarioZona usuarioZona = new UsuarioZona();
-            usuarioZona.setUserId(tecnico1.getLoginName());
+            usuarioZona.setUserId(ventanilla.getLoginName());
             usuarioZona.setZonas(Arrays.asList(z1, z2));
             usuarioZonaService.create(usuarioZona);
 
-            // tecnico2 esta en z2 y z3
+            // historico esta en z2 y z3
             UsuarioZona usuarioZona2 = new UsuarioZona();
-            usuarioZona2.setUserId(tecnico2.getLoginName());
+            usuarioZona2.setUserId(historico.getLoginName());
             usuarioZona2.setZonas(Arrays.asList(z2, z3));
             usuarioZonaService.create(usuarioZona2);
 
@@ -341,10 +361,10 @@ public class IDMInitializer {
         identityManager.add(clientes);
 
         // Make admin a member of the "clientes" group
-        addToGroup(relationshipManager, cliente, clientes);
+        addToGroup(relationshipManager, calificacion, clientes);
 
-        // Make cliente a manager of the "clientes" group
-        grantGroupRole(relationshipManager, cliente, clienteRol, clientes);
+        // Make calificacion a manager of the "clientes" group
+        grantGroupRole(relationshipManager, calificacion, clienteRol, clientes);
 */
 
 

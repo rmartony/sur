@@ -71,7 +71,7 @@ public class AuthorizationChecker implements Serializable {
     }
 
     public boolean isAdmin() {
-        return hasApplicationRole("admin");
+        return hasApplicationRole(UsuarioService.ROLE_ADMIN);
     }
 
     public boolean isVentanilla() {

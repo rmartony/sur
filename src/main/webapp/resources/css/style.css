@@ -71,6 +71,7 @@ body {
     background: white;
     margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
     text-align: left; /* this overrides the text-align: center on the body element. */
+    min-height: 450px;
 }
 
 .dynWidth #header {
