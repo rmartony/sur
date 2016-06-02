@@ -13,7 +13,7 @@ import org.primefaces.context.RequestContext;
 import org.primefaces.model.LazyDataModel;
 import uy.gub.dgr.sur.entity.Sede;
 import uy.gub.dgr.sur.idm.annotations.Admin;
-import uy.gub.dgr.sur.model.LazyDepartamentoDataModel;
+import uy.gub.dgr.sur.model.LazySedeDataModel;
 import uy.gub.dgr.sur.service.SedeService;
 
 import javax.annotation.PostConstruct;
@@ -71,7 +71,7 @@ public class SedeController implements Serializable {
     @PostConstruct
     public void init() {
         log.log(Level.INFO, "SedeController is initializing");
-        lazyModel = new LazyDepartamentoDataModel(das);
+        lazyModel = new LazySedeDataModel(das);
     }
 
     /**

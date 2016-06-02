@@ -20,7 +20,7 @@ import java.util.Map;
  * For more information please visit http://www.primefaces.org/showcase-labs/ui/datatableLazy.jsf
  */
 
-public class LazyDepartamentoDataModel extends LazyDataModel<Sede> implements Serializable {
+public class LazySedeDataModel extends LazyDataModel<Sede> implements Serializable {
 
     // Data Source for binding data to the DataTable
     private List<Sede> datasource;
@@ -38,7 +38,7 @@ public class LazyDepartamentoDataModel extends LazyDataModel<Sede> implements Se
     /**
      * @param crudService
      */
-    public LazyDepartamentoDataModel(DataAccessService crudService) {
+    public LazySedeDataModel(DataAccessService crudService) {
         this.crudService = crudService;
     }
 
