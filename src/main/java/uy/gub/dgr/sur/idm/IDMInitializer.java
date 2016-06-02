@@ -7,6 +7,7 @@ package uy.gub.dgr.sur.idm;
  */
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.time.DateUtils;
 import org.picketlink.idm.IdentityManager;
 import org.picketlink.idm.PartitionManager;
 import org.picketlink.idm.RelationshipManager;
@@ -529,26 +530,28 @@ public class IDMInitializer {
         Escribano escribano = new Escribano();
         escribano.setCodigo(10);
         escribano.setRnc(rnc);
-        escribano.setOcupada(false);
+        escribano.setNombre("Escribano 1");
         escribanoService.update(escribano);
 
 
         escribano = new Escribano();
         escribano.setCodigo(23);
         escribano.setRnc(rnc);
-        escribano.setOcupada(false);
+        escribano.setNombre("Escribano 2 (deshabilitado)");
+        escribano.setInhabilitadoFechaDesde(DateUtils.addDays(new Date(), -80));
+        escribano.setInhabilitadoFechaHasta(new Date());
         escribanoService.update(escribano);
 
         escribano = new Escribano();
         escribano.setCodigo(26);
         escribano.setRnc(rnc);
-        escribano.setOcupada(false);
+        escribano.setNombre("Escribano 3");
         escribanoService.update(escribano);
 
         escribano = new Escribano();
         escribano.setCodigo(30);
         escribano.setRnc(rnc);
-        escribano.setOcupada(false);
+        escribano.setNombre("Escribano 4");
         escribanoService.update(escribano);
 
         rnc = new Rnc();
@@ -557,14 +560,14 @@ public class IDMInitializer {
 
         escribano.setCodigo(35);
         escribano.setRnc(rnc);
-        escribano.setOcupada(false);
+        escribano.setNombre("Escribano 5");
         escribanoService.update(escribano);
 
 
         escribano = new Escribano();
         escribano.setCodigo(38);
         escribano.setRnc(rnc);
-        escribano.setOcupada(false);
+        escribano.setNombre("Escribano 6");
         escribanoService.update(escribano);
     }
 

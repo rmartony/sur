@@ -271,6 +271,7 @@ public class Nodo3GController extends BaseController {
     }
 */
 
+/*
     private List<Escribano> findIp4Rnc(Rnc rnc) {
         if (rnc == null) return null;
         Map<String, Object> parameters = new HashMap<>();
@@ -279,6 +280,7 @@ public class Nodo3GController extends BaseController {
 
         return das.findWithNamedQuery(Escribano.BY_RNC_STATUS, parameters);
     }
+*/
 
     public String createCelda() {
         if (getMode() == ControllerMode.CREATE) {

@@ -23,7 +23,6 @@
             <p:commandButton styleClass="admin-dashboard-button" value="Sitios" action="sitios" ajax="false"/>
             <p:commandButton styleClass="admin-dashboard-button" value="Zonas" action="zonas" ajax="false"/>
             <!--
-                        <p:commandButton styleClass="admin-dashboard-button" value="RNCs" action="rncs" ajax="false"/>
                         <p:commandButton styleClass="admin-dashboard-button" value="IPs" action="ips" ajax="false"/>
             -->
             <c:if test="#{identity.loggedIn and (authorizationChecker.admin or authorizationChecker.historico) }">
@@ -34,6 +33,9 @@
                                 <p:commandButton styleClass="admin-dashboard-button" value="Celdas LTE" action="celdasLte"
                                                  ajax="false" disabled="true"/>
                 -->
+
+                <p:commandButton styleClass="admin-dashboard-button" value="Escribanos" action="escribanos"
+                                 ajax="false"/>
                 <p:commandButton styleClass="admin-dashboard-button" value="Torreros" action="torreros"
                                  ajax="false"/>
                 <p:commandButton styleClass="admin-dashboard-button" value="Tipo antena" action="tipoAntenas"

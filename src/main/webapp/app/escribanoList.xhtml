@@ -4,7 +4,6 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:o="http://omnifaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
         >
 <ui:composition template="/templates/fullLayout.xhtml">
@@ -16,7 +15,7 @@
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          lazy="true" rowsPerPageTemplate="10,25,50">
                 <f:facet name="header">
-                    Lista de IP
+                    Lista de Escribanos
                 </f:facet>
                 <p:column style="width:18px">
                     <p:commandButton icon="ui-icon-pencil" update=":itemDetailForm:display"
@@ -27,50 +26,64 @@
                 </p:column>
 
                 <p:column selectionMode="multiple" style="width:18px"/>
-                <p:column sortBy="#{item.escribano}" filterBy="#{item.escribano}">
+
+                <p:column sortBy="#{item.codigo}" filterBy="#{item.codigo}">
                     <f:facet name="header">
-                        <h:outputText value="Dirección IP"/>
+                        <h:outputText value="Código"/>
                     </f:facet>
-                    <p:commandLink value="#{item.escribano}" update=":itemDetailForm:display"
+                    <h:outputText value="#{msg[item.codigo]}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.nombre}" filterBy="#{item.nombre}">
+                    <f:facet name="header">
+                        <h:outputText value="#{item.nombre}"/>
+                    </f:facet>
+                    <p:commandLink value="#{item.nombre}" update=":itemDetailForm:display"
                                    oncomplete="PF('itemDialog').show()" title="Ver">
                         <f:setPropertyActionListener value="#{item}" target="#{escribanoController.selectedItem}"/>
                     </p:commandLink>
                 </p:column>
 
-                <p:column sortBy="#{item.ocupada}" filterBy="#{item.ocupada}"
-                          filterOptions="#{escribanoController.siNoListOptions}"
-                          filterMatchMode="exact">
+                <p:column sortBy="#{item.inhabilitadoFechaDesde}" filterBy="#{item.inhabilitadoFechaDesde}"
+                          filterMatchMode="contains">
                     <f:facet name="header">
-                        <h:outputText value="Ocupada"/>
+                        <h:outputText value="Inhabilitado desde"/>
                     </f:facet>
-                    <h:outputText value="#{msg[item.ocupada]}"/>
+                    <p:calendar id="fechaDesde" value="#{preventivoController.item.inhabilitadoFechaDesde}"
+                                pattern="#{msg.dateTimePattern}" showOn="both"
+                                popupIconOnly="true"
+                                required="false"/>
                 </p:column>
-                <p:column sortBy="#{item.rnc.nombre}" filterBy="#{item.rnc.nombre}"
-                          filterOptions="#{escribanoController.rncListOptions}"
-                          filterMatchMode="exact">
+
+                <p:column sortBy="#{item.inhabilitadoFechaHasta}" filterBy="#{item.inhabilitadoFechaHasta}"
+                          filterMatchMode="contains">
                     <f:facet name="header">
-                        <h:outputText value="RNC"/>
+                        <h:outputText value="Inhabilitado hasta"/>
                     </f:facet>
-                    <h:outputText value="#{item.rnc.nombre}"/>
+                    <p:calendar id="fechaHasta" value="#{preventivoController.item.inhabilitadoFechaHasta}"
+                                pattern="#{msg.dateTimePattern}" showOn="both"
+                                popupIconOnly="true"
+                                required="false"/>
                 </p:column>
 
                 <f:facet name="footer">
-                    <p:commandButton value="Nueva IP" oncomplete="PF('newItemDialog').show()" icon="ui-icon-star"
-                                     title="Crear nueva IP" rendered="#{authorizationChecker.admin}"/>
-                    <p:commandButton value="Modificar IP" actionListener="#{escribanoController.doUpdate}"
+                    <p:commandButton value="Nuevo Escribano" oncomplete="PF('newItemDialog').show()" icon="ui-icon-star"
+                                     title="Ingresar nuevo Escribano" rendered="#{authorizationChecker.admin}"/>
+                    <p:commandButton value="Modificar Escribano" actionListener="#{escribanoController.doUpdate}"
                                      update=":itemDetailForm:display"
                                      icon="ui-icon-pencil"
-                                     title="Modificar IP"
+                                     title="Modificar Escribano"
                                      oncomplete="if (!args.validationFailed) {PF('itemDialog').show()}"
                                      rendered="#{authorizationChecker.admin}">
                     </p:commandButton>
-                    <p:commandButton value="Ver IP" actionListener="#{escribanoController.doUpdate}"
+                    <p:commandButton value="Ver Escribano" actionListener="#{escribanoController.doUpdate}"
                                      update=":itemDetailForm:display"
                                      icon="ui-icon-pencil"
-                                     title="Ver IP" oncomplete="if (!args.validationFailed) {PF('itemDialog').show()}"
+                                     title="Ver Escribano"
+                                     oncomplete="if (!args.validationFailed) {PF('itemDialog').show()}"
                                      rendered="#{not authorizationChecker.admin}">
                     </p:commandButton>
-                    <p:commandButton value="Eliminar IP" actionListener="#{escribanoController.doDelete}"
+                    <p:commandButton value="Eliminar Escribano" actionListener="#{escribanoController.doDelete}"
                                      update="dataTable" icon="ui-icon-trash" rendered="#{authorizationChecker.admin}">
                         <p:confirm header="Confirmación" message="#{msg.askConfirmAction}"
                                    icon="ui-icon-alert"/>
@@ -79,29 +92,29 @@
             </p:dataTable>
         </h:form>
 
-        <p:dialog header="Detalle de IP" widgetVar="itemDialog" resizable="false" id="itemDlg">
+        <p:dialog header="Detalle de Escribano" widgetVar="itemDialog" resizable="false" id="itemDlg">
             <h:form id="itemDetailForm">
                 <p:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">
-                    <h:outputText value="IP:"/>
-                    <h:inputText value="#{escribanoController.selectedItem.escribano}" required="true"
+                    <h:outputText value="Código:"/>
+                    <h:inputText value="#{escribanoController.selectedItem.codigo}" required="true"
                                  readonly="#{not authorizationChecker.admin}">
-                        <f:validator validatorId="ipValidator"/>
                     </h:inputText>
-                    <p:outputLabel value="Ocupada"/>
-                    <p:selectOneRadio value="#{escribanoController.selectedItem.ocupada}"
-                                      disabled="#{not authorizationChecker.admin}">
-                        <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
-                        <f:selectItem itemValue="#{false}" itemLabel="No"/>
-                    </p:selectOneRadio>
-                    <p:outputLabel value="RNC:" for="detailIpRnc"/>
-                    <p:selectOneMenu id="detailIpRnc" value="#{escribanoController.selectedItem.rnc}" required="true"
-                                     requiredMessage="Por favor ingresar RNC"
-                                     disabled="#{not authorizationChecker.admin}">
-                        <o:converter converterId="entityListConverter" list="#{escribanoController.rncList}"/>
-                        <f:selectItem itemLabel="Seleccionar RNC..." noSelectionOption="true"/>
-                        <f:selectItems value="#{escribanoController.rncList}" var="rnc"
-                                       itemLabel="#{rnc.nombre}" itemValue="#{rnc}"/>
-                    </p:selectOneMenu>
+                    <h:outputText value="Nombre:"/>
+                    <h:inputText value="#{escribanoController.selectedItem.nombre}" required="true"
+                                 readonly="#{not authorizationChecker.admin}">
+                    </h:inputText>
+
+                    <p:outputLabel value="Inhabilitado desde"/>
+                    <p:calendar id="fecha" value="#{escribanoController.selectedItem.inhabilitadoFechaDesde}"
+                                pattern="#{msg.datePattern}" showOn="both"
+                                popupIconOnly="true"
+                                required="false"/>
+
+                    <p:outputLabel value="Inhabilitado hasta"/>
+                    <p:calendar id="fecha" value="#{escribanoController.selectedItem.inhabilitadoFechaHasta}"
+                                pattern="#{msg.datePattern}" showOn="both"
+                                popupIconOnly="true"
+                                required="false"/>
 
                     <f:facet name="footer">
                         <p:commandButton value="Actualizar" update=":form:dataTable, :growl"
@@ -117,28 +130,31 @@
             </h:form>
         </p:dialog>
 
-        <p:dialog header="Crear nueva IP" widgetVar="newItemDialog" resizable="false" id="newItemDlg">
+        <p:dialog header="Crear nuevo Escribano" widgetVar="newItemDialog" resizable="false" id="newItemDlg">
             <h:form id="newItemForm">
-                <p:panelGrid id="displayNewIp" columns="2" cellpadding="4" style="margin:0 auto;">
-                    <h:outputText value="IP:"/>
-                    <p:inputText value="#{escribanoController.newItem.escribano}" required="true"
-                                 requiredMessage="Por favor ingresar dirección IP">
-                        <f:validator validatorId="ipValidator"/>
+                <p:panelGrid id="displayNewEscribano" columns="2" cellpadding="4" style="margin:0 auto;">
+                    <h:outputText value="Código:"/>
+                    <p:inputText value="#{escribanoController.newItem.codigo}" required="true"
+                                 requiredMessage="Por favor ingresar código">
                     </p:inputText>
 
-                    <p:outputLabel value="Ocupada"/>
-                    <p:selectOneRadio value="#{escribanoController.newItem.ocupada}">
-                        <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
-                        <f:selectItem itemValue="#{false}" itemLabel="No"/>
-                    </p:selectOneRadio>
-                    <p:outputLabel for="newIpRnc" value="RNC:"/>
-                    <p:selectOneMenu id="newIpRnc" value="#{escribanoController.newItem.rnc}" required="true"
-                                     requiredMessage="Por favor ingresar RNC">
-                        <o:converter converterId="entityListConverter" list="#{escribanoController.rncList}"/>
-                        <f:selectItem itemLabel="Seleccionar RNC..." noSelectionOption="true"/>
-                        <f:selectItems value="#{escribanoController.rncList}" var="rnc"
-                                       itemLabel="#{rnc.nombre}" itemValue="#{rnc}"/>
-                    </p:selectOneMenu>
+                    <h:outputText value="Nombre:"/>
+                    <p:inputText value="#{escribanoController.newItem.nombre}" required="true"
+                                 requiredMessage="Por favor ingresar nombre">
+                    </p:inputText>
+
+                    <p:outputLabel value="Inhabilitado desde"/>
+                    <p:calendar id="fecha" value="#{escribanoController.newItem.inhabilitadoFechaDesde}"
+                                pattern="#{msg.datePattern}" showOn="both"
+                                popupIconOnly="true"
+                                required="false"/>
+
+                    <p:outputLabel value="Inhabilitado hasta"/>
+                    <p:calendar id="fecha" value="#{escribanoController.newItem.inhabilitadoFechaHasta}"
+                                pattern="#{msg.datePattern}" showOn="both"
+                                popupIconOnly="true"
+                                required="false"/>
+
                     <f:facet name="footer">
                         <p:commandButton value="Confirmar" update=":form:dataTable, :growl"
                                          oncomplete="handleSubmitRequest(xhr, status, args, 'newItemDlg','newItemForm');"

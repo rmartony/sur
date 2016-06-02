@@ -52,7 +52,7 @@
             <to-view-id>/app/sitioList.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>ips</from-outcome>
+            <from-outcome>escribanos</from-outcome>
             <to-view-id>/app/escribanoList.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>

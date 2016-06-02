@@ -1,7 +1,6 @@
 package uy.gub.dgr.sur.util;
 
 import org.apache.commons.lang3.StringUtils;
-import uy.gub.dgr.sur.entity.Escribano;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -19,12 +18,13 @@ import java.util.regex.Pattern;
  */
 @FacesValidator("ipValidator")
 public class IPAddressValidator implements Validator {
+    public final static String REGEXP_IP_VALIDATE = "\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b";
 
     private Pattern pattern;
     private Matcher matcher;
 
     public IPAddressValidator() {
-        pattern = Pattern.compile(Escribano.REGEXP_VALIDATE);
+        pattern = Pattern.compile(REGEXP_IP_VALIDATE);
     }
 
     @Override

@@ -24,24 +24,21 @@ import java.util.Date;
         @NamedQuery(name = Escribano.ALL, query = "SELECT i FROM Escribano i"),
         @NamedQuery(name = Escribano.BY_ID, query = "SELECT z FROM Escribano z where z.id = :id"),
         @NamedQuery(name = Escribano.BY_STATUS, query = "SELECT i FROM Escribano i where not current_date between :inhabilitadoFechaDesde and :inhabilitadoFechaHasta"),
-        @NamedQuery(name = Escribano.BY_RNC_STATUS, query = "SELECT i FROM Escribano i where i.ocupada = :ocupada and i.rnc.id = :idRnc"),
+        @NamedQuery(name = Escribano.BY_CODE, query = "SELECT i FROM Escribano i where i.codigo = :codigo"),
         @NamedQuery(name = Escribano.TOTAL, query = "SELECT COUNT(z) FROM Escribano z")})
 @Audited
 public class Escribano extends BaseEntity implements Serializable {
     public final static String ALL = "Escribano.all";
     public final static String BY_ID = "Escribano.id";
     public final static String BY_STATUS = "Escribano.estado";
-    public final static String BY_RNC_STATUS = "Escribano.rnc.estado";
+    public final static String BY_CODE = "Escribano.codigo";
     public final static String TOTAL = "Escribano.countTotal";
 
-    public final static String REGEXP_VALIDATE = "\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b";
-
     @NotNull
-    //@Pattern(regexp = REGEXP_VALIDATE, message = "{msg.invalidIP}")
+    //@Pattern(regexp = REGEXP_IP_VALIDATE, message = "{msg.invalidIP}")
     private long codigo;
+    @NotNull
     private String nombre;
-
-    private boolean ocupada;
 
     private Date inhabilitadoFechaDesde;
     private Date inhabilitadoFechaHasta;
