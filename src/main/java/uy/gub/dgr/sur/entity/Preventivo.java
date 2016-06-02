@@ -23,7 +23,7 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true, exclude = {"alarmaPuerta", "burletePuerta", "cerraduraPuerta", "baterias",
         "cableadoYConectores", "cableadoYConectorEth", "estadoFiltro", "limpieza", "seguridad", "balizas",
         "cableFeederJumpers", "conectores", "aterramientos", "tma", "rrh", "encintados", "observacionesPrivado",
-        "observacionesPublico", "tecnico", "rutaFotos", "urlFotos", "torreros"})
+        "observacionesPublico", "verificacion", "rutaFotos", "urlFotos", "torreros"})
 @NamedQueries({
         @NamedQuery(name = Preventivo.BY_NODO_FECHA, query = "SELECT p FROM Preventivo p where p.nodo.id IN :idNodos GROUP BY p.fecha ORDER BY p.fecha DESC")
 })

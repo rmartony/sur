@@ -42,7 +42,7 @@
 
                 <p:menuitem value="Nuevo mantenimiento preventivo" action="#{preventivoController.doCreate}"
                             ajax="false"
-                            rendered="#{authorizationChecker.admin or authorizationChecker.tecnico}"/>
+                            rendered="#{authorizationChecker.admin or authorizationChecker.verificacion}"/>
                 <p:menuitem value="Consulta general" action="preventivos" ajax="false"/>
                 <p:menuitem value="Consulta últimos preventivos" action="ultimosPreventivos" ajax="false"/>
                 <p:menuitem value="Reporte últimos preventivos" action="reportePreventivos" ajax="false"/>

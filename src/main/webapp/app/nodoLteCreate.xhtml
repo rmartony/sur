@@ -503,7 +503,7 @@
                     <p:row><p:column colspan="2" styleClass="textCenter">
                         <p:commandButton value="Confirmar"
                                          action="#{nodoLteController.doConfirmCreate}" update="@form growl"
-                                         rendered="#{authorizationChecker.admin or authorizationChecker.consola}"
+                                         rendered="#{authorizationChecker.admin or authorizationChecker.completado}"
                                          validateClient="true"
                                          ajax="false"/>
                         <p:commandButton id="cancel" value="Cancelar" immediate="true" action="cancel"/>

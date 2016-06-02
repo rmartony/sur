@@ -19,6 +19,6 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Documented
 @SecurityBindingType
-public @interface Cliente {
+public @interface Ventanilla {
 
 }

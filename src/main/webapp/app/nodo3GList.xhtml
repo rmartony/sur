@@ -25,7 +25,8 @@
                         <f:setPropertyActionListener value="#{item}" target="#{nodo3GController.selectedItem}"/>
                     </p:commandButton>
                 </p:column>
-                <p:column style="width:22px" rendered="#{authorizationChecker.admin or authorizationChecker.consola}">
+                <p:column style="width:22px"
+                          rendered="#{authorizationChecker.admin or authorizationChecker.completado}">
                     <p:commandButton icon="ui-icon-pencil"
                                      title="Modificar" action="#{nodo3GController.doUpdate}">
                         <f:setPropertyActionListener value="#{item}" target="#{nodo3GController.selectedItem}"/>
@@ -76,11 +77,11 @@
                 <f:facet name="footer">
                     <p:commandButton value="Nuevo Nodo 3G" icon="ui-icon-star" action="#{nodo3GController.doCreate}"
                                      title="Crear nuevo Nodo 3G"
-                                     rendered="#{authorizationChecker.admin or authorizationChecker.consola}"/>
+                                     rendered="#{authorizationChecker.admin or authorizationChecker.completado}"/>
                     <p:commandButton value="Modificar Nodo 3G" action="#{nodo3GController.doUpdate}"
                                      icon="ui-icon-pencil"
                                      title="Modificar Nodo 3G" disabled="#{nodo3GController.lazyModel.rowCount eq 0}"
-                                     rendered="#{authorizationChecker.admin or authorizationChecker.consola}">
+                                     rendered="#{authorizationChecker.admin or authorizationChecker.completado}">
                         <f:setPropertyActionListener value="#{null}" target="#{nodo3GController.selectedItem}"/>
                     </p:commandButton>
                     <p:commandButton value="Ver Nodo 3G" action="#{nodo3GController.doView}"

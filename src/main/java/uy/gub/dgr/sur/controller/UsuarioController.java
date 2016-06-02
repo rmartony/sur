@@ -166,7 +166,7 @@ public class UsuarioController extends BaseController {
 
             if (CollectionUtils.isNotEmpty(roleList)) {
                 for (RoleTypeEntity roleTypeEntity : roleList) {
-                    if (roleTypeEntity.getName().equalsIgnoreCase("tecnico")) {
+                    if (roleTypeEntity.getName().equalsIgnoreCase("verificacion")) {
                         initZonaPickList();
                         return;
                     }
@@ -223,7 +223,7 @@ public class UsuarioController extends BaseController {
         boolean isRolTecnico = false;
         List<Zona> sourceZonas = new ArrayList<>();
         for (RoleTypeEntity targetRole : selectedRoles) {
-            if (targetRole.getName().equalsIgnoreCase("tecnico")) {
+            if (targetRole.getName().equalsIgnoreCase("verificacion")) {
                 sourceZonas = zonaService.findWithNamedQuery(Zona.ALL);
                 isRolTecnico = true;
                 break;

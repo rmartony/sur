@@ -133,7 +133,7 @@ public class LazyUltimoPreventivoDataModel extends LazyDataModel<UltimoPreventiv
 
         if (username != null) {
             Join join = from.join("preventivo");
-            Path path = join.get("tecnico");
+            Path path = join.get("verificacion");
             fromCount.join("preventivo");
             predicates.add(criteriaBuilder.equal(criteriaBuilder.lower(path), username.toLowerCase()));
         }

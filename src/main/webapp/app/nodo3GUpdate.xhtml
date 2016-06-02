@@ -45,7 +45,7 @@
                                                     itemLabel="#{s ne null ? s.sigla.concat(' - ').concat(s.nombre) : ''}"
                                                     itemValue="#{s}"
                                                     converter="genericMapConverter"
-                                                    readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                                    readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}">
                                         <p:column headerText="Sigla">
                                             #{s.sigla}
                                         </p:column>
@@ -103,7 +103,7 @@
                                 <p:column>
                                     <p:inputText id="sigla" value="#{nodo3GController.item.sigla}" required="true"
                                                  requiredMessage="Por favor ingresar sigla"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}"/>
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}"/>
                                 </p:column>
                             </p:row>
 
@@ -112,7 +112,7 @@
                                 <p:column><p:calendar id="fechaAlta" value="#{nodo3GController.item.fechaAlta}"
                                                       required="true"
                                                       pattern="#{msg.datePattern}" showOn="both" popupIconOnly="true"
-                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}"/></p:column>
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}"/></p:column>
                             </p:row>
 
 
@@ -123,7 +123,7 @@
                                                       value="#{nodo3GController.item.fechaInstalacion}"
                                                       required="true"
                                                       pattern="#{msg.datePattern}" showOn="both" popupIconOnly="true"
-                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}"/></p:column>
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}"/></p:column>
                             </p:row>
 
                             <p:row>
@@ -133,7 +133,7 @@
                                                       value="#{nodo3GController.item.fechaAltaEthernet}"
                                                       required="true"
                                                       pattern="#{msg.datePattern}" showOn="both" popupIconOnly="true"
-                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}"/></p:column>
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}"/></p:column>
                             </p:row>
 
                             <p:row>
@@ -142,7 +142,7 @@
                                     <p:selectOneMenu id="tipoDeGabinete" value="#{nodo3GController.item.tipoBTS}"
                                                      required="true"
                                                      requiredMessage="Por favor ingrese tipo de gabinete"
-                                                     disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                                     disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}">
                                         <o:converter converterId="entityListConverter"
                                                      list="#{nodo3GController.tipoBTSList}"/>
                                         <f:selectItem itemLabel="Seleccionar tipo de gabinete..."
@@ -170,7 +170,7 @@
                                 <p:column>
                                     <p:inputText id="defaultGW" value="#{nodo3GController.item.defaultGateway}"
                                                  requiredMessage="Por favor ingresar default gateway"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}"/>
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}"/>
                                 </p:column>
                             </p:row>
                             <!--
@@ -192,7 +192,7 @@
                                 </p:column>
                                 <p:column>
                                     <p:inputText id="ipOAM" value="#{nodo3GController.item.ipOAM}"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}">
                                         <f:validator validatorId="ipValidator"/>
                                     </p:inputText>
                                 </p:column>
@@ -203,7 +203,7 @@
                                 </p:column>
                                 <p:column>
                                     <p:inputText id="maskOAM" value="#{nodo3GController.item.maskOAM}"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}">
                                         <f:validator validatorId="ipValidator"/>
                                         <!--
                                                             <pe:keyFilter
@@ -222,7 +222,7 @@
                                 </p:column>
                                 <p:column>
                                     <p:inputText id="gwOAM" value="#{nodo3GController.item.gwOAM}"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}"/>
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}"/>
                                 </p:column>
                             </p:row>
                             <p:row>
@@ -232,7 +232,7 @@
                                 <p:column>
                                     <p:inputText id="vlanOAM" value="#{nodo3GController.item.vlanOAM}" required="true"
                                                  requiredMessage="Ingrese número entero para VLAN"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}">
                                         <pe:keyFilter preventPaste="false" mask="pint"/>
                                     </p:inputText>
                                 </p:column>
@@ -243,7 +243,7 @@
                                 </p:column>
                                 <p:column>
                                     <p:inputText id="ipTelecom" value="#{nodo3GController.item.ipTelecom}"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}">
                                         <f:validator validatorId="ipValidator"/>
                                     </p:inputText>
                                 </p:column>
@@ -254,7 +254,7 @@
                                 </p:column>
                                 <p:column>
                                     <p:inputText id="maskTelecom" value="#{nodo3GController.item.maskTelecom}"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}"/>
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}"/>
                                 </p:column>
                             </p:row>
                             <p:row>
@@ -263,7 +263,7 @@
                                 </p:column>
                                 <p:column>
                                     <p:inputText id="gwTelecom" value="#{nodo3GController.item.gwTelecom}"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}"/>
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}"/>
                                 </p:column>
                             </p:row>
                             <p:row>
@@ -274,7 +274,7 @@
                                     <p:inputText id="vlanTelecom" value="#{nodo3GController.item.vlanTelecom}"
                                                  required="true"
                                                  requiredMessage="Ingrese número entero para VLAN"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}">
                                         <pe:keyFilter preventPaste="false" mask="pint"/>
                                     </p:inputText>
                                 </p:column>
@@ -285,7 +285,7 @@
                                 </p:column>
                                 <p:column>
                                     <p:inputText id="ipGrandMaster" value="#{nodo3GController.item.ipGrandMaster}"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}">
                                         <f:validator validatorId="ipValidator"/>
                                     </p:inputText>
                                 </p:column>
@@ -297,7 +297,7 @@
                                 <p:column>
                                     <p:inputText id="ipSecondaryMaster"
                                                  value="#{nodo3GController.item.ipSecondaryMaster}"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}">
                                         <f:validator validatorId="ipValidator"/>
                                     </p:inputText>
                                 </p:column>
@@ -308,7 +308,7 @@
                                 </p:column>
                                 <p:column>
                                     <p:inputText id="tinco" value="#{nodo3GController.item.tinco}" required="true"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}"/>
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}"/>
                                 </p:column>
                             </p:row>
                             <p:row>
@@ -318,7 +318,7 @@
                                 <p:column>
                                     <p:inputText id="EPLFlujoDABT" value="#{nodo3GController.item.EPLFlujoDABT}"
                                                  required="true"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}"/>
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}"/>
                                 </p:column>
                             </p:row>
                         </p:panelGrid>
@@ -340,7 +340,7 @@
                                 <p:column>
                                     <p:inputText id="numTorreros" value="#{nodo3GController.item.numTorreros}"
                                                  required="true"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}">
                                     </p:inputText>
                                 </p:column>
                             </p:row>
@@ -352,7 +352,7 @@
                                     <p:inputTextarea id="acceso" value="#{nodo3GController.item.acceso}"
                                                      autoResize="true"
                                                      required="true"
-                                                     readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}"/>
+                                                     readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}"/>
                                 </p:column>
                             </p:row>
                             <p:row>
@@ -362,7 +362,7 @@
                                 <p:column>
                                     <p:selectOneRadio id="llaveMovistar" value="#{nodo3GController.item.llaveMovistar}"
                                                       required="true"
-                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}">
                                         <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
                                         <f:selectItem itemValue="#{false}" itemLabel="No"/>
                                     </p:selectOneRadio>
@@ -376,7 +376,7 @@
                                     <p:selectOneRadio id="llaveUnificada"
                                                       value="#{nodo3GController.item.llaveUnificada}"
                                                       required="true"
-                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}">
                                         <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
                                         <f:selectItem itemValue="#{false}" itemLabel="No"/>
                                     </p:selectOneRadio>
@@ -390,7 +390,7 @@
                                     <p:selectOneRadio id="llaveExteriorAlcatel"
                                                       value="#{nodo3GController.item.llaveExteriorAlcatel}"
                                                       required="true"
-                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}">
                                         <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
                                         <f:selectItem itemValue="#{false}" itemLabel="No"/>
                                     </p:selectOneRadio>
@@ -404,7 +404,7 @@
                                     <p:selectOneRadio id="llaveExteriorEricsson"
                                                       value="#{nodo3GController.item.llaveExteriorEricsson}"
                                                       required="true"
-                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}">
                                         <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
                                         <f:selectItem itemValue="#{false}" itemLabel="No"/>
                                     </p:selectOneRadio>
@@ -417,7 +417,7 @@
                                 <p:column>
                                     <p:selectOneRadio id="llaveSitio" value="#{nodo3GController.item.llaveSitio}"
                                                       required="true"
-                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}">
                                         <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
                                         <f:selectItem itemValue="#{false}" itemLabel="No"/>
                                     </p:selectOneRadio>
@@ -430,7 +430,7 @@
                                 <p:column>
                                     <p:selectOneRadio id="tarjetaSitio" value="#{nodo3GController.item.tarjetaSitio}"
                                                       required="true"
-                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}">
                                         <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
                                         <f:selectItem itemValue="#{false}" itemLabel="No"/>
                                     </p:selectOneRadio>
@@ -444,7 +444,7 @@
                                     <p:selectOneRadio id="tarjetaProximidad"
                                                       value="#{nodo3GController.item.tarjetaProximidad}"
                                                       required="true"
-                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}">
                                         <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
                                         <f:selectItem itemValue="#{false}" itemLabel="No"/>
                                     </p:selectOneRadio>
@@ -458,7 +458,7 @@
                                     <p:selectOneRadio id="accesoTormenta"
                                                       value="#{nodo3GController.item.accesoTormenta}"
                                                       required="true"
-                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}">
                                         <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
                                         <f:selectItem itemValue="#{false}" itemLabel="No"/>
                                     </p:selectOneRadio>
@@ -471,7 +471,7 @@
                                 <p:column>
                                     <p:inputText id="numContadorUTE" value="#{nodo3GController.item.numContadorUTE}"
                                                  required="true"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}">
                                         <pe:keyFilter preventPaste="false" mask="alphanum"/>
                                     </p:inputText>
                                 </p:column>
@@ -495,7 +495,7 @@
                                     <p:inputText id="alimentacion" value="#{nodo3GController.item.alimentacion}"
                                                  title="En volts"
                                                  required="true" requiredMessage="Ingrese número entero en volts"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}">
                                         <pe:keyFilter preventPaste="false" mask="int"/>
                                     </p:inputText>
                                 </p:column>
@@ -508,7 +508,7 @@
                                     <p:inputTextarea id="observaciones" value="#{nodo3GController.item.observaciones}"
                                                      cols="55" rows="9"
                                                      autoResize="true"
-                                                     readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}"/>
+                                                     readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}"/>
                                 </p:column>
                             </p:row>
                         </p:panelGrid>
@@ -520,7 +520,7 @@
                             <p:dataGrid var="celda" value="#{of:setToList(nodo3GController.item.celdas)}"
                                         paginator="true"
                                         rendered="#{not empty nodo3GController.item.celdas}"
-                                        readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodo3GController.readOnly}">
+                                        readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}">
                                 <h:panelGrid columns="2">
                                     <f:facet name="header">
                                         <p:outputLabel for="sector" value="Sector: "/>
@@ -555,10 +555,10 @@
                                 </h:panelGrid>
                                 <p:commandButton value="Modificar celda" action="#{nodo3GController.updateCelda(celda)}"
                                                  immediate="true" icon="ui-icon-pencil"
-                                                 rendered="#{(authorizationChecker.admin or authorizationChecker.consola) and not nodo3GController.readOnly}"/>
+                                                 rendered="#{(authorizationChecker.admin or authorizationChecker.completado) and not nodo3GController.readOnly}"/>
                                 <p:commandButton value="Eliminar celda" action="#{nodo3GController.deleteCelda(celda)}"
                                                  icon="ui-icon-trash" update="@form" immediate="true"
-                                                 rendered="#{(authorizationChecker.admin or authorizationChecker.consola) and not nodo3GController.readOnly}">
+                                                 rendered="#{(authorizationChecker.admin or authorizationChecker.completado) and not nodo3GController.readOnly}">
                                     <p:confirm header="Confirmación" message="#{msg.askConfirmAction}"
                                                icon="ui-icon-alert"/>
                                 </p:commandButton>
@@ -567,7 +567,7 @@
                                              validateClient="true"
                                              icon="ui-icon-plusthick"
                                              update="@form"
-                                             rendered="#{(authorizationChecker.admin or authorizationChecker.consola) and not nodo3GController.readOnly}"/>
+                                             rendered="#{(authorizationChecker.admin or authorizationChecker.completado) and not nodo3GController.readOnly}"/>
                         </p:panel>
 
                     </p:column>
@@ -578,7 +578,7 @@
                         <p:commandButton value="Confirmar"
                                          action="#{nodo3GController.doConfirmUpdate}" update="@form growl"
                                          validateClient="true"
-                                         rendered="#{(authorizationChecker.admin or authorizationChecker.consola) and not nodo3GController.readOnly}"
+                                         rendered="#{(authorizationChecker.admin or authorizationChecker.completado) and not nodo3GController.readOnly}"
                                          ajax="false"/>
                         <p:commandButton id="cancel" value="Cancelar" immediate="true"
                                          action="#{nodo3GController.doCancel}"

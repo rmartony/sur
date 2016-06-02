@@ -36,11 +36,13 @@ public class UsuarioService {
     public final static String TOTAL = "UsuarioService.countTotal";
 
     public final static String ROLE_ADMIN = "admin";
-    public final static String ROLE_ADMIN_LECTURA = "adminLectura";
-    public final static String ROLE_CONSOLA = "consola";
-    public final static String ROLE_CLIENTE = "cliente";
-    public final static String ROLE_LECTURA = "lectura";
-    public final static String ROLE_TECNICO = "tecnico";
+    public final static String ROLE_VENTANILLA = "ventanilla";
+    public final static String ROLE_VERIFICACION = "verificacion";
+    public final static String ROLE_CALIFICACION = "calificacion";
+    public final static String ROLE_COMPLETADO = "completado";
+    public final static String ROLE_HISTORICO = "historico";
+    public final static String ROLE_CONSULTA = "consulta";
+
 
     @Inject
     @PicketLink

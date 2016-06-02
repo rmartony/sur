@@ -26,7 +26,7 @@
                         <p:commandButton styleClass="admin-dashboard-button" value="RNCs" action="rncs" ajax="false"/>
                         <p:commandButton styleClass="admin-dashboard-button" value="IPs" action="ips" ajax="false"/>
             -->
-            <c:if test="#{identity.loggedIn and (authorizationChecker.admin or authorizationChecker.adminLectura) }">
+            <c:if test="#{identity.loggedIn and (authorizationChecker.admin or authorizationChecker.historico) }">
                 <br/>
                 <!--
                                 <p:commandButton styleClass="admin-dashboard-button" value="Celdas 3G" action="celdas3G"

@@ -109,7 +109,7 @@ public class LazyPreventivoDataModel extends LazyDataModel<Preventivo> implement
         List<Predicate> predicates = new ArrayList<Predicate>();
 
         if (tecnico != null) {
-            Path path = from.get("tecnico");
+            Path path = from.get("verificacion");
             predicates.add(criteriaBuilder.equal(criteriaBuilder.lower(path), tecnico.toLowerCase()));
         }
 

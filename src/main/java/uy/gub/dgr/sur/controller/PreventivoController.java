@@ -17,7 +17,7 @@ import org.primefaces.model.LazyDataModel;
 import uy.gub.dgr.sur.entity.*;
 import uy.gub.dgr.sur.idm.AuthorizationChecker;
 import uy.gub.dgr.sur.idm.annotations.Admin;
-import uy.gub.dgr.sur.idm.annotations.Tecnico;
+import uy.gub.dgr.sur.idm.annotations.Verificacion;
 import uy.gub.dgr.sur.model.LazyPreventivoDataModel;
 import uy.gub.dgr.sur.model.LazyUltimoPreventivoDataModel;
 import uy.gub.dgr.sur.service.PreventivoService;
@@ -134,7 +134,7 @@ public class PreventivoController extends BaseController {
         String username = null;
         log.log(Level.INFO, "PreventivoController is initializing");
         zonaList = loginController.getZonasTecnico();
-        if (authorizationChecker.isTecnico()) {
+        if (authorizationChecker.isVerificacion()) {
             rolTecnico = true;
             username = loginController.getLoginName();
             zonaListOptions = createZonaFilterOptions(zonaList);
@@ -185,13 +185,13 @@ public class PreventivoController extends BaseController {
         if (rolTecnico) {
             item.setTecnico(loginController.getLoginName());
         }
-        usuarioList = usuarioService.findUserByRole("tecnico");
+        usuarioList = usuarioService.findUserByRole("verificacion");
 
         setMode(ControllerMode.CREATE);
         return "createPreventivo";
     }
 
-    @Tecnico
+    @Verificacion
     public String doConfirmCreate() {
         //das.update(item);
         updateUltimoPreventivo();
@@ -261,7 +261,7 @@ public class PreventivoController extends BaseController {
         }
     }
 
-    @Tecnico
+    @Verificacion
     public String doConfirmUpdate() {
         //das.update(item);
         updateUltimoPreventivo();
@@ -299,7 +299,7 @@ public class PreventivoController extends BaseController {
             if (rolTecnico) {
                 item.setTecnico(loginController.getLoginName());
             }
-            usuarioList = usuarioService.findUserByRole("tecnico");
+            usuarioList = usuarioService.findUserByRole("verificacion");
 
             //handleSitioChange();
             return "update";

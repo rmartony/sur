@@ -45,7 +45,7 @@
                                                     itemLabel="#{s ne null ? s.sigla.concat(' - ').concat(s.nombre) : ''}"
                                                     itemValue="#{s}"
                                                     converter="genericMapConverter"
-                                                    readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                    readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                         <p:column headerText="Sigla">
                                             #{s.sigla}
                                         </p:column>
@@ -69,7 +69,7 @@
                                 <p:column>
                                     <p:inputText id="sigla" value="#{nodoLteController.item.sigla}" required="true"
                                                  requiredMessage="Por favor ingresar sigla"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}"/>
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}"/>
                                 </p:column>
                             </p:row>
 
@@ -78,7 +78,7 @@
                                 <p:column><p:calendar id="fechaAlta" value="#{nodoLteController.item.fechaAlta}"
                                                       pattern="#{msg.datePattern}" showOn="both" popupIconOnly="true"
                                                       required="true"
-                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}"/></p:column>
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}"/></p:column>
                             </p:row>
 
 
@@ -89,13 +89,13 @@
                                                       value="#{nodoLteController.item.fechaInstalacion}"
                                                       pattern="#{msg.datePattern}" showOn="both" popupIconOnly="true"
                                                       required="true"
-                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}"/></p:column>
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}"/></p:column>
                             </p:row>
 
                             <p:row>
                                 <p:column> <p:outputLabel for="mme" value="MME:"/> </p:column>
                                 <p:column><p:inputText id="mme" value="#{nodoLteController.item.mme}" required="true"
-                                                       readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}"/></p:column>
+                                                       readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}"/></p:column>
                             </p:row>
 
                             <p:row>
@@ -104,7 +104,7 @@
                                     <p:selectOneMenu id="tipoDeGabinete" value="#{nodoLteController.item.tipoBTS}"
                                                      required="true"
                                                      requiredMessage="Por favor ingrese tipo de gabinete"
-                                                     disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                     disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                         <o:converter converterId="entityListConverter"
                                                      list="#{nodoLteController.tipoBTSList}"/>
                                         <f:selectItem itemLabel="Seleccionar tipo de gabinete..."
@@ -132,7 +132,7 @@
                                 <p:column>
                                     <p:inputText id="nServicio" value="#{nodoLteController.item.NServicio}"
                                                  required="true"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}"/>
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}"/>
                                 </p:column>
                             </p:row>
 
@@ -142,7 +142,7 @@
                                 </p:column>
                                 <p:column>
                                     <p:inputText id="ipOAM" value="#{nodoLteController.item.ipOAM}"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                         <f:validator validatorId="ipValidator"/>
                                     </p:inputText>
                                 </p:column>
@@ -153,7 +153,7 @@
                                 </p:column>
                                 <p:column>
                                     <p:inputText id="maskOAM" value="#{nodoLteController.item.maskOAM}"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                         <f:validator validatorId="ipValidator"/>
                                         <!--
                                                             <pe:keyFilter
@@ -172,7 +172,7 @@
                                 </p:column>
                                 <p:column>
                                     <p:inputText id="gwOAM" value="#{nodoLteController.item.gwOAM}"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                         <f:validator validatorId="ipValidator"/>
                                     </p:inputText>
                                 </p:column>
@@ -184,7 +184,7 @@
                                 <p:column>
                                     <p:inputText id="vlanOAM" value="#{nodoLteController.item.vlanOAM}"
                                                  required="true"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                     </p:inputText>
                                 </p:column>
                             </p:row>
@@ -194,7 +194,7 @@
                                 </p:column>
                                 <p:column>
                                     <p:inputText id="ipTelecom" value="#{nodoLteController.item.ipTelecom}"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                         <f:validator validatorId="ipValidator"/>
                                     </p:inputText>
                                 </p:column>
@@ -205,7 +205,7 @@
                                 </p:column>
                                 <p:column>
                                     <p:inputText id="maskTelecom" value="#{nodoLteController.item.maskTelecom}"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                         <f:validator validatorId="ipValidator"/>
                                     </p:inputText>
                                 </p:column>
@@ -216,7 +216,7 @@
                                 </p:column>
                                 <p:column>
                                     <p:inputText id="gwTelecom" value="#{nodoLteController.item.gwTelecom}"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                         <f:validator validatorId="ipValidator"/>
                                     </p:inputText>
                                 </p:column>
@@ -228,7 +228,7 @@
                                 <p:column>
                                     <p:inputText id="vlanTelecom" value="#{nodoLteController.item.vlanTelecom}"
                                                  required="true"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                     </p:inputText>
                                 </p:column>
                                 <p:row>
@@ -237,7 +237,7 @@
                                     </p:column>
                                     <p:column>
                                         <p:inputText id="ipPTP" value="#{nodoLteController.item.ipPTP}"
-                                                     readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                     readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                             <f:validator validatorId="ipValidator"/>
                                         </p:inputText>
                                     </p:column>
@@ -248,7 +248,7 @@
                                     </p:column>
                                     <p:column>
                                         <p:inputText id="maskPTP" value="#{nodoLteController.item.maskPTP}"
-                                                     readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                     readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                             <f:validator validatorId="ipValidator"/>
                                         </p:inputText>
                                     </p:column>
@@ -260,7 +260,7 @@
                                 </p:column>
                                 <p:column>
                                     <p:inputText id="ipGrandMaster" value="#{nodoLteController.item.ipGrandMaster}"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                         <f:validator validatorId="ipValidator"/>
                                     </p:inputText>
                                 </p:column>
@@ -272,7 +272,7 @@
                                 <p:column>
                                     <p:inputText id="ipSecondaryMaster"
                                                  value="#{nodoLteController.item.ipSecondaryMaster}"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                         <f:validator validatorId="ipValidator"/>
                                     </p:inputText>
                                 </p:column>
@@ -284,7 +284,7 @@
                                 <p:column>
                                     <p:inputText id="tinco" value="#{nodoLteController.item.tinco}"
                                                  required="true"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}"/>
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}"/>
                                 </p:column>
                             </p:row>
                             <p:row>
@@ -294,7 +294,7 @@
                                 <p:column>
                                     <p:inputText id="EPLFlujoDABT" value="#{nodoLteController.item.EPLFlujoDABT}"
                                                  required="true"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}"/>
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}"/>
                                 </p:column>
                             </p:row>
                         </p:panelGrid>
@@ -316,7 +316,7 @@
                                 <p:column>
                                     <p:inputText id="numTorreros" value="#{nodoLteController.item.numTorreros}"
                                                  required="true"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                     </p:inputText>
                                 </p:column>
                             </p:row>
@@ -328,7 +328,7 @@
                                     <p:inputTextarea id="acceso" value="#{nodoLteController.item.acceso}"
                                                      autoResize="true"
                                                      required="true"
-                                                     readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}"/>
+                                                     readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}"/>
                                 </p:column>
                             </p:row>
                             <p:row>
@@ -338,7 +338,7 @@
                                 <p:column>
                                     <p:selectOneRadio id="llaveMovistar" value="#{nodoLteController.item.llaveMovistar}"
                                                       required="true"
-                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                         <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
                                         <f:selectItem itemValue="#{false}" itemLabel="No"/>
                                     </p:selectOneRadio>
@@ -352,7 +352,7 @@
                                     <p:selectOneRadio id="llaveUnificada"
                                                       value="#{nodoLteController.item.llaveUnificada}"
                                                       required="true"
-                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                         <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
                                         <f:selectItem itemValue="#{false}" itemLabel="No"/>
                                     </p:selectOneRadio>
@@ -366,7 +366,7 @@
                                     <p:selectOneRadio id="llaveExteriorAlcatel"
                                                       value="#{nodoLteController.item.llaveExteriorAlcatel}"
                                                       required="true"
-                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                         <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
                                         <f:selectItem itemValue="#{false}" itemLabel="No"/>
                                     </p:selectOneRadio>
@@ -380,7 +380,7 @@
                                     <p:selectOneRadio id="llaveExteriorEricsson"
                                                       value="#{nodoLteController.item.llaveExteriorEricsson}"
                                                       required="true"
-                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                         <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
                                         <f:selectItem itemValue="#{false}" itemLabel="No"/>
                                     </p:selectOneRadio>
@@ -393,7 +393,7 @@
                                 <p:column>
                                     <p:selectOneRadio id="llaveSitio" value="#{nodoLteController.item.llaveSitio}"
                                                       required="true"
-                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                         <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
                                         <f:selectItem itemValue="#{false}" itemLabel="No"/>
                                     </p:selectOneRadio>
@@ -406,7 +406,7 @@
                                 <p:column>
                                     <p:selectOneRadio id="tarjetaSitio" value="#{nodoLteController.item.tarjetaSitio}"
                                                       required="true"
-                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                         <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
                                         <f:selectItem itemValue="#{false}" itemLabel="No"/>
                                     </p:selectOneRadio>
@@ -420,7 +420,7 @@
                                     <p:selectOneRadio id="tarjetaProximidad"
                                                       value="#{nodoLteController.item.tarjetaProximidad}"
                                                       required="true"
-                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                         <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
                                         <f:selectItem itemValue="#{false}" itemLabel="No"/>
                                     </p:selectOneRadio>
@@ -434,7 +434,7 @@
                                     <p:selectOneRadio id="accesoTormenta"
                                                       value="#{nodoLteController.item.accesoTormenta}"
                                                       required="true"
-                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                         <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
                                         <f:selectItem itemValue="#{false}" itemLabel="No"/>
                                     </p:selectOneRadio>
@@ -447,7 +447,7 @@
                                 <p:column>
                                     <p:inputText id="numContadorUTE" value="#{nodoLteController.item.numContadorUTE}"
                                                  required="true"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                         <pe:keyFilter preventPaste="false" mask="alphanum"/>
                                     </p:inputText>
                                 </p:column>
@@ -471,7 +471,7 @@
                                     <p:inputText id="alimentacion" value="#{nodoLteController.item.alimentacion}"
                                                  title="En volts"
                                                  required="true" requiredMessage="Ingrese número entero en volts"
-                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                                 readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                         <pe:keyFilter preventPaste="false" mask="num"/>
                                     </p:inputText>
                                 </p:column>
@@ -483,7 +483,7 @@
                                 <p:column>
                                     <p:inputTextarea id="observaciones" value="#{nodoLteController.item.observaciones}"
                                                      cols="55" rows="9"
-                                                     readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}"
+                                                     readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}"
                                                      autoResize="true"/>
                                 </p:column>
                             </p:row>
@@ -496,7 +496,7 @@
                             <p:dataGrid var="celda" value="#{of:setToList(nodoLteController.item.celdas)}"
                                         paginator="true"
                                         rendered="#{not empty nodoLteController.item.celdas}"
-                                        readonly="#{not (authorizationChecker.admin or authorizationChecker.consola) or nodoLteController.readOnly}">
+                                        readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                 <h:panelGrid columns="2">
                                     <f:facet name="header">
                                         <p:outputLabel for="sector" value="Sector: "/>
@@ -528,10 +528,10 @@
                                 <p:commandButton value="Modificar celda"
                                                  action="#{nodoLteController.updateCelda(celda)}"
                                                  immediate="true" icon="ui-icon-pencil"
-                                                 rendered="#{(authorizationChecker.admin or authorizationChecker.consola) and not nodoLteController.readOnly}"/>
+                                                 rendered="#{(authorizationChecker.admin or authorizationChecker.completado) and not nodoLteController.readOnly}"/>
                                 <p:commandButton value="Eliminar celda" action="#{nodoLteController.deleteCelda(celda)}"
                                                  update="@form" immediate="true" icon="ui-icon-trash"
-                                                 rendered="#{(authorizationChecker.admin or authorizationChecker.consola) and not nodoLteController.readOnly}">
+                                                 rendered="#{(authorizationChecker.admin or authorizationChecker.completado) and not nodoLteController.readOnly}">
                                     <p:confirm header="Confirmación" message="#{msg.askConfirmAction}"
                                                icon="ui-icon-alert"/>
                                 </p:commandButton>
@@ -540,7 +540,7 @@
                                              action="#{nodoLteController.createCelda}"
                                              validateClient="true"
                                              update="@form"
-                                             rendered="#{(authorizationChecker.admin or authorizationChecker.consola) and not nodoLteController.readOnly}"/>
+                                             rendered="#{(authorizationChecker.admin or authorizationChecker.completado) and not nodoLteController.readOnly}"/>
                         </p:panel>
 
                     </p:column>
@@ -550,7 +550,7 @@
                     <p:row><p:column colspan="2" styleClass="textCenter">
                         <p:commandButton value="Confirmar"
                                          action="#{nodoLteController.doConfirmUpdate}" update="@form growl"
-                                         rendered="#{(authorizationChecker.admin or authorizationChecker.consola) and not nodoLteController.readOnly}"
+                                         rendered="#{(authorizationChecker.admin or authorizationChecker.completado) and not nodoLteController.readOnly}"
                                          validateClient="true"
                                          ajax="false"/>
                         <p:commandButton id="cancel" value="Cancelar" immediate="true"

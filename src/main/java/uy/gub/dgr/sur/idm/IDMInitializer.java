@@ -106,7 +106,7 @@ public class IDMInitializer {
         }
 
 /*
-        List<AccountTypeEntity> listaUsuarios = usuarioService.findUserByRole("tecnico");
+        List<AccountTypeEntity> listaUsuarios = usuarioService.findUserByRole("verificacion");
         for (AccountTypeEntity listaUsuario : listaUsuarios) {
             System.out.println(listaUsuario.getLoginName());
         }
@@ -245,7 +245,7 @@ public class IDMInitializer {
         identityManager.updateCredential(adminLectura, new Password("demo"));
 
         // Create user cliente
-        User cliente = new User("cliente");
+        User cliente = new User("calificacion");
         cliente.setEmail("cliente@acme.com");
         cliente.setFirstName("Mary");
         cliente.setLastName("Jones");
@@ -253,7 +253,7 @@ public class IDMInitializer {
         identityManager.updateCredential(cliente, new Password("demo"));
 
         // Create user consola
-        User consola = new User("consola");
+        User consola = new User("completado");
         consola.setEmail("consola1@acme.com");
         consola.setFirstName("Jane");
         consola.setLastName("Doe");
@@ -277,17 +277,17 @@ public class IDMInitializer {
 
         RelationshipManager relationshipManager = this.partitionManager.createRelationshipManager();
 
-        if (usuarioService.getRole(UsuarioService.ROLE_CLIENTE) == null) {
-            // Create role "cliente"
-            Role clienteRol = new Role(UsuarioService.ROLE_CLIENTE);
+        if (usuarioService.getRole(UsuarioService.ROLE_CALIFICACION) == null) {
+            // Create role "calificacion"
+            Role clienteRol = new Role(UsuarioService.ROLE_CALIFICACION);
             identityManager.add(clienteRol);
 
-            // Create role "consola"
-            Role consolaRol = new Role(UsuarioService.ROLE_CONSOLA);
+            // Create role "completado"
+            Role consolaRol = new Role(UsuarioService.ROLE_COMPLETADO);
             identityManager.add(consolaRol);
 
-            // Create role "tecnico"
-            Role tecnicoRol = new Role(UsuarioService.ROLE_TECNICO);
+            // Create role "verificacion"
+            Role tecnicoRol = new Role(UsuarioService.ROLE_VERIFICACION);
             identityManager.add(tecnicoRol);
 
             // Create application role "admin"
@@ -295,11 +295,11 @@ public class IDMInitializer {
             identityManager.add(adminRol);
 
             // Create application role "adminlectura"
-            Role adminLecturaRol = new Role(UsuarioService.ROLE_ADMIN_LECTURA);
+            Role adminLecturaRol = new Role(UsuarioService.ROLE_VENTANILLA);
             identityManager.add(adminLecturaRol);
 
-            // Create application role "lectura"
-            Role lecturaRol = new Role(UsuarioService.ROLE_LECTURA);
+            // Create application role "consulta"
+            Role lecturaRol = new Role(UsuarioService.ROLE_CONSULTA);
             identityManager.add(lecturaRol);
 
             // Grant the "admin" application role to admin
@@ -307,7 +307,7 @@ public class IDMInitializer {
             // Grant the "adminLecturaRol" application role to adminlecura
             grantRole(relationshipManager, adminLectura, adminLecturaRol);
 
-            // Grant the "consola" application role to consola
+            // Grant the "completado" application role to consola
             grantRole(relationshipManager, consola, consolaRol);
 
             // Grant the "tecnicoRol" application role to tecnico1

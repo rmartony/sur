@@ -14,7 +14,7 @@ import org.omnifaces.util.Messages;
 import org.primefaces.context.RequestContext;
 import org.primefaces.model.LazyDataModel;
 import uy.gub.dgr.sur.entity.*;
-import uy.gub.dgr.sur.idm.annotations.Consola;
+import uy.gub.dgr.sur.idm.annotations.Completado;
 import uy.gub.dgr.sur.model.LazySitioDataModel;
 import uy.gub.dgr.sur.service.SitioService;
 import uy.gub.dgr.sur.util.ConstraintViolationInterceptor;
@@ -115,7 +115,7 @@ public class SitioController extends BaseController {
     /**
      * Create, Update and Delete operations
      */
-    @Consola
+    @Completado
     public String doConfirmCreate() {
         das.create(newItem);
         newItem = new Sitio();

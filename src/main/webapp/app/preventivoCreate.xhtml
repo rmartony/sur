@@ -319,7 +319,7 @@
                                                            value="#{preventivoController.item.observacionesPublico}"
                                                            cols="65" rows="7" autoResize="true"/></p:column>
                             </p:row>
-                            <p:row rendered="#{not authorizationChecker.cliente}">
+                            <p:row rendered="#{not authorizationChecker.calificacion}">
                                 <p:column> <p:outputLabel for="observacionesPrivado"
                                                           value="Observaciones (no visibles por clientes):"/>
                                 </p:column>
@@ -328,9 +328,9 @@
                                                            cols="65" rows="7" autoResize="true"/></p:column>
                             </p:row>
                             <p:row>
-                                <p:column> <p:outputLabel for="tecnico" value="Técnico:"/> </p:column>
+                                <p:column> <p:outputLabel for="verificacion" value="Técnico:"/> </p:column>
                                 <p:column>
-                                    <p:selectOneMenu id="tecnico" value="#{preventivoController.item.tecnico}"
+                                    <p:selectOneMenu id="verificacion" value="#{preventivoController.item.tecnico}"
                                                      required="true"
                                                      converter="genericMapConverter">
                                         <f:selectItems value="#{preventivoController.usuarioList}" var="item"

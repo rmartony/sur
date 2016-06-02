@@ -20,6 +20,6 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Documented
 @SecurityBindingType
-public @interface Lectura {
+public @interface Verificacion {
 
 }

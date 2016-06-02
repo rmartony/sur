@@ -13,6 +13,7 @@ import org.picketlink.idm.model.Account;
 import org.picketlink.idm.model.basic.BasicModel;
 import org.picketlink.idm.model.basic.Group;
 import org.picketlink.idm.model.basic.Role;
+import uy.gub.dgr.sur.service.UsuarioService;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -73,24 +74,28 @@ public class AuthorizationChecker implements Serializable {
         return hasApplicationRole("admin");
     }
 
-    public boolean isAdminLectura() {
-        return hasApplicationRole("adminLectura");
+    public boolean isVentanilla() {
+        return hasApplicationRole(UsuarioService.ROLE_VENTANILLA);
     }
 
-    public boolean isCliente() {
-        return hasApplicationRole("cliente");
+    public boolean isHistorico() {
+        return hasApplicationRole(UsuarioService.ROLE_HISTORICO);
     }
 
-    public boolean isTecnico() {
-        return hasApplicationRole("tecnico");
+    public boolean isCalificacion() {
+        return hasApplicationRole(UsuarioService.ROLE_CALIFICACION);
     }
 
-    public boolean isConsola() {
-        return hasApplicationRole("consola");
+    public boolean isVerificacion() {
+        return hasApplicationRole(UsuarioService.ROLE_VERIFICACION);
     }
 
-    public boolean isLectura() {
-        return hasApplicationRole("lectura");
+    public boolean isCompletado() {
+        return hasApplicationRole(UsuarioService.ROLE_COMPLETADO);
+    }
+
+    public boolean isConsulta() {
+        return hasApplicationRole(UsuarioService.ROLE_CONSULTA);
     }
 
 

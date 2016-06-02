@@ -65,7 +65,7 @@ public class PreventivoReportController extends BaseController {
     public void init() {
         String username = null;
         log.log(Level.INFO, "PreventivoReportController is initializing");
-        if (authorizationChecker.isTecnico()) {
+        if (authorizationChecker.isVerificacion()) {
             rolTecnico = true;
             username = loginController.getLoginName();
         }

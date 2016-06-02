@@ -33,7 +33,7 @@
                                 <p:column><p:calendar id="fecha" value="#{preventivoController.item.fecha}"
                                                       pattern="#{msg.dateTimePattern}" showOn="both"
                                                       popupIconOnly="true"
-                                                      readonly="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.consola) }"/>
+                                                      readonly="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.completado) }"/>
                                 </p:column>
                             </p:row>
 
@@ -91,7 +91,7 @@
                                 <p:column>
                                     <p:selectOneMenu id="alarmaPuerta" value="#{preventivoController.item.alarmaPuerta}"
                                                      required="true"
-                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.consola) }">
+                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.completado) }">
                                         <o:converter converterId="entityListConverter"
                                                      list="#{preventivoController.estadoPreventivoList}"/>
                                         <f:selectItem itemLabel="Sin especificar" noSelectionOption="true"/>
@@ -107,7 +107,7 @@
                                     <p:selectOneMenu id="cerraduraPuerta"
                                                      value="#{preventivoController.item.cerraduraPuerta}"
                                                      required="true"
-                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.consola) }">
+                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.completado) }">
                                         <o:converter converterId="entityListConverter"
                                                      list="#{preventivoController.estadoPreventivoList}"/>
                                         <f:selectItem itemLabel="Sin especificar" noSelectionOption="true"/>
@@ -121,7 +121,7 @@
                                 <p:column>
                                     <p:selectOneMenu id="burletePuerta"
                                                      value="#{preventivoController.item.burletePuerta}" required="true"
-                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.consola) }">
+                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.completado) }">
                                         <o:converter converterId="entityListConverter"
                                                      list="#{preventivoController.estadoPreventivoList}"/>
                                         <f:selectItem itemLabel="Sin especificar" noSelectionOption="true"/>
@@ -135,7 +135,7 @@
                                 <p:column>
                                     <p:selectOneMenu id="baterias" value="#{preventivoController.item.baterias}"
                                                      required="true"
-                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.consola) }">
+                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.completado) }">
                                         <o:converter converterId="entityListConverter"
                                                      list="#{preventivoController.estadoPreventivoList}"/>
                                         <f:selectItem itemLabel="Sin especificar" noSelectionOption="true"/>
@@ -151,7 +151,7 @@
                                     <p:selectOneMenu id="cableadoYConectores"
                                                      value="#{preventivoController.item.cableadoYConectores}"
                                                      required="true"
-                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.consola) }">
+                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.completado) }">
                                         <o:converter converterId="entityListConverter"
                                                      list="#{preventivoController.estadoPreventivoList}"/>
                                         <f:selectItem itemLabel="Sin especificar" noSelectionOption="true"/>
@@ -167,7 +167,7 @@
                                     <p:selectOneMenu id="cableadoYConectorEth"
                                                      value="#{preventivoController.item.cableadoYConectorEth}"
                                                      required="true"
-                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.consola) }">
+                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.completado) }">
                                         <o:converter converterId="entityListConverter"
                                                      list="#{preventivoController.estadoPreventivoList}"/>
                                         <f:selectItem itemLabel="Sin especificar" noSelectionOption="true"/>
@@ -181,7 +181,7 @@
                                 <p:column>
                                     <p:selectOneMenu id="estadoFiltro" value="#{preventivoController.item.estadoFiltro}"
                                                      required="true"
-                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.consola) }">
+                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.completado) }">
                                         <o:converter converterId="entityListConverter"
                                                      list="#{preventivoController.estadoPreventivoList}"/>
                                         <f:selectItem itemLabel="Sin especificar" noSelectionOption="true"/>
@@ -200,7 +200,7 @@
                                 <p:column>
                                     <p:selectOneMenu id="limpieza" value="#{preventivoController.item.limpieza}"
                                                      required="true"
-                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.consola) }">
+                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.completado) }">
                                         <o:converter converterId="entityListConverter"
                                                      list="#{preventivoController.estadoPreventivoList}"/>
                                         <f:selectItem itemLabel="Sin especificar" noSelectionOption="true"/>
@@ -214,7 +214,7 @@
                                 <p:column>
                                     <p:selectOneMenu id="seguridad" value="#{preventivoController.item.seguridad}"
                                                      required="true"
-                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.consola) }">
+                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.completado) }">
                                         <o:converter converterId="entityListConverter"
                                                      list="#{preventivoController.estadoPreventivoList}"/>
                                         <f:selectItem itemLabel="Sin especificar" noSelectionOption="true"/>
@@ -233,7 +233,7 @@
                                 <p:column>
                                     <p:selectOneMenu id="balizas" value="#{preventivoController.item.balizas}"
                                                      required="true"
-                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.consola) }">
+                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.completado) }">
                                         <o:converter converterId="entityListConverter"
                                                      list="#{preventivoController.estadoPreventivoList}"/>
                                         <f:selectItem itemLabel="Sin especificar" noSelectionOption="true"/>
@@ -249,7 +249,7 @@
                                     <p:selectOneMenu id="cableFeederJumpers"
                                                      value="#{preventivoController.item.cableFeederJumpers}"
                                                      required="true"
-                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.consola) }">
+                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.completado) }">
                                         <o:converter converterId="entityListConverter"
                                                      list="#{preventivoController.estadoPreventivoList}"/>
                                         <f:selectItem itemLabel="Sin especificar" noSelectionOption="true"/>
@@ -263,7 +263,7 @@
                                 <p:column>
                                     <p:selectOneMenu id="conectores" value="#{preventivoController.item.conectores}"
                                                      required="true"
-                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.consola) }">
+                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.completado) }">
                                         <o:converter converterId="entityListConverter"
                                                      list="#{preventivoController.estadoPreventivoList}"/>
                                         <f:selectItem itemLabel="Sin especificar" noSelectionOption="true"/>
@@ -278,7 +278,7 @@
                                     <p:selectOneMenu id="aterramientos"
                                                      value="#{preventivoController.item.aterramientos}"
                                                      required="true"
-                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.consola) }">
+                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.completado) }">
                                         <o:converter converterId="entityListConverter"
                                                      list="#{preventivoController.estadoPreventivoList}"/>
                                         <f:selectItem itemLabel="Sin especificar" noSelectionOption="true"/>
@@ -292,7 +292,7 @@
                                 <p:column>
                                     <p:selectOneMenu id="tma" value="#{preventivoController.item.tma}"
                                                      required="true"
-                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.consola) }">
+                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.completado) }">
                                         <o:converter converterId="entityListConverter"
                                                      list="#{preventivoController.estadoPreventivoList}"/>
                                         <f:selectItem itemLabel="Sin especificar" noSelectionOption="true"/>
@@ -306,7 +306,7 @@
                                 <p:column>
                                     <p:selectOneMenu id="rrh" value="#{preventivoController.item.rrh}"
                                                      required="true"
-                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.consola) }">
+                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.completado) }">
                                         <o:converter converterId="entityListConverter"
                                                      list="#{preventivoController.estadoPreventivoList}"/>
                                         <f:selectItem itemLabel="Sin especificar" noSelectionOption="true"/>
@@ -321,7 +321,7 @@
                                 <p:column>
                                     <p:selectOneMenu id="encintados" value="#{preventivoController.item.encintados}"
                                                      required="true"
-                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.consola) }">
+                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.completado) }">
                                         <o:converter converterId="entityListConverter"
                                                      list="#{preventivoController.estadoPreventivoList}"/>
                                         <f:selectItem itemLabel="Sin especificar" noSelectionOption="true"/>
@@ -340,28 +340,28 @@
                                 <p:column><p:inputTextarea id="observacionesPublico"
                                                            value="#{preventivoController.item.observacionesPublico}"
                                                            autoResize="true"
-                                                           readonly="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.consola) }"
+                                                           readonly="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.completado) }"
                                                            cols="65"
                                                            rows="7"/></p:column>
                             </p:row>
-                            <p:row rendered="#{not authorizationChecker.cliente}">
+                            <p:row rendered="#{not authorizationChecker.calificacion}">
                                 <p:column> <p:outputLabel for="observacionesPrivado"
                                                           value="Observaciones (no visibles por clientes):"/>
                                 </p:column>
                                 <p:column><p:inputTextarea id="observacionesPrivado"
                                                            value="#{preventivoController.item.observacionesPrivado}"
                                                            autoResize="true"
-                                                           readonly="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.consola) }"
+                                                           readonly="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.completado) }"
                                                            cols="65"
                                                            rows="7"/></p:column>
                             </p:row>
                             <p:row>
-                                <p:column> <p:outputLabel for="tecnico" value="Técnico:"/> </p:column>
+                                <p:column> <p:outputLabel for="verificacion" value="Técnico:"/> </p:column>
                                 <p:column>
-                                    <p:selectOneMenu id="tecnico" value="#{preventivoController.item.tecnico}"
+                                    <p:selectOneMenu id="verificacion" value="#{preventivoController.item.tecnico}"
                                                      required="true"
                                                      converter="genericMapConverter"
-                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.consola) }">
+                                                     disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.completado) }">
                                         <f:selectItems value="#{preventivoController.usuarioList}" var="item"
                                                        itemLabel="#{item.firstName.concat(' ').concat(item.lastName).concat(' (').concat(item.loginName).concat(')')}"
                                                        itemValue="#{item.loginName}"/>
@@ -372,7 +372,7 @@
                                 <p:column> <p:outputLabel for="torreros" value="Torreros:"/> </p:column>
                                 <p:column>
                                     <p:pickList id="torreros" value="#{preventivoController.pickList}"
-                                                disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.consola) }"
+                                                disabled="#{preventivoController.readOnly or not (authorizationChecker.admin or authorizationChecker.completado) }"
                                                 required="true"
                                                 var="torrero" itemLabel="#{torrero.nombre}" itemValue="#{torrero}"
                                                 showSourceFilter="true"
