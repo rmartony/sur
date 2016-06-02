@@ -10,8 +10,8 @@
 <ui:composition template="/templates/fullLayout.xhtml">
     <ui:define name="content">
         <h:form id="form">
-            <p:dataTable id="dataTable" var="item" value="#{ipController.lazyModel}" styleClass="dataTableStyle"
-                         paginator="true" rows="10" selection="#{ipController.selectedItems}"
+            <p:dataTable id="dataTable" var="item" value="#{escribanoController.lazyModel}" styleClass="dataTableStyle"
+                         paginator="true" rows="10" selection="#{escribanoController.selectedItems}"
                          emptyMessage="#{msg.noRecordsFound}"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          lazy="true" rowsPerPageTemplate="10,25,50">
@@ -22,23 +22,23 @@
                     <p:commandButton icon="ui-icon-pencil" update=":itemDetailForm:display"
                                      title="Ver o modificar"
                                      oncomplete="PF('itemDialog').show()">
-                        <f:setPropertyActionListener value="#{item}" target="#{ipController.selectedItem}"/>
+                        <f:setPropertyActionListener value="#{item}" target="#{escribanoController.selectedItem}"/>
                     </p:commandButton>
                 </p:column>
 
                 <p:column selectionMode="multiple" style="width:18px"/>
-                <p:column sortBy="#{item.ip}" filterBy="#{item.ip}">
+                <p:column sortBy="#{item.escribano}" filterBy="#{item.escribano}">
                     <f:facet name="header">
                         <h:outputText value="Dirección IP"/>
                     </f:facet>
-                    <p:commandLink value="#{item.ip}" update=":itemDetailForm:display"
+                    <p:commandLink value="#{item.escribano}" update=":itemDetailForm:display"
                                    oncomplete="PF('itemDialog').show()" title="Ver">
-                        <f:setPropertyActionListener value="#{item}" target="#{ipController.selectedItem}"/>
+                        <f:setPropertyActionListener value="#{item}" target="#{escribanoController.selectedItem}"/>
                     </p:commandLink>
                 </p:column>
 
                 <p:column sortBy="#{item.ocupada}" filterBy="#{item.ocupada}"
-                          filterOptions="#{ipController.siNoListOptions}"
+                          filterOptions="#{escribanoController.siNoListOptions}"
                           filterMatchMode="exact">
                     <f:facet name="header">
                         <h:outputText value="Ocupada"/>
@@ -46,7 +46,7 @@
                     <h:outputText value="#{msg[item.ocupada]}"/>
                 </p:column>
                 <p:column sortBy="#{item.rnc.nombre}" filterBy="#{item.rnc.nombre}"
-                          filterOptions="#{ipController.rncListOptions}"
+                          filterOptions="#{escribanoController.rncListOptions}"
                           filterMatchMode="exact">
                     <f:facet name="header">
                         <h:outputText value="RNC"/>
@@ -57,20 +57,20 @@
                 <f:facet name="footer">
                     <p:commandButton value="Nueva IP" oncomplete="PF('newItemDialog').show()" icon="ui-icon-star"
                                      title="Crear nueva IP" rendered="#{authorizationChecker.admin}"/>
-                    <p:commandButton value="Modificar IP" actionListener="#{ipController.doUpdate}"
+                    <p:commandButton value="Modificar IP" actionListener="#{escribanoController.doUpdate}"
                                      update=":itemDetailForm:display"
                                      icon="ui-icon-pencil"
                                      title="Modificar IP"
                                      oncomplete="if (!args.validationFailed) {PF('itemDialog').show()}"
                                      rendered="#{authorizationChecker.admin}">
                     </p:commandButton>
-                    <p:commandButton value="Ver IP" actionListener="#{ipController.doUpdate}"
+                    <p:commandButton value="Ver IP" actionListener="#{escribanoController.doUpdate}"
                                      update=":itemDetailForm:display"
                                      icon="ui-icon-pencil"
                                      title="Ver IP" oncomplete="if (!args.validationFailed) {PF('itemDialog').show()}"
                                      rendered="#{not authorizationChecker.admin}">
                     </p:commandButton>
-                    <p:commandButton value="Eliminar IP" actionListener="#{ipController.doDelete}"
+                    <p:commandButton value="Eliminar IP" actionListener="#{escribanoController.doDelete}"
                                      update="dataTable" icon="ui-icon-trash" rendered="#{authorizationChecker.admin}">
                         <p:confirm header="Confirmación" message="#{msg.askConfirmAction}"
                                    icon="ui-icon-alert"/>
@@ -83,30 +83,30 @@
             <h:form id="itemDetailForm">
                 <p:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">
                     <h:outputText value="IP:"/>
-                    <h:inputText value="#{ipController.selectedItem.ip}" required="true"
+                    <h:inputText value="#{escribanoController.selectedItem.escribano}" required="true"
                                  readonly="#{not authorizationChecker.admin}">
                         <f:validator validatorId="ipValidator"/>
                     </h:inputText>
                     <p:outputLabel value="Ocupada"/>
-                    <p:selectOneRadio value="#{ipController.selectedItem.ocupada}"
+                    <p:selectOneRadio value="#{escribanoController.selectedItem.ocupada}"
                                       disabled="#{not authorizationChecker.admin}">
                         <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
                         <f:selectItem itemValue="#{false}" itemLabel="No"/>
                     </p:selectOneRadio>
                     <p:outputLabel value="RNC:" for="detailIpRnc"/>
-                    <p:selectOneMenu id="detailIpRnc" value="#{ipController.selectedItem.rnc}" required="true"
+                    <p:selectOneMenu id="detailIpRnc" value="#{escribanoController.selectedItem.rnc}" required="true"
                                      requiredMessage="Por favor ingresar RNC"
                                      disabled="#{not authorizationChecker.admin}">
-                        <o:converter converterId="entityListConverter" list="#{ipController.rncList}"/>
+                        <o:converter converterId="entityListConverter" list="#{escribanoController.rncList}"/>
                         <f:selectItem itemLabel="Seleccionar RNC..." noSelectionOption="true"/>
-                        <f:selectItems value="#{ipController.rncList}" var="rnc"
+                        <f:selectItems value="#{escribanoController.rncList}" var="rnc"
                                        itemLabel="#{rnc.nombre}" itemValue="#{rnc}"/>
                     </p:selectOneMenu>
 
                     <f:facet name="footer">
                         <p:commandButton value="Actualizar" update=":form:dataTable, :growl"
                                          oncomplete="handleSubmitRequest(xhr, status, args, 'itemDlg','itemDetailForm'); "
-                                         action="#{ipController.doConfirmUpdate}"
+                                         action="#{escribanoController.doConfirmUpdate}"
                                          rendered="#{authorizationChecker.admin}"/>
                         <p:commandButton value="Cancelar" onclick="itemDialog.hide()"
                                          immediate="true" rendered="#{authorizationChecker.admin}"/>
@@ -121,28 +121,28 @@
             <h:form id="newItemForm">
                 <p:panelGrid id="displayNewIp" columns="2" cellpadding="4" style="margin:0 auto;">
                     <h:outputText value="IP:"/>
-                    <p:inputText value="#{ipController.newItem.ip}" required="true"
+                    <p:inputText value="#{escribanoController.newItem.escribano}" required="true"
                                  requiredMessage="Por favor ingresar dirección IP">
                         <f:validator validatorId="ipValidator"/>
                     </p:inputText>
 
                     <p:outputLabel value="Ocupada"/>
-                    <p:selectOneRadio value="#{ipController.newItem.ocupada}">
+                    <p:selectOneRadio value="#{escribanoController.newItem.ocupada}">
                         <f:selectItem itemValue="#{true}" itemLabel="Sí"/>
                         <f:selectItem itemValue="#{false}" itemLabel="No"/>
                     </p:selectOneRadio>
                     <p:outputLabel for="newIpRnc" value="RNC:"/>
-                    <p:selectOneMenu id="newIpRnc" value="#{ipController.newItem.rnc}" required="true"
+                    <p:selectOneMenu id="newIpRnc" value="#{escribanoController.newItem.rnc}" required="true"
                                      requiredMessage="Por favor ingresar RNC">
-                        <o:converter converterId="entityListConverter" list="#{ipController.rncList}"/>
+                        <o:converter converterId="entityListConverter" list="#{escribanoController.rncList}"/>
                         <f:selectItem itemLabel="Seleccionar RNC..." noSelectionOption="true"/>
-                        <f:selectItems value="#{ipController.rncList}" var="rnc"
+                        <f:selectItems value="#{escribanoController.rncList}" var="rnc"
                                        itemLabel="#{rnc.nombre}" itemValue="#{rnc}"/>
                     </p:selectOneMenu>
                     <f:facet name="footer">
                         <p:commandButton value="Confirmar" update=":form:dataTable, :growl"
                                          oncomplete="handleSubmitRequest(xhr, status, args, 'newItemDlg','newItemForm');"
-                                         actionListener="#{ipController.doCreate}"/>
+                                         actionListener="#{escribanoController.doCreate}"/>
                         <p:commandButton value="Cancelar" onclick="newItemDlg.hide()"
                                          immediate="true"/>
                     </f:facet>

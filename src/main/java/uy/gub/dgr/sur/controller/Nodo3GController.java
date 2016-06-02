@@ -50,7 +50,7 @@ public class Nodo3GController extends BaseController {
     private transient Nodo3GService das;
     /*
         @Inject
-        private transient IpService ipService;
+        private transient EscribanoService ipService;
     */
     @Inject
     private transient Celda3GController celda3GController;
@@ -78,7 +78,7 @@ public class Nodo3GController extends BaseController {
     @Getter
     private List<Rnc> rncList;
     @Getter
-    private List<Ip> ipList;
+    private List<Escribano> ipList;
 */
 
     @Getter
@@ -136,8 +136,8 @@ public class Nodo3GController extends BaseController {
     public String doConfirmUpdate() {
 /*
         Nodo3G nodoOriginal = das.find(item.getId());
-        Ip ipOriginal = nodoOriginal.getIp();
-        Ip ipNueva = item.getIp();
+        Escribano ipOriginal = nodoOriginal.getIp();
+        Escribano ipNueva = item.getIp();
         if (ipOriginal != null && ipNueva != null) {
             if (!ipOriginal.equals(ipNueva)) {
                 ipOriginal.setOcupada(false);
@@ -271,13 +271,13 @@ public class Nodo3GController extends BaseController {
     }
 */
 
-    private List<Ip> findIp4Rnc(Rnc rnc) {
+    private List<Escribano> findIp4Rnc(Rnc rnc) {
         if (rnc == null) return null;
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("ocupada", false);
         parameters.put("idRnc", rnc.getId());
 
-        return das.findWithNamedQuery(Ip.BY_RNC_STATUS, parameters);
+        return das.findWithNamedQuery(Escribano.BY_RNC_STATUS, parameters);
     }
 
     public String createCelda() {

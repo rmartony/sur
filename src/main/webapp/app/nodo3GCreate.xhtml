@@ -74,7 +74,7 @@
                                                 <f:selectItem itemLabel="Seleccionar RNC..." noSelectionOption="true"/>
                                                 <f:selectItems value="#{nodo3GController.rncList}" var="rnc"
                                                                itemLabel="#{rnc.nombre}" itemValue="#{rnc}"/>
-                                                <p:ajax update="ip"
+                                                <p:ajax update="escribano"
                                                         listener="#{nodo3GController.handleRncChange}"/>
                                             </p:selectOneMenu>
                                         </p:column>
@@ -84,14 +84,14 @@
                             <!--
                                     <p:row>
                                         <p:column>
-                                            <p:outputLabel for="ip" value="IP:"/>
+                                            <p:outputLabel for="escribano" value="IP:"/>
                                         </p:column>
                                         <p:column>
-                                            <p:selectOneMenu id="ip" value="#{nodo3GController.item.ip}">
+                                            <p:selectOneMenu id="escribano" value="#{nodo3GController.item.escribano}">
                                                 <f:selectItem itemLabel="Seleccionar IP..." noSelectionOption="true"/>
                                                 <o:converter converterId="entityListConverter" list="#{nodo3GController.ipList}"/>
-                                                <f:selectItems value="#{nodo3GController.ipList}" var="ip"
-                                                               itemLabel="#{ip.ip}" itemValue="#{ip}"/>
+                                                <f:selectItems value="#{nodo3GController.ipList}" var="escribano"
+                                                               itemLabel="#{escribano.escribano}" itemValue="#{escribano}"/>
                                             </p:selectOneMenu>
                                         </p:column>
                                     </p:row>

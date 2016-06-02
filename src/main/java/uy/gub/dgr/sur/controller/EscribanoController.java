@@ -12,11 +12,11 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.omnifaces.util.Messages;
 import org.primefaces.context.RequestContext;
 import org.primefaces.model.LazyDataModel;
-import uy.gub.dgr.sur.entity.Ip;
+import uy.gub.dgr.sur.entity.Escribano;
 import uy.gub.dgr.sur.entity.Rnc;
 import uy.gub.dgr.sur.idm.annotations.Admin;
-import uy.gub.dgr.sur.model.LazyIpDataModel;
-import uy.gub.dgr.sur.service.IpService;
+import uy.gub.dgr.sur.model.LazyEscribanoDataModel;
+import uy.gub.dgr.sur.service.EscribanoService;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -38,29 +38,29 @@ import java.util.logging.Logger;
 
 @Named
 @SessionScoped
-public class IpController implements Serializable {
+public class EscribanoController implements Serializable {
     private
     @Inject
     transient Logger log;
     @Inject
     private transient ResourceBundle msg;
     @Inject
-    private transient IpService das;
+    private transient EscribanoService das;
     // Selected users that will be removed
     @Getter
     @Setter
-    private Ip[] selectedItems;
+    private Escribano[] selectedItems;
     // Creating new zona
     @Getter
     @Setter
-    private Ip newItem = new Ip();
+    private Escribano newItem = new Escribano();
     // Selected user that will be updated
     @Getter
     @Setter
-    private Ip selectedItem = new Ip();
+    private Escribano selectedItem = new Escribano();
     // Lazy loading user list
     @Getter
-    private LazyDataModel<Ip> lazyModel;
+    private LazyDataModel<Escribano> lazyModel;
 
     // Available RNC list
     @Getter
@@ -73,7 +73,7 @@ public class IpController implements Serializable {
     /**
      * Default constructor
      */
-    public IpController() {
+    public EscribanoController() {
     }
 
     /**
@@ -82,8 +82,8 @@ public class IpController implements Serializable {
      */
     @PostConstruct
     public void init() {
-        log.log(Level.INFO, "IpController is initializing");
-        lazyModel = new LazyIpDataModel(das);
+        log.log(Level.INFO, "EscribanoController is initializing");
+        lazyModel = new LazyEscribanoDataModel(das);
         rncList = das.findWithNamedQuery(Rnc.ALL);
         siNoListOptions = createSiNoFilterOptions();
         rncListOptions = createRncFilterOptions(rncList);
@@ -95,8 +95,8 @@ public class IpController implements Serializable {
     @Admin
     public void doCreate() {
         das.create(newItem);
-        newItem = new Ip();
-        Messages.addFlashInfo(null, "IP ingresada con éxito.");
+        newItem = new Escribano();
+        Messages.addFlashInfo(null, "Escribano ingresado con éxito.");
     }
 
     /**
@@ -105,7 +105,7 @@ public class IpController implements Serializable {
     @Admin
     public void doConfirmUpdate() {
         das.update(selectedItem);
-        Messages.addFlashInfo(null, "IP actualizada con éxito.");
+        Messages.addFlashInfo(null, "Escribano actualizado con éxito.");
     }
 
     public void doUpdate() {
@@ -125,7 +125,7 @@ public class IpController implements Serializable {
     public void doDelete() {
         if (selectedItems != null && selectedItems.length > 0) {
             das.deleteItems(selectedItems);
-            Messages.addInfo(null, "IP(s) eliminada(s) con éxito.");
+            Messages.addInfo(null, "Escribano(s) quitado(s) con éxito.");
         } else {
             Messages.addError(null, msg.getString("noRecordSelected"));
         }

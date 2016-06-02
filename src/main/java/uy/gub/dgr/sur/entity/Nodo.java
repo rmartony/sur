@@ -43,24 +43,24 @@ public abstract class Nodo extends BaseEntity implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaInstalacion = new Date();
     private Integer alimentacion;
-    //@Pattern(regexp = Ip.REGEXP_VALIDATE, message = "{msg.invalidIP}")
+    //@Pattern(regexp = Escribano.REGEXP_VALIDATE, message = "{msg.invalidIP}")
     private String ipOAM;
     private String maskOAM;
-    //@Pattern(regexp = Ip.REGEXP_VALIDATE, message = "{msg.invalidIP}")
+    //@Pattern(regexp = Escribano.REGEXP_VALIDATE, message = "{msg.invalidIP}")
     private String gwOAM;
-    //@Pattern(regexp = Ip.REGEXP_VALIDATE, message = "{msg.invalidIP}")
+    //@Pattern(regexp = Escribano.REGEXP_VALIDATE, message = "{msg.invalidIP}")
     private Integer vlanOAM;
     private String ipTelecom;
-    //@Pattern(regexp = Ip.REGEXP_VALIDATE, message = "{msg.invalidIP}")
+    //@Pattern(regexp = Escribano.REGEXP_VALIDATE, message = "{msg.invalidIP}")
     private String maskTelecom;
-    //@Pattern(regexp = Ip.REGEXP_VALIDATE, message = "{msg.invalidIP}")
+    //@Pattern(regexp = Escribano.REGEXP_VALIDATE, message = "{msg.invalidIP}")
     private String gwTelecom;
-    //@Pattern(regexp = Ip.REGEXP_VALIDATE, message = "{msg.invalidIP}")
+    //@Pattern(regexp = Escribano.REGEXP_VALIDATE, message = "{msg.invalidIP}")
     private Integer vlanTelecom;
     private String ipGrandMaster;
-    //@Pattern(regexp = Ip.REGEXP_VALIDATE, message = "{msg.invalidIP}")
+    //@Pattern(regexp = Escribano.REGEXP_VALIDATE, message = "{msg.invalidIP}")
     private String ipSecondaryMaster;
-    //@Pattern(regexp = Ip.REGEXP_VALIDATE, message = "{msg.invalidIP}")
+    //@Pattern(regexp = Escribano.REGEXP_VALIDATE, message = "{msg.invalidIP}")
     private String tinco;
     private String EPLFlujoDABT;
     @Lob

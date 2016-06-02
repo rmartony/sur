@@ -53,7 +53,7 @@
         </navigation-case>
         <navigation-case>
             <from-outcome>ips</from-outcome>
-            <to-view-id>/app/ipList.xhtml</to-view-id>
+            <to-view-id>/app/escribanoList.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-outcome>rncs</from-outcome>

@@ -1,7 +1,7 @@
 package uy.gub.dgr.sur.util;
 
 import org.apache.commons.lang3.StringUtils;
-import uy.gub.dgr.sur.entity.Ip;
+import uy.gub.dgr.sur.entity.Escribano;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -24,7 +24,7 @@ public class IPAddressValidator implements Validator {
     private Matcher matcher;
 
     public IPAddressValidator() {
-        pattern = Pattern.compile(Ip.REGEXP_VALIDATE);
+        pattern = Pattern.compile(Escribano.REGEXP_VALIDATE);
     }
 
     @Override

@@ -21,7 +21,7 @@
         <class>uy.gub.dgr.sur.entity.TipoFeeder</class>
         <class>uy.gub.dgr.sur.entity.Sede</class>
         <class>uy.gub.dgr.sur.entity.Torrero</class>
-        <class>uy.gub.dgr.sur.entity.Ip</class>
+        <class>uy.gub.dgr.sur.entity.Escribano</class>
 
         <class>org.picketlink.idm.jpa.model.sample.simple.AttributedTypeEntity</class>
         <class>org.picketlink.idm.jpa.model.sample.simple.AccountTypeEntity</class>

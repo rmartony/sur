@@ -16,7 +16,7 @@ import uy.gub.dgr.sur.entity.*;
 import uy.gub.dgr.sur.event.CeldaEvent;
 import uy.gub.dgr.sur.idm.annotations.Admin;
 import uy.gub.dgr.sur.model.LazyNodoLteDataModel;
-import uy.gub.dgr.sur.service.IpService;
+import uy.gub.dgr.sur.service.EscribanoService;
 import uy.gub.dgr.sur.service.NodoLteService;
 import uy.gub.dgr.sur.util.ConstraintViolationInterceptor;
 
@@ -49,7 +49,7 @@ public class NodoLteController extends BaseController {
     @Inject
     private transient NodoLteService das;
     @Inject
-    private transient IpService ipService;
+    private transient EscribanoService escribanoService;
     @Inject
     private transient CeldaLteController celdaLteController;
 

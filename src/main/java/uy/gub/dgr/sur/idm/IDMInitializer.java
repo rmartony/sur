@@ -53,7 +53,7 @@ public class IDMInitializer {
     @Inject
     private transient RncService rncService;
     @Inject
-    private transient IpService ipService;
+    private transient EscribanoService escribanoService;
     @Inject
     private transient TipoBTSService tipoBTSService;
     @Inject
@@ -176,7 +176,7 @@ public class IDMInitializer {
         nodo3G.setNumContadorUTE("a2");
 /*
         nodo3G.setRnc(rncService.find(2));
-        nodo3G.setIp(ipService.find(1));
+        nodo3G.setIp(escribanoService.find(1));
 */
         Map<String, Integer> params = new HashMap<>();
         params.put("id", 1);
@@ -526,46 +526,46 @@ public class IDMInitializer {
         Rnc rnc = new Rnc();
         rnc.setId(2);
 
-        Ip ip = new Ip();
-        ip.setIp("10.67.104.2");
-        ip.setRnc(rnc);
-        ip.setOcupada(false);
-        ipService.update(ip);
+        Escribano escribano = new Escribano();
+        escribano.setCodigo(10);
+        escribano.setRnc(rnc);
+        escribano.setOcupada(false);
+        escribanoService.update(escribano);
 
 
-        ip = new Ip();
-        ip.setIp("10.67.104.3");
-        ip.setRnc(rnc);
-        ip.setOcupada(false);
-        ipService.update(ip);
+        escribano = new Escribano();
+        escribano.setCodigo(23);
+        escribano.setRnc(rnc);
+        escribano.setOcupada(false);
+        escribanoService.update(escribano);
 
-        ip = new Ip();
-        ip.setIp("10.67.104.4");
-        ip.setRnc(rnc);
-        ip.setOcupada(false);
-        ipService.update(ip);
+        escribano = new Escribano();
+        escribano.setCodigo(26);
+        escribano.setRnc(rnc);
+        escribano.setOcupada(false);
+        escribanoService.update(escribano);
 
-        ip = new Ip();
-        ip.setIp("10.67.104.5");
-        ip.setRnc(rnc);
-        ip.setOcupada(false);
-        ipService.update(ip);
+        escribano = new Escribano();
+        escribano.setCodigo(30);
+        escribano.setRnc(rnc);
+        escribano.setOcupada(false);
+        escribanoService.update(escribano);
 
         rnc = new Rnc();
         rnc.setId(3);
-        ip = new Ip();
+        escribano = new Escribano();
 
-        ip.setIp("10.67.125.2");
-        ip.setRnc(rnc);
-        ip.setOcupada(false);
-        ipService.update(ip);
+        escribano.setCodigo(35);
+        escribano.setRnc(rnc);
+        escribano.setOcupada(false);
+        escribanoService.update(escribano);
 
 
-        ip = new Ip();
-        ip.setIp("10.67.125.3");
-        ip.setRnc(rnc);
-        ip.setOcupada(false);
-        ipService.update(ip);
+        escribano = new Escribano();
+        escribano.setCodigo(38);
+        escribano.setRnc(rnc);
+        escribano.setOcupada(false);
+        escribanoService.update(escribano);
     }
 
     public void initTipoBTS() {

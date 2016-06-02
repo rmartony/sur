@@ -22,7 +22,7 @@ import java.util.Set;
 public class Nodo3G extends Nodo {
 /*
     @ManyToOne(cascade = CascadeType.MERGE)
-    private Ip ip;
+    private Escribano ip;
 
     @ManyToOne
     private Rnc rnc;
@@ -31,7 +31,7 @@ public class Nodo3G extends Nodo {
     @Temporal(TemporalType.DATE)
     private Date fechaAltaEthernet;
 
-    //@Pattern(regexp = Ip.REGEXP_VALIDATE, message = "{msg.invalidIP}")
+    //@Pattern(regexp = Escribano.REGEXP_VALIDATE, message = "{msg.invalidIP}")
     private String defaultGateway;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "nodo3G")

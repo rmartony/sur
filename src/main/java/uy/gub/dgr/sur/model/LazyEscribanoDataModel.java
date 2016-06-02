@@ -4,7 +4,7 @@ package uy.gub.dgr.sur.model;
 import org.apache.commons.collections4.CollectionUtils;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
-import uy.gub.dgr.sur.entity.Ip;
+import uy.gub.dgr.sur.entity.Escribano;
 import uy.gub.dgr.sur.service.DataAccessService;
 
 import javax.persistence.criteria.*;
@@ -20,10 +20,10 @@ import java.util.Map;
  * For more information please visit http://www.primefaces.org/showcase-labs/ui/datatableLazy.jsf
  */
 
-public class LazyIpDataModel extends LazyDataModel<Ip> implements Serializable {
+public class LazyEscribanoDataModel extends LazyDataModel<Escribano> implements Serializable {
 
     // Data Source for binding data to the DataTable
-    private List<Ip> datasource;
+    private List<Escribano> datasource;
     // Selected Page size in the DataTable
     private int pageSize;
     // Current row index number
@@ -38,7 +38,7 @@ public class LazyIpDataModel extends LazyDataModel<Ip> implements Serializable {
     /**
      * @param crudService
      */
-    public LazyIpDataModel(DataAccessService crudService) {
+    public LazyEscribanoDataModel(DataAccessService crudService) {
         this.crudService = crudService;
     }
 
@@ -53,17 +53,17 @@ public class LazyIpDataModel extends LazyDataModel<Ip> implements Serializable {
      * @return List<Zona>
      */
     @Override
-    public List<Ip> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+    public List<Escribano> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
         CriteriaBuilder criteriaBuilder = crudService.getCriteriaBuilder();
-        CriteriaQuery<Ip> criteriaQuery = criteriaBuilder.createQuery(Ip.class);
+        CriteriaQuery<Escribano> criteriaQuery = criteriaBuilder.createQuery(Escribano.class);
         Metamodel metamodel = crudService.getMetamodel();
-        EntityType<Ip> entityType = metamodel.entity(Ip.class);
-        Root<Ip> from = criteriaQuery.from(entityType);
+        EntityType<Escribano> entityType = metamodel.entity(Escribano.class);
+        Root<Escribano> from = criteriaQuery.from(entityType);
         List<Order> orders = new ArrayList<Order>();
 
         // count query
         CriteriaQuery<Long> cqCount = criteriaBuilder.createQuery(Long.class);
-        Root<Ip> fromCount = cqCount.from(entityType);
+        Root<Escribano> fromCount = cqCount.from(entityType);
         cqCount.select(criteriaBuilder.count(from));
 
         //Sorting
@@ -145,12 +145,12 @@ public class LazyIpDataModel extends LazyDataModel<Ip> implements Serializable {
     /**
      * Gets the Zona object's primary key
      *
-     * @param ip
+     * @param escribano
      * @return Object
      */
     @Override
-    public Object getRowKey(Ip ip) {
-        return ip.getId().toString();
+    public Object getRowKey(Escribano escribano) {
+        return escribano.getId().toString();
     }
 
     /**
@@ -159,7 +159,7 @@ public class LazyIpDataModel extends LazyDataModel<Ip> implements Serializable {
      * @return
      */
     @Override
-    public Ip getRowData() {
+    public Escribano getRowData() {
         if (datasource == null)
             return null;
         int index = rowIndex % pageSize;
@@ -176,12 +176,12 @@ public class LazyIpDataModel extends LazyDataModel<Ip> implements Serializable {
      * @return
      */
     @Override
-    public Ip getRowData(String rowKey) {
+    public Escribano getRowData(String rowKey) {
         if (datasource == null)
             return null;
-        for (Ip ip : datasource) {
-            if (ip.getId().toString().equals(rowKey))
-                return ip;
+        for (Escribano escribano : datasource) {
+            if (escribano.getId().toString().equals(rowKey))
+                return escribano;
         }
         return null;
     }
@@ -274,7 +274,7 @@ public class LazyIpDataModel extends LazyDataModel<Ip> implements Serializable {
      */
     @Override
     public void setWrappedData(Object list) {
-        this.datasource = (List<Ip>) list;
+        this.datasource = (List<Escribano>) list;
     }
 }
                     
