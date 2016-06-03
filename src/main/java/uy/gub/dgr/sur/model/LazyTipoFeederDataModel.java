@@ -139,7 +139,7 @@ public class LazyTipoFeederDataModel extends LazyDataModel<TipoFeeder> implement
     }
 
     /**
-     * Gets the Rnc object's primary key
+     * Gets the Registro object's primary key
      *
      * @param tipoFeeder
      * @return Object

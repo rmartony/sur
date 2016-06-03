@@ -139,7 +139,7 @@ public class LazyTorreroDataModel extends LazyDataModel<Torrero> implements Seri
     }
 
     /**
-     * Gets the Rnc object's primary key
+     * Gets the Registro object's primary key
      *
      * @param torrero
      * @return Object

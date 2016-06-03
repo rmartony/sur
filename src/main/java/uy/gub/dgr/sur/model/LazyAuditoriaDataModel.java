@@ -77,7 +77,7 @@ public class LazyAuditoriaDataModel extends LazyDataModel<Object> implements Ser
     }
 
     /**
-     * Gets the Rnc object's primary key
+     * Gets the Registro object's primary key
      *
      * @param object
      * @return Object

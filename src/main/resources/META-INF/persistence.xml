@@ -16,7 +16,7 @@
         <class>uy.gub.dgr.sur.entity.Celda</class>
         <class>uy.gub.dgr.sur.entity.Celda3G</class>
         <class>uy.gub.dgr.sur.entity.CeldaLte</class>
-        <!--        <class>Rnc</class>-->
+        <!--        <class>Registro</class>-->
         <class>uy.gub.dgr.sur.entity.Sede</class>
         <class>uy.gub.dgr.sur.entity.TipoAntena</class>
         <class>uy.gub.dgr.sur.entity.TipoBTS</class>

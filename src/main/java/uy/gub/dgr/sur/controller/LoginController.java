@@ -155,7 +155,7 @@ public class LoginController implements Serializable {
         User user = getCurrentUser();
 
         editor.markEditable(user, Zona.class, Torrero.class, TipoFeeder.class, TipoBTS.class, TipoAntena.class,
-                Sitio.class, Rnc.class, Escribano.class, Sede.class, Preventivo.class,
+                Sitio.class, Registro.class, Escribano.class, Sede.class, Preventivo.class,
                 Nodo3G.class, Celda3G.class, NodoLte.class, CeldaLte.class);
 */
     }

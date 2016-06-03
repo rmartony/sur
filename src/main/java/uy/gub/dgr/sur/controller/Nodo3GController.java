@@ -76,7 +76,7 @@ public class Nodo3GController extends BaseController {
     // Available RNC list
 /*
     @Getter
-    private List<Rnc> rncList;
+    private List<Registro> rncList;
     @Getter
     private List<Escribano> ipList;
 */
@@ -103,7 +103,7 @@ public class Nodo3GController extends BaseController {
         log.log(Level.INFO, "Nodo3GController is initializing");
         lazyModel = new LazyNodo3GDataModel(das);
 /*
-        rncList = das.findWithNamedQuery(Rnc.ALL);
+        rncList = das.findWithNamedQuery(Registro.ALL);
         rncListOptions = createRncFilterOptions(rncList);
 */
         tipoBTSList = das.findWithNamedQuery(TipoBTS.ALL);
@@ -240,7 +240,7 @@ public class Nodo3GController extends BaseController {
         }
     }
 
-    private SelectItem[] createRncFilterOptions(List<Rnc> data) {
+    private SelectItem[] createRncFilterOptions(List<Registro> data) {
         SelectItem[] options = null;
         if (CollectionUtils.isNotEmpty(data)) {
             options = new SelectItem[data.size() + 1];
@@ -272,7 +272,7 @@ public class Nodo3GController extends BaseController {
 */
 
 /*
-    private List<Escribano> findIp4Rnc(Rnc rnc) {
+    private List<Escribano> findIp4Rnc(Registro rnc) {
         if (rnc == null) return null;
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("ocupada", false);

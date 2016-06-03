@@ -1,6 +1,6 @@
 package uy.gub.dgr.sur.service;
 
-import uy.gub.dgr.sur.entity.Rnc;
+import uy.gub.dgr.sur.entity.Registro;
 
 import javax.ejb.Stateless;
 
@@ -9,9 +9,9 @@ import javax.ejb.Stateless;
  */
 
 @Stateless
-public class RncService extends DataAccessService<Rnc> {
+public class RncService extends DataAccessService<Registro> {
 
     public RncService() {
-        super(Rnc.class);
+        super(Registro.class);
     }
 }

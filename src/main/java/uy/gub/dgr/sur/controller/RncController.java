@@ -11,7 +11,7 @@ import lombok.Setter;
 import org.omnifaces.util.Messages;
 import org.primefaces.context.RequestContext;
 import org.primefaces.model.LazyDataModel;
-import uy.gub.dgr.sur.entity.Rnc;
+import uy.gub.dgr.sur.entity.Registro;
 import uy.gub.dgr.sur.idm.annotations.Admin;
 import uy.gub.dgr.sur.model.LazyRncDataModel;
 import uy.gub.dgr.sur.service.RncService;
@@ -47,18 +47,18 @@ public class RncController extends BaseController {
     // Selected users that will be removed
     @Getter
     @Setter
-    private Rnc[] selectedItems;
+    private Registro[] selectedItems;
     // Creating new zona
     @Getter
     @Setter
-    private Rnc newItem = new Rnc();
+    private Registro newItem = new Registro();
     // Selected user that will be updated
     @Getter
     @Setter
-    private Rnc selectedItem = new Rnc();
+    private Registro selectedItem = new Registro();
     // Lazy loading user list
     @Getter
-    private LazyDataModel<Rnc> lazyModel;
+    private LazyDataModel<Registro> lazyModel;
 
     /**
      * Default constructor
@@ -82,7 +82,7 @@ public class RncController extends BaseController {
     @Admin
     public void doCreate() {
         das.create(newItem);
-        newItem = new Rnc();
+        newItem = new Registro();
     }
 
     /**
@@ -91,7 +91,7 @@ public class RncController extends BaseController {
     @Admin
     public void doConfirmUpdate() {
         das.update(selectedItem);
-        Messages.addFlashInfo(null, "Rnc actualizada con éxito.");
+        Messages.addFlashInfo(null, "Registro actualizada con éxito.");
     }
 
     public void doUpdate() {
@@ -112,7 +112,7 @@ public class RncController extends BaseController {
     public void doDelete() {
         if (selectedItems != null && selectedItems.length > 0) {
             das.deleteItems(selectedItems);
-            Messages.addInfo(null, "Rnc(s) eliminada(s) con éxito.");
+            Messages.addInfo(null, "Registro(s) eliminada(s) con éxito.");
         } else {
             Messages.addError(null, msg.getString("noRecordSelected"));
         }

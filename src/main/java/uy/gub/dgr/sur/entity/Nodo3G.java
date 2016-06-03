@@ -25,7 +25,7 @@ public class Nodo3G extends Nodo {
     private Escribano ip;
 
     @ManyToOne
-    private Rnc rnc;
+    private Registro rnc;
 */
 
     @Temporal(TemporalType.DATE)

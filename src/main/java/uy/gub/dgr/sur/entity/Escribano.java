@@ -5,7 +5,6 @@ import lombok.EqualsAndHashCode;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
@@ -42,8 +41,5 @@ public class Escribano extends BaseEntity implements Serializable {
 
     private Date inhabilitadoFechaDesde;
     private Date inhabilitadoFechaHasta;
-
-    @ManyToOne
-    private Rnc rnc;
 
 }

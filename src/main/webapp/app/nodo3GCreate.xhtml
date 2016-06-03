@@ -65,15 +65,15 @@
                             <!--
                                     <p:row>
                                         <p:column>
-                                            <p:outputLabel for="rnc" value="RNC:"/>
+                                            <p:outputLabel for="registro" value="RNC:"/>
                                         </p:column>
                                         <p:column>
-                                            <p:selectOneMenu id="rnc" value="#{nodo3GController.item.rnc}" required="true"
+                                            <p:selectOneMenu id="registro" value="#{nodo3GController.item.registro}" required="true"
                                                              requiredMessage="Por favor ingresar RNC">
                                                 <o:converter converterId="entityListConverter" list="#{nodo3GController.rncList}"/>
                                                 <f:selectItem itemLabel="Seleccionar RNC..." noSelectionOption="true"/>
-                                                <f:selectItems value="#{nodo3GController.rncList}" var="rnc"
-                                                               itemLabel="#{rnc.nombre}" itemValue="#{rnc}"/>
+                                                <f:selectItems value="#{nodo3GController.rncList}" var="registro"
+                                                               itemLabel="#{registro.nombre}" itemValue="#{registro}"/>
                                                 <p:ajax update="escribano"
                                                         listener="#{nodo3GController.handleRncChange}"/>
                                             </p:selectOneMenu>

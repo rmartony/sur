@@ -13,7 +13,7 @@ import org.omnifaces.util.Messages;
 import org.primefaces.context.RequestContext;
 import org.primefaces.model.LazyDataModel;
 import uy.gub.dgr.sur.entity.Escribano;
-import uy.gub.dgr.sur.entity.Rnc;
+import uy.gub.dgr.sur.entity.Registro;
 import uy.gub.dgr.sur.idm.annotations.Admin;
 import uy.gub.dgr.sur.model.LazyEscribanoDataModel;
 import uy.gub.dgr.sur.service.EscribanoService;
@@ -64,7 +64,7 @@ public class EscribanoController implements Serializable {
 
     // Available RNC list
     @Getter
-    private List<Rnc> rncList;
+    private List<Registro> registroList;
     @Getter
     private SelectItem[] rncListOptions;
     @Getter
@@ -84,9 +84,9 @@ public class EscribanoController implements Serializable {
     public void init() {
         log.log(Level.INFO, "EscribanoController is initializing");
         lazyModel = new LazyEscribanoDataModel(das);
-        rncList = das.findWithNamedQuery(Rnc.ALL);
+        registroList = das.findWithNamedQuery(Registro.ALL);
         siNoListOptions = createSiNoFilterOptions();
-        rncListOptions = createRncFilterOptions(rncList);
+        rncListOptions = createRncFilterOptions(registroList);
     }
 
     /**
@@ -131,7 +131,7 @@ public class EscribanoController implements Serializable {
         }
     }
 
-    private SelectItem[] createRncFilterOptions(List<Rnc> data) {
+    private SelectItem[] createRncFilterOptions(List<Registro> data) {
         SelectItem[] options = null;
         if (CollectionUtils.isNotEmpty(data)) {
             options = new SelectItem[data.size() + 1];

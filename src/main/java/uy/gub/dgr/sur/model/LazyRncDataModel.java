@@ -4,7 +4,7 @@ package uy.gub.dgr.sur.model;
 import org.apache.commons.collections4.CollectionUtils;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
-import uy.gub.dgr.sur.entity.Rnc;
+import uy.gub.dgr.sur.entity.Registro;
 import uy.gub.dgr.sur.service.DataAccessService;
 
 import javax.persistence.criteria.*;
@@ -20,10 +20,10 @@ import java.util.Map;
  * For more information please visit http://www.primefaces.org/showcase-labs/ui/datatableLazy.jsf
  */
 
-public class LazyRncDataModel extends LazyDataModel<Rnc> implements Serializable {
+public class LazyRncDataModel extends LazyDataModel<Registro> implements Serializable {
 
     // Data Source for binding data to the DataTable
-    private List<Rnc> datasource;
+    private List<Registro> datasource;
     // Selected Page size in the DataTable
     private int pageSize;
     // Current row index number
@@ -53,17 +53,17 @@ public class LazyRncDataModel extends LazyDataModel<Rnc> implements Serializable
      * @return List<Zona>
      */
     @Override
-    public List<Rnc> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+    public List<Registro> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
         CriteriaBuilder criteriaBuilder = crudService.getCriteriaBuilder();
-        CriteriaQuery<Rnc> criteriaQuery = criteriaBuilder.createQuery(Rnc.class);
+        CriteriaQuery<Registro> criteriaQuery = criteriaBuilder.createQuery(Registro.class);
         Metamodel metamodel = crudService.getMetamodel();
-        EntityType<Rnc> entityType = metamodel.entity(Rnc.class);
-        Root<Rnc> from = criteriaQuery.from(entityType);
+        EntityType<Registro> entityType = metamodel.entity(Registro.class);
+        Root<Registro> from = criteriaQuery.from(entityType);
         List<Order> orders = new ArrayList<Order>();
 
         // count query
         CriteriaQuery<Long> cqCount = criteriaBuilder.createQuery(Long.class);
-        Root<Rnc> fromCount = cqCount.from(entityType);
+        Root<Registro> fromCount = cqCount.from(entityType);
         cqCount.select(criteriaBuilder.count(from));
 
         //Sorting
@@ -139,14 +139,14 @@ public class LazyRncDataModel extends LazyDataModel<Rnc> implements Serializable
     }
 
     /**
-     * Gets the Rnc object's primary key
+     * Gets the Registro object's primary key
      *
-     * @param rnc
+     * @param registro
      * @return Object
      */
     @Override
-    public Object getRowKey(Rnc rnc) {
-        return rnc.getId().toString();
+    public Object getRowKey(Registro registro) {
+        return registro.getId().toString();
     }
 
     /**
@@ -155,7 +155,7 @@ public class LazyRncDataModel extends LazyDataModel<Rnc> implements Serializable
      * @return
      */
     @Override
-    public Rnc getRowData() {
+    public Registro getRowData() {
         if (datasource == null)
             return null;
         int index = rowIndex % pageSize;
@@ -172,12 +172,12 @@ public class LazyRncDataModel extends LazyDataModel<Rnc> implements Serializable
      * @return
      */
     @Override
-    public Rnc getRowData(String rowKey) {
+    public Registro getRowData(String rowKey) {
         if (datasource == null)
             return null;
-        for (Rnc rnc : datasource) {
-            if (rnc.getId().toString().equals(rowKey))
-                return rnc;
+        for (Registro registro : datasource) {
+            if (registro.getId().toString().equals(rowKey))
+                return registro;
         }
         return null;
     }
@@ -270,7 +270,7 @@ public class LazyRncDataModel extends LazyDataModel<Rnc> implements Serializable
      */
     @Override
     public void setWrappedData(Object list) {
-        this.datasource = (List<Rnc>) list;
+        this.datasource = (List<Registro>) list;
     }
 }
                     

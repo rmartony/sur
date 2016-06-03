@@ -139,7 +139,7 @@ public class LazyEstructuraDataModel extends LazyDataModel<Estructura> implement
     }
 
     /**
-     * Gets the Rnc object's primary key
+     * Gets the Registro object's primary key
      *
      * @param estructura
      * @return Object

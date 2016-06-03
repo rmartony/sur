@@ -481,82 +481,80 @@ public class IDMInitializer {
     }
 
     public void initRnc() {
-        Rnc rnc = new Rnc();
-        //rnc.setId(2);
-        rnc.setSigla("RNCUNI");
-        rnc.setNombre("Unión");
-//        rncService.update(rnc);
-        rncService.create(rnc);
-        rnc = new Rnc();
-        //rnc.setId(3);
-        rnc.setSigla("RNCAGU");
-        rnc.setNombre("Aguada");
-//        rncService.update(rnc);
-        rncService.create(rnc);
-        rnc = new Rnc();
-        //rnc.setId(6);
-        rnc.setSigla("RNCCEN");
-        rnc.setNombre("Centro");
-//        rncService.update(rnc);
-        rncService.create(rnc);
-        rnc = new Rnc();
-        //rnc.setId(7);
-        rnc.setSigla("RNCCOR");
-        rnc.setNombre("Cordón");
-//        rncService.update(rnc);
-        rncService.create(rnc);
-        rnc = new Rnc();
-        //rnc.setId(8);
-        rnc.setSigla("RNCMLD");
-        rnc.setNombre("Maldonado");
-//        rncService.update(rnc);
-        rncService.create(rnc);
-        rnc = new Rnc();
-        //rnc.setId(9);
-        rnc.setSigla("RNCPAY");
-        rnc.setNombre("Paysandú");
-//        rncService.update(rnc);
-        rncService.create(rnc);
-        rnc = new Rnc();
-        //rnc.setId(10);
-        rnc.setSigla("RNCPAY2");
-        rnc.setNombre("Paysandú2");
-//        rncService.update(rnc);
-        rncService.create(rnc);
-        rnc = new Rnc();
-        //rnc.setId(11);
-        rnc.setSigla("RNCAGU2");
-        rnc.setNombre("Aguada2");
-//        rncService.update(rnc);
-        rncService.create(rnc);
-        rnc = new Rnc();
-        //rnc.setId(12);
-        rnc.setSigla("RNCMLD2");
-        rnc.setNombre("Maldonado2");
-//        rncService.update(rnc);
-        rncService.create(rnc);
-        rnc = new Rnc();
-        //rnc.setId(13);
-        rnc.setSigla("RNCCOR2");
-        rnc.setNombre("Cordon2");
-//        rncService.update(rnc);
-        rncService.create(rnc);
+        Registro registro = new Registro();
+        //registro.setId(2);
+        registro.setCodigo("RNCUNI");
+        registro.setNombre("Unión");
+//        rncService.update(registro);
+        rncService.create(registro);
+        registro = new Registro();
+        //registro.setId(3);
+        registro.setCodigo("RNCAGU");
+        registro.setNombre("Aguada");
+//        rncService.update(registro);
+        rncService.create(registro);
+        registro = new Registro();
+        //registro.setId(6);
+        registro.setCodigo("RNCCEN");
+        registro.setNombre("Centro");
+//        rncService.update(registro);
+        rncService.create(registro);
+        registro = new Registro();
+        //registro.setId(7);
+        registro.setCodigo("RNCCOR");
+        registro.setNombre("Cordón");
+//        rncService.update(registro);
+        rncService.create(registro);
+        registro = new Registro();
+        //registro.setId(8);
+        registro.setCodigo("RNCMLD");
+        registro.setNombre("Maldonado");
+//        rncService.update(registro);
+        rncService.create(registro);
+        registro = new Registro();
+        //registro.setId(9);
+        registro.setCodigo("RNCPAY");
+        registro.setNombre("Paysandú");
+//        rncService.update(registro);
+        rncService.create(registro);
+        registro = new Registro();
+        //registro.setId(10);
+        registro.setCodigo("RNCPAY2");
+        registro.setNombre("Paysandú2");
+//        rncService.update(registro);
+        rncService.create(registro);
+        registro = new Registro();
+        //registro.setId(11);
+        registro.setCodigo("RNCAGU2");
+        registro.setNombre("Aguada2");
+//        rncService.update(registro);
+        rncService.create(registro);
+        registro = new Registro();
+        //registro.setId(12);
+        registro.setCodigo("RNCMLD2");
+        registro.setNombre("Maldonado2");
+//        rncService.update(registro);
+        rncService.create(registro);
+        registro = new Registro();
+        //registro.setId(13);
+        registro.setCodigo("RNCCOR2");
+        registro.setNombre("Cordon2");
+//        rncService.update(registro);
+        rncService.create(registro);
     }
 
     private void initIp() {
-        Rnc rnc = new Rnc();
-        rnc.setId(2);
+        Registro registro = new Registro();
+        registro.setId(2);
 
         Escribano escribano = new Escribano();
         escribano.setCodigo(10);
-        escribano.setRnc(rnc);
         escribano.setNombre("Escribano 1");
         escribanoService.update(escribano);
 
 
         escribano = new Escribano();
         escribano.setCodigo(23);
-        escribano.setRnc(rnc);
         escribano.setNombre("Escribano 2 (deshabilitado)");
         escribano.setInhabilitadoFechaDesde(DateUtils.addDays(new Date(), -80));
         escribano.setInhabilitadoFechaHasta(new Date());
@@ -564,29 +562,25 @@ public class IDMInitializer {
 
         escribano = new Escribano();
         escribano.setCodigo(26);
-        escribano.setRnc(rnc);
         escribano.setNombre("Escribano 3");
         escribanoService.update(escribano);
 
         escribano = new Escribano();
         escribano.setCodigo(30);
-        escribano.setRnc(rnc);
         escribano.setNombre("Escribano 4");
         escribanoService.update(escribano);
 
-        rnc = new Rnc();
-        rnc.setId(3);
+        registro = new Registro();
+        registro.setId(3);
         escribano = new Escribano();
 
         escribano.setCodigo(35);
-        escribano.setRnc(rnc);
         escribano.setNombre("Escribano 5");
         escribanoService.update(escribano);
 
 
         escribano = new Escribano();
         escribano.setCodigo(38);
-        escribano.setRnc(rnc);
         escribano.setNombre("Escribano 6");
         escribanoService.update(escribano);
     }
