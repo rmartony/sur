@@ -30,6 +30,7 @@ public class HttpSecurityConfiguration {
                 .errorPage("/app/login.xhtml")
                 .restoreOriginalRequest()
                 .forPath("/logout")
+                .forPath("/app/logout")
                 .logout()
                 .redirectTo("/index.html");
     }

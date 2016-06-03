@@ -40,6 +40,10 @@
             <redirect/>
         </navigation-case>
         <navigation-case>
+            <from-outcome>acercaDe</from-outcome>
+            <to-view-id>/app/acercaDe.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
             <from-outcome>nodos3g</from-outcome>
             <to-view-id>/app/nodo3GList.xhtml</to-view-id>
         </navigation-case>

@@ -12,9 +12,6 @@
         <p:growl id="messages"/>
         <p:menubar>
             <p:submenu label="Sistema">
-                <p:menuitem value="Inicio" action="inicio" ajax="false"
-                            icon="ui-icon-home"/>
-
                 <p:menuitem value="Sitios" action="sitios" ajax="false"/>
                 <p:menuitem value="Nodos 3G" action="nodos3g" ajax="false"/>
                 <p:menuitem value="Nodos LTE" action="nodosLte" ajax="false"/>
@@ -63,12 +60,13 @@
                     <p:menuitem value="Tipo BTS" action="tipoBTS" ajax="false"/>
                     <p:menuitem value="Estructura" action="estructuras" ajax="false"/>
                     <p:separator/>
+                    <p:menuitem value="Zonas" action="zonas" ajax="false"/>
                 </c:if>
 
             </p:submenu>
 
             <p:submenu label="Ayuda">
-                <p:menuitem value="Zonas" action="zonas" ajax="false"/>
+                <p:menuitem value="Acerca de" action="acercaDe"/>
             </p:submenu>
 
         </p:menubar>
