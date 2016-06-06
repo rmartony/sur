@@ -19,19 +19,23 @@ import java.io.Serializable;
 @NamedQueries({
         @NamedQuery(name = Sede.ALL, query = "SELECT d FROM Sede d order by d.nombre"),
         @NamedQuery(name = Sede.BY_ID, query = "SELECT d FROM Sede d where d.id = :id"),
+        @NamedQuery(name = Sede.BY_CODIGO, query = "SELECT s FROM Sede s where s.codigo = :codigo"),
         @NamedQuery(name = Sede.BY_NAME, query = "SELECT d FROM Sede d where d.nombre = :nombre"),
         @NamedQuery(name = Sede.TOTAL, query = "SELECT COUNT(d) FROM Sede d")})
 @Cacheable
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"nombre"}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo"}))
 @Audited
 public class Sede extends BaseEntity implements Serializable {
     public final static String ALL = "Sede.all";
     public final static String BY_ID = "Sede.id";
+    public final static String BY_CODIGO = "Sede.codigo";
     public final static String BY_NAME = "Sede.name";
     public final static String TOTAL = "Sede.countTotal";
 
     @NotEmpty
+    private String codigo;
 
+    @NotEmpty
     private String nombre;
 
 }
