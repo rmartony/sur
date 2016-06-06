@@ -68,7 +68,7 @@ public class IDMInitializer {
     @Inject
     private transient NodoLteService nodoLteService;
     @Inject
-    private transient EstadoPreventivoService estadoPreventivoService;
+    private transient EstadoService estadoService;
     @Inject
     private transient UsuarioZonaService usuarioZonaService;
     @Inject
@@ -100,7 +100,7 @@ public class IDMInitializer {
             initTipoBTS();
             initTipoAntena();
             initTipoFeeder();
-            initEstadoPreventivo();
+            initEstado();
             initConfiguracion();
 
             initDatosPrueba();
@@ -796,19 +796,19 @@ public class IDMInitializer {
         torreroService.create(t);
     }
 
-    public void initEstadoPreventivo() {
+    public void initEstado() {
         Estado estado = new Estado();
         estado.setNombre("Bien");
-        estado.setSigla("B");
-        estadoPreventivoService.create(estado);
+        estado.setCodigo("B");
+        estadoService.create(estado);
         estado = new Estado();
         estado.setNombre("Mal");
-        estado.setSigla("M");
-        estadoPreventivoService.create(estado);
+        estado.setCodigo("M");
+        estadoService.create(estado);
         estado = new Estado();
         estado.setNombre("Reparado");
-        estado.setSigla("R");
-        estadoPreventivoService.create(estado);
+        estado.setCodigo("R");
+        estadoService.create(estado);
     }
 
     private String getRandomString() {
