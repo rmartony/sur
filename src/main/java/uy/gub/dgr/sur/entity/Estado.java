@@ -6,9 +6,7 @@ import lombok.EqualsAndHashCode;
 import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -23,6 +21,7 @@ import java.io.Serializable;
         @NamedQuery(name = Estado.ALL, query = "SELECT d FROM Estado d order by d.nombre"),
         @NamedQuery(name = Estado.BY_ID, query = "SELECT d FROM Estado d where d.id = :id"),
         @NamedQuery(name = Estado.TOTAL, query = "SELECT COUNT(d) FROM Estado d")})
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo"}))
 @Audited
 public class Estado extends BaseEntity implements Serializable {
     public final static String ALL = "Estado.all";
