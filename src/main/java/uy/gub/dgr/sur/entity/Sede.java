@@ -15,12 +15,12 @@ import java.io.Serializable;
  */
 @Entity
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = {"id", "descripcion"})
 @NamedQueries({
-        @NamedQuery(name = Sede.ALL, query = "SELECT d FROM Sede d order by d.nombre"),
+        @NamedQuery(name = Sede.ALL, query = "SELECT d FROM Sede d order by d.descripcion"),
         @NamedQuery(name = Sede.BY_ID, query = "SELECT d FROM Sede d where d.id = :id"),
         @NamedQuery(name = Sede.BY_CODIGO, query = "SELECT s FROM Sede s where s.codigo = :codigo"),
-        @NamedQuery(name = Sede.BY_NAME, query = "SELECT d FROM Sede d where d.nombre = :nombre"),
+        @NamedQuery(name = Sede.BY_DESCRIPCION, query = "SELECT d FROM Sede d where d.descripcion = :descripcion"),
         @NamedQuery(name = Sede.TOTAL, query = "SELECT COUNT(d) FROM Sede d")})
 @Cacheable
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo"}))
@@ -29,14 +29,14 @@ public class Sede extends BaseEntity implements Serializable {
     public final static String ALL = "Sede.all";
     public final static String BY_ID = "Sede.id";
     public final static String BY_CODIGO = "Sede.codigo";
-    public final static String BY_NAME = "Sede.name";
+    public final static String BY_DESCRIPCION = "Sede.descripcion";
     public final static String TOTAL = "Sede.countTotal";
 
     @NotEmpty
     private String codigo;
 
     @NotEmpty
-    private String nombre;
+    private String descripcion;
 
     @NotEmpty
     private int anio;

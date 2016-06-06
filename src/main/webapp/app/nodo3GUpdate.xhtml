@@ -42,7 +42,7 @@
                                                     completeMethod="#{nodo3GController.completeSitio}"
                                                     forceSelection="true"
                                                     var="s"
-                                                    itemLabel="#{s ne null ? s.sigla.concat(' - ').concat(s.nombre) : ''}"
+                                                    itemLabel="#{s ne null ? s.sigla.concat(' - ').concat(s.descripcion) : ''}"
                                                     itemValue="#{s}"
                                                     converter="genericMapConverter"
                                                     readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}">
@@ -50,7 +50,7 @@
                                             #{s.sigla}
                                         </p:column>
                                         <p:column headerText="Nombre">
-                                            #{s.nombre} #{s.sede.nombre}
+                                            #{s.descripcion} #{s.sede.descripcion}
                                         </p:column>
                                         <p:ajax event="itemSelect" update="sitioLink"/>
                                     </p:autoComplete>

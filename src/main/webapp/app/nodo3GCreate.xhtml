@@ -41,14 +41,14 @@
                                                     completeMethod="#{nodo3GController.completeSitio}"
                                                     forceSelection="true"
                                                     var="s"
-                                                    itemLabel="#{s ne null ? s.sigla.concat(' - ').concat(s.nombre) : ''}"
+                                                    itemLabel="#{s ne null ? s.sigla.concat(' - ').concat(s.descripcion) : ''}"
                                                     itemValue="#{s}"
                                                     converter="genericMapConverter">
                                         <p:column headerText="Sigla">
                                             #{s.sigla}
                                         </p:column>
                                         <p:column headerText="Nombre">
-                                            #{s.nombre} #{s.sede.nombre}
+                                            #{s.descripcion} #{s.sede.descripcion}
                                         </p:column>
                                         <p:ajax event="itemSelect" update="sitioLink"/>
                                     </p:autoComplete>
@@ -142,7 +142,7 @@
                                         <f:selectItem itemLabel="Seleccionar tipo de gabinete..."
                                                       noSelectionOption="true"/>
                                         <f:selectItems value="#{nodo3GController.tipoBTSList}" var="tipoBts"
-                                                       itemLabel="#{tipoBts.nombre}" itemValue="#{tipoBts}"/>
+                                                       itemLabel="#{tipoBts.descripcion}" itemValue="#{tipoBts}"/>
                                     </p:selectOneMenu>
                                 </p:column>
                             </p:row>
