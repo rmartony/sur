@@ -40,67 +40,67 @@ public class Preventivo extends BaseEntity implements Serializable {
 
     //@NotNull // TODO: quitar comentario
     @ManyToOne
-    private EstadoPreventivo alarmaPuerta;
+    private Estado alarmaPuerta;
 
     //@NotNull
     @ManyToOne
-    private EstadoPreventivo burletePuerta;
+    private Estado burletePuerta;
 
     //@NotNull
     @ManyToOne
-    private EstadoPreventivo cerraduraPuerta;
+    private Estado cerraduraPuerta;
 
     //@NotNull
     @ManyToOne
-    private EstadoPreventivo baterias;
+    private Estado baterias;
 
     //@NotNull
     @ManyToOne
-    private EstadoPreventivo cableadoYConectores;
+    private Estado cableadoYConectores;
 
     //@NotNull
     @ManyToOne
-    private EstadoPreventivo cableadoYConectorEth;
+    private Estado cableadoYConectorEth;
 
     //@NotNull
     @ManyToOne
-    private EstadoPreventivo estadoFiltro;
+    private Estado estadoFiltro;
 
     //@NotNull
     @ManyToOne
-    private EstadoPreventivo limpieza;
+    private Estado limpieza;
 
     //@NotNull
     @ManyToOne
-    private EstadoPreventivo seguridad;
+    private Estado seguridad;
 
     //@NotNull
     @ManyToOne
-    private EstadoPreventivo balizas;
+    private Estado balizas;
 
     //@NotNull
     @ManyToOne
-    private EstadoPreventivo cableFeederJumpers;
+    private Estado cableFeederJumpers;
 
     //@NotNull
     @ManyToOne
-    private EstadoPreventivo conectores;
+    private Estado conectores;
 
     //@NotNull
     @ManyToOne
-    private EstadoPreventivo aterramientos;
+    private Estado aterramientos;
 
     //@NotNull
     @ManyToOne
-    private EstadoPreventivo tma;
+    private Estado tma;
 
     //@NotNull
     @ManyToOne
-    private EstadoPreventivo rrh;
+    private Estado rrh;
 
     //@NotNull
     @ManyToOne
-    private EstadoPreventivo encintados;
+    private Estado encintados;
 
     @Lob
     @Column(columnDefinition = "text")

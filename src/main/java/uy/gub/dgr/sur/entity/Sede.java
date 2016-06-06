@@ -38,4 +38,7 @@ public class Sede extends BaseEntity implements Serializable {
     @NotEmpty
     private String nombre;
 
+    @NotEmpty
+    private int anio;
+
 }

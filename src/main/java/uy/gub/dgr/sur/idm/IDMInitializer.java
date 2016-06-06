@@ -797,18 +797,18 @@ public class IDMInitializer {
     }
 
     public void initEstadoPreventivo() {
-        EstadoPreventivo estadoPreventivo = new EstadoPreventivo();
-        estadoPreventivo.setNombre("Bien");
-        estadoPreventivo.setSigla("B");
-        estadoPreventivoService.create(estadoPreventivo);
-        estadoPreventivo = new EstadoPreventivo();
-        estadoPreventivo.setNombre("Mal");
-        estadoPreventivo.setSigla("M");
-        estadoPreventivoService.create(estadoPreventivo);
-        estadoPreventivo = new EstadoPreventivo();
-        estadoPreventivo.setNombre("Reparado");
-        estadoPreventivo.setSigla("R");
-        estadoPreventivoService.create(estadoPreventivo);
+        Estado estado = new Estado();
+        estado.setNombre("Bien");
+        estado.setSigla("B");
+        estadoPreventivoService.create(estado);
+        estado = new Estado();
+        estado.setNombre("Mal");
+        estado.setSigla("M");
+        estadoPreventivoService.create(estado);
+        estado = new Estado();
+        estado.setNombre("Reparado");
+        estado.setSigla("R");
+        estadoPreventivoService.create(estado);
     }
 
     private String getRandomString() {

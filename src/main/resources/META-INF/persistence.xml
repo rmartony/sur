@@ -12,7 +12,7 @@
         <class>uy.gub.dgr.sur.entity.NodoLte</class>
         <class>uy.gub.dgr.sur.entity.Nodo3G</class>
         <class>uy.gub.dgr.sur.entity.Preventivo</class>
-        <class>uy.gub.dgr.sur.entity.EstadoPreventivo</class>
+        <class>uy.gub.dgr.sur.entity.Estado</class>
         <class>uy.gub.dgr.sur.entity.Celda</class>
         <class>uy.gub.dgr.sur.entity.Celda3G</class>
         <class>uy.gub.dgr.sur.entity.CeldaLte</class>

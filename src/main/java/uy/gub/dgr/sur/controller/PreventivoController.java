@@ -90,7 +90,7 @@ public class PreventivoController extends BaseController {
     private LazyDataModel<UltimoPreventivo> ultimoPreventivoLazyModel;
     // Available RNC list
     @Getter
-    private List<EstadoPreventivo> estadoPreventivoList;
+    private List<Estado> estadoList;
     @Getter
     @Setter
     private DualListModel<Torrero> pickList = new DualListModel<>(new ArrayList<Torrero>(), new ArrayList<Torrero>());
@@ -147,7 +147,7 @@ public class PreventivoController extends BaseController {
 
         lazyModel = new LazyPreventivoDataModel(das, username, zonaList, getPrefijoRutaFotos());
         ultimoPreventivoLazyModel = new LazyUltimoPreventivoDataModel(das, username, zonaList);
-        estadoPreventivoList = das.findWithNamedQuery(EstadoPreventivo.ALL);
+        estadoList = das.findWithNamedQuery(Estado.ALL);
         torreroList = das.findWithNamedQuery(Torrero.ALL);
 
         initPickList();

@@ -1,6 +1,6 @@
 package uy.gub.dgr.sur.service;
 
-import uy.gub.dgr.sur.entity.EstadoPreventivo;
+import uy.gub.dgr.sur.entity.Estado;
 
 import javax.ejb.Stateless;
 
@@ -9,9 +9,9 @@ import javax.ejb.Stateless;
  */
 
 @Stateless
-public class EstadoPreventivoService extends DataAccessService<EstadoPreventivo> {
+public class EstadoPreventivoService extends DataAccessService<Estado> {
 
     public EstadoPreventivoService() {
-        super(EstadoPreventivo.class);
+        super(Estado.class);
     }
 }
