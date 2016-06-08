@@ -247,7 +247,7 @@ public class Nodo3GController extends BaseController {
 
             options[0] = new SelectItem("", "Seleccionar");
             for (int i = 0; i < data.size(); i++) {
-                options[i + 1] = new SelectItem(data.get(i).getNombre(), data.get(i).getNombre());
+                options[i + 1] = new SelectItem(data.get(i).getDescripcion(), data.get(i).getDescripcion());
             }
         }
         return options;
