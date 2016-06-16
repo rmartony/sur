@@ -15,7 +15,7 @@ import java.io.Serializable;
  */
 @Entity
 @Data
-@EqualsAndHashCode(callSuper = true, exclude = {"id", "descripcion"})
+@EqualsAndHashCode(callSuper = true, exclude = {"descripcion"})
 @NamedQueries({
         @NamedQuery(name = Sede.ALL, query = "SELECT d FROM Sede d order by d.descripcion"),
         @NamedQuery(name = Sede.BY_ID, query = "SELECT d FROM Sede d where d.id = :id"),

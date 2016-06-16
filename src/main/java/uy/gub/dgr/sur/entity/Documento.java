@@ -19,16 +19,14 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true, exclude = {"estado", "tipoDocumento"})
 @NamedQueries({
         @NamedQuery(name = Documento.ID, query = "SELECT d FROM Documento d where d.id = :id"),
-        @NamedQuery(name = Documento.BY_CODIGO, query = "SELECT d FROM Documento d where d.codigo = :codigo"),
-        @NamedQuery(name = Documento.ALL, query = "SELECT d FROM Documento d order by d.nombre")
+        @NamedQuery(name = Documento.ALL, query = "SELECT d FROM Documento d order by d.fecha desc")
 })
 @Cacheable
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"registro", "sede", "anio", "numero", "bis"}))
 @Audited
 public class Documento extends BaseEntity implements Serializable {
-    public final static String ID = "Tasa.id";
-    public final static String BY_CODIGO = "Tasa.codigo";
-    public final static String ALL = "Tasa.all";
+    public final static String ID = "Documento.id";
+    public final static String ALL = "Documento.all";
     String ficha;
     Date fechaResolucion;
     String autos;

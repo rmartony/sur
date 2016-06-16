@@ -16,7 +16,7 @@ import java.io.Serializable;
  */
 @Entity
 @Data
-@EqualsAndHashCode(callSuper = true, exclude = {"id", "descripcion"})
+@EqualsAndHashCode(callSuper = true, exclude = {"nombre", "descripcion"})
 @NamedQueries({
         @NamedQuery(name = Exonera.ALL, query = "SELECT d FROM Exonera d order by d.descripcion"),
         @NamedQuery(name = Exonera.BY_ID, query = "SELECT d FROM Exonera d where d.id = :id"),
