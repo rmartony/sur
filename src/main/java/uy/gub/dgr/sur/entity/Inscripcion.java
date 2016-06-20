@@ -31,6 +31,10 @@ public class Inscripcion extends BaseEntity implements Serializable {
     Acto acto;
     @ManyToOne
     private Estado estado; // calificacion
+    @ManyToOne
+    private Movimiento movimiento;
+
+
 
 
 }
