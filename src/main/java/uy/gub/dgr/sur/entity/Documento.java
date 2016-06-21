@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * User: rmartony
@@ -28,6 +29,7 @@ public class Documento extends BaseEntity implements Serializable {
     public final static String ID = "Documento.id";
     public final static String ALL = "Documento.all";
     String ficha;
+    @Temporal(TemporalType.DATE)
     Date fechaResolucion;
     String autos;
     String observaciones;
@@ -37,6 +39,8 @@ public class Documento extends BaseEntity implements Serializable {
     Tasa tasa;
     @ManyToOne
     Exoneracion exoneracion;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "documento")
+    List<Inscripcion> inscripcionList;
     @ManyToOne
     private Registro registro;
     @ManyToOne
@@ -44,6 +48,7 @@ public class Documento extends BaseEntity implements Serializable {
     private int anio;
     private int numero;
     private short bis;
+    @Temporal(TemporalType.DATE)
     private Date fecha;
     @ManyToOne
     private Estado estado;
@@ -57,5 +62,6 @@ public class Documento extends BaseEntity implements Serializable {
     private Emisor emisor;
     @ManyToOne
     private Escribano escribano;
+
 
 }

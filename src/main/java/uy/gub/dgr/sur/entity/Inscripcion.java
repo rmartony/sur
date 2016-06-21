@@ -21,20 +21,24 @@ import java.io.Serializable;
 })
 @Cacheable
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"registro", "sede", "anio", "numero", "bis"}))
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "TIPO_INSCRIPCION")
 @Audited
 public class Inscripcion extends BaseEntity implements Serializable {
     public final static String ID = "Inscripcion.id";
     public final static String ALL = "Inscripcion.all";
 
-    int ordinal;
+    private int ordinal;
     @ManyToOne
-    Acto acto;
+    private Acto acto;
     @ManyToOne
     private Estado estado; // calificacion
     @ManyToOne
     private Movimiento movimiento;
+    @ManyToOne
+    private Monto monto;
 
-
-
+    @ManyToOne
+    private Documento documento;
 
 }

@@ -51,7 +51,7 @@
           <element id="library" level="project" name="Maven: org.olap4j:olap4j:0.9.7.309-JS-3" />
           <element id="library" level="project" name="Maven: com.google.zxing:core:2.3.0" />
           <element id="library" level="project" name="Maven: com.ibm.icu:icu4j:57.1" />
-          <element id="library" level="project" name="Maven: org.codehaus.groovy:groovy-all:2.4.6" />
+          <element id="library" level="project" name="Maven: org.codehaus.groovy:groovy-all:2.4.7" />
           <element id="library" level="project" name="Maven: org.picketlink:picketlink-api:2.7.1.Final" />
           <element id="library" level="project" name="Maven: org.picketlink:picketlink-impl:2.7.1.Final" />
           <element id="library" level="project" name="Maven: org.picketlink:picketlink-common:2.7.1.Final" />
