@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * User: rmartony
@@ -19,17 +20,16 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true, exclude = {"estado", "tipoDocumento"})
 @NamedQueries({
         @NamedQuery(name = Documento.ID, query = "SELECT d FROM Documento d where d.id = :id"),
-        @NamedQuery(name = Documento.BY_CODIGO, query = "SELECT d FROM Documento d where d.codigo = :codigo"),
-        @NamedQuery(name = Documento.ALL, query = "SELECT d FROM Documento d order by d.nombre")
+        @NamedQuery(name = Documento.ALL, query = "SELECT d FROM Documento d order by d.fecha desc")
 })
 @Cacheable
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"registro", "sede", "anio", "numero", "bis"}))
 @Audited
 public class Documento extends BaseEntity implements Serializable {
-    public final static String ID = "Tasa.id";
-    public final static String BY_CODIGO = "Tasa.codigo";
-    public final static String ALL = "Tasa.all";
+    public final static String ID = "Documento.id";
+    public final static String ALL = "Documento.all";
     String ficha;
+    @Temporal(TemporalType.DATE)
     Date fechaResolucion;
     String autos;
     String observaciones;
@@ -39,6 +39,8 @@ public class Documento extends BaseEntity implements Serializable {
     Tasa tasa;
     @ManyToOne
     Exoneracion exoneracion;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "documento")
+    List<Inscripcion> inscripcionList;
     @ManyToOne
     private Registro registro;
     @ManyToOne
@@ -46,6 +48,7 @@ public class Documento extends BaseEntity implements Serializable {
     private int anio;
     private int numero;
     private short bis;
+    @Temporal(TemporalType.DATE)
     private Date fecha;
     @ManyToOne
     private Estado estado;
@@ -59,5 +62,6 @@ public class Documento extends BaseEntity implements Serializable {
     private Emisor emisor;
     @ManyToOne
     private Escribano escribano;
+
 
 }
