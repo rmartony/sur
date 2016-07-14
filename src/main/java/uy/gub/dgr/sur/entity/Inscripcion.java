@@ -38,7 +38,12 @@ public class Inscripcion extends BaseEntity implements Serializable {
     @ManyToOne
     private Monto monto;
 
+    private String observacion;
+
     @ManyToOne
-    private Documento documento;
+    private Documento documento; // es para poder acceder a un documento dada la inscripción
+
+
+
 
 }

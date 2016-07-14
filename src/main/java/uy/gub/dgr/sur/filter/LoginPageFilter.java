@@ -30,7 +30,7 @@ public class LoginPageFilter implements Filter {
                 navigateString = "app/admin/adminHome.xhtml";
             } else if (request.isUserInRole("Calificacion")) {
                 navigateString = "app/cliente/clienteHome.xhtml";
-            } else if (request.isUserInRole("Completado")) {
+            } else if (request.isUserInRole("Maestro")) {
                 navigateString = "app/consola/consolaHome.xhtml";
             }
             response.sendRedirect(request.getContextPath() + navigateString);

@@ -11,7 +11,6 @@ import org.picketlink.Identity;
 import org.picketlink.idm.IdentityManager;
 import org.picketlink.idm.RelationshipManager;
 import uy.gub.dgr.sur.idm.annotations.Admin;
-import uy.gub.dgr.sur.idm.annotations.Completado;
 import uy.gub.dgr.sur.idm.annotations.Verificacion;
 
 import javax.enterprise.context.ApplicationScoped;

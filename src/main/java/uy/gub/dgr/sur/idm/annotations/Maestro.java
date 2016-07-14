@@ -19,6 +19,6 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Documented
 @SecurityBindingType
-public @interface Completado {
+public @interface Maestro {
 
 }
