@@ -34,7 +34,7 @@ public class Seccion extends BaseEntity implements Serializable {
     @NotEmpty
     private String codigo;
 
-    @OneToOne
+    @ManyToOne
     private Registro registro;
 
     @NotEmpty

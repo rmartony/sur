@@ -17,7 +17,7 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NamedQueries({
-        @NamedQuery(name = Movimiento.ALL, query = "SELECT r FROM Movimiento r order by r.nombre"),
+        @NamedQuery(name = Movimiento.ALL, query = "SELECT r FROM Movimiento r order by r.codigo"),
         @NamedQuery(name = Movimiento.BY_ID, query = "SELECT r FROM Movimiento r where r.id = :id"),
         @NamedQuery(name = Movimiento.BY_CODIGO, query = "SELECT r FROM Movimiento r where r.codigo = :codigo"),
         @NamedQuery(name = Movimiento.BY_NAME, query = "SELECT r FROM Movimiento r where r.descripcion = :descripcion"),
@@ -36,5 +36,7 @@ public class Movimiento extends BaseEntity implements Serializable {
 
     @NotEmpty
     private String descripcion;
+
+    private String accion;
 
 }

@@ -33,7 +33,7 @@ public class Acto extends BaseEntity implements Serializable {
     @NotEmpty
     private String descripcion;
 
-    @OneToOne
+    @ManyToOne
     private Seccion seccion;
 
     private String duracion;

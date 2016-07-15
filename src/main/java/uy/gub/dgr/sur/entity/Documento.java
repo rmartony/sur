@@ -32,8 +32,8 @@ public class Documento extends BaseEntity implements Serializable {
     @Temporal(TemporalType.DATE)
     Date fechaResolucion;
     String autos;
-    String observaciones;
-    String observacionesDgr;
+    String observacion;
+    String observacionDgr;
     @ManyToOne
     @NotNull
     Tasa tasa;
