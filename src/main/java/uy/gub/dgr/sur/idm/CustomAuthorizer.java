@@ -11,6 +11,7 @@ import org.picketlink.Identity;
 import org.picketlink.idm.IdentityManager;
 import org.picketlink.idm.RelationshipManager;
 import uy.gub.dgr.sur.idm.annotations.Admin;
+import uy.gub.dgr.sur.idm.annotations.Maestro;
 import uy.gub.dgr.sur.idm.annotations.Verificacion;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -43,7 +44,7 @@ public class CustomAuthorizer {
 
     /**
      * This method is used to check
-     * if classes and methods annotated with {@link Completado} can perform
+     * if classes and methods annotated with {@link Maestro} can perform
      * the operation or not
      *
      * @param identity        The Identity bean, representing the currently authenticated user
@@ -52,7 +53,7 @@ public class CustomAuthorizer {
      * @throws Exception
      */
     @Secures
-    @Completado
+    @Maestro
     public boolean doConsolaCheck(Identity identity, IdentityManager identityManager, RelationshipManager relationshipManager) throws Exception {
         return hasRole(relationshipManager, identity.getAccount(), getRole(identityManager, "completado")) ||
                 hasRole(relationshipManager, identity.getAccount(), getRole(identityManager, "admin"));
