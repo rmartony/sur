@@ -72,8 +72,8 @@
             <to-view-id>/app/tipoFeederList.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>tipoBTS</from-outcome>
-            <to-view-id>/app/tipoBTSList.xhtml</to-view-id>
+            <from-outcome>interviniente</from-outcome>
+            <to-view-id>/app/intervinienteList.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-outcome>zonas</from-outcome>

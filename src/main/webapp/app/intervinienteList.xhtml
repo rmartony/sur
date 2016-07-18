@@ -9,8 +9,9 @@
 <ui:composition template="/templates/fullLayout.xhtml">
     <ui:define name="content">
         <h:form id="form">
-            <p:dataTable id="dataTable" var="item" value="#{tipoBTSController.lazyModel}" styleClass="dataTableStyle"
-                         paginator="true" rows="10" selection="#{tipoBTSController.selectedItems}"
+            <p:dataTable id="dataTable" var="item" value="#{intervinienteController.lazyModel}"
+                         styleClass="dataTableStyle"
+                         paginator="true" rows="10" selection="#{intervinienteController.selectedItems}"
                          emptyMessage="#{msg.noRecordsFound}"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          lazy="true" rowsPerPageTemplate="10,25,50">
@@ -21,16 +22,16 @@
                     <p:commandButton icon="ui-icon-search" update=":itemDetailForm:display"
                                      title="Ver"
                                      oncomplete="PF('itemDialog').show()"
-                                     actionListener="#{tipoBTSController.doView}">
-                        <f:setPropertyActionListener value="#{item}" target="#{tipoBTSController.selectedItem}"/>
+                                     actionListener="#{intervinienteController.doView}">
+                        <f:setPropertyActionListener value="#{item}" target="#{intervinienteController.selectedItem}"/>
                     </p:commandButton>
                 </p:column>
                 <p:column style="width:22px" rendered="#{authorizationChecker.admin}">
                     <p:commandButton icon="ui-icon-pencil" update=":itemDetailForm:display"
                                      title="Modificar"
                                      oncomplete="PF('itemDialog').show()"
-                                     actionListener="#{tipoBTSController.doUpdate}">
-                        <f:setPropertyActionListener value="#{item}" target="#{tipoBTSController.selectedItem}"/>
+                                     actionListener="#{intervinienteController.doUpdate}">
+                        <f:setPropertyActionListener value="#{item}" target="#{intervinienteController.selectedItem}"/>
                     </p:commandButton>
                 </p:column>
 
@@ -41,7 +42,7 @@
                     </f:facet>
                     <p:commandLink value="#{item.modelo}" update=":itemDetailForm:display"
                                    oncomplete="PF('itemDialog').show()" title="Ver">
-                        <f:setPropertyActionListener value="#{item}" target="#{tipoBTSController.selectedItem}"/>
+                        <f:setPropertyActionListener value="#{item}" target="#{intervinienteController.selectedItem}"/>
                     </p:commandLink>
                 </p:column>
 
@@ -60,24 +61,25 @@
                 </p:column>
 
                 <f:facet name="footer">
-                    <p:commandButton value="Nuevo Tipo BTS" oncomplete="PF('newItemDialog').show()" icon="ui-icon-star"
-                                     title="Crear nuevo Tipo BTS" rendered="#{authorizationChecker.admin}"/>
-                    <p:commandButton value="Modificar Tipo BTS" action="#{tipoBTSController.doUpdate}"
+                    <p:commandButton value="Nuevo Interviniente" oncomplete="PF('newItemDialog').show()"
+                                     icon="ui-icon-star"
+                                     title="Crear nuevo Interviniente" rendered="#{authorizationChecker.admin}"/>
+                    <p:commandButton value="Modificar Interviniente" action="#{intervinienteController.doUpdate}"
                                      update=":itemDetailForm:display"
                                      icon="ui-icon-pencil"
-                                     title="Modificar Tipo BTS"
+                                     title="Modificar Interviniente"
                                      oncomplete="if (!args.validationFailed) {PF('itemDialog').show()}"
                                      rendered="#{authorizationChecker.admin}">
-                        <f:setPropertyActionListener value="#{null}" target="#{tipoBTSController.selectedItem}"/>
+                        <f:setPropertyActionListener value="#{null}" target="#{intervinienteController.selectedItem}"/>
                     </p:commandButton>
-                    <p:commandButton value="Ver Tipo BTS" action="#{tipoBTSController.doView}"
+                    <p:commandButton value="Ver Interviniente" action="#{intervinienteController.doView}"
                                      update=":itemDetailForm:display"
                                      icon="ui-icon-search"
-                                     title="Ver Tipo BTS"
+                                     title="Ver Interviniente"
                                      oncomplete="if (!args.validationFailed) {PF('itemDialog').show()}">
-                        <f:setPropertyActionListener value="#{null}" target="#{tipoBTSController.selectedItem}"/>
+                        <f:setPropertyActionListener value="#{null}" target="#{intervinienteController.selectedItem}"/>
                     </p:commandButton>
-                    <p:commandButton value="Eliminar Tipo BTS" actionListener="#{tipoBTSController.doDelete}"
+                    <p:commandButton value="Eliminar Interviniente" actionListener="#{intervinienteController.doDelete}"
                                      update="dataTable" icon="ui-icon-trash" rendered="#{authorizationChecker.admin}">
                         <p:confirm header="Confirmación" message="#{msg.askConfirmAction}"
                                    icon="ui-icon-alert"/>
@@ -86,55 +88,56 @@
             </p:dataTable>
         </h:form>
 
-        <p:dialog header="Detalle de Tipo BTS" widgetVar="itemDialog" resizable="false" id="itemDlg">
+        <p:dialog header="Detalle de Interviniente" widgetVar="itemDialog" resizable="false" id="itemDlg">
             <h:form id="itemDetailForm">
                 <p:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">
                     <p:outputLabel for="displayModelo" value="Modelo:"/>
-                    <p:inputText id="displayModelo" value="#{tipoBTSController.selectedItem.modelo}" required="true"
+                    <p:inputText id="displayModelo" value="#{intervinienteController.selectedItem.modelo}"
+                                 required="true"
                                  requiredMessage="Por favor ingresar modelo"
-                                 readonly="#{not authorizationChecker.admin or tipoBTSController.readOnly}"/>
+                                 readonly="#{not authorizationChecker.admin or intervinienteController.readOnly}"/>
 
                     <p:outputLabel value="Nombre:"/>
-                    <p:inputText value="#{tipoBTSController.selectedItem.nombre}"
-                                 readonly="#{not authorizationChecker.admin or tipoBTSController.readOnly}"/>
+                    <p:inputText value="#{intervinienteController.selectedItem.nombre}"
+                                 readonly="#{not authorizationChecker.admin or intervinienteController.readOnly}"/>
 
                     <p:outputLabel value="Observaciones:"/>
-                    <p:inputText value="#{tipoBTSController.selectedItem.observaciones}"
-                                 readonly="#{not authorizationChecker.admin or tipoBTSController.readOnly}"/>
+                    <p:inputText value="#{intervinienteController.selectedItem.observaciones}"
+                                 readonly="#{not authorizationChecker.admin or intervinienteController.readOnly}"/>
 
                     <f:facet name="footer">
                         <p:commandButton value="Actualizar" update=":form:dataTable, :growl"
                                          oncomplete="handleSubmitRequest(xhr, status, args, 'itemDlg','itemDetailForm'); "
-                                         action="#{tipoBTSController.doConfirmUpdate}"
-                                         rendered="#{authorizationChecker.admin and not tipoBTSController.readOnly}"/>
+                                         action="#{intervinienteController.doConfirmUpdate}"
+                                         rendered="#{authorizationChecker.admin and not intervinienteController.readOnly}"/>
                         <p:commandButton value="Cancelar" onclick="itemDialog.hide()"
                                          immediate="true"
-                                         rendered="#{authorizationChecker.admin and not tipoBTSController.readOnly}"/>
+                                         rendered="#{authorizationChecker.admin and not intervinienteController.readOnly}"/>
                         <p:commandButton value="Aceptar" onclick="itemDialog.hide()"
                                          immediate="true"
-                                         rendered="#{not authorizationChecker.admin and tipoBTSController.readOnly}"/>
+                                         rendered="#{not authorizationChecker.admin and intervinienteController.readOnly}"/>
                     </f:facet>
                 </p:panelGrid>
             </h:form>
         </p:dialog>
 
-        <p:dialog header="Crear nuevo Tipo BTS" widgetVar="newItemDialog" resizable="false" id="newItemDlg">
+        <p:dialog header="Crear nuevo Interviniente" widgetVar="newItemDialog" resizable="false" id="newItemDlg">
             <h:form id="newItemForm">
                 <p:panelGrid id="displayNewTipoAntena" columns="2" cellpadding="4" style="margin:0 auto;">
                     <p:outputLabel for="newItemModelo" value="Modelo:"/>
-                    <p:inputText id="newItemModelo" value="#{tipoBTSController.newItem.modelo}" required="true"
+                    <p:inputText id="newItemModelo" value="#{intervinienteController.newItem.modelo}" required="true"
                                  requiredMessage="Por favor ingresar modelo"/>
 
                     <p:outputLabel value="Nombre:"/>
-                    <p:inputText value="#{tipoBTSController.newItem.nombre}"/>
+                    <p:inputText value="#{intervinienteController.newItem.nombre}"/>
 
                     <p:outputLabel value="Observaciones:"/>
-                    <p:inputText value="#{tipoBTSController.newItem.observaciones}"/>
+                    <p:inputText value="#{intervinienteController.newItem.observaciones}"/>
 
                     <f:facet name="footer">
                         <p:commandButton value="Confirmar" update=":form:dataTable, :growl"
                                          oncomplete="handleSubmitRequest(xhr, status, args, 'newItemDlg','newItemForm');"
-                                         actionListener="#{tipoBTSController.doCreate}"/>
+                                         actionListener="#{intervinienteController.doCreate}"/>
                         <p:commandButton value="Cancelar" onclick="newItemDlg.hide()"
                                          immediate="true"/>
                     </f:facet>

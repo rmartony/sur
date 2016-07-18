@@ -139,15 +139,16 @@
                             <p:row>
                                 <p:column> <p:outputLabel for="tipoDeGabinete" value="Tipo de gabinete:"/> </p:column>
                                 <p:column>
-                                    <p:selectOneMenu id="tipoDeGabinete" value="#{nodo3GController.item.tipoBTS}"
+                                    <p:selectOneMenu id="tipoDeGabinete" value="#{nodo3GController.item.interviniente}"
                                                      required="true"
                                                      requiredMessage="Por favor ingrese tipo de gabinete"
                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodo3GController.readOnly}">
                                         <o:converter converterId="entityListConverter"
-                                                     list="#{nodo3GController.tipoBTSList}"/>
+                                                     list="#{nodo3GController.intervinienteList}"/>
                                         <f:selectItem itemLabel="Seleccionar tipo de gabinete..."
                                                       noSelectionOption="true"/>
-                                        <f:selectItems value="#{nodo3GController.tipoBTSList}" var="tipoDeGabinete"
+                                        <f:selectItems value="#{nodo3GController.intervinienteList}"
+                                                       var="tipoDeGabinete"
                                                        itemLabel="#{tipoDeGabinete.nombre}"
                                                        itemValue="#{tipoDeGabinete}"/>
                                     </p:selectOneMenu>

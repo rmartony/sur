@@ -12,10 +12,10 @@ import org.apache.commons.collections.CollectionUtils;
 import org.omnifaces.util.Messages;
 import org.primefaces.context.RequestContext;
 import org.primefaces.model.LazyDataModel;
-import uy.gub.dgr.sur.entity.TipoBTS;
+import uy.gub.dgr.sur.entity.Interviniente;
 import uy.gub.dgr.sur.idm.annotations.Admin;
-import uy.gub.dgr.sur.model.LazyTipoBTSDataModel;
-import uy.gub.dgr.sur.service.TipoBTSService;
+import uy.gub.dgr.sur.model.LazyIntervinienteDataModel;
+import uy.gub.dgr.sur.service.IntervinienteService;
 import uy.gub.dgr.sur.util.ConstraintViolationInterceptor;
 
 import javax.annotation.PostConstruct;
@@ -37,34 +37,34 @@ import java.util.logging.Logger;
 @Named
 @SessionScoped
 @Interceptors(value = ConstraintViolationInterceptor.class)
-public class TipoBTSController extends BaseController {
+public class IntervinienteController extends BaseController {
     private
     @Inject
     transient Logger log;
     @Inject
     private transient ResourceBundle msg;
     @Inject
-    private transient TipoBTSService das;
+    private transient IntervinienteService das;
     // Selected users that will be removed
     @Getter
     @Setter
-    private TipoBTS[] selectedItems;
+    private Interviniente[] selectedItems;
     // Creating new zona
     @Getter
     @Setter
-    private TipoBTS newItem = new TipoBTS();
+    private Interviniente newItem = new Interviniente();
     // Selected user that will be updated
     @Getter
     @Setter
-    private TipoBTS selectedItem = new TipoBTS();
+    private Interviniente selectedItem = new Interviniente();
     // Lazy loading user list
     @Getter
-    private LazyDataModel<TipoBTS> lazyModel;
+    private LazyDataModel<Interviniente> lazyModel;
 
     /**
      * Default constructor
      */
-    public TipoBTSController() {
+    public IntervinienteController() {
     }
 
     /**
@@ -73,8 +73,8 @@ public class TipoBTSController extends BaseController {
      */
     @PostConstruct
     public void init() {
-        log.log(Level.INFO, "TipoBTSController is initializing");
-        lazyModel = new LazyTipoBTSDataModel(das);
+        log.log(Level.INFO, "IntervinienteController is initializing");
+        lazyModel = new LazyIntervinienteDataModel(das);
     }
 
     /**
@@ -84,7 +84,7 @@ public class TipoBTSController extends BaseController {
     public void doCreate() {
         setMode(ControllerMode.CREATE);
         das.create(newItem);
-        newItem = new TipoBTS();
+        newItem = new Interviniente();
     }
 
     /**
@@ -93,7 +93,7 @@ public class TipoBTSController extends BaseController {
     @Admin
     public void doConfirmUpdate() {
         das.update(selectedItem);
-        Messages.addFlashInfo(null, "Tipo BTS actualizado con éxito.");
+        Messages.addFlashInfo(null, "Interviniente actualizado con éxito.");
     }
 
     public void doUpdate() {
@@ -134,11 +134,11 @@ public class TipoBTSController extends BaseController {
         }
     }
 
-    private boolean isSafe2Delete(TipoBTS[] selectedItems) {
-        List<TipoBTS> tipoBTSList = Arrays.asList(selectedItems);
+    private boolean isSafe2Delete(Interviniente[] selectedItems) {
+        List<Interviniente> intervinienteList = Arrays.asList(selectedItems);
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("tipoBTSList", tipoBTSList);
-        List<String> nodos = das.findWithNamedQuery(TipoBTS.EXISTS_IN_NODO, parameters, 50);
+        parameters.put("intervinienteList", intervinienteList);
+        List<String> nodos = das.findWithNamedQuery(Interviniente.EXISTS_IN_NODO, parameters, 50);
         if (CollectionUtils.isNotEmpty(nodos)) {
             StringBuilder builder = new StringBuilder();
             for (String nodo : nodos) {

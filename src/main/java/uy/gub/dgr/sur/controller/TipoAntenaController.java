@@ -135,9 +135,9 @@ public class TipoAntenaController extends BaseController {
     }
 
     private boolean isSafe2Delete(TipoAntena[] selectedItems) {
-        List<TipoAntena> tipoBTSList = Arrays.asList(selectedItems);
+        List<TipoAntena> intervinienteList = Arrays.asList(selectedItems);
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("tipoAntenaList", tipoBTSList);
+        parameters.put("tipoAntenaList", intervinienteList);
         List<Nodo> nodos = das.findWithNamedQuery(TipoAntena.EXISTS_IN_CELDA_3G, parameters, 50);
         if (CollectionUtils.isNotEmpty(nodos)) {
             StringBuilder builder = new StringBuilder();

@@ -82,7 +82,7 @@ public class Nodo3GController extends BaseController {
 */
 
     @Getter
-    private List<TipoBTS> tipoBTSList;
+    private List<Interviniente> intervinienteList;
 /*
     @Getter
     private SelectItem[] rncListOptions;
@@ -106,7 +106,7 @@ public class Nodo3GController extends BaseController {
         rncList = das.findWithNamedQuery(Registro.ALL);
         rncListOptions = createRncFilterOptions(rncList);
 */
-        tipoBTSList = das.findWithNamedQuery(TipoBTS.ALL);
+        intervinienteList = das.findWithNamedQuery(Interviniente.ALL);
     }
 
     /**

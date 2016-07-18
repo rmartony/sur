@@ -11,18 +11,35 @@ package uy.gub.dgr.sur.entity;//
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.envers.Audited;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.sql.Date;
 
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = {"interviniente", "fecha", "fechaTipo", "parte", "inEx", "nacionalidad",
         "prefesion", "domicilio", "nupcias", "estadoCivil", "conyuge", "clase", "numeroEscribano", "observaciones"})
+@Table(indexes = {@Index(name = "perfis_a1", columnList = "apellido1", unique = false),
+        @Index(name = "perfis_a1n1", columnList = "apellido1, nombre1", unique = false)})
 @Audited
 public class SujetoPersonaFisica extends Sujeto {
 
-    private String interviniente;
+    @NotEmpty
+    private String apellido1;
+    private String apellido2;
+    @NotEmpty
+    private String nombre1;
+    private String nombre2;
+
+    @NotEmpty
+    private String cedulaIdentidad;
+
+    @ManyToOne
+    private Interviniente interviniente;
 
     private Date fecha;
     private String fechaTipo;

@@ -101,15 +101,16 @@
                             <p:row>
                                 <p:column> <p:outputLabel for="tipoDeGabinete" value="Tipo de gabinete:"/> </p:column>
                                 <p:column>
-                                    <p:selectOneMenu id="tipoDeGabinete" value="#{nodoLteController.item.tipoBTS}"
+                                    <p:selectOneMenu id="tipoDeGabinete" value="#{nodoLteController.item.interviniente}"
                                                      required="true"
                                                      requiredMessage="Por favor ingrese tipo de gabinete"
                                                      disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or nodoLteController.readOnly}">
                                         <o:converter converterId="entityListConverter"
-                                                     list="#{nodoLteController.tipoBTSList}"/>
+                                                     list="#{nodoLteController.intervinienteList}"/>
                                         <f:selectItem itemLabel="Seleccionar tipo de gabinete..."
                                                       noSelectionOption="true"/>
-                                        <f:selectItems value="#{nodoLteController.tipoBTSList}" var="tipoDeGabinete"
+                                        <f:selectItems value="#{nodoLteController.intervinienteList}"
+                                                       var="tipoDeGabinete"
                                                        itemLabel="#{tipoDeGabinete.nombre}"
                                                        itemValue="#{tipoDeGabinete}"/>
                                     </p:selectOneMenu>

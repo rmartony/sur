@@ -85,15 +85,15 @@
                             </p:row>
 
                             <p:row>
-                                <p:column> <p:outputLabel for="tipoBTS" value="Tipo BTS:"/> </p:column>
+                                <p:column> <p:outputLabel for="interviniente" value="Interviniente:"/> </p:column>
                                 <p:column>
-                                    <p:selectOneMenu id="tipoBTS" value="#{nodoLteController.item.tipoBTS}"
+                                    <p:selectOneMenu id="interviniente" value="#{nodoLteController.item.interviniente}"
                                                      required="true"
                                                      requiredMessage="Por favor ingrese tipo BTS">
                                         <o:converter converterId="entityListConverter"
-                                                     list="#{nodoLteController.tipoBTSList}"/>
+                                                     list="#{nodoLteController.intervinienteList}"/>
                                         <f:selectItem itemLabel="Seleccionar tipo BTS..." noSelectionOption="true"/>
-                                        <f:selectItems value="#{nodoLteController.tipoBTSList}" var="tipoBts"
+                                        <f:selectItems value="#{nodoLteController.intervinienteList}" var="tipoBts"
                                                        itemLabel="#{tipoBts.nombre}" itemValue="#{tipoBts}"/>
                                     </p:selectOneMenu>
                                 </p:column>

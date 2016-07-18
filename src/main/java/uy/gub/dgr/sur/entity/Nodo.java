@@ -23,7 +23,7 @@ import java.util.Date;
                 "ipTelecom", "maskTelecom", "gwTelecom", "vlanTelecom", "ipGrandMaster", "ipSecondaryMaster",
                 "tinco", "EPLFlujoDABT", "observaciones", "numTorreros", "acceso", "llaveMovistar",
                 "llaveUnificada", "llaveExteriorAlcatel", "llaveExteriorEricsson", "llaveSitio", "tarjetaProximidad",
-                "accesoTormenta", "numContadorUTE", "sitio", "tipoBTS"})
+                "accesoTormenta", "numContadorUTE", "sitio", "interviniente"})
 @Data
 @NamedQueries({
         @NamedQuery(name = Nodo.BY_SITIO_ID, query = "SELECT n FROM Nodo n where n.sitio.id = :idSitio"),
@@ -86,7 +86,7 @@ public abstract class Nodo extends BaseEntity implements Serializable {
 
     @ManyToOne
     //@NotNull
-    private TipoBTS tipoBTS;
+    private Interviniente interviniente;
 
     @Transient
     public String getDiscriminatorValue() {

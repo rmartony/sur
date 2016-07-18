@@ -56,7 +56,7 @@ public class IDMInitializer {
     @Inject
     private transient EscribanoService escribanoService;
     @Inject
-    private transient TipoBTSService tipoBTSService;
+    private transient IntervinienteService intervinienteService;
     @Inject
     private transient TipoAntenaService tipoAntenaService;
     @Inject
@@ -97,7 +97,7 @@ public class IDMInitializer {
             initRnc();
             initTorrero();
             initIp();
-            initTipoBTS();
+            initInterviniente();
             initTipoAntena();
             initTipoFeeder();
             initEstado();
@@ -181,15 +181,15 @@ public class IDMInitializer {
 */
         Map<String, Integer> params = new HashMap<>();
         params.put("id", 1);
-        TipoBTS tipoBTS = (TipoBTS) tipoBTSService.findSingleResultNamedQuery(TipoBTS.ID, params);
-        nodo3G.setTipoBTS(tipoBTS);
+        Interviniente interviniente = (Interviniente) intervinienteService.findSingleResultNamedQuery(Interviniente.ID, params);
+        nodo3G.setInterviniente(interviniente);
         nodo3GService.create(nodo3G);
 
         NodoLte nodoLte = new NodoLte();
         nodoLte.setSitio(s2);
         nodoLte.setFechaAlta(new Date());
         nodoLte.setSigla("NodoLTE prueba");
-        nodoLte.setTipoBTS(tipoBTS);
+        nodoLte.setInterviniente(interviniente);
         nodoLte.setIpPTP(ip);
         nodoLte.setMaskPTP(ip);
         nodoLte.setNServicio("s12345");
@@ -585,43 +585,43 @@ public class IDMInitializer {
         escribanoService.update(escribano);
     }
 
-    public void initTipoBTS() {
-        TipoBTS tipoBTS = new TipoBTS();
-        tipoBTS.setModelo("12020");
-        tipoBTS.setNombre("Macro Outdoor");
-        tipoBTSService.create(tipoBTS);
-        tipoBTS = new TipoBTS();
-        tipoBTS.setModelo("12010");
-        tipoBTS.setNombre("Macro Indoor");
-        tipoBTSService.create(tipoBTS);
-        tipoBTS = new TipoBTS();
-        tipoBTS.setModelo("D2U");
-        tipoBTS.setNombre("D2U");
-        tipoBTSService.create(tipoBTS);
-        tipoBTS = new TipoBTS();
-        tipoBTS.setModelo("1120");
-        tipoBTS.setNombre("Micro BTS");
-        tipoBTSService.create(tipoBTS);
-        tipoBTS = new TipoBTS();
-        tipoBTS.setModelo("6120");
-        tipoBTS.setNombre("Distribuida Outdoor");
-        tipoBTSService.create(tipoBTS);
-        tipoBTS = new TipoBTS();
-        tipoBTS.setModelo("Md6c");
-        tipoBTS.setNombre("Md6c");
-        tipoBTSService.create(tipoBTS);
-        tipoBTS = new TipoBTS();
-        tipoBTS.setModelo("S6 -- d2u");
-        tipoBTS.setNombre("S6 -- d2u");
-        tipoBTSService.create(tipoBTS);
-        tipoBTS = new TipoBTS();
-        tipoBTS.setModelo("MD4");
-        tipoBTS.setNombre("MD4");
-        tipoBTSService.create(tipoBTS);
-        tipoBTS = new TipoBTS();
-        tipoBTS.setModelo("BBU");
-        tipoBTS.setNombre("BBU");
-        tipoBTSService.create(tipoBTS);
+    public void initInterviniente() {
+        Interviniente interviniente = new Interviniente();
+        interviniente.setCodigo("12020");
+        interviniente.setDescripcion("Macro Outdoor");
+        intervinienteService.create(interviniente);
+        interviniente = new Interviniente();
+        interviniente.setCodigo("12010");
+        interviniente.setDescripcion("Macro Indoor");
+        intervinienteService.create(interviniente);
+        interviniente = new Interviniente();
+        interviniente.setCodigo("D2U");
+        interviniente.setDescripcion("D2U");
+        intervinienteService.create(interviniente);
+        interviniente = new Interviniente();
+        interviniente.setCodigo("1120");
+        interviniente.setDescripcion("Micro BTS");
+        intervinienteService.create(interviniente);
+        interviniente = new Interviniente();
+        interviniente.setCodigo("6120");
+        interviniente.setDescripcion("Distribuida Outdoor");
+        intervinienteService.create(interviniente);
+        interviniente = new Interviniente();
+        interviniente.setCodigo("Md6c");
+        interviniente.setDescripcion("Md6c");
+        intervinienteService.create(interviniente);
+        interviniente = new Interviniente();
+        interviniente.setCodigo("S6 -- d2u");
+        interviniente.setDescripcion("S6 -- d2u");
+        intervinienteService.create(interviniente);
+        interviniente = new Interviniente();
+        interviniente.setCodigo("MD4");
+        interviniente.setDescripcion("MD4");
+        intervinienteService.create(interviniente);
+        interviniente = new Interviniente();
+        interviniente.setCodigo("BBU");
+        interviniente.setDescripcion("BBU");
+        intervinienteService.create(interviniente);
     }
 
     public void initTipoAntena() {

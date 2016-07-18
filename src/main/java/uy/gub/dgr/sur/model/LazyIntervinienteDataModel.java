@@ -4,7 +4,7 @@ package uy.gub.dgr.sur.model;
 import org.apache.commons.collections4.CollectionUtils;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
-import uy.gub.dgr.sur.entity.TipoBTS;
+import uy.gub.dgr.sur.entity.Interviniente;
 import uy.gub.dgr.sur.service.DataAccessService;
 
 import javax.persistence.criteria.*;
@@ -20,10 +20,10 @@ import java.util.Map;
  * For more information please visit http://www.primefaces.org/showcase-labs/ui/datatableLazy.jsf
  */
 
-public class LazyTipoBTSDataModel extends LazyDataModel<TipoBTS> implements Serializable {
+public class LazyIntervinienteDataModel extends LazyDataModel<Interviniente> implements Serializable {
 
     // Data Source for binding data to the DataTable
-    private List<TipoBTS> datasource;
+    private List<Interviniente> datasource;
     // Selected Page size in the DataTable
     private int pageSize;
     // Current row index number
@@ -38,7 +38,7 @@ public class LazyTipoBTSDataModel extends LazyDataModel<TipoBTS> implements Seri
     /**
      * @param crudService
      */
-    public LazyTipoBTSDataModel(DataAccessService crudService) {
+    public LazyIntervinienteDataModel(DataAccessService crudService) {
         this.crudService = crudService;
     }
 
@@ -53,17 +53,17 @@ public class LazyTipoBTSDataModel extends LazyDataModel<TipoBTS> implements Seri
      * @return List<Zona>
      */
     @Override
-    public List<TipoBTS> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+    public List<Interviniente> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
         CriteriaBuilder criteriaBuilder = crudService.getCriteriaBuilder();
-        CriteriaQuery<TipoBTS> criteriaQuery = criteriaBuilder.createQuery(TipoBTS.class);
+        CriteriaQuery<Interviniente> criteriaQuery = criteriaBuilder.createQuery(Interviniente.class);
         Metamodel metamodel = crudService.getMetamodel();
-        EntityType<TipoBTS> entityType = metamodel.entity(TipoBTS.class);
-        Root<TipoBTS> from = criteriaQuery.from(entityType);
+        EntityType<Interviniente> entityType = metamodel.entity(Interviniente.class);
+        Root<Interviniente> from = criteriaQuery.from(entityType);
         List<Order> orders = new ArrayList<Order>();
 
         // count query
         CriteriaQuery<Long> cqCount = criteriaBuilder.createQuery(Long.class);
-        Root<TipoBTS> fromCount = cqCount.from(entityType);
+        Root<Interviniente> fromCount = cqCount.from(entityType);
         cqCount.select(criteriaBuilder.count(from));
 
         //Sorting
@@ -141,12 +141,12 @@ public class LazyTipoBTSDataModel extends LazyDataModel<TipoBTS> implements Seri
     /**
      * Gets the Registro object's primary key
      *
-     * @param tipoBTS
+     * @param interviniente
      * @return Object
      */
     @Override
-    public Object getRowKey(TipoBTS tipoBTS) {
-        return tipoBTS.getId().toString();
+    public Object getRowKey(Interviniente interviniente) {
+        return interviniente.getId().toString();
     }
 
     /**
@@ -155,7 +155,7 @@ public class LazyTipoBTSDataModel extends LazyDataModel<TipoBTS> implements Seri
      * @return
      */
     @Override
-    public TipoBTS getRowData() {
+    public Interviniente getRowData() {
         if (datasource == null)
             return null;
         int index = rowIndex % pageSize;
@@ -172,12 +172,12 @@ public class LazyTipoBTSDataModel extends LazyDataModel<TipoBTS> implements Seri
      * @return
      */
     @Override
-    public TipoBTS getRowData(String rowKey) {
+    public Interviniente getRowData(String rowKey) {
         if (datasource == null)
             return null;
-        for (TipoBTS tipoBTS : datasource) {
-            if (tipoBTS.getId().toString().equals(rowKey))
-                return tipoBTS;
+        for (Interviniente interviniente : datasource) {
+            if (interviniente.getId().toString().equals(rowKey))
+                return interviniente;
         }
         return null;
     }
@@ -270,7 +270,7 @@ public class LazyTipoBTSDataModel extends LazyDataModel<TipoBTS> implements Seri
      */
     @Override
     public void setWrappedData(Object list) {
-        this.datasource = (List<TipoBTS>) list;
+        this.datasource = (List<Interviniente>) list;
     }
 }
                     

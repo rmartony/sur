@@ -19,7 +19,7 @@
         <!--        <class>Registro</class>-->
         <class>uy.gub.dgr.sur.entity.Sede</class>
         <class>uy.gub.dgr.sur.entity.TipoAntena</class>
-        <class>uy.gub.dgr.sur.entity.TipoBTS</class>
+        <class>uy.gub.dgr.sur.entity.Interviniente</class>
         <class>uy.gub.dgr.sur.entity.TipoFeeder</class>
         <class>uy.gub.dgr.sur.entity.Sede</class>
         <class>uy.gub.dgr.sur.entity.Torrero</class>

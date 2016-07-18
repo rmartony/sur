@@ -72,7 +72,7 @@ public class NodoLteController extends BaseController {
     private LazyDataModel<NodoLte> lazyModel;
 
     @Getter
-    private List<TipoBTS> tipoBTSList;
+    private List<Interviniente> intervinienteList;
 
     /**
      * Default constructor
@@ -88,7 +88,7 @@ public class NodoLteController extends BaseController {
     public void init() {
         log.log(Level.INFO, "NodoLteController is initializing");
         lazyModel = new LazyNodoLteDataModel(das);
-        tipoBTSList = das.findWithNamedQuery(TipoBTS.ALL);
+        intervinienteList = das.findWithNamedQuery(Interviniente.ALL);
     }
 
     /**
