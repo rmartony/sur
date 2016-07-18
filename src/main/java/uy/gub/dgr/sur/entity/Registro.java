@@ -20,14 +20,14 @@ import java.io.Serializable;
         @NamedQuery(name = Registro.ALL, query = "SELECT r FROM Registro r order by r.nombre"),
         @NamedQuery(name = Registro.BY_ID, query = "SELECT r FROM Registro r where r.id = :id"),
         @NamedQuery(name = Registro.BY_CODIGO, query = "SELECT r FROM Registro r where r.codigo = :codigo"),
-        @NamedQuery(name = Registro.BY_NAME, query = "SELECT r FROM Registro r where r.descripcion = :descripcion"),
+        @NamedQuery(name = Registro.BY_DESCRIPCION, query = "SELECT r FROM Registro r where r.descripcion = :descripcion"),
         @NamedQuery(name = Registro.TOTAL, query = "SELECT COUNT(r) FROM Registro r")})
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo"}))
 @Audited
 public class Registro extends BaseEntity implements Serializable {
     public final static String ALL = "Registro.all";
     public final static String BY_ID = "Registro.id";
-    public final static String BY_NAME = "Registro.name";
+    public final static String BY_DESCRIPCION = "Registro.descripcion";
     public final static String BY_CODIGO = "Registro.codigo";
     public final static String TOTAL = "Registro.countTotal";
 

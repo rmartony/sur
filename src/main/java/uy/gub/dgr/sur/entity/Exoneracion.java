@@ -20,14 +20,14 @@ import java.io.Serializable;
         @NamedQuery(name = Exoneracion.ALL, query = "SELECT r FROM Exoneracion r order by r.descripcion"),
         @NamedQuery(name = Exoneracion.BY_ID, query = "SELECT r FROM Exoneracion r where r.id = :id"),
         @NamedQuery(name = Exoneracion.BY_CODIGO, query = "SELECT r FROM Exoneracion r where r.codigo = :codigo"),
-        @NamedQuery(name = Exoneracion.BY_NAME, query = "SELECT r FROM Exoneracion r where r.descripcion = :descripcion"),
+        @NamedQuery(name = Exoneracion.BY_DESCRIPTION, query = "SELECT r FROM Exoneracion r where r.descripcion = :descripcion"),
         @NamedQuery(name = Exoneracion.TOTAL, query = "SELECT COUNT(r) FROM Exoneracion r")})
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo"}))
 @Audited
 public class Exoneracion extends BaseEntity implements Serializable {
     public final static String ALL = "Exoneracion.all";
     public final static String BY_ID = "Exoneracion.id";
-    public final static String BY_NAME = "Exoneracion.name";
+    public final static String BY_DESCRIPTION = "Exoneracion.description";
     public final static String BY_CODIGO = "Exoneracion.codigo";
     public final static String TOTAL = "Exoneracion.countTotal";
 

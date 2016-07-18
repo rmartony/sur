@@ -15,21 +15,21 @@ import java.util.List;
  */
 @Entity
 @Data
-@EqualsAndHashCode(callSuper = true, exclude = {"estado", "tipoDocumento", "montoList", "observacion", "documento"})
+@EqualsAndHashCode(callSuper = true, exclude = {"estado", "acto", "movimiento", "montoList", "observacion", "sujetoList"})
 @NamedQueries({
         @NamedQuery(name = Inscripcion.ID, query = "SELECT d FROM Inscripcion d where d.id = :id"),
         @NamedQuery(name = Inscripcion.ALL, query = "SELECT d FROM Inscripcion d")
 })
 @Cacheable
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"ordinal"}))
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "TIPO_INSCRIPCION")
 @Audited
 public class Inscripcion extends BaseEntity implements Serializable {
     public final static String ID = "Inscripcion.id";
     public final static String ALL = "Inscripcion.all";
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     List<Monto> montoList;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Sujeto> sujetoList;
     private int ordinal;
     @ManyToOne
     private Acto acto;
@@ -38,7 +38,6 @@ public class Inscripcion extends BaseEntity implements Serializable {
     @ManyToOne
     private Movimiento movimiento;
     private String observacion; // observacion del acto
-
     @ManyToOne
     private Documento documento; // es para poder acceder a un documento dada la inscripción
 
