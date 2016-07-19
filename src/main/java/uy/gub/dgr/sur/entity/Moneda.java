@@ -17,19 +17,19 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NamedQueries({
-        @NamedQuery(name = Moneda.ALL, query = "SELECT r FROM Movimiento r order by r.codigo"),
-        @NamedQuery(name = Moneda.BY_ID, query = "SELECT r FROM Movimiento r where r.id = :id"),
-        @NamedQuery(name = Moneda.BY_CODIGO, query = "SELECT r FROM Movimiento r where r.codigo = :codigo"),
-        @NamedQuery(name = Moneda.BY_DESCRIPTION, query = "SELECT r FROM Movimiento r where r.descripcion = :descripcion"),
-        @NamedQuery(name = Moneda.TOTAL, query = "SELECT COUNT(r) FROM Movimiento r")})
+        @NamedQuery(name = Moneda.ALL, query = "SELECT r FROM Moneda r order by r.codigo"),
+        @NamedQuery(name = Moneda.BY_ID, query = "SELECT r FROM Moneda r where r.id = :id"),
+        @NamedQuery(name = Moneda.BY_CODIGO, query = "SELECT r FROM Moneda r where r.codigo = :codigo"),
+        @NamedQuery(name = Moneda.BY_DESCRIPTION, query = "SELECT r FROM Moneda r where r.descripcion = :descripcion"),
+        @NamedQuery(name = Moneda.TOTAL, query = "SELECT COUNT(r) FROM Moneda r")})
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo"}))
 @Audited
 public class Moneda extends BaseEntity implements Serializable {
     public final static String ALL = "MovimienMonedato.all";
     public final static String BY_ID = "Moneda.id";
     public final static String BY_DESCRIPTION = "Moneda.descripcion";
-    public final static String BY_CODIGO = "Movimiento.codigo";
-    public final static String TOTAL = "Movimiento.countTotal";
+    public final static String BY_CODIGO = "Moneda.codigo";
+    public final static String TOTAL = "Moneda.countTotal";
 
     @NotEmpty
     private String codigo;

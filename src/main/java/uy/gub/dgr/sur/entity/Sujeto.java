@@ -25,4 +25,6 @@ public abstract class Sujeto extends BaseEntity implements Serializable {
     @NotEmpty
     private String sujeto;
 
+    private String observaciones;
+
 }

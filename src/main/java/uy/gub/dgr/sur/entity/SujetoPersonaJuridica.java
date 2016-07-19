@@ -21,41 +21,31 @@ import java.sql.Date;
 
 @Entity
 @Data
-@EqualsAndHashCode(callSuper = true, exclude = {"cedulaIdentidad", "interviniente", "fecha", "fechaTipo", "parte", "inEx", "nacionalidad",
-        "prefesion", "domicilio", "nupcias", "estadoCivil", "conyuge", "clase", "numeroEscribano"})
+@EqualsAndHashCode(callSuper = true, exclude = {"interviniente", "fecha", "nombre", "bps", "naturalezaJuridica",
+        "tipo", "tipoSocial", "parte", "domicilio", "sede"})
 @Table(indexes = {@Index(name = "perfis_a1", columnList = "apellido1", unique = false),
         @Index(name = "perfis_a1n1", columnList = "apellido1, nombre1", unique = false)})
 @Audited
-public class SujetoPersonaFisica extends Sujeto {
+public class SujetoPersonaJuridica extends Sujeto {
 
     @NotEmpty
-    private String apellido1;
-    private String apellido2;
-    @NotEmpty
-    private String nombre1;
-    private String nombre2;
+    private String nombre;
 
     @NotEmpty
-    private String cedulaIdentidad;
+    private String rut;
 
     @ManyToOne
     private Interviniente interviniente;
 
-    private Date fecha;
-    private String fechaTipo;
+    private int bps;
+    private String naturalezaJuridica;
 
+    private Date fecha;
+    private String tipo; // Constitucion, fallecimiento, mandato, nacimiento
+    private String tipoSocial;
     private String parte;
-    private String inEx;
-    private String nacionalidad;
-    private String prefesion;
     private boolean domicilio;
 
-    private short nupcias;
-    private String estadoCivil;
-    private String conyuge;
-
-    private String clase;
-    private int numeroEscribano;
-
+    private short sede;
 
 }
