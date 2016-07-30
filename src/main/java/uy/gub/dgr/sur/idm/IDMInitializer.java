@@ -52,7 +52,7 @@ public class IDMInitializer {
     @Inject
     private transient SitioService sitioService;
     @Inject
-    private transient RncService rncService;
+    private transient RegistroService registroService;
     @Inject
     private transient EscribanoService escribanoService;
     @Inject
@@ -176,7 +176,7 @@ public class IDMInitializer {
         nodo3G.setSigla("Nodo 3G prueba");
         nodo3G.setNumContadorUTE("a2");
 /*
-        nodo3G.setRnc(rncService.find(2));
+        nodo3G.setRnc(registroService.find(2));
         nodo3G.setIp(escribanoService.find(1));
 */
         Map<String, Integer> params = new HashMap<>();
@@ -235,7 +235,7 @@ public class IDMInitializer {
         admin.setFirstName("John");
         admin.setLastName("Smith");
         identityManager.add(admin);
-        identityManager.updateCredential(admin, new Password("demo"));
+        identityManager.updateCredential(admin, new Password("admin"));
 
         // admin lectura
         User consulta = new User("consulta");
@@ -243,7 +243,7 @@ public class IDMInitializer {
         consulta.setFirstName("John");
         consulta.setLastName("Smith");
         identityManager.add(consulta);
-        identityManager.updateCredential(consulta, new Password("demo"));
+        identityManager.updateCredential(consulta, new Password("consulta"));
 
         // Create user calificacion
         User calificacion = new User("calificacion");
@@ -251,7 +251,7 @@ public class IDMInitializer {
         calificacion.setFirstName("Mary");
         calificacion.setLastName("Jones");
         identityManager.add(calificacion);
-        identityManager.updateCredential(calificacion, new Password("demo"));
+        identityManager.updateCredential(calificacion, new Password("calificacion"));
 
         // Create user completado
         User completado = new User("completado");
@@ -259,7 +259,7 @@ public class IDMInitializer {
         completado.setFirstName("Jane");
         completado.setLastName("Doe");
         identityManager.add(completado);
-        identityManager.updateCredential(completado, new Password("demo"));
+        identityManager.updateCredential(completado, new Password("completado"));
 
         // Create user ventanilla
         User ventanilla = new User("ventanilla");
@@ -267,7 +267,7 @@ public class IDMInitializer {
         ventanilla.setFirstName("Harry");
         ventanilla.setLastName("Jones");
         identityManager.add(ventanilla);
-        identityManager.updateCredential(ventanilla, new Password("demo"));
+        identityManager.updateCredential(ventanilla, new Password("ventanilla"));
 
         // Create user verificacion
         User verificacion = new User("verificacion");
@@ -275,7 +275,7 @@ public class IDMInitializer {
         verificacion.setFirstName("Marry");
         verificacion.setLastName("Jones");
         identityManager.add(verificacion);
-        identityManager.updateCredential(verificacion, new Password("demo"));
+        identityManager.updateCredential(verificacion, new Password("verificacion"));
 
         // Create user historico
         User historico = new User("historico");
@@ -283,7 +283,7 @@ public class IDMInitializer {
         historico.setFirstName("Alex");
         historico.setLastName("Jones");
         identityManager.add(historico);
-        identityManager.updateCredential(historico, new Password("demo"));
+        identityManager.updateCredential(historico, new Password("historico"));
 
         RelationshipManager relationshipManager = this.partitionManager.createRelationshipManager();
 
@@ -485,62 +485,62 @@ public class IDMInitializer {
         //registro.setId(2);
         registro.setCodigo("RNCUNI");
         registro.setDescripcion("Unión");
-//        rncService.update(registro);
-        rncService.create(registro);
+//        registroService.update(registro);
+        registroService.create(registro);
         registro = new Registro();
         //registro.setId(3);
         registro.setCodigo("RNCAGU");
         registro.setDescripcion("Aguada");
-//        rncService.update(registro);
-        rncService.create(registro);
+//        registroService.update(registro);
+        registroService.create(registro);
         registro = new Registro();
         //registro.setId(6);
         registro.setCodigo("RNCCEN");
         registro.setDescripcion("Centro");
-//        rncService.update(registro);
-        rncService.create(registro);
+//        registroService.update(registro);
+        registroService.create(registro);
         registro = new Registro();
         //registro.setId(7);
         registro.setCodigo("RNCCOR");
         registro.setDescripcion("Cordón");
-//        rncService.update(registro);
-        rncService.create(registro);
+//        registroService.update(registro);
+        registroService.create(registro);
         registro = new Registro();
         //registro.setId(8);
         registro.setCodigo("RNCMLD");
         registro.setDescripcion("Maldonado");
-//        rncService.update(registro);
-        rncService.create(registro);
+//        registroService.update(registro);
+        registroService.create(registro);
         registro = new Registro();
         //registro.setId(9);
         registro.setCodigo("RNCPAY");
         registro.setDescripcion("Paysandú");
-//        rncService.update(registro);
-        rncService.create(registro);
+//        registroService.update(registro);
+        registroService.create(registro);
         registro = new Registro();
         //registro.setId(10);
         registro.setCodigo("RNCPAY2");
         registro.setDescripcion("Paysandú2");
-//        rncService.update(registro);
-        rncService.create(registro);
+//        registroService.update(registro);
+        registroService.create(registro);
         registro = new Registro();
         //registro.setId(11);
         registro.setCodigo("RNCAGU2");
         registro.setDescripcion("Aguada2");
-//        rncService.update(registro);
-        rncService.create(registro);
+//        registroService.update(registro);
+        registroService.create(registro);
         registro = new Registro();
         //registro.setId(12);
         registro.setCodigo("RNCMLD2");
         registro.setDescripcion("Maldonado2");
-//        rncService.update(registro);
-        rncService.create(registro);
+//        registroService.update(registro);
+        registroService.create(registro);
         registro = new Registro();
         //registro.setId(13);
         registro.setCodigo("RNCCOR2");
         registro.setDescripcion("Cordon2");
-//        rncService.update(registro);
-        rncService.create(registro);
+//        registroService.update(registro);
+        registroService.create(registro);
     }
 
     private void initIp() {

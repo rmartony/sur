@@ -9,9 +9,9 @@ import javax.ejb.Stateless;
  */
 
 @Stateless
-public class RncService extends DataAccessService<Registro> {
+public class RegistroService extends DataAccessService<Registro> {
 
-    public RncService() {
+    public RegistroService() {
         super(Registro.class);
     }
 }

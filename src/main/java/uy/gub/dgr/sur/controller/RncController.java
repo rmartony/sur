@@ -14,7 +14,7 @@ import org.primefaces.model.LazyDataModel;
 import uy.gub.dgr.sur.entity.Registro;
 import uy.gub.dgr.sur.idm.annotations.Admin;
 import uy.gub.dgr.sur.model.LazyRncDataModel;
-import uy.gub.dgr.sur.service.RncService;
+import uy.gub.dgr.sur.service.RegistroService;
 import uy.gub.dgr.sur.util.ConstraintViolationInterceptor;
 
 import javax.annotation.PostConstruct;
@@ -43,7 +43,7 @@ public class RncController extends BaseController {
     @Inject
     private transient ResourceBundle msg;
     @Inject
-    private transient RncService das;
+    private transient RegistroService das;
     // Selected users that will be removed
     @Getter
     @Setter
