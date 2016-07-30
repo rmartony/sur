@@ -6,11 +6,14 @@ package uy.gub.dgr.sur.service;
  * Time: 11:24 AM
  */
 
+import org.apache.commons.collections.CollectionUtils;
+
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.metamodel.Metamodel;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -103,6 +106,13 @@ public abstract class DataAccessService<T> implements Serializable {
      */
     public T update(T item) {
         return (T) this.em.merge(item);
+    }
+
+    public void update(Collection<T> collection) {
+        if (CollectionUtils.isEmpty(collection)) return;
+        for (T item : collection) {
+            this.em.merge(item);
+        }
 
     }
 
