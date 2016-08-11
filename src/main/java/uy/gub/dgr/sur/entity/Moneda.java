@@ -25,7 +25,7 @@ import java.io.Serializable;
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo"}))
 @Audited
 public class Moneda extends BaseEntity implements Serializable {
-    public final static String ALL = "MovimienMonedato.all";
+    public final static String ALL = "Moneda.all";
     public final static String BY_ID = "Moneda.id";
     public final static String BY_DESCRIPTION = "Moneda.descripcion";
     public final static String BY_CODIGO = "Moneda.codigo";
