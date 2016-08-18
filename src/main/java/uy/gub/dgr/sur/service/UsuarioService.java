@@ -39,7 +39,7 @@ public class UsuarioService {
     public final static String ROLE_VENTANILLA = "ventanilla";
     public final static String ROLE_VERIFICACION = "verificacion";
     public final static String ROLE_CALIFICACION = "calificacion";
-    public final static String ROLE_COMPLETADO = "completado";
+    public final static String ROLE_MAESTRO = "maestro";
     public final static String ROLE_HISTORICO = "historico";
     public final static String ROLE_CONSULTA = "consulta";
 

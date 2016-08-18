@@ -94,7 +94,7 @@ public class IDMInitializer {
             initUsersRoles();
             initSedes();
             initEstructura();
-            initRnc();
+            initRegistros();
             initTorrero();
             initIp();
             initInterviniente();
@@ -254,12 +254,12 @@ public class IDMInitializer {
         identityManager.updateCredential(calificacion, new Password("calificacion"));
 
         // Create user completado
-        User completado = new User("completado");
-        completado.setEmail("completado@acme.com");
+        User completado = new User("maestro");
+        completado.setEmail("maestro@acme.com");
         completado.setFirstName("Jane");
         completado.setLastName("Doe");
         identityManager.add(completado);
-        identityManager.updateCredential(completado, new Password("completado"));
+        identityManager.updateCredential(completado, new Password("maestro"));
 
         // Create user ventanilla
         User ventanilla = new User("ventanilla");
@@ -289,16 +289,16 @@ public class IDMInitializer {
 
         if (usuarioService.getRole(UsuarioService.ROLE_CALIFICACION) == null) {
             // Create role "calificacion"
-            Role clienteRol = new Role(UsuarioService.ROLE_CALIFICACION);
-            identityManager.add(clienteRol);
+            Role calificacionRol = new Role(UsuarioService.ROLE_CALIFICACION);
+            identityManager.add(calificacionRol);
 
             // Create role "ventanilla"
             Role ventanillaRol = new Role(UsuarioService.ROLE_VENTANILLA);
             identityManager.add(ventanillaRol);
 
-            // Create role "completado"
-            Role consolaRol = new Role(UsuarioService.ROLE_COMPLETADO);
-            identityManager.add(consolaRol);
+            // Create role "maestro"
+            Role maestroRol = new Role(UsuarioService.ROLE_MAESTRO);
+            identityManager.add(maestroRol);
 
             // Create role "verificacion"
             Role verificacionRol = new Role(UsuarioService.ROLE_VERIFICACION);
@@ -324,7 +324,7 @@ public class IDMInitializer {
             grantRole(relationshipManager, consulta, consultaRol);
 
             // Grant the "completado" application role to completado user
-            grantRole(relationshipManager, completado, consolaRol);
+            grantRole(relationshipManager, completado, maestroRol);
 
             // Grant the "ventanilla" application role to ventanilla user
             grantRole(relationshipManager, ventanilla, ventanillaRol);
@@ -480,11 +480,11 @@ public class IDMInitializer {
 
     }
 
-    public void initRnc() {
+    public void initRegistros() {
         Registro registro = new Registro();
         //registro.setId(2);
         registro.setCodigo("RNCUNI");
-        registro.setDescripcion("Unión");
+        registro.setDescripcion("Registro de Inmuebles");
 //        registroService.update(registro);
         registroService.create(registro);
         registro = new Registro();

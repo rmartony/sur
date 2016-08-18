@@ -48,7 +48,7 @@
                     </p:commandButton>
                 </p:column>
                 <p:column style="width:14px"
-                          rendered="#{authorizationChecker.admin or authorizationChecker.verificacion or authorizationChecker.completado }">
+                          rendered="#{authorizationChecker.admin or authorizationChecker.verificacion or authorizationChecker.maestro }">
                     <p:commandButton icon="ui-icon-pencil"
                                      title="Modificar" action="#{preventivoController.doUltimoPreventivoUpdate}">
                         <f:setPropertyActionListener value="#{item.preventivo}"
@@ -92,13 +92,13 @@
                     <p:commandButton value="Nuevo Mantenimiento preventivo" icon="ui-icon-star"
                                      action="#{preventivoController.doCreate}"
                                      title="Crear nuevo Mantenimiento preventivo"
-                                     rendered="#{authorizationChecker.admin or authorizationChecker.verificacion or authorizationChecker.completado }"/>
+                                     rendered="#{authorizationChecker.admin or authorizationChecker.verificacion or authorizationChecker.maestro }"/>
                     <p:commandButton value="Modificar Mantenimiento preventivo"
                                      action="#{preventivoController.doUltimoPreventivoUpdate}"
                                      icon="ui-icon-pencil"
                                      title="Modificar Mantenimiento preventivo"
                                      disabled="#{preventivoController.ultimoPreventivoLazyModel.rowCount eq 0}"
-                                     rendered="#{authorizationChecker.admin or authorizationChecker.verificacion or authorizationChecker.completado }">
+                                     rendered="#{authorizationChecker.admin or authorizationChecker.verificacion or authorizationChecker.maestro }">
                         <f:setPropertyActionListener value="#{null}" target="#{preventivoController.selectedItem}"/>
                     </p:commandButton>
                     <p:commandButton value="Ver Mantenimiento preventivo"

@@ -22,7 +22,7 @@
                     <p:column>
                         <p:inputText id="sigla" value="#{sitioController.selectedItem.sigla}" required="true"
                                      requiredMessage="Por favor ingresar sigla"
-                                     readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or sitioController.readOnly}"/>
+                                     readonly="#{not (authorizationChecker.admin or authorizationChecker.maestro) or sitioController.readOnly}"/>
                     </p:column>
                 </p:row>
                 <p:row>
@@ -30,7 +30,7 @@
                     <p:column>
                         <p:inputText id="nombre" value="#{sitioController.selectedItem.nombre}" required="true"
                                      requiredMessage="Por favor ingresar nombre"
-                                     readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or sitioController.readOnly}"/>
+                                     readonly="#{not (authorizationChecker.admin or authorizationChecker.maestro) or sitioController.readOnly}"/>
                     </p:column>
                 </p:row>
                 <p:row>
@@ -40,7 +40,7 @@
                     <p:column>
                         <p:selectOneMenu id="sitio" value="#{sitioController.selectedItem.zona}" required="true"
                                          requiredMessage="Por favor ingresar zona"
-                                         disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or sitioController.readOnly}">
+                                         disabled="#{not (authorizationChecker.admin or authorizationChecker.maestro) or sitioController.readOnly}">
                             <o:converter converterId="entityListConverter" list="#{sitioController.zonaList}"/>
                             <f:selectItem itemLabel="Seleccionar zona..." noSelectionOption="true"/>
                             <f:selectItems value="#{sitioController.zonaList}" var="zona"
@@ -56,7 +56,7 @@
                         <p:inputText id="direccion" value="#{sitioController.selectedItem.direccion}"
                                      style="width: 20em;"
                                      required="true" requiredMessage="Por favor ingresar dirección"
-                                     readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or sitioController.readOnly}"/>
+                                     readonly="#{not (authorizationChecker.admin or authorizationChecker.maestro) or sitioController.readOnly}"/>
                     </p:column>
                 </p:row>
                 <p:row>
@@ -65,7 +65,7 @@
                         <p:selectOneMenu id="sede" value="#{sitioController.selectedItem.sede}"
                                          required="true"
                                          requiredMessage="Por favor ingrese un sede"
-                                         disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or sitioController.readOnly}">
+                                         disabled="#{not (authorizationChecker.admin or authorizationChecker.maestro) or sitioController.readOnly}">
                             <o:converter converterId="entityListConverter" list="#{sitioController.departamentoList}"/>
                             <f:selectItem itemLabel="Seleccionar sede..." noSelectionOption="true"/>
                             <f:selectItems value="#{sitioController.departamentoList}" var="sede"
@@ -81,27 +81,27 @@
                     <p:column> <p:outputLabel for="fecha" value="Fecha:"/> </p:column>
                     <p:column><p:calendar id="fecha" value="#{sitioController.selectedItem.fecha}"
                                           pattern="#{msg.datePattern}" showOn="both" popupIconOnly="true"
-                                          disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or sitioController.readOnly}"
+                                          disabled="#{not (authorizationChecker.admin or authorizationChecker.maestro) or sitioController.readOnly}"
                                           required="true"/></p:column>
                 </p:row>
 
                 <p:row>
                     <p:column> <p:outputLabel for="localidad" value="Localidad:"/> </p:column>
                     <p:column><p:inputText id="localidad" value="#{sitioController.selectedItem.localidad}"
-                                           readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or sitioController.readOnly}"
+                                           readonly="#{not (authorizationChecker.admin or authorizationChecker.maestro) or sitioController.readOnly}"
                                            required="true"/></p:column>
                 </p:row>
 
                 <p:row>
                     <p:column><p:outputLabel for="latitud" value="Latitud:"/></p:column>
                     <p:column><p:inputText id="latitud" value="#{sitioController.selectedItem.latitud}"
-                                           readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or sitioController.readOnly}"
+                                           readonly="#{not (authorizationChecker.admin or authorizationChecker.maestro) or sitioController.readOnly}"
                                            required="true"/></p:column>
                 </p:row>
                 <p:row>
                     <p:column><p:outputLabel for="longitud" value="Longitud:"/></p:column>
                     <p:column><p:inputText id="longitud" value="#{sitioController.selectedItem.longitud}"
-                                           readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or sitioController.readOnly}"
+                                           readonly="#{not (authorizationChecker.admin or authorizationChecker.maestro) or sitioController.readOnly}"
                                            required="true"/></p:column>
                 </p:row>
 
@@ -122,7 +122,7 @@
                     <p:column><p:outputLabel for="estructura" value="Estructura:"/></p:column>
                     <p:column><p:selectOneMenu id="estructura" value="#{sitioController.selectedItem.estructura}"
                                                required="true"
-                                               disabled="#{not (authorizationChecker.admin or authorizationChecker.completado) or sitioController.readOnly}"
+                                               disabled="#{not (authorizationChecker.admin or authorizationChecker.maestro) or sitioController.readOnly}"
                                                requiredMessage="Por favor ingrese una estructura">
                         <o:converter converterId="entityListConverter" list="#{sitioController.estructuraList}"/>
                         <f:selectItem itemLabel="Seleccionar estructura..." noSelectionOption="true"/>
@@ -136,7 +136,7 @@
                     <p:column><p:outputLabel for="alturaEstructura" value="Altura estructura:"/></p:column>
                     <p:column><p:inputText id="alturaEstructura"
                                            value="#{sitioController.selectedItem.alturaEstructura}"
-                                           readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or sitioController.readOnly}"
+                                           readonly="#{not (authorizationChecker.admin or authorizationChecker.maestro) or sitioController.readOnly}"
                                            required="true"/></p:column>
                 </p:row>
 
@@ -144,7 +144,7 @@
                     <p:column><p:outputLabel for="perteneceA" value="Pertenece a:"/></p:column>
                     <p:column><p:inputText id="perteneceA"
                                            value="#{sitioController.selectedItem.perteneceA}"
-                                           readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or sitioController.readOnly}"
+                                           readonly="#{not (authorizationChecker.admin or authorizationChecker.maestro) or sitioController.readOnly}"
                                            required="true"/></p:column>
                 </p:row>
 
@@ -152,7 +152,7 @@
                     <p:column><p:outputLabel for="observaciones" value="Observaciones:"/></p:column>
                     <p:column><p:inputTextarea id="observaciones" cols="45" rows="6" maxlength="255"
                                                value="#{sitioController.selectedItem.observaciones}"
-                                               readonly="#{not (authorizationChecker.admin or authorizationChecker.completado) or sitioController.readOnly}"/></p:column>
+                                               readonly="#{not (authorizationChecker.admin or authorizationChecker.maestro) or sitioController.readOnly}"/></p:column>
                 </p:row>
 
                 <p:row><p:column colspan="2">
@@ -190,15 +190,15 @@
                                          action="#{sitioController.doConfirmUpdate()}" update="@form growl"
                                          validateClient="true"
                                          ajax="true"
-                                         rendered="#{(authorizationChecker.admin or authorizationChecker.completado) and not sitioController.readOnly}"/>
+                                         rendered="#{(authorizationChecker.admin or authorizationChecker.maestro) and not sitioController.readOnly}"/>
                         <p:commandButton id="cancel" value="Cancelar" immediate="true" action="cancel"
-                                         rendered="#{(authorizationChecker.admin or authorizationChecker.completado) and not sitioController.readOnly}"/>
+                                         rendered="#{(authorizationChecker.admin or authorizationChecker.maestro) and not sitioController.readOnly}"/>
                         <p:commandButton id="aceptar" value="Aceptar" immediate="true"
                                          action="#{sitioController.doCancel}"
-                                         rendered="#{not (authorizationChecker.admin or authorizationChecker.completado) or sitioController.readOnly}"/>
+                                         rendered="#{not (authorizationChecker.admin or authorizationChecker.maestro) or sitioController.readOnly}"/>
                         <p:commandButton icon="ui-icon-pencil" immediate="true"
                                          value="Modificar" title="Modificar sitio" action="#{sitioController.doUpdate}"
-                                         rendered="#{not (authorizationChecker.admin or authorizationChecker.completado) or sitioController.readOnly}"/>
+                                         rendered="#{not (authorizationChecker.admin or authorizationChecker.maestro) or sitioController.readOnly}"/>
                     </p:column>
                     </p:row>
                 </f:facet>

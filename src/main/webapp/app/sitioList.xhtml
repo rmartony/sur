@@ -32,7 +32,7 @@
                     </p:commandButton>
                 </p:column>
                 <p:column style="width:22px"
-                          rendered="#{authorizationChecker.admin or authorizationChecker.completado}">
+                          rendered="#{authorizationChecker.admin or authorizationChecker.maestro}">
                     <p:commandButton icon="ui-icon-pencil" update=":SitioDetailForm:display"
                                      title="Modificar" action="#{sitioController.doUpdate}">
                         <f:setPropertyActionListener value="#{item}" target="#{sitioController.selectedItem}"/>
@@ -80,9 +80,9 @@
                 <f:facet name="footer">
                     <p:commandButton value="Nuevo Sitio" icon="ui-icon-star" action="#{sitioController.doCreate}"
                                      title="Crear nuevo Sitio"
-                                     rendered="#{authorizationChecker.admin or authorizationChecker.completado}"/>
+                                     rendered="#{authorizationChecker.admin or authorizationChecker.maestro}"/>
                     <p:commandButton value="Modificar Sitio" action="#{sitioController.doUpdate}"
-                                     rendered="#{authorizationChecker.admin or authorizationChecker.completado}"
+                                     rendered="#{authorizationChecker.admin or authorizationChecker.maestro}"
                                      icon="ui-icon-pencil"
                                      title="Modificar Sitio">
                         <f:setPropertyActionListener value="#{null}" target="#{sitioController.selectedItem}"/>
@@ -94,7 +94,7 @@
                     </p:commandButton>
                     <p:commandButton value="Eliminar Sitio" actionListener="#{sitioController.doConfirmDelete}"
                                      update="dataTable" icon="ui-icon-trash"
-                                     rendered="#{authorizationChecker.admin or authorizationChecker.completado}">
+                                     rendered="#{authorizationChecker.admin or authorizationChecker.maestro}">
                         <p:confirm header="Confirmación" message="#{msg.askConfirmAction}"
                                    icon="ui-icon-alert"/>
                     </p:commandButton>
