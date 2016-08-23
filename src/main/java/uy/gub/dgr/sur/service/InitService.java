@@ -4,6 +4,8 @@ import org.apache.commons.collections.CollectionUtils;
 import uy.gub.dgr.sur.entity.*;
 
 import javax.ejb.Singleton;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 import java.util.List;
 
@@ -37,6 +39,7 @@ public class InitService {
     @Inject
     private transient EmisorService emisorService;
 
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void initDB() {
         final boolean initialized = initialized();
         if (!initialized) {
