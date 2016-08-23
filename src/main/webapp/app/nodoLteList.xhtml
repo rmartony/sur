@@ -26,7 +26,7 @@
                     </p:commandButton>
                 </p:column>
                 <p:column style="width:22px"
-                          rendered="#{authorizationChecker.admin or authorizationChecker.completado}">
+                          rendered="#{authorizationChecker.admin or authorizationChecker.maestro}">
                     <p:commandButton icon="ui-icon-pencil"
                                      title="Modificar" action="#{nodoLteController.doUpdate}">
                         <f:setPropertyActionListener value="#{item}" target="#{nodoLteController.selectedItem}"/>
@@ -71,11 +71,11 @@
                 <f:facet name="footer">
                     <p:commandButton value="Nuevo Nodo LTE" icon="ui-icon-star" action="#{nodoLteController.doCreate}"
                                      title="Crear nuevo Nodo LTE"
-                                     rendered="#{authorizationChecker.admin or authorizationChecker.completado}"/>
+                                     rendered="#{authorizationChecker.admin or authorizationChecker.maestro}"/>
                     <p:commandButton value="Modificar Nodo LTE" action="#{nodoLteController.doUpdate}"
                                      icon="ui-icon-pencil"
                                      title="Modificar Nodo LTE" disabled="#{nodoLteController.lazyModel.rowCount eq 0}"
-                                     rendered="#{authorizationChecker.admin or authorizationChecker.completado}">
+                                     rendered="#{authorizationChecker.admin or authorizationChecker.maestro}">
                         <f:setPropertyActionListener value="#{null}" target="#{nodoLteController.selectedItem}"/>
                     </p:commandButton>
                     <p:commandButton value="Ver Nodo LTE" action="#{nodoLteController.doView}"

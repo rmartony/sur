@@ -27,7 +27,7 @@
                     </p:commandButton>
                 </p:column>
                 <p:column style="width:22px !important"
-                          rendered="#{authorizationChecker.admin or authorizationChecker.completado}">
+                          rendered="#{authorizationChecker.admin or authorizationChecker.maestro}">
                     <p:commandButton icon="ui-icon-pencil"
                                      title="Modificar" action="#{preventivoController.doUpdate}">
                         <f:setPropertyActionListener value="#{item}" target="#{preventivoController.selectedItem}"/>

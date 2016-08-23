@@ -90,8 +90,8 @@ public class AuthorizationChecker implements Serializable {
         return hasApplicationRole(UsuarioService.ROLE_VERIFICACION);
     }
 
-    public boolean isCompletado() {
-        return hasApplicationRole(UsuarioService.ROLE_COMPLETADO);
+    public boolean isMaestro() {
+        return hasApplicationRole(UsuarioService.ROLE_MAESTRO);
     }
 
     public boolean isConsulta() {
