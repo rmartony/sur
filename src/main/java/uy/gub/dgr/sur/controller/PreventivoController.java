@@ -145,21 +145,13 @@ public class PreventivoController extends BaseController {
 
         if (zonaListOptions == null) zonaListOptions = new SelectItem[0];
 
-        lazyModel = new LazyPreventivoDataModel(das, username, zonaList, getPrefijoRutaFotos());
+        lazyModel = new LazyPreventivoDataModel(das, username, zonaList, "");
         ultimoPreventivoLazyModel = new LazyUltimoPreventivoDataModel(das, username, zonaList);
         estadoList = das.findWithNamedQuery(Estado.ALL);
         torreroList = das.findWithNamedQuery(Torrero.ALL);
 
         initPickList();
         handleSitioChange();
-    }
-
-    private String getPrefijoRutaFotos() {
-        if (loginController.isLoginInterno()) {
-            return configuracionController.getConfiguracion().getPrefijoUrlInternaFotos();
-        } else {
-            return configuracionController.getConfiguracion().getPrefijoUrlExternaFotos();
-        }
     }
 
     private void initPickList() {

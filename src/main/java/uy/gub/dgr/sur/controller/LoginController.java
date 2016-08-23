@@ -8,7 +8,6 @@ package uy.gub.dgr.sur.controller;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 import org.picketlink.Identity;
 import org.picketlink.Identity.AuthenticationResult;
@@ -25,13 +24,9 @@ import javax.enterprise.context.SessionScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.Serializable;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.*;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -62,10 +57,6 @@ public class LoginController implements Serializable {
     @Inject
     private transient UsuarioZonaService usuarioZonaService;
 
-    @Getter
-    @Setter
-    private boolean loginInterno;
-
     @Inject
     private ConfiguracionController configuracion;
 
@@ -87,26 +78,11 @@ public class LoginController implements Serializable {
                 Map<String, Object> parameters = new HashMap<>();
                 parameters.put("userId", getLoginName());
                 setZonasTecnico(usuarioZonaService.findWithNamedQuery(UsuarioZona.ZONAS_BY_USUARIO_ID, parameters));
-                loginInterno = isLocalLogin();
                 setAudit();
             }
         }
 
         return "success";
-    }
-
-    private boolean isLocalLogin() {
-        HttpServletRequest request = Faces.getRequest();
-        try {
-            InetAddress inetAddress = InetAddress.getByName(request.getRemoteAddr());
-            log.fine("Usuario ingresó desde dirección IP: " + inetAddress.getHostAddress());
-            boolean isLocalIp = configuracion.getConfiguracion().isLocalIp(inetAddress);
-            log.fine("La IP pertenece a red local: " + isLocalIp);
-            return isLocalIp;
-        } catch (UnknownHostException e) {
-            log.log(Level.WARNING, "La dirección remota no es reconocida (" + request.getRemoteAddr() + ") " + e.getMessage(), e);
-        }
-        return false;
     }
 
     private Auditoria auditLogin(String operacion) {
