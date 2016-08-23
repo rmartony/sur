@@ -25,8 +25,8 @@
         <omnifaces.version>RELEASE</omnifaces.version>
         <!-- PicketLink dependency versions -->
         <version.picketlink.javaee.bom>2.7.1.Final</version.picketlink.javaee.bom>
-        <primefaces.version>5.3</primefaces.version>
-        <primefaces-extensions.version>4.0.0</primefaces-extensions.version>
+        <primefaces.version>6.0</primefaces.version>
+        <primefaces-extensions.version>6.0.0</primefaces-extensions.version>
         <!-- maven-compiler-plugin -->
         <version.compiler.plugin>3.1</version.compiler.plugin>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -194,6 +194,13 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+        <!--
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+            <scope>test</scope>
+        </dependency>
+        -->
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.0-api</artifactId>
@@ -223,6 +230,13 @@
             <artifactId>primefaces-extensions</artifactId>
             <version>${primefaces-extensions.version}</version>
         </dependency>
+        <!--
+        <dependency>
+            <groupId>org.primefaces.themes</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>1.0.10</version>
+        </dependency>
+        -->
 
         <!-- Import the JSF API, we use provided scope as the API is included in Wildfly 8 -->
         <dependency>
