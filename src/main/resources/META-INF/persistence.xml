@@ -12,16 +12,46 @@
         <class>uy.gub.dgr.sur.entity.NodoLte</class>
         <class>uy.gub.dgr.sur.entity.Nodo3G</class>
         <class>uy.gub.dgr.sur.entity.Preventivo</class>
-        <class>uy.gub.dgr.sur.entity.Estado</class>
         <class>uy.gub.dgr.sur.entity.Celda</class>
         <class>uy.gub.dgr.sur.entity.Celda3G</class>
         <class>uy.gub.dgr.sur.entity.CeldaLte</class>
-        <!--        <class>Registro</class>-->
+        <class>uy.gub.dgr.sur.entity.Acto</class>
+        <class>uy.gub.dgr.sur.entity.Combustible</class>
+        <class>uy.gub.dgr.sur.entity.Calle</class>
+        <class>uy.gub.dgr.sur.entity.Configuracion</class>
+        <class>uy.gub.dgr.sur.entity.Departamento</class>
+        <class>uy.gub.dgr.sur.entity.Documento</class>
+        <class>uy.gub.dgr.sur.entity.Emisor</class>
+        <class>uy.gub.dgr.sur.entity.Escribano</class>
+        <class>uy.gub.dgr.sur.entity.Estado</class>
+        <class>uy.gub.dgr.sur.entity.Exoneracion</class>
+        <class>uy.gub.dgr.sur.entity.Inscripcion</class>
+        <class>uy.gub.dgr.sur.entity.Interviniente</class>
+        <class>uy.gub.dgr.sur.entity.LibroRubrica</class>
+        <class>uy.gub.dgr.sur.entity.LibroRubricaTipo</class>
+        <class>uy.gub.dgr.sur.entity.Localidad</class>
+        <class>uy.gub.dgr.sur.entity.Marca</class>
+        <class>uy.gub.dgr.sur.entity.Modelo</class>
+        <class>uy.gub.dgr.sur.entity.Moneda</class>
+        <class>uy.gub.dgr.sur.entity.Monto</class>
+        <class>uy.gub.dgr.sur.entity.Movimiento</class>
+        <class>uy.gub.dgr.sur.entity.Preventivo</class>
+        <class>uy.gub.dgr.sur.entity.Registro</class>
+        <class>uy.gub.dgr.sur.entity.Seccion</class>
         <class>uy.gub.dgr.sur.entity.Sede</class>
+        <class>uy.gub.dgr.sur.entity.Sitio</class>
+        <class>uy.gub.dgr.sur.entity.Sujeto</class>
+        <class>uy.gub.dgr.sur.entity.SujetoAutomotor</class>
+        <class>uy.gub.dgr.sur.entity.SujetoInmueble</class>
+        <class>uy.gub.dgr.sur.entity.SujetoLibro</class>
+        <class>uy.gub.dgr.sur.entity.SujetoPersonaFisica</class>
+        <class>uy.gub.dgr.sur.entity.SujetoPersonaJuridica</class>
+        <class>uy.gub.dgr.sur.entity.Tasa</class>
+        <class>uy.gub.dgr.sur.entity.TipoAutomotor</class>
+        <class>uy.gub.dgr.sur.entity.TipoDocumento</class>
         <class>uy.gub.dgr.sur.entity.TipoAntena</class>
         <class>uy.gub.dgr.sur.entity.Interviniente</class>
         <class>uy.gub.dgr.sur.entity.TipoFeeder</class>
-        <class>uy.gub.dgr.sur.entity.Sede</class>
         <class>uy.gub.dgr.sur.entity.Torrero</class>
         <class>uy.gub.dgr.sur.entity.Escribano</class>
 
@@ -40,6 +70,7 @@
         <shared-cache-mode>ALL</shared-cache-mode>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <!-- use DROP ALL OBJECTS DELETE FILES in H2 to drop all tables -->
             <!--<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>-->
             <property name="hibernate.show_sql" value="false"/>
             <property name="hibernate.format_sql" value="true"/>
