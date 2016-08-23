@@ -23,7 +23,7 @@ import java.util.List;
         @NamedQuery(name = Documento.ALL, query = "SELECT d FROM Documento d order by d.fecha desc")
 })
 @Cacheable
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"registro", "sede", "anio", "numero", "bis"}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"registro_id", "sede_id", "anio", "numero", "bis"}))
 @Audited
 public class Documento extends BaseEntity implements Serializable {
     public final static String ID = "Documento.id";

@@ -23,8 +23,7 @@ import java.sql.Date;
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = {"interviniente", "fecha", "nombre", "bps", "naturalezaJuridica",
         "tipo", "tipoSocial", "parte", "domicilio", "sede"})
-@Table(indexes = {@Index(name = "perfis_a1", columnList = "apellido1", unique = false),
-        @Index(name = "perfis_a1n1", columnList = "apellido1, nombre1", unique = false)})
+@Table(indexes = {@Index(name = "perjur_rut", columnList = "rut", unique = true)})
 @Audited
 public class SujetoPersonaJuridica extends Sujeto {
 

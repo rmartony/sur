@@ -6,6 +6,7 @@ import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -49,7 +50,7 @@ public class Tasa extends BaseEntity implements Serializable {
     /**
      * El monto actual de la tasa
      */
-    @NotEmpty
+    @NotNull
     private BigDecimal monto;
 
     /**

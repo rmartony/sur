@@ -11,12 +11,12 @@ package uy.gub.dgr.sur.entity;//
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.envers.Audited;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Entity;
 import javax.persistence.Index;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
 @Entity
@@ -24,7 +24,7 @@ import java.sql.Date;
 @EqualsAndHashCode(callSuper = true, exclude = {
         "seccionJudicial", "cuotaParte", "interviniente", "fecha", "anio", "chasis", "inEx", "combustible",
         "motor", "cilindros", "placaMunicipal", "matriculaRegistral", "dua", "calle", "numeroCalle", "naturalezaJuridica"})
-@Table(indexes = {@Index(name = "dep_pad", columnList = "padron, departamento", unique = true)})
+@Table(indexes = {@Index(name = "dep_pad", columnList = "padron, departamento_id", unique = true)})
 @Audited
 public class SujetoInmueble extends Sujeto {
 
@@ -34,7 +34,7 @@ public class SujetoInmueble extends Sujeto {
     @ManyToOne
     private Localidad localidad;
 
-    @NotEmpty
+    @NotNull
     private Integer padron;
 
     private String block;

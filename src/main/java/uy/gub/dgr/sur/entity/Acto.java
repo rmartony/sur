@@ -21,7 +21,7 @@ import java.io.Serializable;
         @NamedQuery(name = Acto.ALL, query = "SELECT d FROM Acto d")
 })
 @Cacheable
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo", "registro", "seccion"}))
+@Table(indexes = {@Index(name = "codActo", columnList = "codigo, seccion_id", unique = true)})
 @Audited
 public class Acto extends BaseEntity implements Serializable {
     public final static String ID = "Acto.id";
@@ -39,9 +39,6 @@ public class Acto extends BaseEntity implements Serializable {
     private String duracion;
 
     private short periodo;
-
-
-
 
 
 }

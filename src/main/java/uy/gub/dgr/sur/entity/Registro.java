@@ -17,7 +17,7 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NamedQueries({
-        @NamedQuery(name = Registro.ALL, query = "SELECT r FROM Registro r order by r.nombre"),
+        @NamedQuery(name = Registro.ALL, query = "SELECT r FROM Registro r order by r.descripcion"),
         @NamedQuery(name = Registro.BY_ID, query = "SELECT r FROM Registro r where r.id = :id"),
         @NamedQuery(name = Registro.BY_CODIGO, query = "SELECT r FROM Registro r where r.codigo = :codigo"),
         @NamedQuery(name = Registro.BY_DESCRIPCION, query = "SELECT r FROM Registro r where r.descripcion = :descripcion"),

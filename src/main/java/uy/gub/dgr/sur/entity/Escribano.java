@@ -3,6 +3,7 @@ package uy.gub.dgr.sur.entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.envers.Audited;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
@@ -33,10 +34,10 @@ public class Escribano extends BaseEntity implements Serializable {
     public final static String BY_CODE = "Escribano.codigo";
     public final static String TOTAL = "Escribano.countTotal";
 
-    @NotNull
     //@Pattern(regexp = REGEXP_IP_VALIDATE, message = "{msg.invalidIP}")
-    private long codigo;
     @NotNull
+    private Long codigo;
+    @NotEmpty
     private String nombre;
 
     private Date inhabilitadoFechaDesde;

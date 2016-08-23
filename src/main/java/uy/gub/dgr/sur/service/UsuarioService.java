@@ -42,6 +42,7 @@ public class UsuarioService {
     public final static String ROLE_MAESTRO = "maestro";
     public final static String ROLE_HISTORICO = "historico";
     public final static String ROLE_CONSULTA = "consulta";
+    public final static String ROLE_COMPLETADO = "completado";
 
 
     @Inject

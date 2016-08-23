@@ -17,12 +17,12 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NamedQueries({
-        @NamedQuery(name = Seccion.ALL, query = "SELECT r FROM Seccion r order by r.nombre"),
+        @NamedQuery(name = Seccion.ALL, query = "SELECT r FROM Seccion r order by r.descripcion"),
         @NamedQuery(name = Seccion.BY_ID, query = "SELECT r FROM Seccion r where r.id = :id"),
         @NamedQuery(name = Seccion.BY_CODIGO, query = "SELECT r FROM Seccion r where r.codigo = :codigo"),
         @NamedQuery(name = Seccion.BY_DESCRIPCION, query = "SELECT r FROM Seccion r where r.descripcion = :descripcion"),
         @NamedQuery(name = Seccion.TOTAL, query = "SELECT COUNT(r) FROM Seccion r")})
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo"}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo", "registro_id"}))
 @Audited
 public class Seccion extends BaseEntity implements Serializable {
     public final static String ALL = "Seccion.all";

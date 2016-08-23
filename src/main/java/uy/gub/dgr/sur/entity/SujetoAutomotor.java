@@ -11,20 +11,16 @@ package uy.gub.dgr.sur.entity;//
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.envers.Audited;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Entity;
-import javax.persistence.Index;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = {"interviniente", "fecha", "anio", "chasis", "inEx", "combustible",
         "motor", "cilindros", "placaMunicipal", "matriculaRegistral", "dua", "tipoAutomotor", "hp"})
-@Table(indexes = {@Index(name = "perfis_a1", columnList = "apellido1", unique = false),
-        @Index(name = "perfis_a1n1", columnList = "apellido1, nombre1", unique = false)})
 @Audited
 public class SujetoAutomotor extends Sujeto {
 
@@ -34,7 +30,7 @@ public class SujetoAutomotor extends Sujeto {
     private Departamento departamento;
     @ManyToOne
     private Localidad localidad;
-    @NotEmpty
+    @NotNull
     private Integer padron;
     @ManyToOne
     private Interviniente interviniente;

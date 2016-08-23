@@ -19,8 +19,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = true, exclude = {"observaciones", "descripcion", "seccion"})
 @NamedQueries({
         @NamedQuery(name = Interviniente.ID, query = "SELECT t FROM Interviniente t where t.id = :id"),
-        @NamedQuery(name = Interviniente.ALL, query = "SELECT t FROM Interviniente t order by t.nombre"),
-        @NamedQuery(name = Interviniente.EXISTS_IN_NODO, query = "SELECT n.sigla FROM Nodo n where n.interviniente in (:intervinienteList)")
+        @NamedQuery(name = Interviniente.ALL, query = "SELECT t FROM Interviniente t order by t.descripcion"),
 })
 @Cacheable
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo"}))

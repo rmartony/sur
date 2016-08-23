@@ -88,7 +88,7 @@ public class EntityInitializer {
 
     private void initEscribano() {
         Escribano z = new Escribano();
-        for (int i = 0; i < 5; i++) {
+        for (long i = 0; i < 5; i++) {
             z.setCodigo(i);
             z.setNombre(z.getClass().getSimpleName() + i);
             escribanoService.update(z);

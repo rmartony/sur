@@ -6,6 +6,7 @@ import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -38,7 +39,7 @@ public class Sede extends BaseEntity implements Serializable {
     @NotEmpty
     private String descripcion;
 
-    @NotEmpty
-    private int anio;
+    @NotNull
+    private Integer anio;
 
 }
