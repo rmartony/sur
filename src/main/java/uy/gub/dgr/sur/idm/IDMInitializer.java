@@ -124,13 +124,21 @@ public class IDMInitializer {
         identityManager.add(calificacion);
         identityManager.updateCredential(calificacion, new Password("calificacion"));
 
-        // Create user completado
-        User completado = new User("completado");
-        completado.setEmail("completado@acme.com");
-        completado.setFirstName("Jane");
-        completado.setLastName("Doe");
-        identityManager.add(completado);
-        identityManager.updateCredential(completado, new Password("completado"));
+        // Create user maestro
+        User maestro = new User("maestro");
+        maestro.setEmail("maestro@acme.com");
+        maestro.setFirstName("Jane");
+        maestro.setLastName("Doe");
+        identityManager.add(maestro);
+        identityManager.updateCredential(maestro, new Password("maestro"));
+
+        // Create user cierre
+        User cierre = new User("cierre");
+        cierre.setEmail("cierre@acme.com");
+        cierre.setFirstName("Jane");
+        cierre.setLastName("Doe");
+        identityManager.add(cierre);
+        identityManager.updateCredential(cierre, new Password("cierre"));
 
         // Create user ventanilla
         User ventanilla = new User("ventanilla");
@@ -167,9 +175,13 @@ public class IDMInitializer {
             Role ventanillaRol = new Role(UsuarioService.ROLE_VENTANILLA);
             identityManager.add(ventanillaRol);
 
-            // Create role "completado"
-            Role consolaRol = new Role(UsuarioService.ROLE_COMPLETADO);
-            identityManager.add(consolaRol);
+            // Create role "cierre"
+            Role cierreRol = new Role(UsuarioService.ROLE_CIERRE);
+            identityManager.add(cierreRol);
+
+            // Create role "maestro"
+            Role maestroRol = new Role(UsuarioService.ROLE_MAESTRO);
+            identityManager.add(maestroRol);
 
             // Create role "verificacion"
             Role verificacionRol = new Role(UsuarioService.ROLE_VERIFICACION);
@@ -187,15 +199,22 @@ public class IDMInitializer {
             Role consultaRol = new Role(UsuarioService.ROLE_CONSULTA);
             identityManager.add(consultaRol);
 
+            // Create application role "caducar"
+            Role caducarRol = new Role(UsuarioService.ROLE_CADUCAR);
+            identityManager.add(caducarRol);
 
+            // Grants
             // Grant the "admin" application role to admin user
             grantRole(relationshipManager, admin, adminRol);
 
             // Grant the "consulta" application role to consulta user
             grantRole(relationshipManager, consulta, consultaRol);
 
-            // Grant the "completado" application role to completado user
-            grantRole(relationshipManager, completado, consolaRol);
+            // Grant the "maestro" application role to maestro user
+            grantRole(relationshipManager, maestro, maestroRol);
+
+            // Grant the "cierre" application role to cierre user
+            grantRole(relationshipManager, cierre, cierreRol);
 
             // Grant the "ventanilla" application role to ventanilla user
             grantRole(relationshipManager, ventanilla, ventanillaRol);
