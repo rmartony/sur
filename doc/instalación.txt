@@ -1,4 +1,4 @@
-Configuración datasource
+Configuración datasource MySQL
 
 1) Descargar conector mysql
 
