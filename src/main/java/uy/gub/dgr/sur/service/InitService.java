@@ -3,7 +3,7 @@ package uy.gub.dgr.sur.service;
 import org.apache.commons.collections.CollectionUtils;
 import uy.gub.dgr.sur.entity.*;
 
-import javax.ejb.Singleton;
+import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by rafa on 22/8/2016.
  */
-@Singleton
+@Stateless
 public class InitService {
     @Inject
     private transient SedeService sedeService;
@@ -44,10 +44,10 @@ public class InitService {
         final boolean initialized = initialized();
         if (!initialized) {
             initSedes();
+            initRegistros();
             initDepartamentos();
             initEstado();
             initConfiguracion();
-            initRegistros();
             initEscribanos();
             initCombustible();
             initEmisor();
@@ -231,12 +231,12 @@ public class InitService {
         departamentoService.update(departamento);
     }
 
-    private void initInterviniente(String id, Seccion s) {
+    private Interviniente initInterviniente(String id, Seccion s) {
         Interviniente interviniente = new Interviniente();
         interviniente.setCodigo(id);
         interviniente.setDescripcion("Interviniente " + id);
         interviniente.setSeccion(s);
-        intervinienteService.update(interviniente);
+        return intervinienteService.update(interviniente);
     }
 
     private void initEstado() {
@@ -277,12 +277,12 @@ public class InitService {
         Registro registro = new Registro();
         registro.setCodigo("RPI");
         registro.setDescripcion("Registro Propiedad Seccion Inmobiliario");
-        registroService.update(registro);
+        registro = registroService.update(registro);
         Seccion seccion = new Seccion();
         seccion.setCodigo("Sec1RPI");
         seccion.setDescripcion("Seccion 1 RPI");
         seccion.setRegistro(registro);
-        seccionService.update(seccion);
+        seccion = seccionService.update(seccion);
         initInterviniente("1", seccion);
         Acto acto = new Acto();
         acto.setCodigo("act1Sec1RPI");
@@ -296,7 +296,7 @@ public class InitService {
         seccion.setCodigo("Sec2RPI");
         seccion.setDescripcion("Seccion 2 RPI");
         seccion.setRegistro(registro);
-        seccionService.update(seccion);
+        seccion = seccionService.update(seccion);
         initInterviniente("3", seccion);
         acto = new Acto();
         acto.setCodigo("act1Sec2RPI");
@@ -309,12 +309,12 @@ public class InitService {
         registro = new Registro();
         registro.setCodigo("RA");
         registro.setDescripcion("Registro Propiedad Seccion Mobiliario");
-        registroService.update(registro);
+        registro = registroService.update(registro);
         seccion = new Seccion();
         seccion.setCodigo("Sec1RA");
         seccion.setDescripcion("Seccion 1 RA");
         seccion.setRegistro(registro);
-        seccionService.update(seccion);
+        seccion = seccionService.update(seccion);
         acto = new Acto();
         acto.setCodigo("act1Sec1RA");
         acto.setDescripcion("Acto 1 Seccion 1 RA");
@@ -326,17 +326,17 @@ public class InitService {
         seccion.setCodigo("Sec2RA");
         seccion.setDescripcion("Seccion 2 RA");
         seccion.setRegistro(registro);
-        seccionService.update(seccion);
+        seccion = seccionService.update(seccion);
 
         registro = new Registro();
         registro.setCodigo("RAE");
         registro.setDescripcion("Registro Aeronaves");
-        registroService.update(registro);
+        registro = registroService.update(registro);
         seccion = new Seccion();
         seccion.setCodigo("Sec1RAE");
         seccion.setDescripcion("Seccion 1 RAE");
         seccion.setRegistro(registro);
-        seccionService.update(seccion);
+        seccion = seccionService.update(seccion);
         acto = new Acto();
         acto.setCodigo("act1Sec1RAE");
         acto.setDescripcion("Acto 1 Seccion 1 RAE");
@@ -348,42 +348,42 @@ public class InitService {
         registro = new Registro();
         registro.setCodigo("RCO");
         registro.setDescripcion("Registro Nacional Comercio");
-        registroService.update(registro);
+        registro = registroService.update(registro);
         seccion = new Seccion();
         seccion.setCodigo("Sec1RCO");
         seccion.setDescripcion("Seccion 1 RCO");
         seccion.setRegistro(registro);
-        seccionService.update(seccion);
+        seccion = seccionService.update(seccion);
 
         registro = new Registro();
         registro.setCodigo("RGI");
         registro.setDescripcion("Registro Actos Personales");
-        registroService.update(registro);
+        registro = registroService.update(registro);
         seccion = new Seccion();
         seccion.setCodigo("Sec1RGI");
         seccion.setDescripcion("Seccion 1 RGI");
         seccion.setRegistro(registro);
-        seccionService.update(seccion);
+        seccion = seccionService.update(seccion);
 
         registro = new Registro();
         registro.setCodigo("ACF");
         registro.setDescripcion("Registro Asociaciones Civiles");
-        registroService.update(registro);
+        registro = registroService.update(registro);
         seccion = new Seccion();
         seccion.setCodigo("Sec1ACF");
         seccion.setDescripcion("Seccion 1 ACF");
         seccion.setRegistro(registro);
-        seccionService.update(seccion);
+        seccion = seccionService.update(seccion);
 
         registro = new Registro();
         registro.setCodigo("PSD");
         registro.setDescripcion("Prenda sin Desplazamiento");
-        registroService.update(registro);
+        registro = registroService.update(registro);
         seccion = new Seccion();
         seccion.setCodigo("Sec1PDF");
         seccion.setDescripcion("Seccion 1 PSD");
         seccion.setRegistro(registro);
-        seccionService.update(seccion);
+        seccion = seccionService.update(seccion);
     }
 
     private void initCombustible() {
