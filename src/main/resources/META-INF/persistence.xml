@@ -6,18 +6,9 @@
         <jta-data-source>java:jboss/datasources/surDS</jta-data-source>
         <!--        <exclude-unlisted-classes>false</exclude-unlisted-classes>-->
 
-        <class>uy.gub.dgr.sur.entity.Sitio</class>
-        <class>uy.gub.dgr.sur.entity.Zona</class>
-        <class>uy.gub.dgr.sur.entity.Nodo</class>
-        <class>uy.gub.dgr.sur.entity.NodoLte</class>
-        <class>uy.gub.dgr.sur.entity.Nodo3G</class>
-        <class>uy.gub.dgr.sur.entity.Preventivo</class>
-        <class>uy.gub.dgr.sur.entity.Celda</class>
-        <class>uy.gub.dgr.sur.entity.Celda3G</class>
-        <class>uy.gub.dgr.sur.entity.CeldaLte</class>
         <class>uy.gub.dgr.sur.entity.Acto</class>
-        <class>uy.gub.dgr.sur.entity.Combustible</class>
         <class>uy.gub.dgr.sur.entity.Calle</class>
+        <class>uy.gub.dgr.sur.entity.Combustible</class>
         <class>uy.gub.dgr.sur.entity.Configuracion</class>
         <class>uy.gub.dgr.sur.entity.Departamento</class>
         <class>uy.gub.dgr.sur.entity.Documento</class>
@@ -39,7 +30,6 @@
         <class>uy.gub.dgr.sur.entity.Registro</class>
         <class>uy.gub.dgr.sur.entity.Seccion</class>
         <class>uy.gub.dgr.sur.entity.Sede</class>
-        <class>uy.gub.dgr.sur.entity.Sitio</class>
         <class>uy.gub.dgr.sur.entity.Sujeto</class>
         <class>uy.gub.dgr.sur.entity.SujetoAutomotor</class>
         <class>uy.gub.dgr.sur.entity.SujetoInmueble</class>
@@ -49,11 +39,20 @@
         <class>uy.gub.dgr.sur.entity.Tasa</class>
         <class>uy.gub.dgr.sur.entity.TipoAutomotor</class>
         <class>uy.gub.dgr.sur.entity.TipoDocumento</class>
-        <class>uy.gub.dgr.sur.entity.TipoAntena</class>
         <class>uy.gub.dgr.sur.entity.Interviniente</class>
+
+        <class>uy.gub.dgr.sur.entity.Sitio</class>
+        <class>uy.gub.dgr.sur.entity.Zona</class>
+        <class>uy.gub.dgr.sur.entity.Nodo</class>
+        <class>uy.gub.dgr.sur.entity.NodoLte</class>
+        <class>uy.gub.dgr.sur.entity.Nodo3G</class>
+        <class>uy.gub.dgr.sur.entity.Preventivo</class>
+        <class>uy.gub.dgr.sur.entity.Celda</class>
+        <class>uy.gub.dgr.sur.entity.Celda3G</class>
+        <class>uy.gub.dgr.sur.entity.CeldaLte</class>
+        <class>uy.gub.dgr.sur.entity.TipoAntena</class>
         <class>uy.gub.dgr.sur.entity.TipoFeeder</class>
         <class>uy.gub.dgr.sur.entity.Torrero</class>
-        <class>uy.gub.dgr.sur.entity.Escribano</class>
 
         <class>org.picketlink.idm.jpa.model.sample.simple.AttributedTypeEntity</class>
         <class>org.picketlink.idm.jpa.model.sample.simple.AccountTypeEntity</class>
@@ -71,7 +70,11 @@
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
             <!-- use DROP ALL OBJECTS DELETE FILES in H2 to drop all tables -->
+
             <!--<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>-->
+
+            <!-- Scan for annotated classes and Hibernate mapping XML files -->
+            <!-- <property name="hibernate.archive.autodetection" value="class, hbm"/> -->
             <property name="hibernate.show_sql" value="false"/>
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
