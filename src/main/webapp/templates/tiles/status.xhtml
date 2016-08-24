@@ -32,7 +32,7 @@
                 <h:outputText value="(calificación)"/>
             </ui:fragment>
 
-            <ui:fragment rendered="#{authorizationChecker.maestro()}">
+            <ui:fragment rendered="#{authorizationChecker.isMaestro()}">
                 <h:outputText value="(completado)"/>
             </ui:fragment>
 
@@ -40,8 +40,8 @@
                 <h:outputText value="(histórico)"/>
             </ui:fragment>
 
-            <ui:fragment rendered="#{authorizationChecker.isConsulta()}">
-                <h:outputText value="(consulta)"/>
+            <ui:fragment rendered="#{authorizationChecker.isCaducar()}">
+                <h:outputText value="(caducar)"/>
             </ui:fragment>
 
         </h:form>
