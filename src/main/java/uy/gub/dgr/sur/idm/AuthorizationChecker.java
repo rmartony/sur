@@ -98,5 +98,13 @@ public class AuthorizationChecker implements Serializable {
         return hasApplicationRole(UsuarioService.ROLE_CONSULTA);
     }
 
+    public boolean isCierre() {
+        return hasApplicationRole(UsuarioService.ROLE_CIERRE);
+    }
+
+    public boolean isCaducar() {
+        return hasApplicationRole(UsuarioService.ROLE_CADUCAR);
+    }
+
 
 }
