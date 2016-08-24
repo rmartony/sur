@@ -38,6 +38,6 @@ public class Interviniente extends BaseEntity implements Serializable {
     @NotEmpty
     private String descripcion;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Seccion seccion;
 }
