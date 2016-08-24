@@ -13,6 +13,7 @@ import org.picketlink.idm.RelationshipManager;
 import uy.gub.dgr.sur.idm.annotations.Admin;
 import uy.gub.dgr.sur.idm.annotations.Maestro;
 import uy.gub.dgr.sur.idm.annotations.Verificacion;
+import uy.gub.dgr.sur.service.UsuarioService;
 
 import javax.enterprise.context.ApplicationScoped;
 
@@ -54,16 +55,16 @@ public class CustomAuthorizer {
      */
     @Secures
     @Maestro
-    public boolean doConsolaCheck(Identity identity, IdentityManager identityManager, RelationshipManager relationshipManager) throws Exception {
-        return hasRole(relationshipManager, identity.getAccount(), getRole(identityManager, "completado")) ||
-                hasRole(relationshipManager, identity.getAccount(), getRole(identityManager, "admin"));
+    public boolean doMaestroCheck(Identity identity, IdentityManager identityManager, RelationshipManager relationshipManager) throws Exception {
+        return hasRole(relationshipManager, identity.getAccount(), getRole(identityManager, UsuarioService.ROLE_MAESTRO)) ||
+                hasRole(relationshipManager, identity.getAccount(), getRole(identityManager, UsuarioService.ROLE_ADMIN));
     }
 
     @Secures
     @Verificacion
-    public boolean doTecnicoCheck(Identity identity, IdentityManager identityManager, RelationshipManager relationshipManager) throws Exception {
-        return hasRole(relationshipManager, identity.getAccount(), getRole(identityManager, "verificacion")) ||
-                hasRole(relationshipManager, identity.getAccount(), getRole(identityManager, "admin"));
+    public boolean doVerificacionCheck(Identity identity, IdentityManager identityManager, RelationshipManager relationshipManager) throws Exception {
+        return hasRole(relationshipManager, identity.getAccount(), getRole(identityManager, UsuarioService.ROLE_VERIFICACION)) ||
+                hasRole(relationshipManager, identity.getAccount(), getRole(identityManager, UsuarioService.ROLE_ADMIN));
     }
 
 }
