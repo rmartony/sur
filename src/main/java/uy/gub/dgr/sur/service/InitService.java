@@ -1,12 +1,15 @@
 package uy.gub.dgr.sur.service;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.time.DateUtils;
 import uy.gub.dgr.sur.entity.*;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -38,6 +41,30 @@ public class InitService {
     private transient CombustibleService combustibleService;
     @Inject
     private transient EmisorService emisorService;
+    @Inject
+    private transient InscripcionService inscripcionService;
+    @Inject
+    private transient LibroRubricaService libroRubricaService;
+    @Inject
+    private transient LibroRubricaTipoService libroRubricaTipoService;
+    @Inject
+    private transient LocalidadService localidadService;
+    @Inject
+    private transient MarcaService marcaService;
+    @Inject
+    private transient ModeloService modeloService;
+    @Inject
+    private transient MonedaService monedaService;
+    @Inject
+    private transient MontoService montoService;
+    @Inject
+    private transient MovimientoService movimientoService;
+    @Inject
+    private transient TasaService tasaService;
+    @Inject
+    private transient TipoAutomotorService tipoAutomotorService;
+    @Inject
+    private transient TipoDocumentoService tipoDocumentoService;
 
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void initDB() {
@@ -51,6 +78,13 @@ public class InitService {
             initEscribanos();
             initCombustible();
             initEmisor();
+            initLibroRubrica();
+            initLibroRubricaTipo();
+            initLocalidad();
+            initMarca();
+            initMoneda();
+            initTipoDocumento();
+            initTasa();
         }
     }
 
@@ -406,6 +440,92 @@ public class InitService {
         emisor.setCodigo("e2");
         emisor.setDescripcion("Emisor 2");
         emisorService.update(emisor);
+    }
+
+    private void initLibroRubrica() {
+        LibroRubrica libroRubrica = new LibroRubrica();
+        libroRubrica.setCodigo("lib1");
+        libroRubrica.setDescripcion("Libro rúbrica 1");
+        libroRubricaService.update(libroRubrica);
+        libroRubrica = new LibroRubrica();
+        libroRubrica.setCodigo("lib2");
+        libroRubrica.setDescripcion("Libro rúbrica 2");
+        libroRubricaService.update(libroRubrica);
+    }
+
+    private void initLibroRubricaTipo() {
+        LibroRubricaTipo libroRubricaTipo = new LibroRubricaTipo();
+        libroRubricaTipo.setCodigo("libTipo1");
+        libroRubricaTipo.setDescripcion("Libro rúbrica tipo 1");
+        libroRubricaTipoService.update(libroRubricaTipo);
+        libroRubricaTipo = new LibroRubricaTipo();
+        libroRubricaTipo.setCodigo("libTipo2");
+        libroRubricaTipo.setDescripcion("Libro rúbrica tipo 2");
+        libroRubricaTipoService.update(libroRubricaTipo);
+    }
+
+    private void initLocalidad() {
+        Localidad localidad = new Localidad();
+        localidad.setCodigo("loc1");
+        localidad.setDescripcion("Localidad 1");
+        localidadService.update(localidad);
+        localidad = new Localidad();
+        localidad.setCodigo("loc2");
+        localidad.setDescripcion("Localidad 2");
+        localidadService.update(localidad);
+    }
+
+    private void initMarca() {
+        Marca marca = new Marca();
+        marca.setCodigo("marca1");
+        marca.setDescripcion("Marca 1");
+        marca = marcaService.update(marca);
+        initModelo("modelo1", marca);
+        marca = new Marca();
+        marca.setCodigo("marca2");
+        marca.setDescripcion("Marca 2");
+        marcaService.update(marca);
+        initModelo("modelo2", marca);
+    }
+
+    private Modelo initModelo(String codigo, Marca marca) {
+        Modelo modelo = new Modelo();
+        modelo.setCodigo(codigo);
+        modelo.setDescripcion("Modelo " + codigo);
+        modelo.setMarca(marca);
+        modelo = modeloService.update(modelo);
+        return modelo;
+    }
+
+    private void initMoneda() {
+        Moneda moneda = new Moneda();
+        moneda.setCodigo("USD");
+        moneda.setDescripcion("Dólares americanos");
+        monedaService.update(moneda);
+        moneda = new Moneda();
+        moneda.setCodigo("UYU");
+        moneda.setDescripcion("Pesos uruguayos");
+        monedaService.update(moneda);
+    }
+
+    private void initTasa() {
+        Tasa tasa = new Tasa();
+        tasa.setCodigo(Tasa.DOC_COMUN);
+        tasa.setMonto(new BigDecimal(4000));
+        tasa.setFechaVencimiento(DateUtils.addDays(new Date(), 5));
+        tasaService.update(tasa);
+        tasa = new Tasa();
+        tasa.setCodigo(Tasa.DOC_URGENTE);
+        tasa.setMonto(new BigDecimal(2300));
+        tasa.setFechaVencimiento(DateUtils.addDays(new Date(), 5));
+
+    }
+
+    private void initTipoDocumento() {
+        TipoDocumento tipoDocumento = new TipoDocumento();
+        tipoDocumento.setCodigo("tipoDoc1");
+        tipoDocumento.setDescripcion("Tipo Documento 1");
+        tipoDocumento = tipoDocumentoService.update(tipoDocumento);
     }
 
 }
