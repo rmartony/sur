@@ -7,7 +7,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 
 /**
  * User: rmartony
@@ -24,7 +23,7 @@ import java.io.Serializable;
 @Cacheable
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo"}))
 @Audited
-public class Interviniente extends BaseEntity implements Serializable {
+public class Interviniente extends BaseEntity {
     public final static String ID = "Interviniente.id";
     public final static String ALL = "Interviniente.all";
     public final static String EXISTS_IN_NODO = "Interviniente.exists";

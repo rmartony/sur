@@ -6,7 +6,6 @@ import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -32,7 +31,7 @@ import java.util.Date;
 })
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"sigla"}))
 @Audited
-public abstract class Nodo extends BaseEntity implements Serializable {
+public abstract class Nodo extends BaseEntity {
     public final static String BY_SITIO_ID = "Nodo.sitio.id";
     public final static String BY_SITIO_ZONA_ID = "Nodo.sitio.zona.id";
     public final static String EXISTS_IN_PREVENTIVO = "existsInPreventivo";

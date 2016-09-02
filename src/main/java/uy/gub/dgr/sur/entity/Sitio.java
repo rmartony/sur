@@ -9,7 +9,6 @@ import org.hibernate.validator.constraints.Range;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -29,7 +28,7 @@ import java.util.Date;
         @NamedQuery(name = Sitio.BY_SIGLA_ZONA, query = "SELECT z FROM Sitio z where lower(z.sigla) like concat(concat('%',lower(:nombre)), '%') or lower(z.nombre) like concat(concat('%',lower(:nombre)),'%') and z.zona.id in :idZonaList"),
         @NamedQuery(name = Sitio.TOTAL, query = "SELECT COUNT(z) FROM Sitio z")})
 @Audited
-public class Sitio extends BaseEntity implements Serializable {
+public class Sitio extends BaseEntity {
     public final static String ALL = "Sitio.all";
     public final static String BY_ID = "Sitio.id";
     public final static String BY_SIGLA = "Sitio.sigla";

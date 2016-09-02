@@ -6,7 +6,6 @@ import lombok.EqualsAndHashCode;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import java.io.Serializable;
 
 /**
  * User: rmartony
@@ -21,7 +20,7 @@ import java.io.Serializable;
         @NamedQuery(name = Configuracion.BY_PARAMETRO, query = "SELECT c FROM Configuracion c"),
         @NamedQuery(name = Configuracion.TOTAL, query = "SELECT COUNT(z) FROM Configuracion z")
 })
-public class Configuracion extends BaseEntity implements Serializable {
+public class Configuracion extends BaseEntity {
     public final static String ALL = "Configuracion.all";
     public final static String BY_PARAMETRO = "Configuracion.parametro";
     public final static String TOTAL = "Configuracion.id";

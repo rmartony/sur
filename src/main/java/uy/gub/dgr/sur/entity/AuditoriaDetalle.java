@@ -1,7 +1,5 @@
 package uy.gub.dgr.sur.entity;
 
-import java.io.Serializable;
-
 /**
  * User: rmartony
  * Date: 17/01/14
@@ -12,7 +10,7 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = true)
 */
-public class AuditoriaDetalle extends BaseEntity implements Serializable {
+public class AuditoriaDetalle extends BaseEntity {
 
     public AuditoriaDetalle() {
     }

@@ -7,7 +7,6 @@ import uy.gub.dgr.sur.service.UsuarioService;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -36,7 +35,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true, exclude = {"zonas"})
 @Data
 @Audited
-public class UsuarioZona extends BaseEntity implements Serializable {
+public class UsuarioZona extends BaseEntity {
     public final static String ALL = "UsuarioZona.all";
     public final static String BY_USUARIO_ID = "UsuarioZona.usuario.id";
     public final static String BY_USUARIO_ZONA = "UsuarioZona.usuario.zona";

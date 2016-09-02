@@ -7,7 +7,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -27,7 +26,7 @@ import java.util.Date;
 @Cacheable
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo", "fechaVencimiento"}))
 @Audited
-public class Tasa extends BaseEntity implements Serializable {
+public class Tasa extends BaseEntity {
     public final static String ID = "Tasa.id";
     public final static String BY_CODIGO = "Tasa.codigo";
     public final static String ALL = "Tasa.all";

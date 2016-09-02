@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -27,7 +26,7 @@ import java.util.Date;
         @NamedQuery(name = Escribano.BY_CODE, query = "SELECT i FROM Escribano i where i.codigo = :codigo"),
         @NamedQuery(name = Escribano.TOTAL, query = "SELECT COUNT(z) FROM Escribano z")})
 @Audited
-public class Escribano extends BaseEntity implements Serializable {
+public class Escribano extends BaseEntity {
     public final static String ALL = "Escribano.all";
     public final static String BY_ID = "Escribano.id";
     public final static String BY_STATUS = "Escribano.estado";

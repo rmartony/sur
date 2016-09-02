@@ -7,7 +7,6 @@ import org.hibernate.envers.Audited;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.File;
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
@@ -28,7 +27,7 @@ import java.util.Set;
         @NamedQuery(name = Preventivo.BY_NODO_FECHA, query = "SELECT p FROM Preventivo p where p.nodo.id IN :idNodos GROUP BY p.fecha ORDER BY p.fecha DESC")
 })
 @Audited
-public class Preventivo extends BaseEntity implements Serializable {
+public class Preventivo extends BaseEntity {
     public final static String BY_NODO_FECHA = "Preventivo.nodo.id";
 
     @Temporal(TemporalType.TIMESTAMP)

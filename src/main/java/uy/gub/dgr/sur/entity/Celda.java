@@ -15,7 +15,6 @@ import lombok.EqualsAndHashCode;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -23,7 +22,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = true, exclude = {"sector", "numAntenas", "altura", "azimut", "tiltM", "tiltE", "tipoFO", "ubicacion", "antenaCompartida", "tipoAntena"})
 @Data
 @Audited
-public abstract class Celda extends BaseEntity implements Serializable {
+public abstract class Celda extends BaseEntity {
 
     private Integer idCelda;
 

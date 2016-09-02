@@ -8,7 +8,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import java.io.Serializable;
 
 /**
  * User: rmartony
@@ -20,7 +19,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = true)
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Audited
-public abstract class Sujeto extends BaseEntity implements Serializable {
+public abstract class Sujeto extends BaseEntity {
 
     @NotEmpty
     private String sujeto;

@@ -7,7 +7,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 
 /**
  * User: rmartony
@@ -25,7 +24,7 @@ import java.io.Serializable;
 })
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"nombre"}))
 @Audited
-public class Zona extends BaseEntity implements Serializable {
+public class Zona extends BaseEntity {
     public final static String ALL = "Zona.all";
     public final static String BY_ID = "Zona.id";
     public final static String BY_NAME = "Zona.name";

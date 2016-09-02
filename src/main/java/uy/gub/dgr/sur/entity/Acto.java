@@ -6,7 +6,6 @@ import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * User: rmartony
@@ -23,7 +22,7 @@ import java.io.Serializable;
 @Cacheable
 @Table(indexes = {@Index(name = "codActo", columnList = "codigo, seccion_id", unique = true)})
 @Audited
-public class Acto extends BaseEntity implements Serializable {
+public class Acto extends BaseEntity {
     public final static String ID = "Acto.id";
     public final static String ALL = "Acto.all";
 

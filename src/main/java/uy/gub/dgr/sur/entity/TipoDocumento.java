@@ -6,7 +6,6 @@ import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * User: rmartony
@@ -24,7 +23,7 @@ import java.io.Serializable;
         @NamedQuery(name = TipoDocumento.TOTAL, query = "SELECT COUNT(r) FROM TipoDocumento r")})
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo"}))
 @Audited
-public class TipoDocumento extends BaseEntity implements Serializable {
+public class TipoDocumento extends BaseEntity {
     public final static String ALL = "TipoDocumento.all";
     public final static String BY_ID = "TipoDocumento.id";
     public final static String BY_DESCRICPCION = "TipoDocumento.descripcion";

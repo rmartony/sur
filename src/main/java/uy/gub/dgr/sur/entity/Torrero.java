@@ -9,7 +9,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 
 /**
  * User: rmartony
@@ -26,7 +25,7 @@ import java.io.Serializable;
         @NamedQuery(name = Torrero.TOTAL, query = "SELECT COUNT(r) FROM Torrero r")})
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"nombre"}))
 @Audited
-public class Torrero extends BaseEntity implements Serializable {
+public class Torrero extends BaseEntity {
     public final static String ALL = "Torrero.all";
     public final static String BY_ID = "Torrero.id";
     public final static String EXISTS_IN_PREVENTIVO = "Torrero.existsInUser";

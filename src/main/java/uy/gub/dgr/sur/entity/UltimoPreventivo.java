@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * User: rmartony
@@ -18,7 +17,7 @@ import java.io.Serializable;
         @NamedQuery(name = UltimoPreventivo.BY_NODO_ID, query = "SELECT u FROM UltimoPreventivo u where u.nodo.id = :idNodo"),
         @NamedQuery(name = UltimoPreventivo.BY_PREVENTIVO_ID, query = "SELECT u FROM UltimoPreventivo u where u.preventivo.id = :idPreventivo")
 })
-public class UltimoPreventivo extends BaseEntity implements Serializable {
+public class UltimoPreventivo extends BaseEntity {
     public final static String BY_NODO_ID = "UltimoPreventivo.nodo.id";
     public final static String BY_PREVENTIVO_ID = "UltimoPreventivo.preventivo.id";
     @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})

@@ -6,7 +6,6 @@ import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * User: rmartony
@@ -24,7 +23,7 @@ import java.io.Serializable;
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"modelo"}))
 @Cacheable
 @Audited
-public class TipoFeeder extends BaseEntity implements Serializable {
+public class TipoFeeder extends BaseEntity {
     public final static String ALL = "TipoFeeder.all";
     public final static String BY_ID = "TipoFeeder.id";
     public final static String EXISTS_IN_CELDA = "TipoFeeder.existsInCelda";

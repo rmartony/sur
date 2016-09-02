@@ -6,7 +6,6 @@ import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * User: rmartony
@@ -25,7 +24,7 @@ import java.io.Serializable;
 @Cacheable
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo"}))
 @Audited
-public class Departamento extends BaseEntity implements Serializable {
+public class Departamento extends BaseEntity {
     public final static String ALL = "Departamento.all";
     public final static String BY_ID = "Departamento.id";
     public final static String BY_CODIGO = "Departamento.codigo";

@@ -6,7 +6,6 @@ import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -25,7 +24,7 @@ import java.util.List;
 @Cacheable
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"registro_id", "sede_id", "anio", "numero", "bis"}))
 @Audited
-public class Documento extends BaseEntity implements Serializable {
+public class Documento extends BaseEntity {
     public final static String ID = "Documento.id";
     public final static String ALL = "Documento.all";
     String ficha;

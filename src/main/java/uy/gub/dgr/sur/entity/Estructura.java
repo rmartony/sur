@@ -7,7 +7,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 
 /**
  * User: rmartony
@@ -25,7 +24,7 @@ import java.io.Serializable;
         @NamedQuery(name = Estructura.TOTAL, query = "SELECT COUNT(r) FROM Estructura r")})
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"nombre"}))
 @Audited
-public class Estructura extends BaseEntity implements Serializable {
+public class Estructura extends BaseEntity {
     public final static String ALL = "Estructura.all";
     public final static String BY_ID = "Estructura.id";
     public final static String BY_NAME = "Estructura.name";
