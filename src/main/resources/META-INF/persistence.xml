@@ -39,20 +39,21 @@
         <class>uy.gub.dgr.sur.entity.Tasa</class>
         <class>uy.gub.dgr.sur.entity.TipoAutomotor</class>
         <class>uy.gub.dgr.sur.entity.TipoDocumento</class>
-        <class>uy.gub.dgr.sur.entity.Interviniente</class>
 
-        <class>uy.gub.dgr.sur.entity.Sitio</class>
-        <class>uy.gub.dgr.sur.entity.Zona</class>
-        <class>uy.gub.dgr.sur.entity.Nodo</class>
-        <class>uy.gub.dgr.sur.entity.NodoLte</class>
-        <class>uy.gub.dgr.sur.entity.Nodo3G</class>
-        <class>uy.gub.dgr.sur.entity.Preventivo</class>
-        <class>uy.gub.dgr.sur.entity.Celda</class>
-        <class>uy.gub.dgr.sur.entity.Celda3G</class>
-        <class>uy.gub.dgr.sur.entity.CeldaLte</class>
-        <class>uy.gub.dgr.sur.entity.TipoAntena</class>
-        <class>uy.gub.dgr.sur.entity.TipoFeeder</class>
-        <class>uy.gub.dgr.sur.entity.Torrero</class>
+        <!--
+                <class>uy.gub.dgr.sur.entity.Sitio</class>
+                <class>uy.gub.dgr.sur.entity.Zona</class>
+                <class>uy.gub.dgr.sur.entity.Nodo</class>
+                <class>uy.gub.dgr.sur.entity.NodoLte</class>
+                <class>uy.gub.dgr.sur.entity.Nodo3G</class>
+                <class>uy.gub.dgr.sur.entity.Preventivo</class>
+                <class>uy.gub.dgr.sur.entity.Celda</class>
+                <class>uy.gub.dgr.sur.entity.Celda3G</class>
+                <class>uy.gub.dgr.sur.entity.CeldaLte</class>
+                <class>uy.gub.dgr.sur.entity.TipoAntena</class>
+                <class>uy.gub.dgr.sur.entity.TipoFeeder</class>
+                <class>uy.gub.dgr.sur.entity.Torrero</class>
+        -->
 
         <class>org.picketlink.idm.jpa.model.sample.simple.AttributedTypeEntity</class>
         <class>org.picketlink.idm.jpa.model.sample.simple.AccountTypeEntity</class>

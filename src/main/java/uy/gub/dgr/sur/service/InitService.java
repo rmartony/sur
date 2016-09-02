@@ -511,13 +511,15 @@ public class InitService {
     private void initTasa() {
         Tasa tasa = new Tasa();
         tasa.setCodigo(Tasa.DOC_COMUN);
+        tasa.setNombre("Tasa documento común");
         tasa.setMonto(new BigDecimal(4000));
         tasa.setFechaVencimiento(DateUtils.addDays(new Date(), 5));
         tasaService.update(tasa);
         tasa = new Tasa();
+        tasa.setNombre("Tasa documento urgente");
         tasa.setCodigo(Tasa.DOC_URGENTE);
         tasa.setMonto(new BigDecimal(2300));
-        tasa.setFechaVencimiento(DateUtils.addDays(new Date(), 5));
+        tasa.setFechaVencimiento(DateUtils.addDays(new Date(), 15));
 
     }
 

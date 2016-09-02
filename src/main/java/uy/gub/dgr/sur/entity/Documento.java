@@ -27,19 +27,19 @@ import java.util.List;
 public class Documento extends BaseEntity {
     public final static String ID = "Documento.id";
     public final static String ALL = "Documento.all";
-    String ficha;
+    private String ficha;
     @Temporal(TemporalType.DATE)
-    Date fechaResolucion;
-    String autos;
-    String observacion;
-    String observacionDgr;
+    private Date fechaResolucion;
+    private String autos;
+    private String observacion;
+    private String observacionDgr;
     @ManyToOne
     @NotNull
-    Tasa tasa;
+    private Tasa tasa;
     @ManyToOne
-    Exoneracion exoneracion;
+    private Exoneracion exoneracion;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "documento")
-    List<Inscripcion> inscripcionList;
+    private List<Inscripcion> inscripcionList;
     @ManyToOne
     private Registro registro;
     @ManyToOne

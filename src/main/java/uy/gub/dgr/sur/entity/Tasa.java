@@ -55,7 +55,7 @@ public class Tasa extends BaseEntity {
     /**
      * La fecha de vencimiento del valor de la tasa
      */
-    @NotEmpty
+    @NotNull
     private Date fechaVencimiento;
 
 }
