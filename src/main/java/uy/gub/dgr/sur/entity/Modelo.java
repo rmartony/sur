@@ -37,7 +37,7 @@ public class Modelo extends BaseEntity {
     @NotEmpty
     private String descripcion;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Marca marca;
 
 }

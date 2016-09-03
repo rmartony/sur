@@ -484,7 +484,7 @@ public class InitService {
         marca = new Marca();
         marca.setCodigo("marca2");
         marca.setDescripcion("Marca 2");
-        marcaService.update(marca);
+        marca = marcaService.update(marca);
         initModelo("modelo2", marca);
     }
 
@@ -520,7 +520,7 @@ public class InitService {
         tasa.setCodigo(Tasa.DOC_URGENTE);
         tasa.setMonto(new BigDecimal(2300));
         tasa.setFechaVencimiento(DateUtils.addDays(new Date(), 15));
-
+        tasaService.update(tasa);
     }
 
     private void initTipoDocumento() {
