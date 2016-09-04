@@ -5,7 +5,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns="http://www.w3.org/1999/xhtml"
-        >
+>
 <ui:composition template="/templates/simpleLayout.xhtml">
     <ui:define name="title">Ingreso al sistema</ui:define>
     <ui:define name="content">
@@ -31,6 +31,8 @@
                         <p:commandButton id="loginButton" value="Ingresar"
                                          action="#{loginController.login}" update="messages"/>
                     </div>
+                    <h:outputLink value="mailto:usuarios@dgr.gub.uy?Subject=Restaurar contraseña"><h:outputText
+                            value="¿Olvidó su contraseña?"/></h:outputLink>
                 </f:facet>
             </h:panelGrid>
 

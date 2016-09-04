@@ -11,13 +11,14 @@ import org.picketlink.idm.model.basic.User;
 import org.primefaces.context.RequestContext;
 import org.primefaces.model.DualListModel;
 import org.primefaces.model.LazyDataModel;
-import uy.gub.dgr.sur.entity.UsuarioZona;
+import uy.gub.dgr.sur.entity.Registro;
+import uy.gub.dgr.sur.entity.UsuarioRegistro;
 import uy.gub.dgr.sur.entity.Zona;
 import uy.gub.dgr.sur.idm.AuthorizationChecker;
 import uy.gub.dgr.sur.idm.annotations.Admin;
 import uy.gub.dgr.sur.model.LazyUsuarioDataModel;
+import uy.gub.dgr.sur.service.UsuarioRegistroService;
 import uy.gub.dgr.sur.service.UsuarioService;
-import uy.gub.dgr.sur.service.UsuarioZonaService;
 import uy.gub.dgr.sur.service.ZonaService;
 
 import javax.annotation.PostConstruct;
@@ -57,7 +58,7 @@ public class UsuarioController extends BaseController {
     @Inject
     private transient ZonaService zonaService;
     @Inject
-    private transient UsuarioZonaService usuarioZonaService;
+    private transient UsuarioRegistroService usuarioRegistroService;
     // Selected users that will be removed
     @Getter
     @Setter
@@ -117,7 +118,7 @@ public class UsuarioController extends BaseController {
         List<RoleTypeEntity> revokeRoleList = new ArrayList<>(sourceRoles);
         revokeRoleList.removeAll(selectedRoles);
         das.updateRoles(newItem, selectedRoles, revokeRoleList);
-        updateUsuarioZona(newItem.getLoginName(), zonaPickList.getTarget());
+        //updateUsuarioZona(newItem.getLoginName(), zonaPickList.getTarget());
         newItem = new User();
         Messages.addFlashInfo(null, "Usuario ingresado con éxito.");
     }
@@ -128,7 +129,7 @@ public class UsuarioController extends BaseController {
         revokeRoleList.removeAll(selectedRoles);
 
         das.updateRoles(selectedItem, selectedRoles, revokeRoleList);
-        updateUsuarioZona(selectedItem.getLoginName(), zonaPickList.getTarget());
+        //updateUsuarioZona(selectedItem.getLoginName(), zonaPickList.getTarget());
 
         if (!StringUtils.isBlank(password)) {
             das.update(selectedItem, new Password(password));
@@ -140,20 +141,20 @@ public class UsuarioController extends BaseController {
         Messages.addFlashGlobalInfo("Usuario modificado con éxito.");
     }
 
-    private void updateUsuarioZona(String loginName, List<Zona> zonaList) {
+    private void updateUsuarioZona(String loginName, List<Registro> registroList) {
         Map<String, String> parameters = new HashMap<>();
         parameters.put("userId", loginName);
-        UsuarioZona usuarioZona = (UsuarioZona) usuarioZonaService.findSingleResultNamedQuery(UsuarioZona.BY_USUARIO_ID, parameters);
-        if (usuarioZona != null) {
-            usuarioZonaService.delete(usuarioZona.getId());
+        UsuarioRegistro usuarioRegistro = (UsuarioRegistro) usuarioRegistroService.findSingleResultNamedQuery(UsuarioRegistro.BY_USUARIO_ID, parameters);
+        if (usuarioRegistro != null) {
+            usuarioRegistroService.delete(usuarioRegistro.getId());
         } else {
-            usuarioZona = new UsuarioZona();
-            usuarioZona.setUserId(loginName);
+            usuarioRegistro = new UsuarioRegistro();
+            usuarioRegistro.setUserId(loginName);
         }
 
-        if (CollectionUtils.isNotEmpty(zonaList)) {
-            usuarioZona.setZonas(zonaList);
-            usuarioZonaService.update(usuarioZona);
+        if (CollectionUtils.isNotEmpty(registroList)) {
+            usuarioRegistro.setRegistros(registroList);
+            usuarioRegistroService.update(usuarioRegistro);
         }
     }
 
@@ -234,7 +235,7 @@ public class UsuarioController extends BaseController {
         if (selectedItem != null && selectedItem.getEmail() != null && isRolTecnico) {
             Map<String, String> parameters = new HashMap<>();
             parameters.put("userId", selectedItem.getLoginName());
-            targetZonas = usuarioZonaService.findWithNamedQuery(UsuarioZona.ZONAS_BY_USUARIO_ID, parameters);
+            targetZonas = usuarioRegistroService.findWithNamedQuery(UsuarioRegistro.ZONAS_BY_USUARIO_ID, parameters);
         } else {
             targetZonas = new ArrayList<>();
         }

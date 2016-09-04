@@ -15,10 +15,10 @@ import org.picketlink.authentication.event.PostLoggedOutEvent;
 import org.picketlink.idm.model.Account;
 import org.picketlink.idm.model.basic.User;
 import uy.gub.dgr.sur.entity.Auditoria;
-import uy.gub.dgr.sur.entity.UsuarioZona;
+import uy.gub.dgr.sur.entity.UsuarioRegistro;
 import uy.gub.dgr.sur.entity.Zona;
 import uy.gub.dgr.sur.service.AuditoriaService;
-import uy.gub.dgr.sur.service.UsuarioZonaService;
+import uy.gub.dgr.sur.service.UsuarioRegistroService;
 
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.event.Observes;
@@ -55,7 +55,7 @@ public class LoginController implements Serializable {
     private List<Zona> zonasTecnico;
 
     @Inject
-    private transient UsuarioZonaService usuarioZonaService;
+    private transient UsuarioRegistroService usuarioRegistroService;
 
     @Inject
     private ConfiguracionController configuracion;
@@ -77,7 +77,7 @@ public class LoginController implements Serializable {
                 auditLogin("login");
                 Map<String, Object> parameters = new HashMap<>();
                 parameters.put("userId", getLoginName());
-                setZonasTecnico(usuarioZonaService.findWithNamedQuery(UsuarioZona.ZONAS_BY_USUARIO_ID, parameters));
+                setZonasTecnico(usuarioRegistroService.findWithNamedQuery(UsuarioRegistro.ZONAS_BY_USUARIO_ID, parameters));
                 setAudit();
             }
         }

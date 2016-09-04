@@ -17,11 +17,11 @@ import java.util.List;
 @Entity
 @Cacheable
 @NamedQueries({
-        @NamedQuery(name = UsuarioZona.ALL, query = "SELECT z FROM UsuarioZona z"),
-        @NamedQuery(name = UsuarioZona.BY_USUARIO_ID, query = "SELECT z FROM UsuarioZona z where z.userId = :userId"),
-        @NamedQuery(name = UsuarioZona.BY_USUARIO_ZONA, query = "SELECT z FROM UsuarioZona z where z.zonas = :zonaList"),
-        @NamedQuery(name = UsuarioZona.ZONAS_BY_USUARIO_ID, query = "SELECT z.zonas FROM UsuarioZona z where z.userId = :userId"),
-        @NamedQuery(name = UsuarioZona.TOTAL, query = "SELECT COUNT(z) FROM UsuarioZona z"),
+        @NamedQuery(name = UsuarioRegistro.ALL, query = "SELECT z FROM UsuarioRegistro z"),
+        @NamedQuery(name = UsuarioRegistro.BY_USUARIO_ID, query = "SELECT z FROM UsuarioRegistro z where z.userId = :userId"),
+        @NamedQuery(name = UsuarioRegistro.BY_USUARIO_ZONA, query = "SELECT z FROM UsuarioRegistro z where z.registros = :zonaList"),
+        @NamedQuery(name = UsuarioRegistro.ZONAS_BY_USUARIO_ID, query = "SELECT z.zonas FROM UsuarioRegistro z where z.userId = :userId"),
+        @NamedQuery(name = UsuarioRegistro.TOTAL, query = "SELECT COUNT(z) FROM UsuarioRegistro z"),
 
         @NamedQuery(name = UsuarioService.ALL, query = "SELECT a FROM AccountTypeEntity a,IdentityTypeEntity i " +
                 "WHERE a.id = i.id and i.enabled = true"),
@@ -32,20 +32,23 @@ import java.util.List;
                 "WHERE r.name = :roleName and re1.identityType.id = a.id and re1.owner.id = re2.owner.id and re2.descriptor = 'role' and r.id = re2.identityType.id"),
         @NamedQuery(name = UsuarioService.TOTAL, query = "SELECT COUNT(r) FROM Torrero r")
 })
-@EqualsAndHashCode(callSuper = true, exclude = {"zonas"})
+@EqualsAndHashCode(callSuper = true, exclude = {"registros"})
 @Data
 @Audited
-public class UsuarioZona extends BaseEntity {
-    public final static String ALL = "UsuarioZona.all";
-    public final static String BY_USUARIO_ID = "UsuarioZona.usuario.id";
-    public final static String BY_USUARIO_ZONA = "UsuarioZona.usuario.zona";
-    public final static String ZONAS_BY_USUARIO_ID = "UsuarioZona.zonas.usuario.id";
-    public final static String TOTAL = "UsuarioZona.countTotal";
+public class UsuarioRegistro extends BaseEntity {
+    public final static String ALL = "UsuarioRegistro.all";
+    public final static String BY_USUARIO_ID = "UsuarioRegistro.usuario.id";
+    public final static String BY_USUARIO_ZONA = "UsuarioRegistro.usuario.zona";
+    public final static String ZONAS_BY_USUARIO_ID = "UsuarioRegistro.zonas.usuario.id";
+    public final static String TOTAL = "UsuarioRegistro.countTotal";
 
     @NotNull
     private String userId;
 
     @ManyToMany
-    private List<Zona> zonas;
+    private List<Registro> registros;
+
+    @ManyToMany
+    private List<Sede> sedes;
 
 }

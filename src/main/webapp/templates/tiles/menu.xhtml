@@ -37,9 +37,9 @@
             <p:submenu label="Documentos">
                 <p:menuitem value="Mantenimientos Preventivos" style="font-weight: bold !important"/>
 
-                <p:menuitem value="Nuevo mantenimiento preventivo" action="#{preventivoController.doCreate}"
+                <p:menuitem value="Ventanilla" action="#{preventivoController.doCreate}"
                             ajax="false"
-                            rendered="#{authorizationChecker.admin or authorizationChecker.verificacion}"/>
+                            rendered="#{authorizationChecker.admin or authorizationChecker.ventanilla}"/>
                 <p:menuitem value="Consulta general" action="preventivos" ajax="false"/>
                 <p:menuitem value="Consulta últimos preventivos" action="ultimosPreventivos" ajax="false"/>
                 <p:menuitem value="Reporte últimos preventivos" action="reportePreventivos" ajax="false"/>

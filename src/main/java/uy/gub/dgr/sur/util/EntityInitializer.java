@@ -55,7 +55,7 @@ public class EntityInitializer {
     @Inject
     private transient TipoDocumentoService tipoDocumentoService;
     @Inject
-    private transient UsuarioZonaService usuarioZonaService;
+    private transient UsuarioRegistroService usuarioRegistroService;
     @Inject
     private transient ConfiguracionService configuracionService;
 

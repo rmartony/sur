@@ -26,6 +26,8 @@
         <class>uy.gub.dgr.sur.entity.Moneda</class>
         <class>uy.gub.dgr.sur.entity.Monto</class>
         <class>uy.gub.dgr.sur.entity.Movimiento</class>
+        <class>uy.gub.dgr.sur.entity.Padron</class>
+        <class>uy.gub.dgr.sur.entity.PadronNivel</class>
         <class>uy.gub.dgr.sur.entity.Preventivo</class>
         <class>uy.gub.dgr.sur.entity.Registro</class>
         <class>uy.gub.dgr.sur.entity.Seccion</class>
@@ -39,6 +41,7 @@
         <class>uy.gub.dgr.sur.entity.Tasa</class>
         <class>uy.gub.dgr.sur.entity.TipoAutomotor</class>
         <class>uy.gub.dgr.sur.entity.TipoDocumento</class>
+        <class>uy.gub.dgr.sur.entity.UsuarioRegistro</class>
 
         <!--
                 <class>uy.gub.dgr.sur.entity.Sitio</class>
