@@ -1,6 +1,6 @@
 package uy.gub.dgr.sur.service;
 
-import uy.gub.dgr.sur.entity.Modelo;
+import uy.gub.dgr.sur.entity.ModeloAutomotor;
 
 import javax.ejb.Stateless;
 
@@ -9,9 +9,9 @@ import javax.ejb.Stateless;
  */
 
 @Stateless
-public class ModeloService extends DataAccessService<Modelo> {
+public class ModeloService extends DataAccessService<ModeloAutomotor> {
 
     public ModeloService() {
-        super(Modelo.class);
+        super(ModeloAutomotor.class);
     }
 }

@@ -21,14 +21,14 @@ import java.sql.Date;
 
 @Entity
 @Data
-@EqualsAndHashCode(callSuper = true, exclude = {"interviniente", "fecha", "nombre", "bps", "naturalezaJuridica",
+@EqualsAndHashCode(callSuper = true, exclude = {"interviniente", "fecha", "rut", "bps", "naturalezaJuridica",
         "tipo", "tipoSocial", "parte", "domicilio", "sede"})
 @Table(indexes = {@Index(name = "perjur_rut", columnList = "rut", unique = true)})
 @Audited
 public class SujetoPersonaJuridica extends Sujeto {
 
-    @NotEmpty
-    private String nombre;
+    @ManyToOne
+    private PersonaJuridica personaJuridica;
 
     @NotEmpty
     private String rut;
@@ -41,10 +41,13 @@ public class SujetoPersonaJuridica extends Sujeto {
 
     private Date fecha;
     private String tipo; // Constitucion, fallecimiento, mandato, nacimiento
-    private String tipoSocial;
+    @ManyToOne
+    private PersonaJuridicaTipoSocial tipoSocial; //giro
     private String parte;
-    private boolean domicilio;
 
-    private short sede;
+    @ManyToOne
+    private Departamento domicilio;
+
+    private String sede;
 
 }

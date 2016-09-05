@@ -14,26 +14,18 @@ import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Entity;
-import javax.persistence.Index;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import java.sql.Date;
 
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = {"cedulaIdentidad", "interviniente", "fecha", "fechaTipo", "parte", "inEx", "nacionalidad",
         "prefesion", "domicilio", "nupcias", "estadoCivil", "conyuge", "clase", "numeroEscribano"})
-@Table(indexes = {@Index(name = "perfis_a1", columnList = "apellido1", unique = false),
-        @Index(name = "perfis_a1n1", columnList = "apellido1, nombre1", unique = false)})
 @Audited
 public class SujetoPersonaFisica extends Sujeto {
 
-    @NotEmpty
-    private String apellido1;
-    private String apellido2;
-    @NotEmpty
-    private String nombre1;
-    private String nombre2;
+    @ManyToOne
+    private PersonaFisica personaFisica;
 
     @NotEmpty
     private String cedulaIdentidad;

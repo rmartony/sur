@@ -19,7 +19,7 @@ import javax.persistence.ManyToOne;
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = {})
 @Audited
-public class SujetoAeronaves extends Sujeto {
+public class SujetoAeronave extends Sujeto {
 
     @ManyToOne
     Aeronave aeronave;

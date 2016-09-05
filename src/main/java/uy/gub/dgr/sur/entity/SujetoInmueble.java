@@ -16,19 +16,18 @@ import javax.persistence.Entity;
 import javax.persistence.Index;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.sql.Date;
 
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = {
-        "seccionJudicial", "cuotaParte", "interviniente", "fecha", "anio", "chasis", "inEx", "combustible",
-        "motor", "cilindros", "placaMunicipal", "matriculaRegistral", "dua", "calle", "numeroCalle", "naturalezaJuridica"})
-@Table(indexes = {@Index(name = "dep_pad", columnList = "padron, departamento_id", unique = true)})
+        "seccionJudicial", "cuotaParte", "interviniente", "inEx", "cota", "area", "extension",
+        "domicilio", "calle", "numeroCalle", "naturalezaJuridica"})
+@Table(indexes = {@Index(name = "dep_pad", columnList = "inmueble_id, departamento_id", unique = true)})
 @Audited
 public class SujetoInmueble extends Sujeto {
 
     @ManyToOne
-    private Padron padron;
+    private Inmueble inmueble;
 
     private String seccionJudicial;
     private String cuotaParte;
@@ -36,19 +35,11 @@ public class SujetoInmueble extends Sujeto {
     @ManyToOne
     private Interviniente interviniente;
 
-    private Date fecha;
-    private int anio;
-    private String chasis;
     private String inEx;
 
-    @ManyToOne
-    private Combustible combustible;
-
-    private String motor;
-    private short cilindros;
-    private String placaMunicipal; // matricula
-    private int matriculaRegistral;
-    private int dua;
+    private String cota;
+    private Double area;
+    private String extension;
 
     private String domicilio;
     @ManyToOne

@@ -77,12 +77,12 @@ public class EntityInitializer {
     }
 
     private void initMarca() {
-        Marca z = new Marca();
+        MarcaAutomotor z = new MarcaAutomotor();
         for (int i = 0; i < 5; i++) {
             z.setCodigo(String.valueOf(i));
             z.setDescripcion(z.getClass().getSimpleName() + i);
             marcaService.update(z);
-            z = new Marca();
+            z = new MarcaAutomotor();
         }
     }
 

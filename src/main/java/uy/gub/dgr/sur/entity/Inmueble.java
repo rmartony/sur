@@ -24,7 +24,7 @@ import javax.validation.constraints.NotNull;
         "nivel"})
 @Table(indexes = {@Index(name = "dep_pad", columnList = "padron, departamento_id, localidad_id, unidad", unique = true)})
 @Audited
-public class Padron extends BaseEntity {
+public class Inmueble extends BaseEntity {
 
     @ManyToOne
     private Departamento departamento;
@@ -38,8 +38,10 @@ public class Padron extends BaseEntity {
     private String block;
 
     @ManyToOne
-    private PadronNivel nivel; //ep, ss, es
+    private InmuebleNivel nivel; //ep, ss, es
 
     private String unidad;
+
+    private int matriculaRegistral;
 
 }

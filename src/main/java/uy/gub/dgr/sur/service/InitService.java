@@ -476,25 +476,25 @@ public class InitService {
     }
 
     private void initMarca() {
-        Marca marca = new Marca();
-        marca.setCodigo("marca1");
-        marca.setDescripcion("Marca 1");
-        marca = marcaService.update(marca);
-        initModelo("modelo1", marca);
-        marca = new Marca();
-        marca.setCodigo("marca2");
-        marca.setDescripcion("Marca 2");
-        marca = marcaService.update(marca);
-        initModelo("modelo2", marca);
+        MarcaAutomotor marcaAutomotor = new MarcaAutomotor();
+        marcaAutomotor.setCodigo("marca1");
+        marcaAutomotor.setDescripcion("Marca 1");
+        marcaAutomotor = marcaService.update(marcaAutomotor);
+        initModelo("modelo1", marcaAutomotor);
+        marcaAutomotor = new MarcaAutomotor();
+        marcaAutomotor.setCodigo("marca2");
+        marcaAutomotor.setDescripcion("Marca 2");
+        marcaAutomotor = marcaService.update(marcaAutomotor);
+        initModelo("modelo2", marcaAutomotor);
     }
 
-    private Modelo initModelo(String codigo, Marca marca) {
-        Modelo modelo = new Modelo();
-        modelo.setCodigo(codigo);
-        modelo.setDescripcion("Modelo " + codigo);
-        modelo.setMarca(marca);
-        modelo = modeloService.update(modelo);
-        return modelo;
+    private ModeloAutomotor initModelo(String codigo, MarcaAutomotor marcaAutomotor) {
+        ModeloAutomotor modeloAutomotor = new ModeloAutomotor();
+        modeloAutomotor.setCodigo(codigo);
+        modeloAutomotor.setDescripcion("ModeloAutomotor " + codigo);
+        modeloAutomotor.setMarcaAutomotor(marcaAutomotor);
+        modeloAutomotor = modeloService.update(modeloAutomotor);
+        return modeloAutomotor;
     }
 
     private void initMoneda() {

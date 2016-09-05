@@ -58,4 +58,8 @@ public class Tasa extends BaseEntity {
     @NotNull
     private Date fechaVencimiento;
 
+    public boolean isExonerada() {
+        return DOC_EXONERADO.equals(this.codigo) || RUBRICA_EXONERADO.equals(this.codigo);
+    }
+
 }
