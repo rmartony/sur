@@ -22,7 +22,7 @@ import javax.persistence.Table;
 @EqualsAndHashCode(callSuper = true, exclude = {
         "seccionJudicial", "cuotaParte", "interviniente", "inEx", "cota", "area", "extension",
         "domicilio", "calle", "numeroCalle", "naturalezaJuridica"})
-@Table(indexes = {@Index(name = "dep_pad", columnList = "inmueble_id, departamento_id", unique = true)})
+@Table(indexes = {@Index(name = "dep_pad", columnList = "inmueble_id", unique = true)})
 @Audited
 public class SujetoInmueble extends Sujeto {
 

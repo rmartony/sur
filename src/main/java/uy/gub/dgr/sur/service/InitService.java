@@ -2,6 +2,7 @@ package uy.gub.dgr.sur.service;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.time.DateUtils;
+import org.picketlink.idm.model.basic.User;
 import uy.gub.dgr.sur.entity.*;
 
 import javax.ejb.Stateless;
@@ -9,6 +10,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -65,13 +67,17 @@ public class InitService {
     private transient TipoAutomotorService tipoAutomotorService;
     @Inject
     private transient TipoDocumentoService tipoDocumentoService;
+    @Inject
+    private transient UsuarioService usuarioService;
+
 
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void initDB() {
         final boolean initialized = initialized();
         if (!initialized) {
-            initSedes();
-            initRegistros();
+            List<UsuarioRegistro> usuarioRegistroList = initUsuariosRegistro();
+            initSedes(usuarioRegistroList);
+            initRegistros(usuarioRegistroList);
             initDepartamentos();
             initEstado();
             initConfiguracion();
@@ -88,9 +94,33 @@ public class InitService {
         }
     }
 
+    private List<UsuarioRegistro> addRegistro2User(List<UsuarioRegistro> usuarioRegistroList, Registro registro) {
+        for (UsuarioRegistro usuarioRegistro : usuarioRegistroList) {
+            usuarioRegistro.addRegistro2User(registro);
+        }
+        return usuarioRegistroList;
+    }
+
+    private List<UsuarioRegistro> addSede2User(List<UsuarioRegistro> usuarioRegistroList, Sede sede) {
+        for (UsuarioRegistro usuarioRegistro : usuarioRegistroList) {
+            usuarioRegistro.addSede2User(sede);
+        }
+        return usuarioRegistroList;
+    }
+
     private boolean initialized() {
         final List sedeList = sedeService.findWithNamedQuery(Sede.ALL, 1);
         return CollectionUtils.isNotEmpty(sedeList);
+    }
+
+    private List<UsuarioRegistro> initUsuariosRegistro() {
+        List<User> usuarios = usuarioService.findUsers();
+        List<UsuarioRegistro> usuarioRegistroList = new ArrayList<>();
+        for (User usuario : usuarios) {
+            UsuarioRegistro usuarioRegistro = new UsuarioRegistro();
+            usuarioRegistro.setUserId(usuario.getLoginName());
+        }
+        return usuarioRegistroList;
     }
 
     private void initConfiguracion() {
@@ -101,12 +131,13 @@ public class InitService {
         configuracionService.create(configuracion);
     }
 
-    private void initSedes() {
+    private void initSedes(List<UsuarioRegistro> usuarioRegistroList) {
         Sede sede = new Sede();
         sede.setCodigo("1");
         sede.setDescripcion("Montevideo");
         sede.setAnio(2016);
-        sedeService.update(sede);
+        sede = sedeService.update(sede);
+        addSede2User(usuarioRegistroList, sede);
         sede = new Sede();
         sede.setCodigo("2");
         sede.setDescripcion("Paysandú");
@@ -126,7 +157,8 @@ public class InitService {
         sede.setCodigo("5");
         sede.setDescripcion("Maldonado");
         sede.setAnio(2016);
-        sedeService.update(sede);
+        sede = sedeService.update(sede);
+        addSede2User(usuarioRegistroList, sede);
         sede = new Sede();
         sede.setCodigo("6");
         sede.setDescripcion("Canelones");
@@ -307,11 +339,12 @@ public class InitService {
         escribanoService.update(escribano);
     }
 
-    private void initRegistros() {
+    private void initRegistros(List<UsuarioRegistro> usuarioRegistroList) {
         Registro registro = new Registro();
         registro.setCodigo("RPI");
         registro.setDescripcion("Registro Propiedad Seccion Inmobiliario");
         registro = registroService.update(registro);
+        addRegistro2User(usuarioRegistroList, registro);
         Seccion seccion = new Seccion();
         seccion.setCodigo("Sec1RPI");
         seccion.setDescripcion("Seccion 1 RPI");
@@ -344,6 +377,7 @@ public class InitService {
         registro.setCodigo("RA");
         registro.setDescripcion("Registro Propiedad Seccion Mobiliario");
         registro = registroService.update(registro);
+        addRegistro2User(usuarioRegistroList, registro);
         seccion = new Seccion();
         seccion.setCodigo("Sec1RA");
         seccion.setDescripcion("Seccion 1 RA");
@@ -393,6 +427,7 @@ public class InitService {
         registro.setCodigo("RGI");
         registro.setDescripcion("Registro Actos Personales");
         registro = registroService.update(registro);
+        addRegistro2User(usuarioRegistroList, registro);
         seccion = new Seccion();
         seccion.setCodigo("Sec1RGI");
         seccion.setDescripcion("Seccion 1 RGI");

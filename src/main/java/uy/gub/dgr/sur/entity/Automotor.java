@@ -18,10 +18,10 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true, exclude = {"fechaDua", "anio", "chasis", "combustible",
         "motor", "cilindros", "placaMunicipal", "matriculaRegistral", "dua", "tipoAutomotor", "hp"})
 @NamedQueries({
-        @NamedQuery(name = Automotor.ALL, query = "SELECT d FROM Automotor d order by d.matricula"),
+        @NamedQuery(name = Automotor.ALL, query = "SELECT d FROM Automotor d order by d.placaMunicipal"),
         @NamedQuery(name = Automotor.BY_ID, query = "SELECT d FROM Automotor d where d.id = :id"),
-        @NamedQuery(name = Automotor.BY_CODIGO, query = "SELECT s FROM Automotor s where s.codigo = :codigo"),
-        @NamedQuery(name = Automotor.BY_DESCRIPCION, query = "SELECT d FROM Automotor d where d.matricula = :matricula"),
+        @NamedQuery(name = Automotor.BY_PADRON, query = "SELECT s FROM Automotor s where s.padron = :padron"),
+        @NamedQuery(name = Automotor.BY_DESCRIPCION, query = "SELECT d FROM Automotor d where d.placaMunicipal = :placaMunicipal"),
         @NamedQuery(name = Automotor.TOTAL, query = "SELECT COUNT(d) FROM Automotor d")})
 @Cacheable
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"departamento_id", "localidad_id", "padron"}))
@@ -29,7 +29,7 @@ import java.util.Date;
 public class Automotor extends BaseEntity {
     public final static String ALL = "Automotor.all";
     public final static String BY_ID = "Automotor.id";
-    public final static String BY_CODIGO = "Automotor.codigo";
+    public final static String BY_PADRON = "Automotor.padron";
     public final static String BY_DESCRIPCION = "Automotor.descripcion";
     public final static String TOTAL = "Automotor.countTotal";
 

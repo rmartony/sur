@@ -101,13 +101,20 @@ public class UsuarioService {
         return query.getResultList();
     }
 
+/*
     public List<AccountTypeEntity> findUsers() {
         Query query = em.createNamedQuery(UsuarioService.ALL).
                 setMaxResults(100);
 
         return query.getResultList();
     }
+*/
 
+    public List<User> findUsers() {
+        IdentityQueryBuilder queryBuilder = identityManager.getQueryBuilder();
+        List<User> users = queryBuilder.createIdentityQuery(User.class).setLimit(100).getResultList();
+        return users;
+    }
 
     public List<RoleTypeEntity> findRole() {
         Query query = em.createNamedQuery(UsuarioService.ROLE_ALL).setMaxResults(100);

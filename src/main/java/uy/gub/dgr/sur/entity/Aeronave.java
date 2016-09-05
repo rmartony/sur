@@ -15,7 +15,7 @@ import java.util.Date;
  */
 @Entity
 @Data
-@EqualsAndHashCode(callSuper = true, exclude = {"descripcion"})
+@EqualsAndHashCode(callSuper = true, exclude = {"fecha"})
 @NamedQueries({
         @NamedQuery(name = Aeronave.ALL, query = "SELECT d FROM Aeronave d order by d.matricula"),
         @NamedQuery(name = Aeronave.BY_ID, query = "SELECT d FROM Aeronave d where d.id = :id"),

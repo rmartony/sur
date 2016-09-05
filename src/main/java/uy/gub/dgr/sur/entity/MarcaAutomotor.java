@@ -16,19 +16,19 @@ import javax.persistence.*;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NamedQueries({
-        @NamedQuery(name = MarcaAutomotor.ALL, query = "SELECT r FROM Marca r order by r.codigo"),
-        @NamedQuery(name = MarcaAutomotor.BY_ID, query = "SELECT r FROM Marca r where r.id = :id"),
-        @NamedQuery(name = MarcaAutomotor.BY_CODIGO, query = "SELECT r FROM Marca r where r.codigo = :codigo"),
-        @NamedQuery(name = MarcaAutomotor.BY_DESCRIPTION, query = "SELECT r FROM Marca r where r.descripcion = :descripcion"),
-        @NamedQuery(name = MarcaAutomotor.TOTAL, query = "SELECT COUNT(r) FROM Marca r")})
+        @NamedQuery(name = MarcaAutomotor.ALL, query = "SELECT r FROM MarcaAutomotor r order by r.codigo"),
+        @NamedQuery(name = MarcaAutomotor.BY_ID, query = "SELECT r FROM MarcaAutomotor r where r.id = :id"),
+        @NamedQuery(name = MarcaAutomotor.BY_CODIGO, query = "SELECT r FROM MarcaAutomotor r where r.codigo = :codigo"),
+        @NamedQuery(name = MarcaAutomotor.BY_DESCRIPTION, query = "SELECT r FROM MarcaAutomotor r where r.descripcion = :descripcion"),
+        @NamedQuery(name = MarcaAutomotor.TOTAL, query = "SELECT COUNT(r) FROM MarcaAutomotor r")})
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo"}))
 @Audited
 public class MarcaAutomotor extends BaseEntity {
-    public final static String ALL = "Marca.all";
-    public final static String BY_ID = "Marca.id";
-    public final static String BY_DESCRIPTION = "Marca.descripcion";
-    public final static String BY_CODIGO = "Marca.codigo";
-    public final static String TOTAL = "Marca.countTotal";
+    public final static String ALL = "MarcaAutomotor.all";
+    public final static String BY_ID = "MarcaAutomotor.id";
+    public final static String BY_DESCRIPTION = "MarcaAutomotor.descripcion";
+    public final static String BY_CODIGO = "MarcaAutomotor.codigo";
+    public final static String TOTAL = "MarcaAutomotor.countTotal";
 
     @NotEmpty
     private String codigo;

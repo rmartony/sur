@@ -25,18 +25,26 @@ import java.util.List;
 public class Inscripcion extends BaseEntity {
     public final static String ID = "Inscripcion.id";
     public final static String ALL = "Inscripcion.all";
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     List<Monto> montoList;
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     List<Sujeto> sujetoList;
+
     private int ordinal;
+
     @ManyToOne
     private Acto acto;
+
     @ManyToOne
     private Estado estado; // calificacion
+
     @ManyToOne
     private Movimiento movimiento;
+
     private String observacion; // observacion del acto
+
     @ManyToOne
     private Documento documento; // es para poder acceder a un documento dada la inscripción
 
