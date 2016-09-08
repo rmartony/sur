@@ -1,27 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="1.0"
-             xmlns="http://java.sun.com/xml/ns/persistence">
-    <persistence-unit name="sur"
-                      transaction-type="RESOURCE_LOCAL">
-        <!--<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>-->
-        <class>uy.gub.dgr.sur.entity.Sitio</class>
-        <class>uy.gub.dgr.sur.entity.Zona</class>
-        <class>uy.gub.dgr.sur.entity.Nodo</class>
-        <class>uy.gub.dgr.sur.entity.NodoLte</class>
-        <class>uy.gub.dgr.sur.entity.Nodo3G</class>
-        <class>uy.gub.dgr.sur.entity.Preventivo</class>
-        <class>uy.gub.dgr.sur.entity.Estado</class>
-        <class>uy.gub.dgr.sur.entity.Celda</class>
-        <class>uy.gub.dgr.sur.entity.Celda3G</class>
-        <class>uy.gub.dgr.sur.entity.CeldaLte</class>
-        <class>uy.gub.dgr.sur.entity.Registro</class>
-        <class>uy.gub.dgr.sur.entity.Sede</class>
-        <class>uy.gub.dgr.sur.entity.TipoAntena</class>
-        <class>uy.gub.dgr.sur.entity.Interviniente</class>
-        <class>uy.gub.dgr.sur.entity.TipoFeeder</class>
-        <class>uy.gub.dgr.sur.entity.Sede</class>
-        <class>uy.gub.dgr.sur.entity.Torrero</class>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             version="1.0" xmlns="http://java.sun.com/xml/ns/persistence"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+    <persistence-unit name="sur" transaction-type="JTA">
+        <jta-data-source>java:jboss/datasources/surDS</jta-data-source>
+
+        <class>uy.gub.dgr.sur.entity.Acto</class>
+        <class>uy.gub.dgr.sur.entity.Aeronave</class>
+        <class>uy.gub.dgr.sur.entity.Automotor</class>
+        <class>uy.gub.dgr.sur.entity.Calle</class>
+        <class>uy.gub.dgr.sur.entity.Combustible</class>
+        <class>uy.gub.dgr.sur.entity.Configuracion</class>
+        <class>uy.gub.dgr.sur.entity.Departamento</class>
+        <class>uy.gub.dgr.sur.entity.Documento</class>
+        <class>uy.gub.dgr.sur.entity.Emisor</class>
         <class>uy.gub.dgr.sur.entity.Escribano</class>
+        <class>uy.gub.dgr.sur.entity.Estado</class>
+        <class>uy.gub.dgr.sur.entity.Exoneracion</class>
+        <class>uy.gub.dgr.sur.entity.Inmueble</class>
+        <class>uy.gub.dgr.sur.entity.InmuebleNivel</class>
+        <class>uy.gub.dgr.sur.entity.Inscripcion</class>
+        <class>uy.gub.dgr.sur.entity.Interviniente</class>
+        <class>uy.gub.dgr.sur.entity.LibroRubrica</class>
+        <class>uy.gub.dgr.sur.entity.LibroRubricaTipo</class>
+        <class>uy.gub.dgr.sur.entity.Localidad</class>
+        <class>uy.gub.dgr.sur.entity.MarcaAutomotor</class>
+        <class>uy.gub.dgr.sur.entity.ModeloAutomotor</class>
+        <class>uy.gub.dgr.sur.entity.Moneda</class>
+        <class>uy.gub.dgr.sur.entity.Monto</class>
+        <class>uy.gub.dgr.sur.entity.MotorAeronave</class>
+        <class>uy.gub.dgr.sur.entity.Movimiento</class>
+        <class>uy.gub.dgr.sur.entity.PersonaFisica</class>
+        <class>uy.gub.dgr.sur.entity.PersonaJuridica</class>
+        <class>uy.gub.dgr.sur.entity.PersonaJuridicaTipoSocial</class>
+        <class>uy.gub.dgr.sur.entity.Registro</class>
+        <class>uy.gub.dgr.sur.entity.Seccion</class>
+        <class>uy.gub.dgr.sur.entity.Sede</class>
+        <class>uy.gub.dgr.sur.entity.Sujeto</class>
+        <class>uy.gub.dgr.sur.entity.SujetoAeronave</class>
+        <class>uy.gub.dgr.sur.entity.SujetoAutomotor</class>
+        <class>uy.gub.dgr.sur.entity.SujetoInmueble</class>
+        <class>uy.gub.dgr.sur.entity.SujetoLibro</class>
+        <class>uy.gub.dgr.sur.entity.SujetoPersonaFisica</class>
+        <class>uy.gub.dgr.sur.entity.SujetoPersonaJuridica</class>
+        <class>uy.gub.dgr.sur.entity.Tasa</class>
+        <class>uy.gub.dgr.sur.entity.TipoAutomotor</class>
+        <class>uy.gub.dgr.sur.entity.TipoDocumento</class>
+        <class>uy.gub.dgr.sur.entity.UsuarioRegistro</class>
+
 
         <class>org.picketlink.idm.jpa.model.sample.simple.AttributedTypeEntity</class>
         <class>org.picketlink.idm.jpa.model.sample.simple.AccountTypeEntity</class>
@@ -36,19 +62,16 @@
 
 
         <properties>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
 
-            <property name="eclipselink.logging.level" value="FINE"/>
-            <property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.H2Platform"/>
-            <property name="eclipselink.ddl-generation" value="create-tables"/>
             <property name="hibernate.hbm2ddl.auto" value="create"/>
 
-            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <!--<property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:sur"/>
             <property name="javax.persistence.jdbc.user" value=""/>
-            <property name="javax.persistence.jdbc.password" value=""/>
+            <property name="javax.persistence.jdbc.password" value=""/>-->
         </properties>
     </persistence-unit>
 </persistence>

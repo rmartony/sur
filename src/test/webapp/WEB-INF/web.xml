@@ -1,0 +1,160 @@
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <display-name>sur</display-name>
+    <session-config>
+        <session-timeout>60</session-timeout>
+    </session-config>
+
+    <!-- primefaces -->
+    <context-param>
+        <param-name>primefaces.CLIENT_SIDE_VALIDATION</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <!--
+        <context-param>
+            <param-name>primefaces.THEME</param-name>
+            <param-value>omega</param-value>
+        </context-param>
+    -->
+
+    <!-- omnifaces -->
+    <!-- gzip filter -->
+    <filter>
+        <filter-name>gzipResponseFilter</filter-name>
+        <filter-class>org.omnifaces.filter.GzipResponseFilter</filter-class>
+        <init-param>
+            <description>
+                The threshold size in bytes. Must be a number between 0 and 9999. Defaults to 500.
+            </description>
+            <param-name>threshold</param-name>
+            <param-value>500</param-value>
+        </init-param>
+        <init-param>
+            <description>
+                The mimetypes which needs to be compressed. Must be a commaseparated string. Defaults to the below
+                values.
+            </description>
+            <param-name>mimetypes</param-name>
+            <param-value>
+                text/plain, text/html, text/xml, text/css, text/javascript, text/csv, text/rtf,
+                application/xml, application/xhtml+xml, application/javascript, application/json,
+                application/x-javascript
+            </param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>gzipResponseFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
+    <!-- end omnifaces -->
+
+    <!--
+       Facelets configuration fragment
+    -->
+    <context-param>
+        <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+        <param-value>.xhtml</param-value>
+    </context-param>
+    <!--
+        <context-param>
+            <param-name>javax.faces.SEPARATOR_CHAR</param-name>
+            <param-value>-</param-value>
+        </context-param>
+    -->
+    <!-- agregar en VM Options -Dorg.apache.el.parser.COERCE_TO_ZERO=false -->
+    <context-param>
+        <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.FACELETS_BUFFER_SIZE</param-name>
+        <param-value>65535</param-value>
+        <!-- 64KB. -->
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
+        <param-value>-1</param-value>
+        <!-- Should be -1 for production. -->
+    </context-param>
+
+    <!-- faces servlet -->
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+
+    <!--
+        <security-constraint>
+            <web-resource-collection>
+                <web-resource-name>Manager command</web-resource-name>
+                <url-pattern>/app/*</url-pattern>
+            </web-resource-collection>
+            <auth-constraint>
+                <role-name>admin</role-name>
+                <role-name>adminLectura</role-name>
+                <role-name>cliente</role-name>
+                <role-name>consola</role-name>
+                <role-name>tecnico</role-name>
+                <role-name>lectura</role-name>
+            </auth-constraint>
+        </security-constraint>
+
+        <security-role>
+            <role-name>admin</role-name>
+        </security-role>
+        <security-role>
+            <role-name>adminLectura</role-name>
+        </security-role>
+        <security-role>
+            <role-name>cliente</role-name>
+        </security-role>
+        <security-role>
+            <role-name>consola</role-name>
+        </security-role>
+        <security-role>
+            <role-name>tecnico</role-name>
+        </security-role>
+        <security-role>
+            <role-name>lectura</role-name>
+        </security-role>
+    -->
+
+    <error-page>
+        <exception-type>org.apache.deltaspike.security.api.authorization.AccessDeniedException</exception-type>
+        <location>/errorAccessDenied.xhtml</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.RuntimeException</exception-type>
+        <location>/errorUnexpected.xhtml</location>
+    </error-page>
+
+    <error-page>
+        <error-code>403</error-code>
+        <location>/errorAccessDenied.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/errorUnexpected.xhtml</location>
+    </error-page>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+</web-app>
