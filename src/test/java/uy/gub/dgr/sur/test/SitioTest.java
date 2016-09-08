@@ -49,7 +49,7 @@ public class SitioTest {
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "sur-ds.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "faces-config.xml")
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "jboss-web.xml")
+                //.addAsWebInfResource(EmptyAsset.INSTANCE, "jboss-web.xml")
                 .setWebXML(new File("src/test/webapp/WEB-INF/web.xml"))
                 .addAsResource("META-INF/persistence.xml");
     }
