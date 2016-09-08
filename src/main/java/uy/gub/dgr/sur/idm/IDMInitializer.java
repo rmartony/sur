@@ -27,6 +27,7 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 import static org.picketlink.idm.model.basic.BasicModel.grantRole;
 
@@ -41,9 +42,10 @@ import static org.picketlink.idm.model.basic.BasicModel.grantRole;
 public class IDMInitializer {
     public static String datePattern;
     public static String dateTimePattern;
-
     @Inject
     ResourceBundle msg;
+    @Inject
+    private transient Logger log;
     @Inject
     private PartitionManager partitionManager;
     @Inject
@@ -59,7 +61,6 @@ public class IDMInitializer {
 
     private boolean initialized() {
         // queries for admin user
-
         IdentityManager identityManager = this.partitionManager.createIdentityManager();
 
         // here we get the query builder

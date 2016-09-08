@@ -53,7 +53,7 @@ public class SitioTest {
                 .addAsWebInfResource(new File(WEBAPP_SRC + "/WEB-INF/sur-ds.xml"))
                 .addAsWebInfResource(new File(WEBAPP_SRC + "/WEB-INF/faces-config.xml"))
                 .addAsWebInfResource(new File(WEBAPP_SRC + "/WEB-INF/jboss-web.xml"))
-                .addAsResource(SRC + "/resources/uy/gub/dgr/sur/util/messages.properties")
+                .addAsResource("uy/gub/dgr/sur/util/messages.properties")
                 .setWebXML(new File(WEBAPP_SRC + "/WEB-INF/web.xml"))
                 .addAsResource("META-INF/persistence.xml");
 
