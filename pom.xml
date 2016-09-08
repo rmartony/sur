@@ -13,7 +13,7 @@
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- JBoss dependency versions -->
-        <wildfly.version>8.2.1.Final</wildfly.version>
+        <wildfly.arquillian.version>2.0.0.Final</wildfly.arquillian.version>
         <version.jboss.maven.plugin>7.4.Final</version.jboss.maven.plugin>
 
         <!-- WildFly dependency versions -->
@@ -207,9 +207,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.wildfly</groupId>
+            <groupId>org.wildfly.arquillian</groupId>
             <artifactId>wildfly-arquillian-container-managed</artifactId>
-            <version>${wildfly.version}</version>
+            <version>${wildfly.arquillian.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>

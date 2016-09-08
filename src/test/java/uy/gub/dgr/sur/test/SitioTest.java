@@ -26,6 +26,9 @@ import java.io.File;
 @Slf4j
 @RunWith(Arquillian.class)
 public class SitioTest {
+    public static final String SRC = "src/main";
+    public static final String WEBAPP_SRC = SRC + "/webapp";
+
     /**
      * The factory that produces entity manager.
      */
@@ -43,15 +46,19 @@ public class SitioTest {
         File[] files = Maven.resolver().loadPomFromFile("pom.xml")
                 .importRuntimeDependencies().resolve().withTransitivity().asFile();
 
-        return ShrinkWrap.create(WebArchive.class, "test.war")
+        WebArchive webArchive = ShrinkWrap.create(WebArchive.class, "test.war")
                 .addPackages(true, "uy")
                 .addAsLibraries(files)
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "sur-ds.xml")
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "faces-config.xml")
-                //.addAsWebInfResource(EmptyAsset.INSTANCE, "jboss-web.xml")
-                .setWebXML(new File("src/test/webapp/WEB-INF/web.xml"))
+                .addAsWebInfResource(new File(WEBAPP_SRC + "/WEB-INF/sur-ds.xml"))
+                .addAsWebInfResource(new File(WEBAPP_SRC + "/WEB-INF/faces-config.xml"))
+                .addAsWebInfResource(new File(WEBAPP_SRC + "/WEB-INF/jboss-web.xml"))
+                .addAsResource(SRC + "/resources/uy/gub/dgr/sur/util/messages.properties")
+                .setWebXML(new File(WEBAPP_SRC + "/WEB-INF/web.xml"))
                 .addAsResource("META-INF/persistence.xml");
+
+        System.out.println(webArchive.toString(true));
+        return webArchive;
     }
 
     @BeforeClass
