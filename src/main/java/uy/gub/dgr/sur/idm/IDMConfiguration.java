@@ -6,10 +6,12 @@ package uy.gub.dgr.sur.idm;
  * Time: 07:12 PM
  */
 
+import org.picketlink.IdentityConfigurationEvent;
 import org.picketlink.idm.config.IdentityConfiguration;
 import org.picketlink.idm.config.IdentityConfigurationBuilder;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.event.Observes;
 import javax.enterprise.inject.Produces;
 
 /**
@@ -30,9 +32,13 @@ public class IDMConfiguration {
     @Produces
     IdentityConfiguration createConfig() {
         if (identityConfig == null) {
-            initConfig();
+            initConfig(null);
         }
         return identityConfig;
+    }
+
+    public void configureIdentityManagement(@Observes IdentityConfigurationEvent event) {
+        initConfig(event.getConfig());
     }
 
     /**
@@ -41,8 +47,10 @@ public class IDMConfiguration {
      * JPAIdentityStore is configured to allow the identity data to be stored in a relational database
      * using JPA.AttributedTypeEntity.class,
      */
-    private void initConfig() {
-        IdentityConfigurationBuilder builder = new IdentityConfigurationBuilder();
+    private void initConfig(IdentityConfigurationBuilder builder) {
+        if (builder == null) {
+            builder = new IdentityConfigurationBuilder();
+        }
 
         builder
                 .named("default")
