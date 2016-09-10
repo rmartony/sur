@@ -6,8 +6,6 @@ import org.picketlink.idm.model.basic.User;
 import uy.gub.dgr.sur.entity.*;
 
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -70,8 +68,6 @@ public class InitService {
     @Inject
     private transient UsuarioService usuarioService;
 
-
-    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void initDB() {
         final boolean initialized = initialized();
         if (!initialized) {
