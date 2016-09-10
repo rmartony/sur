@@ -10,7 +10,6 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import uy.gub.dgr.sur.entity.Registro;
 import uy.gub.dgr.sur.service.RegistroService;
@@ -121,7 +120,7 @@ public class SitioTest {
     }
 */
 
-    @Test
+    //@Test
     public void should_create_greeting() {
         Registro s = new Registro();
         s.setCodigo("cod1");
