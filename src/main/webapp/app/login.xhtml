@@ -31,8 +31,10 @@
                         <p:commandButton id="loginButton" value="Ingresar"
                                          action="#{loginController.login}" update="messages"/>
                     </div>
-                    <h:outputLink value="mailto:usuarios@dgr.gub.uy?Subject=Restaurar contraseña"><h:outputText
-                            value="¿Olvidó su contraseña?"/></h:outputLink>
+                    <div class="top_margin">
+                        <h:outputLink value="mailto:usuarios@dgr.gub.uy?Subject=Restaurar contraseña"><h:outputText
+                                value="¿Olvidó su contraseña?"/></h:outputLink>
+                    </div>
                 </f:facet>
             </h:panelGrid>
 
