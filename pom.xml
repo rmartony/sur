@@ -24,12 +24,15 @@
         <hibernate-validator.version>5.1.3.Final</hibernate-validator.version>
         <hibernate-envers.version>4.3.7.Final</hibernate-envers.version>
         <lombok.version>RELEASE</lombok.version>
-        <omnifaces.version>RELEASE</omnifaces.version>
         <!-- PicketLink dependency versions -->
         <version.picketlink.javaee.bom>2.7.1.Final</version.picketlink.javaee.bom>
         <!-- Primefaces -->
         <primefaces.version>6.0</primefaces.version>
         <primefaces-extensions.version>6.0.0</primefaces-extensions.version>
+        <omnifaces.version>RELEASE</omnifaces.version>
+        <!-- apache commons -->
+        <commons-lang3.version>3.4</commons-lang3.version>
+        <commons-collections4.version>RELEASE</commons-collections4.version>
         <!-- maven-compiler-plugin -->
         <version.compiler.plugin>3.1</version.compiler.plugin>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -95,12 +98,12 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
-            <version>RELEASE</version>
+            <version>${commons-collections4.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.4</version>
+            <version>${commons-lang3.version}</version>
         </dependency>
         <!--
                 <dependency>
@@ -270,7 +273,7 @@
             <version>1.1</version>
             <scope>provided</scope>
         </dependency>
-        <!-- Java EE 6 dependencies -->
+        <!-- Java EE 7 dependencies -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -293,7 +296,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.6.1</version>
+            <version>RELEASE</version>
             <scope>test</scope>
         </dependency>
         <!--
@@ -316,24 +319,6 @@
             <version>RELEASE</version>
             <scope>test</scope>
         </dependency>
-
-        <!--<dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>eclipselink</artifactId>
-            <version>2.0.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>javax.persistence</artifactId>
-            <version>2.0.0</version>
-            <scope>test</scope>
-        </dependency>-->
-        <!--<dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derby</artifactId>
-            <version>10.6.1.0</version>
-        </dependency>-->
         <!--
                 <dependency>
                     <groupId>com.h2database</groupId>
