@@ -17,6 +17,7 @@
         <version.jboss.maven.plugin>7.4.Final</version.jboss.maven.plugin>
 
         <!-- WildFly dependency versions -->
+        <wildfly.version>8.2.1.Final</wildfly.version>
         <version.wildfly.maven.plugin>1.0.1.Final</version.wildfly.maven.plugin>
         <!--<jboss.home>${env.JBOSS_HOME}</jboss.home>-->
         <hibernate-entitymanager.version>4.3.7.Final</hibernate-entitymanager.version>
@@ -26,12 +27,14 @@
         <omnifaces.version>RELEASE</omnifaces.version>
         <!-- PicketLink dependency versions -->
         <version.picketlink.javaee.bom>2.7.1.Final</version.picketlink.javaee.bom>
+        <!-- Primefaces -->
         <primefaces.version>6.0</primefaces.version>
         <primefaces-extensions.version>6.0.0</primefaces-extensions.version>
         <!-- maven-compiler-plugin -->
         <version.compiler.plugin>3.1</version.compiler.plugin>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
+        <junit.version>4.12</junit.version>
         <skipTests>true</skipTests>
     </properties>
 
@@ -99,11 +102,13 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.4</version>
         </dependency>
-        <dependency>
-            <groupId>commons-net</groupId>
-            <artifactId>commons-net</artifactId>
-            <version>RELEASE</version>
-        </dependency>
+        <!--
+                <dependency>
+                    <groupId>commons-net</groupId>
+                    <artifactId>commons-net</artifactId>
+                    <version>RELEASE</version>
+                </dependency>
+        -->
         <!--
                 <dependency>
                     <groupId>commons-validator</groupId>
@@ -117,11 +122,13 @@
             <artifactId>jasperreports</artifactId>
             <version>RELEASE</version>
         </dependency>
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>RELEASE</version>
-        </dependency>
+        <!--
+                <dependency>
+                    <groupId>org.codehaus.groovy</groupId>
+                    <artifactId>groovy-all</artifactId>
+                    <version>RELEASE</version>
+                </dependency>
+        -->
 
         <!-- Import the PicketLink API, we deploy this as library with the application,
               and can compile against it -->
@@ -207,12 +214,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.wildfly.arquillian</groupId>
-            <artifactId>wildfly-arquillian-container-managed</artifactId>
-            <version>${wildfly.arquillian.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.jboss.arquillian.protocol</groupId>
             <artifactId>arquillian-protocol-servlet</artifactId>
             <scope>test</scope>
@@ -220,7 +221,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -486,6 +487,13 @@
             <properties>
                 <target.container>wildfly</target.container>
             </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.wildfly</groupId>
+                    <artifactId>wildfly-arquillian-container-managed</artifactId>
+                    <version>${wildfly.version}</version>
+                </dependency>
+            </dependencies>
             <build>
                 <plugins>
                     <plugin>

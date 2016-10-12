@@ -10,6 +10,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import uy.gub.dgr.sur.entity.Registro;
 import uy.gub.dgr.sur.service.RegistroService;
@@ -45,7 +46,7 @@ public class SitioTest {
         File[] files = Maven.resolver().loadPomFromFile("pom.xml")
                 .importRuntimeDependencies().resolve().withTransitivity().asFile();
 
-        WebArchive webArchive = ShrinkWrap.create(WebArchive.class, "test.war")
+        WebArchive webArchive = ShrinkWrap.create(WebArchive.class, "sur.war")
                 .addPackages(true, "uy")
                 .addAsLibraries(files)
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
@@ -120,7 +121,7 @@ public class SitioTest {
     }
 */
 
-    //@Test
+    @Test
     public void should_create_greeting() {
         Registro s = new Registro();
         s.setCodigo("cod1");

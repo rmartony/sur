@@ -6,7 +6,7 @@ package uy.gub.dgr.sur.idm;
  * Time: 07:12 PM
  */
 
-import org.picketlink.IdentityConfigurationEvent;
+import org.picketlink.event.IdentityConfigurationEvent;
 import org.picketlink.idm.config.IdentityConfiguration;
 import org.picketlink.idm.config.IdentityConfigurationBuilder;
 
