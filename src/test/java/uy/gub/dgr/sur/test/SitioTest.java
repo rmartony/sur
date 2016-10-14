@@ -128,6 +128,12 @@ public class SitioTest {
 
         documento.setAnio(2016);
         documento.setFecha(new Date());
+        documento.setAnio(2016);
+        documento.setLibro((short) 4);
+        documento.setNumero(123);
+        documento.setBis((short) 0);
+        documento.setAutos("autos?");
+        documento.setEstado();
 
     }
 }
