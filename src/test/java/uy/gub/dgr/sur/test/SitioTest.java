@@ -12,11 +12,12 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import uy.gub.dgr.sur.entity.Registro;
+import uy.gub.dgr.sur.entity.Documento;
 import uy.gub.dgr.sur.service.RegistroService;
 
 import javax.inject.Inject;
 import java.io.File;
+import java.util.Date;
 
 /**
  * User: rafa
@@ -122,11 +123,11 @@ public class SitioTest {
 */
 
     @Test
-    public void should_create_greeting() {
-        Registro s = new Registro();
-        s.setCodigo("cod1");
-        s.setDescripcion("Prueba");
+    public void testAgregarDocumento() {
+        Documento documento = new Documento();
 
-        s = registroService.update(s);
+        documento.setAnio(2016);
+        documento.setFecha(new Date());
+
     }
 }

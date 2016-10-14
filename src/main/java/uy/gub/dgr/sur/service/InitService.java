@@ -67,6 +67,10 @@ public class InitService {
     private transient TipoDocumentoService tipoDocumentoService;
     @Inject
     private transient UsuarioService usuarioService;
+    @Inject
+    private transient MotorAeronaveService motorAeronaveService;
+    @Inject
+    private transient ExoneracionService exoneracionService;
 
     public void initDB() {
         final boolean initialized = initialized();
@@ -87,6 +91,9 @@ public class InitService {
             initMoneda();
             initTipoDocumento();
             initTasa();
+            initMovimiento();
+            initMotorAeronave();
+            initExoneracion();
         }
     }
 
@@ -559,6 +566,28 @@ public class InitService {
         tipoDocumento.setCodigo("tipoDoc1");
         tipoDocumento.setDescripcion("Tipo Documento 1");
         tipoDocumento = tipoDocumentoService.update(tipoDocumento);
+    }
+
+    private void initMovimiento() {
+        Movimiento movimiento = new Movimiento();
+        movimiento.setCodigo("mov1");
+        movimiento.setDescripcion("Movimiento 1");
+        movimiento.setAccion("acción 1");
+        movimiento = movimientoService.update(movimiento);
+    }
+
+    private void initMotorAeronave() {
+        MotorAeronave motorAeronave = new MotorAeronave();
+        motorAeronave.setMarca("marca 1");
+        motorAeronave.setSerie("serie 1");
+        motorAeronave = motorAeronaveService.update(motorAeronave);
+    }
+
+    private void initExoneracion() {
+        Exoneracion exoneracion = new Exoneracion();
+        exoneracion.setCodigo("código exoneración 1");
+        exoneracion.setDescripcion("descripción exoneración 1");
+        exoneracion = exoneracionService.update(exoneracion);
     }
 
 }
