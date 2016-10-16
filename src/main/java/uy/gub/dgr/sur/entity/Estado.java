@@ -19,12 +19,14 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(name = Estado.ALL, query = "SELECT d FROM Estado d order by d.nombre"),
         @NamedQuery(name = Estado.BY_ID, query = "SELECT d FROM Estado d where d.id = :id"),
+        @NamedQuery(name = Estado.BY_CODIGO, query = "SELECT d FROM Estado d where d.codigo = :codigo"),
         @NamedQuery(name = Estado.TOTAL, query = "SELECT COUNT(d) FROM Estado d")})
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo"}))
 @Audited
 public class Estado extends BaseEntity {
     public final static String ALL = "Estado.all";
     public final static String BY_ID = "Estado.id";
+    public final static String BY_CODIGO = "Estado.codigo";
     public final static String TOTAL = "Estado.countTotal";
 
     @NotEmpty
