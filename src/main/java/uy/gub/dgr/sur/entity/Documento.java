@@ -40,15 +40,17 @@ public class Documento extends BaseEntity {
     private Exoneracion exoneracion;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "documento")
     private List<Inscripcion> inscripcionList;
+    @NotNull
     @ManyToOne
     private Registro registro;
+    @NotNull
     @ManyToOne
     private Sede sede;
     private int anio;
     private int numero;
     private short bis;
     @Temporal(TemporalType.DATE)
-    private Date fecha;
+    private Date fecha; // por omisión fecha actual
     @ManyToOne
     private Estado estado;
     @ManyToOne
@@ -61,6 +63,10 @@ public class Documento extends BaseEntity {
     private Emisor emisor;
     @ManyToOne
     private Escribano escribano;
+    @NotNull
+    @Temporal(TemporalType.DATE)
+    private Date fechaEmision;
+
 
 
 }

@@ -33,6 +33,7 @@ public class SujetoPersonaJuridica extends Sujeto {
     @NotEmpty
     private String rut;
 
+
     @ManyToOne
     private Interviniente interviniente;
 

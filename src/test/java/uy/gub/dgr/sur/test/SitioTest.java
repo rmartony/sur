@@ -12,14 +12,8 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import uy.gub.dgr.sur.entity.Documento;
-import uy.gub.dgr.sur.entity.Estado;
-import uy.gub.dgr.sur.entity.Registro;
-import uy.gub.dgr.sur.entity.Tasa;
-import uy.gub.dgr.sur.service.DocumentoService;
-import uy.gub.dgr.sur.service.EstadoService;
-import uy.gub.dgr.sur.service.RegistroService;
-import uy.gub.dgr.sur.service.TasaService;
+import uy.gub.dgr.sur.entity.*;
+import uy.gub.dgr.sur.service.*;
 
 import javax.inject.Inject;
 import java.io.File;
@@ -53,6 +47,8 @@ public class SitioTest {
     private EstadoService estadoService;
     @Inject
     private TasaService tasaService;
+    @Inject
+    private EmisorService emisorService;
     @Inject
     private DocumentoService documentoService;
 
@@ -142,12 +138,16 @@ public class SitioTest {
 
         documento.setAnio(2016);
         documento.setFecha(new Date());
+        documento.setFechaEmision(new Date());
         documento.setAnio(2016);
         documento.setLibro((short) 4);
         documento.setNumero(123);
         documento.setBis((short) 0);
         documento.setAutos("autos doc");
         documento.setFicha("ficha doc");
+        documento.setFechaResolucion(new Date());
+        documento.setObservacion("Una obs");
+        documento.setObservacionDgr("Una obs DGR");
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("codigo", "VV");
@@ -163,6 +163,11 @@ public class SitioTest {
         parameters.put("codigo", "RPI");
         Registro registro = (Registro) registroService.findSingleResultNamedQuery(Registro.BY_CODIGO, parameters);
         documento.setRegistro(registro);
+
+        parameters = new HashMap<>();
+        parameters.put("codigo", "1"); // Sede Montevideo
+        Sede sede = (Sede) registroService.findSingleResultNamedQuery(Sede.BY_CODIGO, parameters);
+        documento.setSede(sede);
 
         documentoService.update(documento);
 

@@ -26,9 +26,11 @@ import javax.validation.constraints.NotNull;
 @Audited
 public class Inmueble extends BaseEntity {
 
+    @NotNull
     @ManyToOne
     private Departamento departamento;
 
+    @NotNull
     @ManyToOne
     private Localidad localidad;
 
