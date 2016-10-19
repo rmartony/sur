@@ -22,7 +22,7 @@ import java.util.Date;
 @NamedQueries({
         @NamedQuery(name = Escribano.ALL, query = "SELECT i FROM Escribano i"),
         @NamedQuery(name = Escribano.BY_ID, query = "SELECT z FROM Escribano z where z.id = :id"),
-        @NamedQuery(name = Escribano.BY_STATUS, query = "SELECT i FROM Escribano i where not current_date between :inhabilitadoFechaDesde and :inhabilitadoFechaHasta"),
+        @NamedQuery(name = Escribano.BY_STATUS, query = "SELECT i FROM Escribano e where not current_date between e.inhabilitadoFechaDesde and e.inhabilitadoFechaHasta"),
         @NamedQuery(name = Escribano.BY_CODE, query = "SELECT i FROM Escribano i where i.codigo = :codigo"),
         @NamedQuery(name = Escribano.TOTAL, query = "SELECT COUNT(z) FROM Escribano z")})
 @Audited

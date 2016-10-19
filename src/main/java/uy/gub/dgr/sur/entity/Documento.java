@@ -6,6 +6,7 @@ import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.util.Date;
 import java.util.List;
 
@@ -65,6 +66,7 @@ public class Documento extends BaseEntity {
     private Escribano escribano;
     @NotNull
     @Temporal(TemporalType.DATE)
+    @Past
     private Date fechaEmision;
 
 

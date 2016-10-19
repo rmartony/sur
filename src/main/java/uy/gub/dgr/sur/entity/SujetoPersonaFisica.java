@@ -11,10 +11,11 @@ package uy.gub.dgr.sur.entity;//
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.envers.Audited;
-import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Size;
 import java.sql.Date;
 
 @Entity
@@ -27,7 +28,8 @@ public class SujetoPersonaFisica extends Sujeto {
     @ManyToOne
     private PersonaFisica personaFisica;
 
-    @NotEmpty
+    @Column(length = 9)
+    @Size(min = 6, max = 9)
     private String cedulaIdentidad;
 
     @ManyToOne

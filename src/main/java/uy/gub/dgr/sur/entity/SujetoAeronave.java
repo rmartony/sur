@@ -14,6 +14,7 @@ import org.hibernate.envers.Audited;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -21,6 +22,7 @@ import javax.persistence.ManyToOne;
 @Audited
 public class SujetoAeronave extends Sujeto {
 
+    @NotNull
     @ManyToOne
     Aeronave aeronave;
 

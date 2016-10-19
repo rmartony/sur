@@ -11,13 +11,11 @@ package uy.gub.dgr.sur.entity;//
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.envers.Audited;
-import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Entity;
-import javax.persistence.Index;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import java.sql.Date;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Entity
 @Data
@@ -30,16 +28,19 @@ public class SujetoPersonaJuridica extends Sujeto {
     @ManyToOne
     private PersonaJuridica personaJuridica;
 
-    @NotEmpty
+    @Column(length = 12)
+    @Size(min = 12, max = 12)
     private String rut;
 
 
+    @NotNull
     @ManyToOne
     private Interviniente interviniente;
 
     private int bps;
     private String naturalezaJuridica;
 
+    @Temporal(TemporalType.DATE)
     private Date fecha;
     private String tipo; // Constitucion, fallecimiento, mandato, nacimiento
     @ManyToOne
