@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -34,12 +35,14 @@ public class Inscripcion extends BaseEntity {
 
     private int ordinal;
 
+    @NotNull
     @ManyToOne
     private Acto acto;
 
     @ManyToOne
     private Estado estado; // calificacion
 
+    @NotNull
     @ManyToOne
     private Movimiento movimiento;
 

@@ -6,6 +6,7 @@ import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * User: rmartony
@@ -32,6 +33,7 @@ public class Acto extends BaseEntity {
     @NotEmpty
     private String descripcion;
 
+    @NotNull
     @ManyToOne(cascade = CascadeType.ALL)
     private Seccion seccion;
 
