@@ -18,6 +18,7 @@ import javax.validation.constraints.NotNull;
 @EqualsAndHashCode(callSuper = true, exclude = {"descripcion", "seccion", "duracion", "periodo"})
 @NamedQueries({
         @NamedQuery(name = Acto.ID, query = "SELECT d FROM Acto d where d.id = :id"),
+        @NamedQuery(name = Acto.BY_CODIGO, query = "SELECT d FROM Acto d where d.codigo = :codigo"),
         @NamedQuery(name = Acto.ALL, query = "SELECT d FROM Acto d")
 })
 @Cacheable
@@ -25,6 +26,7 @@ import javax.validation.constraints.NotNull;
 @Audited
 public class Acto extends BaseEntity {
     public final static String ID = "Acto.id";
+    public final static String BY_CODIGO = "Acto.codigo";
     public final static String ALL = "Acto.all";
 
     @NotEmpty

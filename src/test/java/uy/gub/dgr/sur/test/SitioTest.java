@@ -42,6 +42,8 @@ public class SitioTest {
     //private static EntityManager em;
 
     @Inject
+    private DocumentoService documentoService;
+    @Inject
     private RegistroService registroService;
     @Inject
     private EstadoService estadoService;
@@ -50,7 +52,13 @@ public class SitioTest {
     @Inject
     private EmisorService emisorService;
     @Inject
-    private DocumentoService documentoService;
+    private EscribanoService escribanoService;
+    @Inject
+    private ActoService actoService;
+    @Inject
+    private MovimientoService movimientoService;
+    @Inject
+    private InscripcionService inscripcionService;
 
     @Deployment
     public static Archive<?> createDeployment() {
@@ -169,7 +177,31 @@ public class SitioTest {
         Sede sede = (Sede) registroService.findSingleResultNamedQuery(Sede.BY_CODIGO, parameters);
         documento.setSede(sede);
 
-        documentoService.update(documento);
+        parameters = new HashMap<>();
+        parameters.put("codigo", 35L); // Escribano 1
+        Escribano escribano = (Escribano) escribanoService.findSingleResultNamedQuery(Escribano.BY_CODIGO, parameters);
+        documento.setEscribano(escribano);
+
+        documento = documentoService.update(documento);
+
+        // Inscripcion
+        parameters = new HashMap<>();
+        parameters.put("codigo", "act1Sec1RPI"); // Acto "act1Sec1RPI"
+        Acto acto = (Acto) actoService.findSingleResultNamedQuery(Acto.BY_CODIGO, parameters);
+
+        parameters = new HashMap<>();
+        parameters.put("codigo", "mov1"); // Acto "act1Sec1RPI"
+        Movimiento movimiento = (Movimiento) movimientoService.findSingleResultNamedQuery(Movimiento.BY_CODIGO, parameters);
+
+        Inscripcion inscripcion = new Inscripcion();
+        inscripcion.setDocumento(documento);
+        inscripcion.setEstado(estado);
+        inscripcion.setOrdinal(1);
+        inscripcion.setActo(acto);
+        inscripcion.setMovimiento(movimiento);
+        inscripcion.setObservacion("Una obs inscripcion");
+
+        inscripcion = inscripcionService.update(inscripcion);
 
     }
 }
