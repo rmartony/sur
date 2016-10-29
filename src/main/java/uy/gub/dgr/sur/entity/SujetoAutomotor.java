@@ -12,6 +12,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.envers.Audited;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
@@ -21,7 +22,7 @@ import javax.persistence.ManyToOne;
 @Audited
 public class SujetoAutomotor extends Sujeto {
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     Automotor automotor;
 
     private String inEx;

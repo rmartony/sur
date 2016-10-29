@@ -17,9 +17,7 @@ import uy.gub.dgr.sur.service.*;
 
 import javax.inject.Inject;
 import java.io.File;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * User: rafa
@@ -59,6 +57,10 @@ public class SitioTest {
     private MovimientoService movimientoService;
     @Inject
     private InscripcionService inscripcionService;
+    @Inject
+    private DepartamentoService departamentoService;
+    @Inject
+    private LocalidadService localidadService;
 
     @Deployment
     public static Archive<?> createDeployment() {
@@ -200,6 +202,28 @@ public class SitioTest {
         inscripcion.setActo(acto);
         inscripcion.setMovimiento(movimiento);
         inscripcion.setObservacion("Una obs inscripcion");
+
+        SujetoAutomotor sujetoAutomotor = new SujetoAutomotor();
+        sujetoAutomotor.setSujeto("sujeto1");
+        Automotor automotor = new Automotor();
+        automotor.setAnio(1995);
+        automotor.setPlacaMunicipal("abcd123");
+        automotor.setPadron(12345);
+
+        parameters = new HashMap<>();
+        parameters.put("codigo", "1"); // Montevideo
+        Departamento departamento = (Departamento) departamentoService.findSingleResultNamedQuery(Departamento.BY_CODIGO, parameters);
+        automotor.setDepartamento(departamento);
+        parameters = new HashMap<>();
+        parameters.put("codigo", "loc1");
+        Localidad localidad = (Localidad) localidadService.findSingleResultNamedQuery(Localidad.BY_CODIGO, parameters);
+        automotor.setLocalidad(localidad);
+
+        sujetoAutomotor.setAutomotor(automotor);
+
+        List<Sujeto> sujetoList = new ArrayList<>();
+        sujetoList.add(sujetoAutomotor);
+        inscripcion.setSujetoList(sujetoList);
 
         inscripcion = inscripcionService.update(inscripcion);
 
