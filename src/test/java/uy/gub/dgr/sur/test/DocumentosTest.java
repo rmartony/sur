@@ -26,7 +26,7 @@ import java.util.*;
  */
 @Slf4j
 @RunWith(Arquillian.class)
-public class SitioTest {
+public class DocumentosTest {
     public static final String SRC = "src/main";
     public static final String WEBAPP_SRC = SRC + "/webapp";
 
@@ -203,6 +203,7 @@ public class SitioTest {
         inscripcion.setMovimiento(movimiento);
         inscripcion.setObservacion("Una obs inscripcion");
 
+        // Sujeto automotor
         SujetoAutomotor sujetoAutomotor = new SujetoAutomotor();
         sujetoAutomotor.setSujeto("sujeto1");
         Automotor automotor = new Automotor();
@@ -215,7 +216,7 @@ public class SitioTest {
         Departamento departamento = (Departamento) departamentoService.findSingleResultNamedQuery(Departamento.BY_CODIGO, parameters);
         automotor.setDepartamento(departamento);
         parameters = new HashMap<>();
-        parameters.put("codigo", "loc1");
+        parameters.put("codigo", "loc1"); // Localidad 1
         Localidad localidad = (Localidad) localidadService.findSingleResultNamedQuery(Localidad.BY_CODIGO, parameters);
         automotor.setLocalidad(localidad);
 
