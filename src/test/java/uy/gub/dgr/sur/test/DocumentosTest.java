@@ -1,6 +1,7 @@
 package uy.gub.dgr.sur.test;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.time.DateUtils;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
@@ -17,6 +18,7 @@ import uy.gub.dgr.sur.service.*;
 
 import javax.inject.Inject;
 import java.io.File;
+import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -142,7 +144,7 @@ public class DocumentosTest {
     }
 */
 
-    @Test
+    //@Test
     public void testAgregarDocumento() {
         Documento documento = new Documento();
 
@@ -229,4 +231,21 @@ public class DocumentosTest {
         inscripcion = inscripcionService.update(inscripcion);
 
     }
+
+    @Test
+    public void testEliminarTasa() {
+        Tasa tasa = new Tasa();
+        tasa.setCodigo("codTasa");
+        tasa.setNombre("Prueba tasa");
+        tasa.setMonto(new BigDecimal(1000));
+        tasa.setFechaVencimiento(DateUtils.addDays(new Date(), 505));
+
+        tasa = tasaService.update(tasa);
+        DeleteInfo deleteInfo = new DeleteInfo();
+        deleteInfo.setMotivoBaja("motivo baja");
+        tasa.setDeleteInfo(deleteInfo);
+        tasaService.delete(tasa.getId());
+
+    }
+
 }
