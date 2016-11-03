@@ -145,7 +145,7 @@ public class DocumentosTest {
 */
 
     //@Test
-    public void testAgregarDocumento() {
+    public void testAgregarDocumentoSujetoAutomotor() {
         Documento documento = new Documento();
 
         documento.setAnio(2016);
@@ -232,20 +232,26 @@ public class DocumentosTest {
 
     }
 
-    @Test
+    //@Test
     public void testEliminarTasa() {
         Tasa tasa = new Tasa();
         tasa.setCodigo("codTasa");
         tasa.setNombre("Prueba tasa");
         tasa.setMonto(new BigDecimal(1000));
         tasa.setFechaVencimiento(DateUtils.addDays(new Date(), 505));
-
         tasa = tasaService.update(tasa);
-        DeleteInfo deleteInfo = new DeleteInfo();
-        deleteInfo.setMotivoBaja("motivo baja");
-        tasa.setDeleteInfo(deleteInfo);
-        tasaService.delete(tasa.getId());
 
+        tasaService.delete(tasa.getId());
+    }
+
+    @Test
+    public void testEliminarEscribano() {
+        Escribano escribano = new Escribano();
+        escribano.setCodigo(99L);
+        escribano.setNombre("Escribano 99");
+        escribano = escribanoService.update(escribano);
+
+        escribanoService.delete(escribano.getId());
     }
 
 }

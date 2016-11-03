@@ -2,6 +2,8 @@ package uy.gub.dgr.sur.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
@@ -21,6 +23,8 @@ import javax.validation.constraints.NotNull;
         @NamedQuery(name = Monto.TOTAL, query = "SELECT COUNT(r) FROM Monto r")})
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"moneda_id", "monto"}))
 @Audited
+@SQLDelete(sql = "update Monto SET fechaBaja = current_date where id = ?")
+@Where(clause = "fechaBaja is null")
 public class Monto extends BaseEntity {
     public final static String ALL = "Monto.all";
     public final static String BY_ID = "Monto.id";

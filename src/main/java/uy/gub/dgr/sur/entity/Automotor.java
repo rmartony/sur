@@ -2,6 +2,8 @@ package uy.gub.dgr.sur.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
@@ -26,6 +28,8 @@ import java.util.Date;
 @Cacheable
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"departamento_id", "localidad_id", "padron"}))
 @Audited
+@SQLDelete(sql = "update Automotor SET fechaBaja = current_date where id = ?")
+@Where(clause = "fechaBaja is null")
 public class Automotor extends BaseEntity {
     public final static String ALL = "Automotor.all";
     public final static String BY_ID = "Automotor.id";

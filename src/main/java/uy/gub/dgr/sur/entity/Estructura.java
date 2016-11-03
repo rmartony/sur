@@ -2,6 +2,8 @@ package uy.gub.dgr.sur.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -24,6 +26,8 @@ import javax.validation.constraints.Size;
         @NamedQuery(name = Estructura.TOTAL, query = "SELECT COUNT(r) FROM Estructura r")})
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"nombre"}))
 @Audited
+@SQLDelete(sql = "update Estructura SET fechaBaja = current_date where id = ?")
+@Where(clause = "fechaBaja is null")
 public class Estructura extends BaseEntity {
     public final static String ALL = "Estructura.all";
     public final static String BY_ID = "Estructura.id";

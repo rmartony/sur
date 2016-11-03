@@ -2,6 +2,8 @@ package uy.gub.dgr.sur.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -21,6 +23,8 @@ import javax.persistence.*;
         @NamedQuery(name = MotorAeronave.TOTAL, query = "SELECT COUNT(r) FROM MotorAeronave r")})
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"serie", "marca"}))
 @Audited
+@SQLDelete(sql = "update MotorAeronave SET fechaBaja = current_date where id = ?")
+@Where(clause = "fechaBaja is null")
 public class MotorAeronave extends BaseEntity {
     public final static String ALL = "MotorAeronave.all";
     public final static String BY_ID = "MotorAeronave.id";

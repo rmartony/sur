@@ -10,6 +10,8 @@ package uy.gub.dgr.sur.entity;//
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
@@ -23,6 +25,8 @@ import java.util.Date;
         "tipo", "tipoSocial", "parte", "domicilio", "sede"})
 @Table(indexes = {@Index(name = "perjur_rut", columnList = "rut", unique = true)})
 @Audited
+@SQLDelete(sql = "update SujetoPersonaJuridica SET fechaBaja = current_date where id = ?")
+@Where(clause = "fechaBaja is null")
 public class SujetoPersonaJuridica extends Sujeto {
 
     @ManyToOne

@@ -2,6 +2,8 @@ package uy.gub.dgr.sur.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -25,6 +27,8 @@ import javax.validation.constraints.NotNull;
 @Cacheable
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo"}))
 @Audited
+@SQLDelete(sql = "update Sede SET fechaBaja = current_date where id = ?")
+@Where(clause = "fechaBaja is null")
 public class Sede extends BaseEntity {
     public final static String ALL = "Sede.all";
     public final static String BY_ID = "Sede.id";

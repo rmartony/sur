@@ -2,6 +2,8 @@ package uy.gub.dgr.sur.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -25,6 +27,8 @@ import javax.persistence.*;
         @Index(name = "perfis_a1n1", columnList = "apellido1, nombre1", unique = false),
         @Index(name = "perfis_uni", columnList = "apellido1, apellido2, nombre1, nombre2", unique = true)})
 @Audited
+@SQLDelete(sql = "update PersonaFisica SET fechaBaja = current_date where id = ?")
+@Where(clause = "fechaBaja is null")
 public class PersonaFisica extends BaseEntity {
     public final static String ALL = "PersonaFisica.all";
     public final static String BY_ID = "PersonaFisica.id";

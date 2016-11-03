@@ -2,12 +2,12 @@ package uy.gub.dgr.sur.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -18,7 +18,7 @@ import java.util.Date;
  */
 @Entity
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = {"nombre", "inhabilitadoFechaDesde", "inhabilitadoFechaHasta"})
 @NamedQueries({
         @NamedQuery(name = Escribano.ALL, query = "SELECT i FROM Escribano i"),
         @NamedQuery(name = Escribano.BY_ID, query = "SELECT z FROM Escribano z where z.id = :id"),
@@ -26,6 +26,9 @@ import java.util.Date;
         @NamedQuery(name = Escribano.BY_CODIGO, query = "SELECT i FROM Escribano i where i.codigo = :codigo"),
         @NamedQuery(name = Escribano.TOTAL, query = "SELECT COUNT(z) FROM Escribano z")})
 @Audited
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo"}))
+@SQLDelete(sql = "update Escribano SET fechaBaja = current_date where id = ?")
+@Where(clause = "fechaBaja is null")
 public class Escribano extends BaseEntity {
     public final static String ALL = "Escribano.all";
     public final static String BY_ID = "Escribano.id";
