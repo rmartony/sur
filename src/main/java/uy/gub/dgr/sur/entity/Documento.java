@@ -22,6 +22,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true, exclude = {"estado", "tipoDocumento"})
 @NamedQueries({
         @NamedQuery(name = Documento.ID, query = "SELECT d FROM Documento d where d.id = :id"),
+        @NamedQuery(name = Documento.BY_KEY, query = "SELECT d FROM Documento d where d.registro = :registro and d.sede = :sede and d.anio = :anio and d.numero = :numero and d.bis = :bis"),
         @NamedQuery(name = Documento.ALL, query = "SELECT d FROM Documento d order by d.fecha desc")
 })
 @Cacheable
@@ -31,7 +32,20 @@ import java.util.List;
 @Where(clause = "fechaBaja is null")
 public class Documento extends BaseEntity {
     public final static String ID = "Documento.id";
+    public final static String BY_KEY = "Documento.key";
     public final static String ALL = "Documento.all";
+
+    @NotNull
+    @ManyToOne
+    private Registro registro;
+    @NotNull
+    @ManyToOne
+    private Sede sede;
+    private int anio;
+    private int numero;
+    private short bis;
+
+
     private String ficha;
     @Temporal(TemporalType.DATE)
     private Date fechaResolucion;
@@ -45,15 +59,6 @@ public class Documento extends BaseEntity {
     private Exoneracion exoneracion;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "documento")
     private List<Inscripcion> inscripcionList;
-    @NotNull
-    @ManyToOne
-    private Registro registro;
-    @NotNull
-    @ManyToOne
-    private Sede sede;
-    private int anio;
-    private int numero;
-    private short bis;
     @Temporal(TemporalType.DATE)
     private Date fecha; // por omisión fecha actual
     @ManyToOne

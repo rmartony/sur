@@ -145,7 +145,7 @@ public class DocumentosTest {
 */
 
     //@Test
-    public void testAgregarDocumentoSujetoAutomotor() {
+    public void testCrearDocumentoSujetoAutomotor() {
         Documento documento = new Documento();
 
         documento.setAnio(2016);
@@ -232,6 +232,29 @@ public class DocumentosTest {
 
     }
 
+    @Test
+    public void testObtenerDocumento() {
+        Documento documento = new Documento();
+        documento.setAnio(2016);
+        documento.setNumero(123);
+        documento.setBis((short) 0);
+
+        Map<String, Object> parameters = new HashMap<>();
+        parameters = new HashMap<>();
+        parameters.put("documento", "RPI");
+        Registro registro = (Registro) registroService.findSingleResultNamedQuery(Registro.BY_CODIGO, parameters);
+        documento.setRegistro(registro);
+
+        parameters = new HashMap<>();
+        parameters.put("codigo", "1"); // Sede Montevideo
+        Sede sede = (Sede) registroService.findSingleResultNamedQuery(Sede.BY_CODIGO, parameters);
+        documento.setSede(sede);
+
+        parameters = new HashMap<>();
+        parameters.put("codigo", "1"); // Sede Montevideo
+        //documento = documentoService.findSingleResultNamedQuery(Documento.BY_KEY, documento);
+    }
+
     //@Test
     public void testEliminarTasa() {
         Tasa tasa = new Tasa();
@@ -244,7 +267,7 @@ public class DocumentosTest {
         tasaService.delete(tasa.getId());
     }
 
-    @Test
+    //@Test
     public void testEliminarEscribano() {
         Escribano escribano = new Escribano();
         escribano.setCodigo(99L);

@@ -16,7 +16,7 @@ import javax.persistence.*;
  */
 @Entity
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = "descripcion")
 @NamedQueries({
         @NamedQuery(name = Registro.ALL, query = "SELECT r FROM Registro r order by r.descripcion"),
         @NamedQuery(name = Registro.BY_ID, query = "SELECT r FROM Registro r where r.id = :id"),
