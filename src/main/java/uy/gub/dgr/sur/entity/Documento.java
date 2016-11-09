@@ -22,7 +22,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true, exclude = {"estado", "tipoDocumento"})
 @NamedQueries({
         @NamedQuery(name = Documento.ID, query = "SELECT d FROM Documento d where d.id = :id"),
-        @NamedQuery(name = Documento.BY_KEY, query = "SELECT d FROM Documento d where d.registro = :registro and d.sede = :sede and d.anio = :anio and d.numero = :numero and d.bis = :bis"),
+        @NamedQuery(name = Documento.BY_KEY, query = "SELECT d FROM Documento d where d.registro.codigo = :registro and d.sede.codigo = :sede and d.anio = :anio and d.numero = :numero and d.bis = :bis"),
         @NamedQuery(name = Documento.ALL, query = "SELECT d FROM Documento d order by d.fecha desc")
 })
 @Cacheable
@@ -43,7 +43,7 @@ public class Documento extends BaseEntity {
     private Sede sede;
     private int anio;
     private int numero;
-    private short bis;
+    private int bis;
 
 
     private String ficha;
