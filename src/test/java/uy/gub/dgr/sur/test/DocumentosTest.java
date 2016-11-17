@@ -248,7 +248,7 @@ public class DocumentosTest {
         documento = (Documento) documentoService.findSingleResultNamedQuery(Documento.BY_KEY, parameters);
         log.info(documento.toString());
 
-        log.info("Quitando 1a inscripcion");
+        log.info("Quita 1a inscripcion");
         documento.getInscripcionList().remove(0);
         documentoService.update(documento);
     }
