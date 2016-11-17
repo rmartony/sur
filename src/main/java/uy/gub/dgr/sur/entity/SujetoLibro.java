@@ -24,7 +24,7 @@ import java.sql.Date;
 @EqualsAndHashCode(callSuper = true, exclude = {"numeroInscripcion", "tipoLibro", "folio", "tomo", "nombreLibro", "fichas",
         "usuario", "fecha"})
 @Audited
-@SQLDelete(sql = "update SujetoLibro SET fechaBaja = current_date where id = ?")
+@SQLDelete(sql = "update SujetoLibro SET fechaBaja = CURRENT_TIMESTAMP where id = ?")
 @Where(clause = "fechaBaja is null")
 public class SujetoLibro extends Sujeto {
 

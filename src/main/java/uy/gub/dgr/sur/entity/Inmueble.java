@@ -26,7 +26,7 @@ import javax.validation.constraints.NotNull;
         "nivel"})
 @Table(indexes = {@Index(name = "dep_pad", columnList = "padron, departamento_id, localidad_id, unidad", unique = true)})
 @Audited
-@SQLDelete(sql = "update Inmueble SET fechaBaja = current_date where id = ?")
+@SQLDelete(sql = "update Inmueble SET fechaBaja = CURRENT_TIMESTAMP where id = ?")
 @Where(clause = "fechaBaja is null")
 public class Inmueble extends BaseEntity {
 

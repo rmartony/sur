@@ -25,7 +25,7 @@ import java.util.Date;
         "tipo", "tipoSocial", "parte", "domicilio", "sede"})
 @Table(indexes = {@Index(name = "perjur_rut", columnList = "rut", unique = true)})
 @Audited
-@SQLDelete(sql = "update SujetoPersonaJuridica SET fechaBaja = current_date where id = ?")
+@SQLDelete(sql = "update SujetoPersonaJuridica SET fechaBaja = CURRENT_TIMESTAMP where id = ?")
 @Where(clause = "fechaBaja is null")
 public class SujetoPersonaJuridica extends Sujeto {
 

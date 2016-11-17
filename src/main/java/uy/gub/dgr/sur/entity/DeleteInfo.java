@@ -3,6 +3,8 @@ package uy.gub.dgr.sur.entity;
 import lombok.Data;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 
 /**
@@ -11,6 +13,7 @@ import java.util.Date;
 @Embeddable
 @Data
 public class DeleteInfo {
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaBaja;
     private String motivoBaja;
 

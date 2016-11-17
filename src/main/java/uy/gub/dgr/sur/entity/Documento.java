@@ -28,7 +28,7 @@ import java.util.List;
 @Cacheable
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"registro_id", "sede_id", "anio", "numero", "bis"}))
 @Audited
-@SQLDelete(sql = "update Documento SET fechaBaja = current_date where id = ?")
+@SQLDelete(sql = "update Documento SET fechaBaja = CURRENT_TIMESTAMP where id = ?")
 @Where(clause = "fechaBaja is null")
 public class Documento extends BaseEntity {
     public final static String ID = "Documento.id";

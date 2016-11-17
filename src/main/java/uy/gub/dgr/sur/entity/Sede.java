@@ -27,7 +27,7 @@ import javax.validation.constraints.NotNull;
 @Cacheable
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo"}))
 @Audited
-@SQLDelete(sql = "update Sede SET fechaBaja = current_date where id = ?")
+@SQLDelete(sql = "update Sede SET fechaBaja = CURRENT_TIMESTAMP where id = ?")
 @Where(clause = "fechaBaja is null")
 public class Sede extends BaseEntity {
     public final static String ALL = "Sede.all";

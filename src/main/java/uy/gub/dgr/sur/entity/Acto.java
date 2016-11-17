@@ -26,7 +26,7 @@ import javax.validation.constraints.NotNull;
 @Cacheable
 @Table(indexes = {@Index(name = "codActo", columnList = "codigo, seccion_id", unique = true)})
 @Audited
-@SQLDelete(sql = "update Acto SET fechaBaja = current_date where id = ?")
+@SQLDelete(sql = "update Acto SET fechaBaja = CURRENT_TIMESTAMP where id = ?")
 @Where(clause = "fechaBaja is null")
 public class Acto extends BaseEntity {
     public final static String ID = "Acto.id";

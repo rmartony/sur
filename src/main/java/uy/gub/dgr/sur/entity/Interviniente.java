@@ -25,7 +25,7 @@ import javax.validation.constraints.Size;
 @Cacheable
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo"}))
 @Audited
-@SQLDelete(sql = "update Interviniente SET fechaBaja = current_date where id = ?")
+@SQLDelete(sql = "update Interviniente SET fechaBaja = CURRENT_TIMESTAMP where id = ?")
 @Where(clause = "fechaBaja is null")
 public class Interviniente extends BaseEntity {
     public final static String ID = "Interviniente.id";

@@ -27,7 +27,7 @@ import java.util.Date;
         @NamedQuery(name = Escribano.TOTAL, query = "SELECT COUNT(z) FROM Escribano z")})
 @Audited
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo"}))
-@SQLDelete(sql = "update Escribano SET fechaBaja = current_date where id = ?")
+@SQLDelete(sql = "update Escribano SET fechaBaja = CURRENT_TIMESTAMP where id = ?")
 @Where(clause = "fechaBaja is null")
 public class Escribano extends BaseEntity {
     public final static String ALL = "Escribano.all";

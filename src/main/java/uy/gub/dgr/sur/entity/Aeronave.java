@@ -27,7 +27,7 @@ import java.util.Date;
 @Cacheable
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo"}))
 @Audited
-@SQLDelete(sql = "update Aeronave SET fechaBaja = current_date where id = ?")
+@SQLDelete(sql = "update Aeronave SET fechaBaja = CURRENT_TIMESTAMP where id = ?")
 @Where(clause = "fechaBaja is null")
 public class Aeronave extends BaseEntity {
     public final static String ALL = "Aeronave.all";

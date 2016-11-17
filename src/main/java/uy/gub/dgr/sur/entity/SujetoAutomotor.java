@@ -22,7 +22,7 @@ import javax.persistence.ManyToOne;
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = {"inEx"})
 @Audited
-@SQLDelete(sql = "update SujetoAutomotor SET fechaBaja = current_date where id = ?")
+@SQLDelete(sql = "update SujetoAutomotor SET fechaBaja = CURRENT_TIMESTAMP where id = ?")
 @Where(clause = "fechaBaja is null")
 public class SujetoAutomotor extends Sujeto {
 

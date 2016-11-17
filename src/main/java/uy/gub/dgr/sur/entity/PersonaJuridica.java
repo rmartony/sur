@@ -25,7 +25,7 @@ import javax.persistence.*;
 @Cacheable
 @Table(indexes = {@Index(name = "perjur_uni", columnList = "nombre", unique = true)})
 @Audited
-@SQLDelete(sql = "update PersonaJuridica SET fechaBaja = current_date where id = ?")
+@SQLDelete(sql = "update PersonaJuridica SET fechaBaja = CURRENT_TIMESTAMP where id = ?")
 @Where(clause = "fechaBaja is null")
 public class PersonaJuridica extends BaseEntity {
     public final static String ALL = "PersonaJuridica.all";

@@ -23,7 +23,7 @@ import javax.persistence.*;
         @NamedQuery(name = MotorAeronave.TOTAL, query = "SELECT COUNT(r) FROM MotorAeronave r")})
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"serie", "marca"}))
 @Audited
-@SQLDelete(sql = "update MotorAeronave SET fechaBaja = current_date where id = ?")
+@SQLDelete(sql = "update MotorAeronave SET fechaBaja = CURRENT_TIMESTAMP where id = ?")
 @Where(clause = "fechaBaja is null")
 public class MotorAeronave extends BaseEntity {
     public final static String ALL = "MotorAeronave.all";

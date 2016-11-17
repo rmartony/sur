@@ -23,7 +23,7 @@ import javax.validation.constraints.NotNull;
         @NamedQuery(name = Monto.TOTAL, query = "SELECT COUNT(r) FROM Monto r")})
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"moneda_id", "monto"}))
 @Audited
-@SQLDelete(sql = "update Monto SET fechaBaja = current_date where id = ?")
+@SQLDelete(sql = "update Monto SET fechaBaja = CURRENT_TIMESTAMP where id = ?")
 @Where(clause = "fechaBaja is null")
 public class Monto extends BaseEntity {
     public final static String ALL = "Monto.all";

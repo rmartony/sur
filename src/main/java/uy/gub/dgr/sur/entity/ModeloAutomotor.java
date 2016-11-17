@@ -26,7 +26,7 @@ import javax.persistence.*;
 @Cacheable
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo"}))
 @Audited
-@SQLDelete(sql = "update ModeloAutomotor SET fechaBaja = current_date where id = ?")
+@SQLDelete(sql = "update ModeloAutomotor SET fechaBaja = CURRENT_TIMESTAMP where id = ?")
 @Where(clause = "fechaBaja is null")
 public class ModeloAutomotor extends BaseEntity {
     public final static String ALL = "ModeloAutomotor.all";

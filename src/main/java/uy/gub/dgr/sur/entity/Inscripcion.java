@@ -2,6 +2,7 @@ package uy.gub.dgr.sur.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.hibernate.envers.Audited;
@@ -18,6 +19,7 @@ import java.util.List;
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = {"estado", "acto", "movimiento", "montoList", "observacion", "sujetoList"})
+@ToString(callSuper = true, exclude = "documento")
 @NamedQueries({
         @NamedQuery(name = Inscripcion.ID, query = "SELECT d FROM Inscripcion d where d.id = :id"),
         @NamedQuery(name = Inscripcion.ALL, query = "SELECT d FROM Inscripcion d")
@@ -25,7 +27,7 @@ import java.util.List;
 @Cacheable
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"ordinal"}))
 @Audited
-@SQLDelete(sql = "update Inscripcion SET fechaBaja = current_date where id = ?")
+@SQLDelete(sql = "update Inscripcion SET fechaBaja = CURRENT_TIMESTAMP where id = ?")
 @Where(clause = "fechaBaja is null")
 public class Inscripcion extends BaseEntity {
     public final static String ID = "Inscripcion.id";
@@ -54,8 +56,6 @@ public class Inscripcion extends BaseEntity {
 
     @ManyToOne
     private Documento documento; // es para poder acceder a un documento dada la inscripción
-
-
 
 
 }

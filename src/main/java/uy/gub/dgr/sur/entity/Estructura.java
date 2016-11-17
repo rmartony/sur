@@ -26,7 +26,7 @@ import javax.validation.constraints.Size;
         @NamedQuery(name = Estructura.TOTAL, query = "SELECT COUNT(r) FROM Estructura r")})
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"nombre"}))
 @Audited
-@SQLDelete(sql = "update Estructura SET fechaBaja = current_date where id = ?")
+@SQLDelete(sql = "update Estructura SET fechaBaja = CURRENT_TIMESTAMP where id = ?")
 @Where(clause = "fechaBaja is null")
 public class Estructura extends BaseEntity {
     public final static String ALL = "Estructura.all";

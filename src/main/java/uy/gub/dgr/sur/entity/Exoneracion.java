@@ -25,7 +25,7 @@ import javax.persistence.*;
         @NamedQuery(name = Exoneracion.TOTAL, query = "SELECT COUNT(r) FROM Exoneracion r")})
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo"}))
 @Audited
-@SQLDelete(sql = "update Exoneracion SET fechaBaja = current_date where id = ?")
+@SQLDelete(sql = "update Exoneracion SET fechaBaja = CURRENT_TIMESTAMP where id = ?")
 @Where(clause = "fechaBaja is null")
 public class Exoneracion extends BaseEntity {
     public final static String ALL = "Exoneracion.all";

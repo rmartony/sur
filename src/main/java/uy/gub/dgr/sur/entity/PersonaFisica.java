@@ -27,7 +27,7 @@ import javax.persistence.*;
         @Index(name = "perfis_a1n1", columnList = "apellido1, nombre1", unique = false),
         @Index(name = "perfis_uni", columnList = "apellido1, apellido2, nombre1, nombre2", unique = true)})
 @Audited
-@SQLDelete(sql = "update PersonaFisica SET fechaBaja = current_date where id = ?")
+@SQLDelete(sql = "update PersonaFisica SET fechaBaja = CURRENT_TIMESTAMP where id = ?")
 @Where(clause = "fechaBaja is null")
 public class PersonaFisica extends BaseEntity {
     public final static String ALL = "PersonaFisica.all";

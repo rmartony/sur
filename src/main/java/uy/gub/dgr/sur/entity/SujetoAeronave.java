@@ -22,7 +22,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @EqualsAndHashCode(callSuper = true, exclude = {})
 @Audited
-@SQLDelete(sql = "update SujetoAeronave SET fechaBaja = current_date where id = ?")
+@SQLDelete(sql = "update SujetoAeronave SET fechaBaja = CURRENT_TIMESTAMP where id = ?")
 @Where(clause = "fechaBaja is null")
 public class SujetoAeronave extends Sujeto {
 

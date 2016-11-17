@@ -25,7 +25,7 @@ import javax.persistence.*;
         @NamedQuery(name = TipoDocumento.TOTAL, query = "SELECT COUNT(r) FROM TipoDocumento r")})
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"codigo"}))
 @Audited
-@SQLDelete(sql = "update TipoDocumento SET fechaBaja = current_date where id = ?")
+@SQLDelete(sql = "update TipoDocumento SET fechaBaja = CURRENT_TIMESTAMP where id = ?")
 @Where(clause = "fechaBaja is null")
 public class TipoDocumento extends BaseEntity {
     public final static String ALL = "TipoDocumento.all";

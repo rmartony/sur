@@ -26,7 +26,7 @@ import javax.persistence.Table;
         "domicilio", "calle", "numeroCalle", "naturalezaJuridica"})
 @Table(indexes = {@Index(name = "dep_pad", columnList = "inmueble_id", unique = true)})
 @Audited
-@SQLDelete(sql = "update SujetoInmueble SET fechaBaja = current_date where id = ?")
+@SQLDelete(sql = "update SujetoInmueble SET fechaBaja = CURRENT_TIMESTAMP where id = ?")
 @Where(clause = "fechaBaja is null")
 public class SujetoInmueble extends Sujeto {
 

@@ -144,7 +144,7 @@ public class DocumentosTest {
     }
 */
 
-    //@Test
+    @Test
     public void testCrearDocumentoSujetoAutomotor() {
         Documento documento = new Documento();
 
@@ -244,8 +244,13 @@ public class DocumentosTest {
         parameters.put("numero", 123);
         parameters.put("bis", 0);
 
+        log.info("Obtiene documento");
         documento = (Documento) documentoService.findSingleResultNamedQuery(Documento.BY_KEY, parameters);
         log.info(documento.toString());
+
+        log.info("Quitando 1a inscripcion");
+        documento.getInscripcionList().remove(0);
+        documentoService.update(documento);
     }
 
     //@Test
