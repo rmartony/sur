@@ -21,6 +21,8 @@ import java.io.File;
 import java.math.BigDecimal;
 import java.util.*;
 
+import static org.junit.Assert.assertNotNull;
+
 /**
  * User: rafa
  * Date: 01/12/13
@@ -246,6 +248,7 @@ public class DocumentosTest {
 
         log.info("Obtiene documento");
         documento = (Documento) documentoService.findSingleResultNamedQuery(Documento.BY_KEY, parameters);
+        assertNotNull("El documento no fue encontrado", documento);
         log.info(documento.toString());
 
         log.info("Quita 1a inscripcion");
