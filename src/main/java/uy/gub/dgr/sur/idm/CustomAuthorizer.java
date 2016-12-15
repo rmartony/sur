@@ -12,6 +12,7 @@ import org.picketlink.idm.IdentityManager;
 import org.picketlink.idm.RelationshipManager;
 import uy.gub.dgr.sur.idm.annotations.Admin;
 import uy.gub.dgr.sur.idm.annotations.Maestro;
+import uy.gub.dgr.sur.idm.annotations.Ventanilla;
 import uy.gub.dgr.sur.idm.annotations.Verificacion;
 import uy.gub.dgr.sur.service.UsuarioService;
 
@@ -64,6 +65,13 @@ public class CustomAuthorizer {
     @Verificacion
     public boolean doVerificacionCheck(Identity identity, IdentityManager identityManager, RelationshipManager relationshipManager) throws Exception {
         return hasRole(relationshipManager, identity.getAccount(), getRole(identityManager, UsuarioService.ROLE_VERIFICACION)) ||
+                hasRole(relationshipManager, identity.getAccount(), getRole(identityManager, UsuarioService.ROLE_ADMIN));
+    }
+
+    @Secures
+    @Ventanilla
+    public boolean doVentanillaCheck(Identity identity, IdentityManager identityManager, RelationshipManager relationshipManager) throws Exception {
+        return hasRole(relationshipManager, identity.getAccount(), getRole(identityManager, UsuarioService.ROLE_VENTANILLA)) ||
                 hasRole(relationshipManager, identity.getAccount(), getRole(identityManager, UsuarioService.ROLE_ADMIN));
     }
 

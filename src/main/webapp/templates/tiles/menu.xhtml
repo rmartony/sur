@@ -46,7 +46,7 @@
                 <p:separator/>
                 <p:menuitem value="Configuración" style="font-weight: bold !important"/>
 
-                <c:if test="#{identity.loggedIn and (authorizationChecker.hasApplicationRole('admin') or authorizationChecker.hasApplicationRole('adminLectura'))}">
+                <c:if test="#{identity.loggedIn and (authorizationChecker.hasApplicationRole('admin'))}">
                     <!--
                                     <p:menuitem value="Celdas 3G" action="celdas3g" ajax="false" disabled="true"/>
                                     <p:menuitem value="Celdas LTE" action="celdasLte" ajax="false" disabled="true"/>

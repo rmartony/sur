@@ -133,7 +133,7 @@ public class PreventivoController extends BaseController {
     public void init() {
         String username = null;
         log.log(Level.INFO, "PreventivoController is initializing");
-        zonaList = loginController.getZonasTecnico();
+        //zonaList = loginController.getZonasTecnico();
         if (authorizationChecker.isVerificacion()) {
             rolTecnico = true;
             username = loginController.getLoginName();

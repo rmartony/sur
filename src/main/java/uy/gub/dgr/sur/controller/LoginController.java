@@ -15,7 +15,9 @@ import org.picketlink.authentication.event.PostLoggedOutEvent;
 import org.picketlink.idm.model.Account;
 import org.picketlink.idm.model.basic.User;
 import uy.gub.dgr.sur.entity.Auditoria;
-import uy.gub.dgr.sur.entity.Zona;
+import uy.gub.dgr.sur.entity.Registro;
+import uy.gub.dgr.sur.entity.Sede;
+import uy.gub.dgr.sur.entity.UsuarioRegistro;
 import uy.gub.dgr.sur.service.AuditoriaService;
 import uy.gub.dgr.sur.service.UsuarioRegistroService;
 
@@ -25,9 +27,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.logging.Logger;
 
 /**
@@ -53,7 +53,10 @@ public class LoginController implements Serializable {
 
     @Getter
     @Setter
-    private List<Zona> zonasTecnico;
+    private List<Registro> registrosUsuario;
+    @Getter
+    @Setter
+    private List<Sede> sedesUsuario;
 
     @Inject
     private transient UsuarioRegistroService usuarioRegistroService;
@@ -76,9 +79,14 @@ public class LoginController implements Serializable {
                 return null;
             } else {
                 auditLogin("login");
-//                Map<String, Object> parameters = new HashMap<>();
-//                parameters.put("userId", getLoginName());
-//                setZonasTecnico(usuarioRegistroService.findWithNamedQuery(UsuarioRegistro.ZONAS_BY_USUARIO_ID, parameters));
+
+                // obtiene registros y sedes del usuario
+                Map<String, Object> parameters = new HashMap<>();
+                parameters.put("userId", getLoginName());
+                final UsuarioRegistro usuarioRegistroSede = (UsuarioRegistro) usuarioRegistroService.findSingleResultNamedQuery(UsuarioRegistro.BY_USUARIO_ID, parameters);
+                setRegistrosUsuario(usuarioRegistroSede.getRegistros());
+                setSedesUsuario(usuarioRegistroSede.getSedes());
+
                 setAudit();
             }
         }

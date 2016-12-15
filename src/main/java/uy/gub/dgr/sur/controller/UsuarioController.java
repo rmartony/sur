@@ -235,7 +235,7 @@ public class UsuarioController extends BaseController {
         if (selectedItem != null && selectedItem.getEmail() != null && isRolTecnico) {
             Map<String, String> parameters = new HashMap<>();
             parameters.put("userId", selectedItem.getLoginName());
-            targetZonas = usuarioRegistroService.findWithNamedQuery(UsuarioRegistro.ZONAS_BY_USUARIO_ID, parameters);
+            //targetZonas = usuarioRegistroService.findWithNamedQuery(UsuarioRegistro.ZONAS_BY_USUARIO_ID, parameters);
         } else {
             targetZonas = new ArrayList<>();
         }

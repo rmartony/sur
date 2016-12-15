@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+<ui:composition template="/templates/fullLayout.xhtml">
+    <ui:define name="content">
+        <h:form id="form">
+            <p:growl id="growl" showDetail="false" life="5000" autoUpdate="true"/>
+            <p:panelGrid id="displayNewItem" cellpadding="4" styleClass="center">
+                <f:facet name="header">
+                    <p:row><p:column colspan="2">
+                        <h:outputText value="Documento ventanilla"/>
+                    </p:column>
+                    </p:row>
+                </f:facet>
+                <p:row>
+                    <p:column styleClass="topAligned">
+                        <p:panelGrid styleClass="center">
+                            <f:facet name="header">
+                                <p:row><p:column colspan="2">
+                                    <h:outputText value="Detalle"/>
+                                </p:column>
+                                </p:row>
+                            </f:facet>
+
+                            <p:row>
+                                <p:column> <p:outputLabel for="fecha" value="Fecha:"/> </p:column>
+                                <p:column><p:calendar id="fecha" value="#{ventanillaController.item.fecha}"
+                                                      pattern="#{msg.dateTimePattern}" showOn="both"
+                                                      popupIconOnly="true"
+                                                      required="true"/></p:column>
+                            </p:row>
+
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="registro" value="Registro:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:autoComplete id="registro" value="#{ventanillaController.item.registro}"
+                                                    dropdown="true" minQueryLength="1" scrollHeight="250"
+                                                    required="true"
+                                                    completeMethod="#{loginController.registrosUsuario}"
+                                                    forceSelection="true"
+                                                    var="r"
+                                                    itemLabel="#{r ne null ? r.codigo.concat(' - ').concat(r.descripcion) : ''}"
+                                                    itemValue="#{r}"
+                                                    converter="genericMapConverter"
+                                                    cache="true">
+                                        <p:column headerText="Código">
+                                            #{s.codigo}
+                                        </p:column>
+                                        <p:column headerText="Descripción">
+                                            #{s.descripcion}
+                                        </p:column>
+                                        <!--
+                                                                                <p:ajax event="itemSelect"
+                                                                                        update="nodo"
+                                                                                        listener="#{ventanillaController.handleSitioChange}"/>
+                                        -->
+                                    </p:autoComplete>
+                                </p:column>
+                            </p:row>
+
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="sed" value="Sede:"/>
+                                </p:column>
+                                <p:column>
+                                    <p:autoComplete id="sede" value="#{ventanillaController.item.sede}"
+                                                    dropdown="true" minQueryLength="1" scrollHeight="250"
+                                                    required="true"
+                                                    completeMethod="#{loginController.sedesUsuario}"
+                                                    forceSelection="true"
+                                                    var="r"
+                                                    itemLabel="#{r ne null ? r.codigo.concat(' - ').concat(r.descripcion) : ''}"
+                                                    itemValue="#{r}"
+                                                    converter="genericMapConverter"
+                                                    cache="true">
+                                        <p:column headerText="Código">
+                                            #{s.codigo}
+                                        </p:column>
+                                        <p:column headerText="Descripción">
+                                            #{s.descripcion}
+                                        </p:column>
+                                        <!--
+                                                                                <p:ajax event="itemSelect"
+                                                                                        update="nodo"
+                                                                                        listener="#{ventanillaController.handleSitioChange}"/>
+                                        -->
+                                    </p:autoComplete>
+                                </p:column>
+                            </p:row>
+
+
+                        </p:panelGrid>
+                    </p:column>
+                </p:row>
+
+                <f:facet name="footer">
+                    <p:row><p:column colspan="2" styleClass="textCenter">
+                        <p:commandButton value="Confirmar"
+                                         action="#{ventanillaController.doConfirmCreate}" update="@form growl"
+                                         validateClient="true"
+                                         ajax="false"/>
+                        <p:commandButton id="cancel" value="Cancelar" immediate="true"
+                                         action="#{ventanillaController.doCancel}"/>
+                    </p:column>
+                    </p:row>
+                </f:facet>
+
+            </p:panelGrid>
+
+            <p:confirmDialog global="true">
+                <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes"
+                                 icon="ui-icon-check"/>
+                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"
+                                 icon="ui-icon-close"/>
+            </p:confirmDialog>
+
+        </h:form>
+
+
+    </ui:define>
+</ui:composition>
+</html>

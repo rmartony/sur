@@ -231,7 +231,7 @@ public class DocumentosTest {
         inscripcion.setSujetoList(sujetoList);
 
         inscripcion = inscripcionService.update(inscripcion);
-
+        assertNotNull("No se pudo crear documento con inscripción automotor", inscripcion);
     }
 
     @Test
