@@ -92,8 +92,8 @@
             <to-view-id>/app/torreroList.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>createPreventivo</from-outcome>
-            <to-view-id>/app/preventivoCreate.xhtml</to-view-id>
+            <from-outcome>createVentanilla</from-outcome>
+            <to-view-id>/app/ventanillaCreate.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-outcome>preventivos</from-outcome>

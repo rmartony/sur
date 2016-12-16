@@ -43,7 +43,7 @@
                                     <p:autoComplete id="registro" value="#{ventanillaController.item.registro}"
                                                     dropdown="true" minQueryLength="1" scrollHeight="250"
                                                     required="true"
-                                                    completeMethod="#{loginController.registrosUsuario}"
+                                                    completeMethod="#{loginController.findRegistro4User}"
                                                     forceSelection="true"
                                                     var="r"
                                                     itemLabel="#{r ne null ? r.codigo.concat(' - ').concat(r.descripcion) : ''}"
@@ -67,7 +67,7 @@
 
                             <p:row>
                                 <p:column>
-                                    <p:outputLabel for="sed" value="Sede:"/>
+                                    <p:outputLabel for="sede" value="Sede:"/>
                                 </p:column>
                                 <p:column>
                                     <p:autoComplete id="sede" value="#{ventanillaController.item.sede}"

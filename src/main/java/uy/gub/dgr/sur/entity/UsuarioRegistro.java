@@ -7,6 +7,7 @@ import uy.gub.dgr.sur.service.UsuarioService;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,10 +44,10 @@ public class UsuarioRegistro extends BaseEntity {
     private String userId;
 
     @ManyToMany
-    private List<Registro> registros;
+    private List<Registro> registros = new ArrayList<>();
 
     @ManyToMany
-    private List<Sede> sedes;
+    private List<Sede> sedes = new ArrayList<>();
 
     public boolean addRegistro2User(Registro registro) {
         return registros.add(registro);

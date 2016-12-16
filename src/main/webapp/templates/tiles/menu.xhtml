@@ -35,7 +35,7 @@
             </p:submenu>
 
             <p:submenu label="Documentos">
-                <p:menuitem value="Ventanilla" action="#{preventivoController.doCreate}"
+                <p:menuitem value="Ventanilla" action="#{ventanillaController.doCreate}"
                             ajax="false"
                             rendered="#{authorizationChecker.admin or authorizationChecker.ventanilla}"/>
                 <p:menuitem value="Verificación" action="preventivos" ajax="false"/>

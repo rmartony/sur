@@ -8,6 +8,7 @@ package uy.gub.dgr.sur.controller;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.collections4.CollectionUtils;
 import org.omnifaces.util.Messages;
 import org.picketlink.Identity;
 import org.picketlink.Identity.AuthenticationResult;
@@ -84,8 +85,10 @@ public class LoginController implements Serializable {
                 Map<String, Object> parameters = new HashMap<>();
                 parameters.put("userId", getLoginName());
                 final UsuarioRegistro usuarioRegistroSede = (UsuarioRegistro) usuarioRegistroService.findSingleResultNamedQuery(UsuarioRegistro.BY_USUARIO_ID, parameters);
-                setRegistrosUsuario(usuarioRegistroSede.getRegistros());
-                setSedesUsuario(usuarioRegistroSede.getSedes());
+                if (usuarioRegistroSede != null) {
+                    setRegistrosUsuario(usuarioRegistroSede.getRegistros());
+                    setSedesUsuario(usuarioRegistroSede.getSedes());
+                }
 
                 setAudit();
             }
@@ -143,5 +146,18 @@ public class LoginController implements Serializable {
                 Sitio.class, Registro.class, Escribano.class, Sede.class, Preventivo.class,
                 Nodo3G.class, Celda3G.class, NodoLte.class, CeldaLte.class);
 */
+    }
+
+    public List<Registro> findRegistro4User(String query) {
+        List<Registro> results = Collections.EMPTY_LIST;
+
+        if (CollectionUtils.isNotEmpty(registrosUsuario)) {
+            for (Registro registro : registrosUsuario) {
+                if (registro.getCodigo().contains(query) || registro.getDescripcion().contains(query)) {
+                    results.add(registro);
+                }
+            }
+        }
+        return results;
     }
 }

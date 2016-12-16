@@ -112,6 +112,7 @@ public class InitService {
     }
 
     private boolean initialized() {
+        sedeService.flush();
         final List sedeList = sedeService.findWithNamedQuery(Sede.ALL, 1);
         return CollectionUtils.isNotEmpty(sedeList);
     }
@@ -122,6 +123,7 @@ public class InitService {
         for (User usuario : usuarios) {
             UsuarioRegistro usuarioRegistro = new UsuarioRegistro();
             usuarioRegistro.setUserId(usuario.getLoginName());
+            usuarioRegistroList.add(usuarioRegistro);
         }
         return usuarioRegistroList;
     }
