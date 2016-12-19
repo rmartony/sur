@@ -51,10 +51,10 @@
                                                     converter="genericMapConverter"
                                                     cache="true">
                                         <p:column headerText="Código">
-                                            #{s.codigo}
+                                            #{r.codigo}
                                         </p:column>
                                         <p:column headerText="Descripción">
-                                            #{s.descripcion}
+                                            #{r.descripcion}
                                         </p:column>
                                         <!--
                                                                                 <p:ajax event="itemSelect"
@@ -73,11 +73,11 @@
                                     <p:autoComplete id="sede" value="#{ventanillaController.item.sede}"
                                                     dropdown="true" minQueryLength="1" scrollHeight="250"
                                                     required="true"
-                                                    completeMethod="#{loginController.sedesUsuario}"
+                                                    completeMethod="#{loginController.findSede4User}"
                                                     forceSelection="true"
-                                                    var="r"
-                                                    itemLabel="#{r ne null ? r.codigo.concat(' - ').concat(r.descripcion) : ''}"
-                                                    itemValue="#{r}"
+                                                    var="s"
+                                                    itemLabel="#{s ne null ? s.codigo.concat(' - ').concat(s.descripcion) : ''}"
+                                                    itemValue="#{s}"
                                                     converter="genericMapConverter"
                                                     cache="true">
                                         <p:column headerText="Código">

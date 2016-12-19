@@ -149,12 +149,25 @@ public class LoginController implements Serializable {
     }
 
     public List<Registro> findRegistro4User(String query) {
-        List<Registro> results = Collections.EMPTY_LIST;
+        List<Registro> results = new ArrayList<>();
 
         if (CollectionUtils.isNotEmpty(registrosUsuario)) {
             for (Registro registro : registrosUsuario) {
                 if (registro.getCodigo().contains(query) || registro.getDescripcion().contains(query)) {
                     results.add(registro);
+                }
+            }
+        }
+        return results;
+    }
+
+    public List<Sede> findSede4User(String query) {
+        List<Sede> results = new ArrayList<>();
+
+        if (CollectionUtils.isNotEmpty(sedesUsuario)) {
+            for (Sede sede : sedesUsuario) {
+                if (sede.getCodigo().contains(query) || sede.getDescripcion().contains(query)) {
+                    results.add(sede);
                 }
             }
         }

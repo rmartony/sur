@@ -68,6 +68,8 @@ public class InitService {
     @Inject
     private transient UsuarioService usuarioService;
     @Inject
+    private transient UsuarioRegistroService usuarioRegistroService;
+    @Inject
     private transient MotorAeronaveService motorAeronaveService;
     @Inject
     private transient ExoneracionService exoneracionService;
@@ -78,6 +80,7 @@ public class InitService {
             List<UsuarioRegistro> usuarioRegistroList = initUsuariosRegistro();
             initSedes(usuarioRegistroList);
             initRegistros(usuarioRegistroList);
+            usuarioRegistroService.update(usuarioRegistroList);
             initDepartamentos();
             initEstado();
             initConfiguracion();

@@ -43,10 +43,10 @@ public class UsuarioRegistro extends BaseEntity {
     @NotNull
     private String userId;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Registro> registros = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Sede> sedes = new ArrayList<>();
 
     public boolean addRegistro2User(Registro registro) {
