@@ -246,13 +246,11 @@
             <artifactId>primefaces-extensions</artifactId>
             <version>${primefaces-extensions.version}</version>
         </dependency>
-        <!--
         <dependency>
             <groupId>org.primefaces.themes</groupId>
-            <artifactId>bootstrap</artifactId>
+            <artifactId>delta</artifactId>
             <version>1.0.10</version>
         </dependency>
-        -->
 
         <!-- Import the JSF API, we use provided scope as the API is included in Wildfly 8 -->
         <dependency>

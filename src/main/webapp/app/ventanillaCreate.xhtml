@@ -28,17 +28,15 @@
                             </f:facet>
 
                             <p:row>
-                                <p:column> <p:outputLabel for="fecha" value="Fecha:"/> </p:column>
-                                <p:column><p:calendar id="fecha" value="#{ventanillaController.item.fecha}"
-                                                      pattern="#{msg.dateTimePattern}" showOn="both"
-                                                      popupIconOnly="true"
-                                                      required="true"/></p:column>
-                            </p:row>
-
-                            <p:row>
                                 <p:column>
-                                    <p:outputLabel for="registro" value="Registro:"/>
+                                    <p:outputLabel for="registro" value="Registro"/>
                                 </p:column>
+                                <p:column>
+                                    <p:outputLabel for="sede" value="Sede"/>
+                                </p:column>
+                                <p:column> <p:outputLabel for="fecha" value="Fecha"/> </p:column>
+                            </p:row>
+                            <p:row>
                                 <p:column>
                                     <p:autoComplete id="registro" value="#{ventanillaController.item.registro}"
                                                     dropdown="true" minQueryLength="1" scrollHeight="250"
@@ -46,10 +44,11 @@
                                                     completeMethod="#{loginController.findRegistro4User}"
                                                     forceSelection="true"
                                                     var="r"
-                                                    itemLabel="#{r ne null ? r.codigo.concat(' - ').concat(r.descripcion) : ''}"
+                                                    itemLabel="#{r ne null ? r.codigo : ''}"
                                                     itemValue="#{r}"
                                                     converter="genericMapConverter"
-                                                    cache="true">
+                                                    cache="true"
+                                                    size="3">
                                         <p:column headerText="Código">
                                             #{r.codigo}
                                         </p:column>
@@ -63,12 +62,7 @@
                                         -->
                                     </p:autoComplete>
                                 </p:column>
-                            </p:row>
 
-                            <p:row>
-                                <p:column>
-                                    <p:outputLabel for="sede" value="Sede:"/>
-                                </p:column>
                                 <p:column>
                                     <p:autoComplete id="sede" value="#{ventanillaController.item.sede}"
                                                     dropdown="true" minQueryLength="1" scrollHeight="250"
@@ -76,10 +70,11 @@
                                                     completeMethod="#{loginController.findSede4User}"
                                                     forceSelection="true"
                                                     var="s"
-                                                    itemLabel="#{s ne null ? s.codigo.concat(' - ').concat(s.descripcion) : ''}"
+                                                    itemLabel="#{s ne null ? s.codigo : ''}"
                                                     itemValue="#{s}"
                                                     converter="genericMapConverter"
-                                                    cache="true">
+                                                    cache="true"
+                                                    size="3">
                                         <p:column headerText="Código">
                                             #{s.codigo}
                                         </p:column>
@@ -93,6 +88,11 @@
                                         -->
                                     </p:autoComplete>
                                 </p:column>
+
+                                <p:column><p:calendar id="fecha" value="#{ventanillaController.item.fecha}"
+                                                      pattern="#{msg.dateTimePattern}" showOn="both"
+                                                      popupIconOnly="true"
+                                                      required="true"/></p:column>
                             </p:row>
 
 
