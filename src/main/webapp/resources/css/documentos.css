@@ -60,19 +60,10 @@
     font: normal normal 9pt Arial;
 }
 
-.Button {
-    font-style: normal;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 9pt;
-    font-family: "Verdana";
-    color: black;
-    background-color: #E0E0E0;
-    border-width: 1px;
-    border-style: outset;
-    height: 23px;
-    text-indent: 0pt;
-    margin: 3pt 3pt 0pt 3pt;
+.ui-button-text-only {
+    padding: .5em 1em;
+    margin-left: .3em;
+    margin-right: .3em;
 }
 
 /* alineamiento */

@@ -378,6 +378,17 @@
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
+        <from-view-id>/app/ventanillaCreate.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/app/init.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cancel</from-outcome>
+            <to-view-id>/app/init.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
         <from-view-id>/app/preventivoUpdate.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>success</from-outcome>

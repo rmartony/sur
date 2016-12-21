@@ -26,7 +26,7 @@
                 <p:separator/>
                 <c:if test="#{identity.loggedIn}">
                     <p:menuitem value="Cambiar contraseña" action="cambioClave" ajax="false" icon="ui-icon-key"/>
-                    <p:menuitem value="Cerrar sesión" icon="ui-icon-power" url="app/logout"/>
+                    <p:menuitem value="Cerrar sesión" icon="ui-icon-power" url="logout"/>
                 </c:if>
                 <c:if test="#{not identity.loggedIn}">
                     <p:menuitem value="Ingresar" action="/login.xhtml?faces-redirect=true" icon="ui-icon-power"/>
