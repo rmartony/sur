@@ -37,11 +37,11 @@
                                 <p:column> <p:outputLabel for="anio" value="Año"/> </p:column>
                                 <p:column> <p:outputLabel for="bis" value="Bis"/> </p:column>
                                 <p:column> <p:outputLabel for="fecha" value="Fecha"/> </p:column>
-                                <p:column> <p:outputLabel for="etapa" value="Etapa"/> </p:column>
-                                <p:column> <p:outputLabel for="ente" value="Ente emisor"/> </p:column>
-                                <p:column> <p:outputLabel for="escribano" value="Escribano"/> </p:column>
-                                <p:column> <p:outputLabel for="fechaEmision" value="Emisión"/> </p:column>
-                                <p:column> <p:outputLabel for="ficha" value="Ficha"/> </p:column>
+                                <p:column> <p:outputLabel for="estado" value="Etapa"/> </p:column>
+                                <!--<p:column> <p:outputLabel for="ente" value="Ente emisor"/> </p:column>-->
+                                <!--<p:column> <p:outputLabel for="escribano" value="Escribano"/> </p:column>-->
+                                <!--<p:column> <p:outputLabel for="fechaEmision" value="Emisión"/> </p:column>-->
+                                <!--<p:column> <p:outputLabel for="ficha" value="Ficha"/> </p:column>-->
                             </p:row>
                             <p:row>
                                 <p:column>
@@ -97,14 +97,29 @@
                                 </p:column>
 
                                 <p:column>
-                                    <p:inputText id="anio" value="#{ventanillaController.item.anio}" required="true">
+                                    <p:inputText id="anio" value="#{ventanillaController.item.anio}" required="true"
+                                                 readonly="true">
                                         <p:keyFilter preventPaste="false" mask="pint"/>
                                     </p:inputText>
                                 </p:column>
 
                                 <p:column>
-                                    <p:inputText id="bis" value="#{ventanillaController.item.bis}" required="true">
+                                    <p:inputText id="numero" value="#{ventanillaController.item.numero}" required="true"
+                                                 readonly="true">
                                         <p:keyFilter preventPaste="false" mask="pint"/>
+                                    </p:inputText>
+                                </p:column>
+
+                                <p:column>
+                                    <p:inputText id="bis" value="#{ventanillaController.item.bis}" required="true"
+                                                 readonly="true">
+                                        <p:keyFilter preventPaste="false" mask="pint"/>
+                                    </p:inputText>
+                                </p:column>
+
+                                <p:column>
+                                    <p:inputText id="estado" value="#{ventanillaController.item.estado}" required="true"
+                                                 readonly="true">
                                     </p:inputText>
                                 </p:column>
 
