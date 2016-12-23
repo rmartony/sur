@@ -118,7 +118,9 @@
                                 </p:column>
 
                                 <p:column>
-                                    <p:inputText id="estado" value="#{ventanillaController.item.estado}" required="true"
+                                    <p:inputText id="estado"
+                                                 value="#{ventanillaController.item.estado.codigo.concat(' - ').concat(ventanillaController.item.estado.descripcion) }"
+                                                 required="true"
                                                  readonly="true">
                                     </p:inputText>
                                 </p:column>

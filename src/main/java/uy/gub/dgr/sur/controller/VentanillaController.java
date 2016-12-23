@@ -16,6 +16,7 @@ import uy.gub.dgr.sur.idm.AuthorizationChecker;
 import uy.gub.dgr.sur.idm.annotations.Admin;
 import uy.gub.dgr.sur.idm.annotations.Ventanilla;
 import uy.gub.dgr.sur.service.DocumentoService;
+import uy.gub.dgr.sur.service.EstadoService;
 import uy.gub.dgr.sur.service.UsuarioService;
 
 import javax.annotation.PostConstruct;
@@ -51,6 +52,8 @@ public class VentanillaController extends BaseController {
     @Inject
     private transient UsuarioService usuarioService;
     @Inject
+    private EstadoService estadoService;
+    @Inject
     private LoginController loginController;
     @Inject
     private transient AuthorizationChecker authorizationChecker;
@@ -84,6 +87,7 @@ public class VentanillaController extends BaseController {
         setBackOutcome(viewId);
 
         item = new Documento();
+
 
         setMode(ControllerMode.CREATE);
         return "createVentanilla";
