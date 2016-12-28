@@ -36,12 +36,14 @@
                                 </p:column>
                                 <p:column> <p:outputLabel for="anio" value="Año"/> </p:column>
                                 <p:column> <p:outputLabel for="bis" value="Bis"/> </p:column>
-                                <p:column> <p:outputLabel for="fecha" value="Fecha"/> </p:column>
                                 <p:column> <p:outputLabel for="estado" value="Etapa"/> </p:column>
-                                <!--<p:column> <p:outputLabel for="ente" value="Ente emisor"/> </p:column>-->
-                                <!--<p:column> <p:outputLabel for="escribano" value="Escribano"/> </p:column>-->
-                                <!--<p:column> <p:outputLabel for="fechaEmision" value="Emisión"/> </p:column>-->
-                                <!--<p:column> <p:outputLabel for="ficha" value="Ficha"/> </p:column>-->
+                            </p:row>
+                            <p:row>
+                                <p:column> <p:outputLabel for="emisor" value="Ente emisor"/> </p:column>
+                                <p:column> <p:outputLabel for="escribano" value="Escribano"/> </p:column>
+                                <p:column> <p:outputLabel for="fechaEmision" value="Emisión"/> </p:column>
+                                <p:column> <p:outputLabel for="ficha" value="Ficha"/> </p:column>
+                                <p:column> <p:outputLabel for="tasa" value="Tasa"/> </p:column>
                             </p:row>
                             <p:row>
                                 <p:column>
@@ -124,11 +126,21 @@
                                                  readonly="true">
                                     </p:inputText>
                                 </p:column>
-
-                                <p:column><p:calendar id="fecha" value="#{ventanillaController.item.fecha}"
-                                                      pattern="#{msg.dateTimePattern}" showOn="both"
+                            </p:row>
+                            <p:row>
+                                <p:column><p:calendar id="fecha" value="#{ventanillaController.item.fechaEmision}"
+                                                      pattern="#{msg.datePattern}" showOn="both"
                                                       popupIconOnly="true"
                                                       required="true"/></p:column>
+
+                                <p:column>
+                                    <p:inputText id="emisor"
+                                                 value="#{ventanillaController.item.emisor.codigo.concat(' - ').concat(ventanillaController.item.emisor.descripcion) }"
+                                                 required="true"
+                                                 readonly="true">
+                                    </p:inputText>
+                                </p:column>
+
                             </p:row>
 
 
