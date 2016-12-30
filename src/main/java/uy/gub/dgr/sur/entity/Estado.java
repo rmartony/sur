@@ -33,6 +33,10 @@ public class Estado extends BaseEntity {
     public final static String BY_CODIGO = "Estado.codigo";
     public final static String TOTAL = "Estado.countTotal";
 
+    public final static String VENTANILLA = "VV";
+    public final static String VERIFICACION = "VF";
+    public final static String CALIFICACION = "CF";
+
     @NotEmpty
     private String codigo;
 

@@ -8,10 +8,13 @@ package uy.gub.dgr.sur.controller;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.collections4.CollectionUtils;
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 import org.picketlink.idm.jpa.model.sample.simple.AccountTypeEntity;
 import uy.gub.dgr.sur.entity.Documento;
+import uy.gub.dgr.sur.entity.Emisor;
+import uy.gub.dgr.sur.entity.Estado;
 import uy.gub.dgr.sur.idm.AuthorizationChecker;
 import uy.gub.dgr.sur.idm.annotations.Admin;
 import uy.gub.dgr.sur.idm.annotations.Ventanilla;
@@ -58,10 +61,14 @@ public class VentanillaController extends BaseController {
     @Inject
     private transient AuthorizationChecker authorizationChecker;
 
-
     @Getter
     @Setter
     private Documento item;
+
+    @Getter
+    @Setter
+    private List<Emisor> emisorList;
+
 
     /**
      * Default constructor
@@ -87,7 +94,8 @@ public class VentanillaController extends BaseController {
         setBackOutcome(viewId);
 
         item = new Documento();
-
+        Estado estado = estadoService.find(Estado.VENTANILLA);
+        item.setEstado(estado);
 
         setMode(ControllerMode.CREATE);
         return "createVentanilla";
@@ -137,5 +145,18 @@ public class VentanillaController extends BaseController {
 
     }
 
+    public List<Emisor> findEmisor(String query) {
+        List<Emisor> results = new ArrayList<>();
+
+        if (CollectionUtils.isNotEmpty(emisorList)) {
+            for (Emisor emisor : emisorList) {
+                if (emisor.getCodigo().contains(query) || emisor.getDescripcion().contains(query)) {
+                    results.add(emisor);
+                }
+            }
+        }
+        return results;
+
+    }
 
 }

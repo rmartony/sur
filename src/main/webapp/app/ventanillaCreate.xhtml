@@ -128,18 +128,37 @@
                                 </p:column>
                             </p:row>
                             <p:row>
+                                <p:column>
+                                    <p:autoComplete id="emisor" value="#{ventanillaController.item.emisor}"
+                                                    dropdown="true" minQueryLength="1" scrollHeight="250"
+                                                    required="true"
+                                                    completeMethod="#{ventanillaController.findEmisor}"
+                                                    forceSelection="true"
+                                                    var="s"
+                                                    itemLabel="#{s ne null ? s.codigo.concat(' - ').concat(s.descripcion) : ''}"
+                                                    itemValue="#{s}"
+                                                    converter="genericMapConverter"
+                                                    cache="true"
+                                                    size="3">
+                                        <p:column headerText="Código">
+                                            #{s.codigo}
+                                        </p:column>
+                                        <p:column headerText="Descripción">
+                                            #{s.descripcion}
+                                        </p:column>
+                                        <!--
+                                                                                <p:ajax event="itemSelect"
+                                                                                        update="nodo"
+                                                                                        listener="#{ventanillaController.handleSitioChange}"/>
+                                        -->
+                                    </p:autoComplete>
+                                </p:column>
+
                                 <p:column><p:calendar id="fecha" value="#{ventanillaController.item.fechaEmision}"
                                                       pattern="#{msg.datePattern}" showOn="both"
                                                       popupIconOnly="true"
                                                       required="true"/></p:column>
 
-                                <p:column>
-                                    <p:inputText id="emisor"
-                                                 value="#{ventanillaController.item.emisor.codigo.concat(' - ').concat(ventanillaController.item.emisor.descripcion) }"
-                                                 required="true"
-                                                 readonly="true">
-                                    </p:inputText>
-                                </p:column>
 
                             </p:row>
 

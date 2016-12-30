@@ -316,15 +316,15 @@ public class InitService {
     private void initEstado() {
         Estado estado = new Estado();
         estado.setNombre("Ventanilla");
-        estado.setCodigo("VV");
+        estado.setCodigo(Estado.VENTANILLA);
         estadoService.update(estado);
         estado = new Estado();
         estado.setNombre("Verificación");
-        estado.setCodigo("VF");
+        estado.setCodigo(Estado.VERIFICACION);
         estadoService.update(estado);
         estado = new Estado();
         estado.setNombre("Calificación");
-        estado.setCodigo("CF");
+        estado.setCodigo(Estado.CALIFICACION);
         estadoService.update(estado);
         estado = new Estado();
         estado.setNombre("Estado e1");
