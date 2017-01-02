@@ -12,23 +12,17 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 import org.picketlink.idm.jpa.model.sample.simple.AccountTypeEntity;
-import uy.gub.dgr.sur.entity.Documento;
-import uy.gub.dgr.sur.entity.Emisor;
-import uy.gub.dgr.sur.entity.Estado;
+import uy.gub.dgr.sur.entity.*;
 import uy.gub.dgr.sur.idm.AuthorizationChecker;
 import uy.gub.dgr.sur.idm.annotations.Admin;
 import uy.gub.dgr.sur.idm.annotations.Ventanilla;
-import uy.gub.dgr.sur.service.DocumentoService;
-import uy.gub.dgr.sur.service.EstadoService;
-import uy.gub.dgr.sur.service.UsuarioService;
+import uy.gub.dgr.sur.service.*;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -60,6 +54,13 @@ public class VentanillaController extends BaseController {
     private LoginController loginController;
     @Inject
     private transient AuthorizationChecker authorizationChecker;
+    @Inject
+    private EmisorService emisorService;
+    @Inject
+    private EscribanoService escribanoService;
+    @Inject
+    private TasaService tasaService;
+
 
     @Getter
     @Setter
@@ -68,6 +69,14 @@ public class VentanillaController extends BaseController {
     @Getter
     @Setter
     private List<Emisor> emisorList;
+
+    @Getter
+    @Setter
+    private List<Escribano> escribanoList;
+
+    @Getter
+    @Setter
+    private List<Tasa> tasaList;
 
 
     /**
@@ -94,8 +103,15 @@ public class VentanillaController extends BaseController {
         setBackOutcome(viewId);
 
         item = new Documento();
-        Estado estado = estadoService.find(Estado.VENTANILLA);
+
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("codigo", Estado.VENTANILLA);
+        Estado estado = (Estado) estadoService.findSingleResultNamedQuery(Estado.BY_CODIGO, parameters);
         item.setEstado(estado);
+
+        emisorList = emisorService.findWithNamedQuery(Emisor.ALL);
+        escribanoList = escribanoService.findWithNamedQuery(Escribano.ALL);
+        tasaList = tasaService.findWithNamedQuery(Tasa.ALL);
 
         setMode(ControllerMode.CREATE);
         return "createVentanilla";
@@ -152,6 +168,34 @@ public class VentanillaController extends BaseController {
             for (Emisor emisor : emisorList) {
                 if (emisor.getCodigo().contains(query) || emisor.getDescripcion().contains(query)) {
                     results.add(emisor);
+                }
+            }
+        }
+        return results;
+
+    }
+
+    public List<Escribano> findEscribano(String query) {
+        List<Escribano> results = new ArrayList<>();
+
+        if (CollectionUtils.isNotEmpty(escribanoList)) {
+            for (Escribano escribano : escribanoList) {
+                if (escribano.getCodigo().toString().contains(query) || escribano.getNombre().contains(query)) {
+                    results.add(escribano);
+                }
+            }
+        }
+        return results;
+
+    }
+
+    public List<Tasa> findTasa(String query) {
+        List<Tasa> results = new ArrayList<>();
+
+        if (CollectionUtils.isNotEmpty(tasaList)) {
+            for (Tasa tasa : tasaList) {
+                if (tasa.getCodigo().contains(query) || tasa.getNombre().contains(query)) {
+                    results.add(tasa);
                 }
             }
         }

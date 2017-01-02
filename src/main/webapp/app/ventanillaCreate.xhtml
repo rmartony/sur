@@ -35,15 +35,9 @@
                                     <p:outputLabel for="sede" value="Sede"/>
                                 </p:column>
                                 <p:column> <p:outputLabel for="anio" value="Año"/> </p:column>
+                                <p:column> <p:outputLabel for="numero" value="Número"/> </p:column>
                                 <p:column> <p:outputLabel for="bis" value="Bis"/> </p:column>
                                 <p:column> <p:outputLabel for="estado" value="Etapa"/> </p:column>
-                            </p:row>
-                            <p:row>
-                                <p:column> <p:outputLabel for="emisor" value="Ente emisor"/> </p:column>
-                                <p:column> <p:outputLabel for="escribano" value="Escribano"/> </p:column>
-                                <p:column> <p:outputLabel for="fechaEmision" value="Emisión"/> </p:column>
-                                <p:column> <p:outputLabel for="ficha" value="Ficha"/> </p:column>
-                                <p:column> <p:outputLabel for="tasa" value="Tasa"/> </p:column>
                             </p:row>
                             <p:row>
                                 <p:column>
@@ -100,32 +94,39 @@
 
                                 <p:column>
                                     <p:inputText id="anio" value="#{ventanillaController.item.anio}" required="true"
-                                                 readonly="true">
+                                                 size="4">
                                         <p:keyFilter preventPaste="false" mask="pint"/>
                                     </p:inputText>
                                 </p:column>
 
                                 <p:column>
                                     <p:inputText id="numero" value="#{ventanillaController.item.numero}" required="true"
-                                                 readonly="true">
+                                                 size="7">
                                         <p:keyFilter preventPaste="false" mask="pint"/>
                                     </p:inputText>
                                 </p:column>
 
                                 <p:column>
                                     <p:inputText id="bis" value="#{ventanillaController.item.bis}" required="true"
-                                                 readonly="true">
+                                                 size="2">
                                         <p:keyFilter preventPaste="false" mask="pint"/>
                                     </p:inputText>
                                 </p:column>
 
                                 <p:column>
                                     <p:inputText id="estado"
-                                                 value="#{ventanillaController.item.estado.codigo.concat(' - ').concat(ventanillaController.item.estado.descripcion) }"
+                                                 value="#{ventanillaController.item.estado.codigo.concat(' - ').concat(ventanillaController.item.estado.nombre) }"
                                                  required="true"
                                                  readonly="true">
                                     </p:inputText>
                                 </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column> <p:outputLabel for="emisor" value="Ente emisor"/> </p:column>
+                                <p:column> <p:outputLabel for="escribano" value="Escribano"/> </p:column>
+                                <p:column> <p:outputLabel for="fechaEmision" value="Emisión"/> </p:column>
+                                <p:column> <p:outputLabel for="ficha" value="Ficha"/> </p:column>
+                                <p:column> <p:outputLabel for="tasa" value="Tasa"/> </p:column>
                             </p:row>
                             <p:row>
                                 <p:column>
@@ -154,10 +155,71 @@
                                     </p:autoComplete>
                                 </p:column>
 
-                                <p:column><p:calendar id="fecha" value="#{ventanillaController.item.fechaEmision}"
+                                <p:column>
+                                    <p:autoComplete id="escribano" value="#{ventanillaController.item.escribano}"
+                                                    dropdown="true" minQueryLength="1" scrollHeight="250"
+                                                    required="true"
+                                                    completeMethod="#{ventanillaController.findEscribano}"
+                                                    forceSelection="true"
+                                                    var="s"
+                                                    itemLabel="#{s ne null ? s.codigo.concat(' - ').concat(s.descripcion) : ''}"
+                                                    itemValue="#{s}"
+                                                    converter="genericMapConverter"
+                                                    cache="true"
+                                                    size="3">
+                                        <p:column headerText="Código">
+                                            #{s.codigo}
+                                        </p:column>
+                                        <p:column headerText="Descripción">
+                                            #{s.descripcion}
+                                        </p:column>
+                                        <!--
+                                                                                <p:ajax event="itemSelect"
+                                                                                        update="nodo"
+                                                                                        listener="#{ventanillaController.handleSitioChange}"/>
+                                        -->
+                                    </p:autoComplete>
+                                </p:column>
+
+                                <p:column><p:calendar id="fechaEmision"
+                                                      value="#{ventanillaController.item.fechaEmision}"
                                                       pattern="#{msg.datePattern}" showOn="both"
                                                       popupIconOnly="true"
                                                       required="true"/></p:column>
+
+
+                                <p:column>
+                                    <p:inputText id="ficha" value="#{ventanillaController.item.ficha}" required="true"
+                                                 readonly="true">
+                                        <p:keyFilter preventPaste="false" mask="pint"/>
+                                    </p:inputText>
+                                </p:column>
+
+                                <p:column>
+                                    <p:autoComplete id="tasa" value="#{ventanillaController.item.tasa}"
+                                                    dropdown="true" minQueryLength="1" scrollHeight="250"
+                                                    required="true"
+                                                    completeMethod="#{ventanillaController.findTasa}"
+                                                    forceSelection="true"
+                                                    var="s"
+                                                    itemLabel="#{s ne null ? s.codigo.concat(' - ').concat(s.descripcion) : ''}"
+                                                    itemValue="#{s}"
+                                                    converter="genericMapConverter"
+                                                    cache="true"
+                                                    size="3">
+                                        <p:column headerText="Código">
+                                            #{s.codigo}
+                                        </p:column>
+                                        <p:column headerText="Descripción">
+                                            #{s.descripcion}
+                                        </p:column>
+                                        <!--
+                                                                                <p:ajax event="itemSelect"
+                                                                                        update="nodo"
+                                                                                        listener="#{ventanillaController.handleSitioChange}"/>
+                                        -->
+                                    </p:autoComplete>
+                                </p:column>
 
 
                             </p:row>
