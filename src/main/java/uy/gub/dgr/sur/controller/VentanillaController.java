@@ -93,16 +93,9 @@ public class VentanillaController extends BaseController {
     public void init() {
         log.log(Level.INFO, "VentanillaController is initializing");
 
-    }
-
-    /**
-     * Create, Update and Delete operations
-     */
-    public String doCreate() {
-        String viewId = Faces.getContext().getViewRoot().getViewId();
-        setBackOutcome(viewId);
-
         item = new Documento();
+
+        item.setFechaEmision(new Date());
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("codigo", Estado.VENTANILLA);
@@ -112,6 +105,17 @@ public class VentanillaController extends BaseController {
         emisorList = emisorService.findWithNamedQuery(Emisor.ALL);
         escribanoList = escribanoService.findWithNamedQuery(Escribano.ALL);
         tasaList = tasaService.findWithNamedQuery(Tasa.ALL);
+
+    }
+
+    /**
+     * Create, Update and Delete operations
+     */
+    public String doCreate() {
+        String viewId = Faces.getContext().getViewRoot().getViewId();
+        setBackOutcome(viewId);
+
+        init();
 
         setMode(ControllerMode.CREATE);
         return "createVentanilla";

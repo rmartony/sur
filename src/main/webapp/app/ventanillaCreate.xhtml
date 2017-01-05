@@ -21,8 +21,8 @@
                     <p:column styleClass="topAligned">
                         <p:panelGrid styleClass="center">
                             <f:facet name="header">
-                                <p:row><p:column colspan="2">
-                                    <h:outputText value="Detalle"/>
+                                <p:row><p:column colspan="6">
+                                    <h:outputText value="Documento"/>
                                 </p:column>
                                 </p:row>
                             </f:facet>
@@ -185,12 +185,13 @@
                                                       value="#{ventanillaController.item.fechaEmision}"
                                                       pattern="#{msg.datePattern}" showOn="both"
                                                       popupIconOnly="true"
+                                                      size="8"
                                                       required="true"/></p:column>
 
 
                                 <p:column>
                                     <p:inputText id="ficha" value="#{ventanillaController.item.ficha}" required="true"
-                                                 readonly="true">
+                                                 size="4" readonly="true">
                                         <p:keyFilter preventPaste="false" mask="pint"/>
                                     </p:inputText>
                                 </p:column>
@@ -225,6 +226,18 @@
                             </p:row>
 
 
+                        </p:panelGrid>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column styleClass="topAligned">
+                        <p:panelGrid styleClass="center">
+                            <f:facet name="header">
+                                <p:row><p:column colspan="6">
+                                    <h:outputText value="Inscripción"/>
+                                </p:column>
+                                </p:row>
+                            </f:facet>
                         </p:panelGrid>
                     </p:column>
                 </p:row>
