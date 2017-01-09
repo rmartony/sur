@@ -68,6 +68,10 @@ public class VentanillaController extends BaseController {
 
     @Getter
     @Setter
+    private Inscripcion inscripcion;
+
+    @Getter
+    @Setter
     private List<Emisor> emisorList;
 
     @Getter
@@ -94,8 +98,9 @@ public class VentanillaController extends BaseController {
         log.log(Level.INFO, "VentanillaController is initializing");
 
         item = new Documento();
-
         item.setFechaEmision(new Date());
+        inscripcion = new Inscripcion();
+        inscripcion.setDocumento(item);
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("codigo", Estado.VENTANILLA);

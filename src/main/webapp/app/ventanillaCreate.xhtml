@@ -238,6 +238,34 @@
                                 </p:column>
                                 </p:row>
                             </f:facet>
+                            <p:row>
+                                <p:column>
+                                    <p:autoComplete id="seccion" value="#{ventanillaController.selectedSeccion}"
+                                                    dropdown="true" minQueryLength="1" scrollHeight="250"
+                                                    required="true"
+                                                    completeMethod="#{ventanillaController.findSeccion}"
+                                                    forceSelection="true"
+                                                    var="s"
+                                                    itemLabel="#{s ne null ? s.codigo.concat(' - ').concat(s.descripcion) : ''}"
+                                                    itemValue="#{s}"
+                                                    converter="genericMapConverter"
+                                                    cache="true"
+                                                    size="3">
+                                        <p:column headerText="Código">
+                                            #{s.codigo}
+                                        </p:column>
+                                        <p:column headerText="Descripción">
+                                            #{s.descripcion}
+                                        </p:column>
+                                        <!--
+                                                                                <p:ajax event="itemSelect"
+                                                                                        update="nodo"
+                                                                                        listener="#{ventanillaController.handleSitioChange}"/>
+                                        -->
+                                    </p:autoComplete>
+
+                                </p:column>
+                            </p:row>
                         </p:panelGrid>
                     </p:column>
                 </p:row>
