@@ -82,6 +82,13 @@ public class VentanillaController extends BaseController {
     @Setter
     private List<Tasa> tasaList;
 
+    @Getter
+    @Setter
+    private List<Seccion> seccionList;
+
+    @Getter
+    @Setter
+    private Seccion seccion;
 
     /**
      * Default constructor
@@ -210,6 +217,33 @@ public class VentanillaController extends BaseController {
         }
         return results;
 
+    }
+
+    public List<Seccion> findSeccion(String query) {
+        List<Seccion> results = new ArrayList<>();
+
+        if (CollectionUtils.isNotEmpty(seccionList)) {
+            for (Seccion seccion : seccionList) {
+                if (seccion.getCodigo().contains(query) || seccion.getDescripcion().contains(query)) {
+                    results.add(seccion);
+                }
+            }
+        }
+        return results;
+
+    }
+
+    public void handleRegistroChange() {
+        if (item.getRegistro() != null) {
+            seccionList = findSeccion4Registro(item.getRegistro());
+        }
+    }
+
+    private List<Seccion> findSeccion4Registro(Registro registro) {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("codigo", registro.getCodigo());
+
+        return das.findWithNamedQuery(Seccion.BY_REGISTRO, parameters);
     }
 
 }

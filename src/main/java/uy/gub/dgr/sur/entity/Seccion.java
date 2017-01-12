@@ -20,6 +20,7 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(name = Seccion.ALL, query = "SELECT r FROM Seccion r order by r.descripcion"),
         @NamedQuery(name = Seccion.BY_ID, query = "SELECT r FROM Seccion r where r.id = :id"),
+        @NamedQuery(name = Seccion.BY_REGISTRO, query = "SELECT s FROM Seccion s where s.registro.codigo = :codigo"),
         @NamedQuery(name = Seccion.BY_CODIGO, query = "SELECT r FROM Seccion r where r.codigo = :codigo"),
         @NamedQuery(name = Seccion.BY_DESCRIPCION, query = "SELECT r FROM Seccion r where r.descripcion = :descripcion"),
         @NamedQuery(name = Seccion.TOTAL, query = "SELECT COUNT(r) FROM Seccion r")})
@@ -30,6 +31,7 @@ import javax.persistence.*;
 public class Seccion extends BaseEntity {
     public final static String ALL = "Seccion.all";
     public final static String BY_ID = "Seccion.id";
+    public final static String BY_REGISTRO = "Seccion.registro";
     public final static String BY_DESCRIPCION = "Seccion.descripcion";
     public final static String BY_CODIGO = "Seccion.codigo";
     public final static String TOTAL = "Seccion.countTotal";
