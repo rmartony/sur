@@ -21,6 +21,7 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({
         @NamedQuery(name = Acto.ID, query = "SELECT d FROM Acto d where d.id = :id"),
         @NamedQuery(name = Acto.BY_CODIGO, query = "SELECT d FROM Acto d where d.codigo = :codigo"),
+        @NamedQuery(name = Acto.BY_SECCION, query = "SELECT d FROM Acto d where d.seccion = :seccion"),
         @NamedQuery(name = Acto.ALL, query = "SELECT d FROM Acto d")
 })
 @Cacheable
@@ -31,6 +32,7 @@ import javax.validation.constraints.NotNull;
 public class Acto extends BaseEntity {
     public final static String ID = "Acto.id";
     public final static String BY_CODIGO = "Acto.codigo";
+    public final static String BY_SECCION = "Acto.seccion";
     public final static String ALL = "Acto.all";
 
     @NotEmpty

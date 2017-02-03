@@ -59,7 +59,8 @@
                                             #{r.descripcion}
                                         </p:column>
                                         <p:ajax event="itemSelect"
-                                                listener="#{ventanillaController.handleRegistroChange}"/>
+                                                listener="#{ventanillaController.handleRegistroChange}"
+                                                update="seccion"/>
                                     </p:autoComplete>
                                 </p:column>
 
@@ -231,16 +232,51 @@
                         <p:panelGrid styleClass="center">
                             <f:facet name="header">
                                 <p:row><p:column colspan="6">
-                                    <h:outputText value="Inscripción"/>
+                                    <h:outputLabel value="Inscripción"/>
                                 </p:column>
                                 </p:row>
                             </f:facet>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel for="seccion" value="Sección"/>
+                                </p:column>
+                                <p:column>
+                                    <p:outputLabel for="acto" value="Acto"/>
+                                </p:column>
+                                <p:column> <p:outputLabel for="movimiento" value="Movimiento"/> </p:column>
+                            </p:row>
                             <p:row>
                                 <p:column>
                                     <p:autoComplete id="seccion" value="#{ventanillaController.seccion}"
                                                     dropdown="true" minQueryLength="1" scrollHeight="250"
                                                     required="true"
                                                     completeMethod="#{ventanillaController.findSeccion}"
+                                                    forceSelection="true"
+                                                    var="s"
+                                                    itemLabel="#{s ne null ? s.codigo.concat(' - ').concat(s.descripcion) : ''}"
+                                                    itemValue="#{s}"
+                                                    converter="genericMapConverter"
+                                                    cache="true"
+                                                    size="3">
+                                        <p:column headerText="Código">
+                                            #{s.codigo}
+                                        </p:column>
+                                        <p:column headerText="Descripción">
+                                            #{s.descripcion}
+                                        </p:column>
+                                        <!--
+                                                                                <p:ajax event="itemSelect"
+                                                                                        update="nodo"
+                                                                                        listener="#{ventanillaController.handleSitioChange}"/>
+                                        -->
+                                    </p:autoComplete>
+
+                                </p:column>
+                                <p:column>
+                                    <p:autoComplete id="acto" value="#{ventanillaController.acto}"
+                                                    dropdown="true" minQueryLength="1" scrollHeight="250"
+                                                    required="true"
+                                                    completeMethod="#{ventanillaController.findActo}"
                                                     forceSelection="true"
                                                     var="s"
                                                     itemLabel="#{s ne null ? s.codigo.concat(' - ').concat(s.descripcion) : ''}"
