@@ -60,6 +60,8 @@ public class VentanillaController extends BaseController {
     private EscribanoService escribanoService;
     @Inject
     private TasaService tasaService;
+    @Inject
+    private MovimientoService movimientoService;
 
 
     @Getter
@@ -88,7 +90,19 @@ public class VentanillaController extends BaseController {
 
     @Getter
     @Setter
+    private List<Movimiento> movimientoList;
+
+    @Getter
+    @Setter
     private Seccion seccion;
+
+    @Getter
+    @Setter
+    private Acto acto;
+
+    @Getter
+    @Setter
+    private List<Acto> actoList;
 
     /**
      * Default constructor
@@ -107,6 +121,7 @@ public class VentanillaController extends BaseController {
         item = new Documento();
         item.setFechaEmision(new Date());
         inscripcion = new Inscripcion();
+        inscripcion.setActo(new Acto());
         inscripcion.setDocumento(item);
 
         Map<String, Object> parameters = new HashMap<>();
@@ -117,6 +132,7 @@ public class VentanillaController extends BaseController {
         emisorList = emisorService.findWithNamedQuery(Emisor.ALL);
         escribanoList = escribanoService.findWithNamedQuery(Escribano.ALL);
         tasaList = tasaService.findWithNamedQuery(Tasa.ALL);
+        movimientoList = movimientoService.findWithNamedQuery(Movimiento.ALL);
 
     }
 
@@ -244,6 +260,33 @@ public class VentanillaController extends BaseController {
         parameters.put("codigo", registro.getCodigo());
 
         return das.findWithNamedQuery(Seccion.BY_REGISTRO, parameters);
+    }
+
+    public void handleSeccionChange() {
+        if (seccion != null) {
+            actoList = findActo4Seccion(seccion);
+        }
+    }
+
+    private List<Acto> findActo4Seccion(Seccion seccion) {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("seccion", seccion);
+
+        return das.findWithNamedQuery(Acto.BY_SECCION, parameters);
+    }
+
+    public List<Acto> findActo(String query) {
+        List<Acto> results = new ArrayList<>();
+
+        if (CollectionUtils.isNotEmpty(actoList)) {
+            for (Acto acto : actoList) {
+                if (acto.getCodigo().contains(query) || acto.getDescripcion().contains(query)) {
+                    results.add(acto);
+                }
+            }
+        }
+        return results;
+
     }
 
 }
