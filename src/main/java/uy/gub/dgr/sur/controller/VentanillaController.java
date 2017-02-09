@@ -123,6 +123,7 @@ public class VentanillaController extends BaseController {
         inscripcion = new Inscripcion();
         inscripcion.setActo(new Acto());
         inscripcion.setDocumento(item);
+        inscripcion.setOrdinal(1);
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("codigo", Estado.VENTANILLA);
@@ -282,6 +283,20 @@ public class VentanillaController extends BaseController {
             for (Acto acto : actoList) {
                 if (acto.getCodigo().contains(query) || acto.getDescripcion().contains(query)) {
                     results.add(acto);
+                }
+            }
+        }
+        return results;
+
+    }
+
+    public List<Movimiento> findMovimiento(String query) {
+        List<Movimiento> results = new ArrayList<>();
+
+        if (CollectionUtils.isNotEmpty(movimientoList)) {
+            for (Movimiento movimiento : movimientoList) {
+                if (movimiento.getCodigo().contains(query) || movimiento.getDescripcion().contains(query)) {
+                    results.add(movimiento);
                 }
             }
         }

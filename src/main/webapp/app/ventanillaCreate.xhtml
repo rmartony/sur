@@ -71,11 +71,11 @@
                                                     completeMethod="#{loginController.findSede4User}"
                                                     forceSelection="true"
                                                     var="s"
-                                                    itemLabel="#{s ne null ? s.codigo : ''}"
+                                                    itemLabel="#{s ne null ? s.codigo.concat(' - ').concat(s.descripcion) : ''}"
                                                     itemValue="#{s}"
                                                     converter="genericMapConverter"
                                                     cache="true"
-                                                    size="3">
+                                                    size="5">
                                         <p:column headerText="Código">
                                             #{s.codigo}
                                         </p:column>
@@ -138,7 +138,7 @@
                                                     itemValue="#{s}"
                                                     converter="genericMapConverter"
                                                     cache="true"
-                                                    size="3">
+                                                    size="6">
                                         <p:column headerText="Código">
                                             #{s.codigo}
                                         </p:column>
@@ -164,7 +164,7 @@
                                                     itemValue="#{s}"
                                                     converter="genericMapConverter"
                                                     cache="true"
-                                                    size="3">
+                                                    size="6">
                                         <p:column headerText="Código">
                                             #{s.codigo}
                                         </p:column>
@@ -205,7 +205,7 @@
                                                     itemValue="#{s}"
                                                     converter="genericMapConverter"
                                                     cache="true"
-                                                    size="3">
+                                                    size="6">
                                         <p:column headerText="Código">
                                             #{s.codigo}
                                         </p:column>
@@ -238,6 +238,9 @@
                             </f:facet>
                             <p:row>
                                 <p:column>
+                                    <p:outputLabel for="ordinalInscripcion" value="Ordinal"/>
+                                </p:column>
+                                <p:column>
                                     <p:outputLabel for="seccion" value="Sección"/>
                                 </p:column>
                                 <p:column>
@@ -246,6 +249,13 @@
                                 <p:column> <p:outputLabel for="movimiento" value="Movimiento"/> </p:column>
                             </p:row>
                             <p:row>
+                                <p:column>
+                                    <p:inputText id="ordinalInscripcion"
+                                                 value="#{ventanillaController.inscripcion.ordinal}" required="true"
+                                                 size="3" readonly="true">
+                                        <p:keyFilter preventPaste="false" mask="pint"/>
+                                    </p:inputText>
+                                </p:column>
                                 <p:column>
                                     <p:autoComplete id="seccion"
                                                     value="#{ventanillaController.inscripcion.acto.seccion}"
@@ -265,11 +275,9 @@
                                         <p:column headerText="Descripción">
                                             #{s.descripcion}
                                         </p:column>
-                                        <!--
                                                                                 <p:ajax event="itemSelect"
-                                                                                        update="nodo"
-                                                                                        listener="#{ventanillaController.handleSitioChange}"/>
-                                        -->
+                                                                                        update="acto"
+                                                                                        listener="#{ventanillaController.handleSeccionChange}"/>
                                     </p:autoComplete>
 
                                 </p:column>

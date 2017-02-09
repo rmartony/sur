@@ -579,6 +579,12 @@ public class InitService {
         movimiento.setDescripcion("Movimiento 1");
         movimiento.setAccion("acción 1");
         movimiento = movimientoService.update(movimiento);
+
+        movimiento = new Movimiento();
+        movimiento.setCodigo("mov2");
+        movimiento.setDescripcion("Movimiento 2");
+        movimiento.setAccion("acción 2");
+        movimiento = movimientoService.update(movimiento);
     }
 
     private void initMotorAeronave() {
