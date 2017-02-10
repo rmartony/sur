@@ -94,10 +94,6 @@ public class VentanillaController extends BaseController {
 
     @Getter
     @Setter
-    private Seccion seccion;
-
-    @Getter
-    @Setter
     private Acto acto;
 
     @Getter
@@ -264,8 +260,8 @@ public class VentanillaController extends BaseController {
     }
 
     public void handleSeccionChange() {
-        if (seccion != null) {
-            actoList = findActo4Seccion(seccion);
+        if (inscripcion.getActo().getSeccion() != null) {
+            actoList = findActo4Seccion(inscripcion.getActo().getSeccion());
         }
     }
 
