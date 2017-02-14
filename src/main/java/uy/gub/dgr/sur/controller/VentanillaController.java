@@ -114,18 +114,6 @@ public class VentanillaController extends BaseController {
     public void init() {
         log.log(Level.INFO, "VentanillaController is initializing");
 
-        item = new Documento();
-        item.setFechaEmision(new Date());
-        inscripcion = new Inscripcion();
-        inscripcion.setActo(new Acto());
-        inscripcion.setDocumento(item);
-        inscripcion.setOrdinal(1);
-
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("codigo", Estado.VENTANILLA);
-        Estado estado = (Estado) estadoService.findSingleResultNamedQuery(Estado.BY_CODIGO, parameters);
-        item.setEstado(estado);
-
         emisorList = emisorService.findWithNamedQuery(Emisor.ALL);
         escribanoList = escribanoService.findWithNamedQuery(Escribano.ALL);
         tasaList = tasaService.findWithNamedQuery(Tasa.ALL);
@@ -140,10 +128,27 @@ public class VentanillaController extends BaseController {
         String viewId = Faces.getContext().getViewRoot().getViewId();
         setBackOutcome(viewId);
 
+        item = new Documento();
+        item.setFechaEmision(new Date());
+        inscripcion = new Inscripcion();
+        inscripcion.setActo(new Acto());
+        inscripcion.setDocumento(item);
+        inscripcion.setOrdinal(1);
+
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("codigo", Estado.VENTANILLA);
+        Estado estado = (Estado) estadoService.findSingleResultNamedQuery(Estado.BY_CODIGO, parameters);
+        item.setEstado(estado);
+
         init();
 
         setMode(ControllerMode.CREATE);
         return "createVentanilla";
+    }
+
+    public void nextInscripcion() {
+        final ListIterator<Inscripcion> inscripcionListIterator = item.getInscripcionList().listIterator();
+
     }
 
     @Ventanilla

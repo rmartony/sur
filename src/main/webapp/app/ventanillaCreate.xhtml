@@ -337,6 +337,16 @@
                             </p:row>
                         </p:panelGrid>
                     </p:column>
+                    <p:column>
+                        <p:row>
+                            <p:commandButton value="<"
+                                             action="#{ventanillaController.previousInscripcion}" update="@form growl"
+                                             validateClient="true"/>
+                            <p:commandButton value=">"
+                                             action="#{ventanillaController.nextInscripcion}" update="@form growl"
+                                             validateClient="true"/>
+                        </p:row>
+                    </p:column>
                 </p:row>
 
                 <f:facet name="footer">
