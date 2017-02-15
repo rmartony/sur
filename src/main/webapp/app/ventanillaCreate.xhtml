@@ -189,7 +189,7 @@
 
                                 <p:column>
                                     <p:inputText id="ficha" value="#{ventanillaController.item.ficha}" required="true"
-                                                 size="4" readonly="true">
+                                                 size="4">
                                         <p:keyFilter preventPaste="false" mask="pint"/>
                                     </p:inputText>
                                 </p:column>
@@ -339,10 +339,13 @@
                     </p:column>
                     <p:column>
                         <p:row>
-                            <p:commandButton value="<"
+                            <p:commandButton value="Repetir acto"
+                                             action="#{ventanillaController.repetirInscripcion}" update="@form growl"
+                                             validateClient="true"/>
+                            <p:commandButton value="&lt;"
                                              action="#{ventanillaController.previousInscripcion}" update="@form growl"
                                              validateClient="true"/>
-                            <p:commandButton value=">"
+                            <p:commandButton value="&gt;"
                                              action="#{ventanillaController.nextInscripcion}" update="@form growl"
                                              validateClient="true"/>
                         </p:row>

@@ -100,6 +100,8 @@ public class VentanillaController extends BaseController {
     @Setter
     private List<Acto> actoList;
 
+    private ListIterator<Inscripcion> inscripcionListIterator;
+
     /**
      * Default constructor
      */
@@ -130,10 +132,16 @@ public class VentanillaController extends BaseController {
 
         item = new Documento();
         item.setFechaEmision(new Date());
+
         inscripcion = new Inscripcion();
         inscripcion.setActo(new Acto());
         inscripcion.setDocumento(item);
         inscripcion.setOrdinal(1);
+
+        final ArrayList<Inscripcion> inscripcionList = new ArrayList<>();
+        inscripcionList.add(inscripcion);
+        item.setInscripcionList(inscripcionList);
+        inscripcionListIterator = item.getInscripcionList().listIterator();
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("codigo", Estado.VENTANILLA);
@@ -146,8 +154,29 @@ public class VentanillaController extends BaseController {
         return "createVentanilla";
     }
 
+    public void repetirInscripcion() {
+        inscripcionListIterator.set(inscripcion);
+        inscripcion = new Inscripcion();
+        inscripcion.setActo(new Acto());
+        inscripcion.setDocumento(item);
+        inscripcion.setOrdinal(inscripcion.getOrdinal() + 1);
+
+        inscripcionListIterator.add(inscripcion);
+    }
+
+    public void previousInscripcion() {
+        if (inscripcionListIterator.hasPrevious()) {
+            inscripcionListIterator.set(inscripcion);
+            inscripcion = inscripcionListIterator.previous();
+        }
+
+    }
+
     public void nextInscripcion() {
-        final ListIterator<Inscripcion> inscripcionListIterator = item.getInscripcionList().listIterator();
+        if (inscripcionListIterator.hasNext()) {
+            inscripcionListIterator.set(inscripcion);
+            inscripcion = inscripcionListIterator.next();
+        }
 
     }
 
