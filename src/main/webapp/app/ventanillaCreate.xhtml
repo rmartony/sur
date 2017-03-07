@@ -334,21 +334,22 @@
                                     </p:autoComplete>
 
                                 </p:column>
+                                <p:column>
+                                    <p:commandButton value="Repetir acto"
+                                                     action="#{ventanillaController.repetirInscripcion}"
+                                                     update="@form growl"
+                                                     validateClient="true"/>
+                                    <p:commandButton value="&lt;"
+                                                     action="#{ventanillaController.previousInscripcion}"
+                                                     update="@form growl"
+                                                     immediate="true"/>
+                                    <p:commandButton value="&gt;"
+                                                     action="#{ventanillaController.nextInscripcion}"
+                                                     update="@form growl"
+                                                     immediate="true"/>
+                                </p:column>
                             </p:row>
                         </p:panelGrid>
-                    </p:column>
-                    <p:column>
-                        <p:row>
-                            <p:commandButton value="Repetir acto"
-                                             action="#{ventanillaController.repetirInscripcion}" update="@form growl"
-                                             validateClient="true"/>
-                            <p:commandButton value="&lt;"
-                                             action="#{ventanillaController.previousInscripcion}" update="@form growl"
-                                             validateClient="true"/>
-                            <p:commandButton value="&gt;"
-                                             action="#{ventanillaController.nextInscripcion}" update="@form growl"
-                                             validateClient="true"/>
-                        </p:row>
                     </p:column>
                 </p:row>
 

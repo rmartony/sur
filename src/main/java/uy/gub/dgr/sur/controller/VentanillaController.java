@@ -155,18 +155,18 @@ public class VentanillaController extends BaseController {
     }
 
     public void repetirInscripcion() {
-        inscripcionListIterator.set(inscripcion);
+        int ordinal = inscripcion.getOrdinal() + 1;
         inscripcion = new Inscripcion();
         inscripcion.setActo(new Acto());
         inscripcion.setDocumento(item);
-        inscripcion.setOrdinal(inscripcion.getOrdinal() + 1);
+        inscripcion.setOrdinal(ordinal);
 
         inscripcionListIterator.add(inscripcion);
     }
 
     public void previousInscripcion() {
         if (inscripcionListIterator.hasPrevious()) {
-            inscripcionListIterator.set(inscripcion);
+//            inscripcionListIterator.set(inscripcion);
             inscripcion = inscripcionListIterator.previous();
         }
 
@@ -174,7 +174,7 @@ public class VentanillaController extends BaseController {
 
     public void nextInscripcion() {
         if (inscripcionListIterator.hasNext()) {
-            inscripcionListIterator.set(inscripcion);
+//            inscripcionListIterator.set(inscripcion);
             inscripcion = inscripcionListIterator.next();
         }
 
