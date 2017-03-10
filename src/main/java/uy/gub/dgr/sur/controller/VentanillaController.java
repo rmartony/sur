@@ -166,16 +166,18 @@ public class VentanillaController extends BaseController {
 
     public void previousInscripcion() {
         if (inscripcionListIterator.hasPrevious()) {
-//            inscripcionListIterator.set(inscripcion);
             inscripcion = inscripcionListIterator.previous();
+        } else {
+            Messages.addFlashGlobalInfo("Ya se encuentra en la primera inscripción.");
         }
 
     }
 
     public void nextInscripcion() {
         if (inscripcionListIterator.hasNext()) {
-//            inscripcionListIterator.set(inscripcion);
             inscripcion = inscripcionListIterator.next();
+        } else {
+            Messages.addFlashGlobalInfo("Ya se encuentra en la última inscripción.");
         }
 
     }
