@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * User: rmartony
@@ -35,16 +36,14 @@ public class Aeronave extends BaseEntity {
     public final static String BY_CODIGO = "Aeronave.codigo";
     public final static String BY_DESCRIPCION = "Aeronave.descripcion";
     public final static String TOTAL = "Aeronave.countTotal";
-
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    List<MotorAeronave> motorAeronaveList;
     @NotEmpty
     private String codigo;
-
     @NotEmpty
     private String matricula;
-
     @NotEmpty
     private String pais;
-
     private String marca;
     private String modelo;
     private Integer serie;
