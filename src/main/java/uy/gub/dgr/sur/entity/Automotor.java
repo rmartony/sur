@@ -39,6 +39,8 @@ public class Automotor extends BaseEntity {
 
     @ManyToOne
     TipoAutomotor tipoAutomotor;
+    @ManyToOne
+    ModeloAutomotor modeloAutomotor;
     @NotNull
     @ManyToOne
     private Departamento departamento;
