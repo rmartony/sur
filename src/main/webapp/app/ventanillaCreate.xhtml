@@ -229,7 +229,7 @@
                 </p:row>
                 <p:row>
                     <p:column styleClass="topAligned">
-                        <p:panelGrid styleClass="center">
+                        <p:panelGrid id="inscripcion" styleClass="center">
                             <f:facet name="header">
                                 <p:row><p:column colspan="6">
                                     <h:outputLabel value="Inscripción"/>
@@ -332,7 +332,8 @@
                                                                                         listener="#{ventanillaController.handleSitioChange}"/>
                                         -->
                                     </p:autoComplete>
-
+                                </p:column>
+                                <p:column>
                                     <p:commandButton value="Repetir acto"
                                                      action="#{ventanillaController.repetirInscripcion}"
                                                      update="@form growl"

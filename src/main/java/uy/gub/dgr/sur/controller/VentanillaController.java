@@ -131,7 +131,11 @@ public class VentanillaController extends BaseController {
         setBackOutcome(viewId);
 
         item = new Documento();
-        item.setFechaEmision(new Date());
+        Calendar now = Calendar.getInstance();   // Gets the current date and time
+        int anio = now.get(Calendar.YEAR);       // The current year
+
+        item.setAnio(anio);
+        item.setFechaEmision(now.getTime());
 
         inscripcion = new Inscripcion();
         inscripcion.setActo(new Acto());
@@ -161,6 +165,9 @@ public class VentanillaController extends BaseController {
         inscripcion.setDocumento(item);
         inscripcion.setOrdinal(ordinal);
 
+        while (inscripcionListIterator.hasNext()) {
+            inscripcionListIterator.next();
+        }
         inscripcionListIterator.add(inscripcion);
     }
 
