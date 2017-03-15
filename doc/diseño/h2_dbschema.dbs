@@ -1,0 +1,3008 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="H2" id="Project_1924d35f" template="Default" database="H2" >
+	<schema name="PUBLIC" catalogname="SUR" schemaname="PUBLIC" >
+		<table name="ACCOUNTTYPEENTITY" >
+			<column name="ID" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="EMAIL" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="FIRSTNAME" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="LASTNAME" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="LOGINNAME" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_7" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<fk name="FK_7IU5VL4YUKKRQNR7CAWU5BR46" to_schema="PUBLIC" to_table="IDENTITYTYPEENTITY" delete_action="restrict" update_action="restrict" >
+				<fk_column name="ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="ACTO" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="DURACION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="PERIODO" type="smallint" length="5" decimal="0" jt="5" mandatory="y" />
+			<column name="SECCION_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<index name="CONSTRAINT_1" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="CODACTO_INDEX_1" unique="UNIQUE" >
+				<column name="CODIGO" />
+				<column name="SECCION_ID" />
+			</index>
+			<index name="FK_GLQBEU66I3RPV5NBSFCTQD5QY_INDEX_1" unique="NORMAL" >
+				<column name="SECCION_ID" />
+			</index>
+			<fk name="FK_GLQBEU66I3RPV5NBSFCTQD5QY" to_schema="PUBLIC" to_table="SECCION" delete_action="restrict" update_action="restrict" >
+				<fk_column name="SECCION_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="ACTO_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DURACION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="PERIODO" type="smallint" length="5" decimal="0" jt="5" />
+			<column name="SECCION_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_C" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_FLAI8WM4M6AMEXATYN3JMA8Q8_INDEX_C" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_FLAI8WM4M6AMEXATYN3JMA8Q8" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="AERONAVE" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="FECHA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="FOLIO" type="integer" length="10" decimal="0" jt="4" />
+			<column name="MARCA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="MATRICULA" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="MODELO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NUMERO" type="integer" length="10" decimal="0" jt="4" />
+			<column name="PAIS" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="SERIE" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_3" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_E8L8BQGUGCYC3MOJBA2GEWX0V_INDEX_3" unique="UNIQUE" >
+				<column name="CODIGO" />
+			</index>
+		</table>
+		<table name="AERONAVE_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="FECHA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="FOLIO" type="integer" length="10" decimal="0" jt="4" />
+			<column name="MARCA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="MATRICULA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="MODELO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NUMERO" type="integer" length="10" decimal="0" jt="4" />
+			<column name="PAIS" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="SERIE" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_C2" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_IQVH8TCTXGQNXCRPGVFY1KTGD_INDEX_C" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_IQVH8TCTXGQNXCRPGVFY1KTGD" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="AERONAVE_MOTORAERONAVE" >
+			<column name="AERONAVE_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="MOTORAERONAVELIST_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<index name="UK_43PB9W0MCGQOYLD6V7MTTI19G_INDEX_7" unique="UNIQUE" >
+				<column name="MOTORAERONAVELIST_ID" />
+			</index>
+			<index name="FK_DCT7I5C9ABBYLDNH1X9A36U5N_INDEX_7" unique="NORMAL" >
+				<column name="AERONAVE_ID" />
+			</index>
+			<fk name="FK_DCT7I5C9ABBYLDNH1X9A36U5N" to_schema="PUBLIC" to_table="AERONAVE" delete_action="restrict" update_action="restrict" >
+				<fk_column name="AERONAVE_ID" pk="ID" />
+			</fk>
+			<fk name="FK_43PB9W0MCGQOYLD6V7MTTI19G" to_schema="PUBLIC" to_table="MOTORAERONAVE" delete_action="restrict" update_action="restrict" >
+				<fk_column name="MOTORAERONAVELIST_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="AERONAVE_MOTORAERONAVE_AUD" >
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="AERONAVE_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="MOTORAERONAVELIST_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<index name="CONSTRAINT_4" unique="PRIMARY_KEY" >
+				<column name="REV" />
+				<column name="AERONAVE_ID" />
+				<column name="MOTORAERONAVELIST_ID" />
+			</index>
+			<fk name="FK_MFYH2UVH9AD7SI9PFPFFPFIK6" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="ATTRIBUTEDTYPEENTITY" >
+			<column name="ID" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_E" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="ATTRIBUTETYPEENTITY" >
+			<column name="ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="NAME" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="TYPENAME" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="VALUE" type="varchar" length="1024" decimal="0" jt="12" />
+			<column name="OWNER_ID" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_B" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="FK_EHU3PV5HM09WME4VKMWWCT7X5_INDEX_B" unique="NORMAL" >
+				<column name="OWNER_ID" />
+			</index>
+			<fk name="FK_EHU3PV5HM09WME4VKMWWCT7X5" to_schema="PUBLIC" to_table="ATTRIBUTEDTYPEENTITY" delete_action="restrict" update_action="restrict" >
+				<fk_column name="OWNER_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="AUDITORIA" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="TIMESTAMP" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="ENTIDAD" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="OPERACION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="USERNAME" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_B1" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="AUTOMOTOR" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="ANIO" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="CHASIS" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CILINDROS" type="smallint" length="5" decimal="0" jt="5" mandatory="y" />
+			<column name="DUA" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHADUA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="HP" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="MATRICULAREGISTRAL" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="MOTOR" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="PADRON" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="PLACAMUNICIPAL" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="COMBUSTIBLE_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="DEPARTAMENTO_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="LOCALIDAD_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="TIPOAUTOMOTOR_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="MODELOAUTOMOTOR_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_9" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_HLMV6R7I53UWG14N15C67L9GY_INDEX_9" unique="UNIQUE" >
+				<column name="DEPARTAMENTO_ID" />
+				<column name="LOCALIDAD_ID" />
+				<column name="PADRON" />
+			</index>
+			<index name="FK_2AM2U4FR3FD98243NIYEWJTAU_INDEX_4" unique="NORMAL" >
+				<column name="COMBUSTIBLE_ID" />
+			</index>
+			<index name="FK_2LW2DMC3Y0LUCME4VPCN0PK3S_INDEX_4" unique="NORMAL" >
+				<column name="LOCALIDAD_ID" />
+			</index>
+			<index name="FK_TK9C7JIP4OEJAJ7ICA9Q1D78K_INDEX_4" unique="NORMAL" >
+				<column name="TIPOAUTOMOTOR_ID" />
+			</index>
+			<index name="FK_D07D6DN659HXR1AUL18EOMO7R_INDEX_4" unique="NORMAL" >
+				<column name="DEPARTAMENTO_ID" />
+			</index>
+			<index name="FK_EJ66NT2L4XFDEHBCQ3HMUOG67_INDEX_9" unique="NORMAL" >
+				<column name="MODELOAUTOMOTOR_ID" />
+			</index>
+			<fk name="FK_2AM2U4FR3FD98243NIYEWJTAU" to_schema="PUBLIC" to_table="COMBUSTIBLE" delete_action="restrict" update_action="restrict" >
+				<fk_column name="COMBUSTIBLE_ID" pk="ID" />
+			</fk>
+			<fk name="FK_D07D6DN659HXR1AUL18EOMO7R" to_schema="PUBLIC" to_table="DEPARTAMENTO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="DEPARTAMENTO_ID" pk="ID" />
+			</fk>
+			<fk name="FK_2LW2DMC3Y0LUCME4VPCN0PK3S" to_schema="PUBLIC" to_table="LOCALIDAD" delete_action="restrict" update_action="restrict" >
+				<fk_column name="LOCALIDAD_ID" pk="ID" />
+			</fk>
+			<fk name="FK_TK9C7JIP4OEJAJ7ICA9Q1D78K" to_schema="PUBLIC" to_table="TIPOAUTOMOTOR" delete_action="restrict" update_action="restrict" >
+				<fk_column name="TIPOAUTOMOTOR_ID" pk="ID" />
+			</fk>
+			<fk name="FK_EJ66NT2L4XFDEHBCQ3HMUOG67" to_schema="PUBLIC" to_table="MODELOAUTOMOTOR" delete_action="restrict" update_action="restrict" >
+				<fk_column name="MODELOAUTOMOTOR_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="AUTOMOTOR_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="ANIO" type="integer" length="10" decimal="0" jt="4" />
+			<column name="CHASIS" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CILINDROS" type="smallint" length="5" decimal="0" jt="5" />
+			<column name="DUA" type="integer" length="10" decimal="0" jt="4" />
+			<column name="FECHADUA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="HP" type="integer" length="10" decimal="0" jt="4" />
+			<column name="MATRICULAREGISTRAL" type="integer" length="10" decimal="0" jt="4" />
+			<column name="MOTOR" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="PADRON" type="integer" length="10" decimal="0" jt="4" />
+			<column name="PLACAMUNICIPAL" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="COMBUSTIBLE_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="DEPARTAMENTO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="LOCALIDAD_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="TIPOAUTOMOTOR_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="MODELOAUTOMOTOR_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_E9" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_BLBIW6I9WU9ORTEIRNI5FDJQ9_INDEX_A" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_BLBIW6I9WU9ORTEIRNI5FDJQ9" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="CALLE" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_3C" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_EJRBN6QFF5DKLIB10N5YDM8E2_INDEX_3" unique="UNIQUE" >
+				<column name="CODIGO" />
+			</index>
+		</table>
+		<table name="CALLE_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_6" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_C8RKSTLMV7IACEVRJ92NDTI0E_INDEX_6" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_C8RKSTLMV7IACEVRJ92NDTI0E" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="CELDA" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="TIPO_CELDA" type="varchar" length="31" decimal="0" jt="12" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="ALTURA" type="double" length="17" decimal="0" jt="8" />
+			<column name="ANTENACOMPARTIDA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="AZIMUT" type="double" length="17" decimal="0" jt="8" />
+			<column name="IDCELDA" type="integer" length="10" decimal="0" jt="4" />
+			<column name="NUMANTENAS" type="integer" length="10" decimal="0" jt="4" />
+			<column name="SECTOR" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="TILTE" type="integer" length="10" decimal="0" jt="4" />
+			<column name="TILTM" type="integer" length="10" decimal="0" jt="4" />
+			<column name="TIPOFO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="UBICACION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="ATENUACION" type="double" length="17" decimal="0" jt="8" />
+			<column name="FEEDER" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="LARGOFEEDER" type="double" length="17" decimal="0" jt="8" />
+			<column name="SCRAMBLINGCODE" type="integer" length="10" decimal="0" jt="4" />
+			<column name="PCI" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="TIPOANTENA_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="NODO3G_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="TIPOFEEDER_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="NODOLTE_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_3D" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="FK_4KTVCAX4V3D2A8V4ELTESR16T_INDEX_3" unique="NORMAL" >
+				<column name="NODO3G_ID" />
+			</index>
+			<index name="FK_HEAA89GL3AF00H14LVSG5CLVW_INDEX_3" unique="NORMAL" >
+				<column name="TIPOANTENA_ID" />
+			</index>
+			<index name="FK_IGBRN2I493X0UKR44YQ93VHGQ_INDEX_3" unique="NORMAL" >
+				<column name="NODOLTE_ID" />
+			</index>
+			<index name="FK_TK9YGMDJA7W0A9GWWR5O48YRX_INDEX_3" unique="NORMAL" >
+				<column name="TIPOFEEDER_ID" />
+			</index>
+			<fk name="FK_4KTVCAX4V3D2A8V4ELTESR16T" to_schema="PUBLIC" to_table="NODO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="NODO3G_ID" pk="ID" />
+			</fk>
+			<fk name="FK_IGBRN2I493X0UKR44YQ93VHGQ" to_schema="PUBLIC" to_table="NODO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="NODOLTE_ID" pk="ID" />
+			</fk>
+			<fk name="FK_HEAA89GL3AF00H14LVSG5CLVW" to_schema="PUBLIC" to_table="TIPOANTENA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="TIPOANTENA_ID" pk="ID" />
+			</fk>
+			<fk name="FK_TK9YGMDJA7W0A9GWWR5O48YRX" to_schema="PUBLIC" to_table="TIPOFEEDER" delete_action="restrict" update_action="restrict" >
+				<fk_column name="TIPOFEEDER_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="CELDA_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="TIPO_CELDA" type="varchar" length="31" decimal="0" jt="12" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="ALTURA" type="double" length="17" decimal="0" jt="8" />
+			<column name="ANTENACOMPARTIDA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="AZIMUT" type="double" length="17" decimal="0" jt="8" />
+			<column name="IDCELDA" type="integer" length="10" decimal="0" jt="4" />
+			<column name="NUMANTENAS" type="integer" length="10" decimal="0" jt="4" />
+			<column name="SECTOR" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="TILTE" type="integer" length="10" decimal="0" jt="4" />
+			<column name="TILTM" type="integer" length="10" decimal="0" jt="4" />
+			<column name="TIPOFO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="UBICACION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="TIPOANTENA_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="PCI" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NODOLTE_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="ATENUACION" type="double" length="17" decimal="0" jt="8" />
+			<column name="FEEDER" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="LARGOFEEDER" type="double" length="17" decimal="0" jt="8" />
+			<column name="SCRAMBLINGCODE" type="integer" length="10" decimal="0" jt="4" />
+			<column name="NODO3G_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="TIPOFEEDER_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_F" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_FYC2H4J6P6DAK5IMJ18BXCJG9_INDEX_F" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_FYC2H4J6P6DAK5IMJ18BXCJG9" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="COMBUSTIBLE" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_D" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_YOQ18LF88ONEM3D7LRRYXHUQ_INDEX_D" unique="UNIQUE" >
+				<column name="CODIGO" />
+			</index>
+		</table>
+		<table name="COMBUSTIBLE_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_38" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_O84Q8RT69T9PXPEL49WJKDYO4_INDEX_3" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_O84Q8RT69T9PXPEL49WJKDYO4" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="CONFIGURACION" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="PREFIJORUTAMONTAJEFOTOS" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="PREFIJOURLEXTERNAFOTOS" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="PREFIJOURLINTERNAFOTOS" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="SUBREDESLOCALES" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_2" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="DEPARTAMENTO" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_3E" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_K6GA8VCILS48DNRNENQPNGIYP_INDEX_3" unique="UNIQUE" >
+				<column name="CODIGO" />
+			</index>
+		</table>
+		<table name="DEPARTAMENTO_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_EA" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_M9GNQ7HQDRHCVWSC972R9WB3X_INDEX_E" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_M9GNQ7HQDRHCVWSC972R9WB3X" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="DIGESTCREDENTIALTYPEENTITY" >
+			<column name="ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="EFFECTIVEDATE" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="EXPIRYDATE" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="TYPENAME" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DIGESTHA1" type="varbinary" length="255" decimal="0" jt="-3" />
+			<column name="DIGESTREALM" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="OWNER_ID" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_17" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="FK_E6BQ8BSKPX54MA4E8BTL8NKXU_INDEX_1" unique="NORMAL" >
+				<column name="OWNER_ID" />
+			</index>
+			<fk name="FK_E6BQ8BSKPX54MA4E8BTL8NKXU" to_schema="PUBLIC" to_table="ATTRIBUTEDTYPEENTITY" delete_action="restrict" update_action="restrict" >
+				<fk_column name="OWNER_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="DOCUMENTO" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="ANIO" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="AUTOS" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="BIS" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FB" type="smallint" length="5" decimal="0" jt="5" mandatory="y" />
+			<column name="FECHA" type="date" length="8" decimal="0" jt="91" />
+			<column name="FECHAEMISION" type="date" length="8" decimal="0" jt="91" mandatory="y" />
+			<column name="FECHARESOLUCION" type="date" length="8" decimal="0" jt="91" />
+			<column name="FICHA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="FOLIO" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="LIBRO" type="smallint" length="5" decimal="0" jt="5" mandatory="y" />
+			<column name="NUMERO" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="OBSERVACION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="OBSERVACIONDGR" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="OTRONUMERO" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="EMISOR_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="ESCRIBANO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="ESTADO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="EXONERACION_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="REGISTRO_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="SEDE_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="TASA_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="TIPODOCUMENTO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_DE" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_4TKOE5GFUU7HPE8KBBGHVN6CD_INDEX_D" unique="UNIQUE" >
+				<column name="REGISTRO_ID" />
+				<column name="SEDE_ID" />
+				<column name="ANIO" />
+				<column name="NUMERO" />
+				<column name="BIS" />
+			</index>
+			<index name="FK_4VVOFNDWCHQLXYM3877ISGJYQ_INDEX_D" unique="NORMAL" >
+				<column name="TIPODOCUMENTO_ID" />
+			</index>
+			<index name="FK_8OWAQJDY3NKVWVIVPF7ATBN8N_INDEX_D" unique="NORMAL" >
+				<column name="TASA_ID" />
+			</index>
+			<index name="FK_FNVHYY5DUG8KIDH56OJSD7LRM_INDEX_D" unique="NORMAL" >
+				<column name="ESCRIBANO_ID" />
+			</index>
+			<index name="FK_G4J4E2YA1SJQR3462I1KFETJ1_INDEX_D" unique="NORMAL" >
+				<column name="ESTADO_ID" />
+			</index>
+			<index name="FK_MU84XLIMPC6C2Q0BG8RR264JF_INDEX_D" unique="NORMAL" >
+				<column name="EXONERACION_ID" />
+			</index>
+			<index name="FK_OPQT72YEPYOPDO60HHB8A7MLU_INDEX_D" unique="NORMAL" >
+				<column name="SEDE_ID" />
+			</index>
+			<index name="FK_R16OCKDV089D4X1BFUV9IM5H9_INDEX_D" unique="NORMAL" >
+				<column name="EMISOR_ID" />
+			</index>
+			<fk name="FK_R16OCKDV089D4X1BFUV9IM5H9" to_schema="PUBLIC" to_table="EMISOR" delete_action="restrict" update_action="restrict" >
+				<fk_column name="EMISOR_ID" pk="ID" />
+			</fk>
+			<fk name="FK_FNVHYY5DUG8KIDH56OJSD7LRM" to_schema="PUBLIC" to_table="ESCRIBANO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="ESCRIBANO_ID" pk="ID" />
+			</fk>
+			<fk name="FK_G4J4E2YA1SJQR3462I1KFETJ1" to_schema="PUBLIC" to_table="ESTADO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="ESTADO_ID" pk="ID" />
+			</fk>
+			<fk name="FK_MU84XLIMPC6C2Q0BG8RR264JF" to_schema="PUBLIC" to_table="EXONERACION" delete_action="restrict" update_action="restrict" >
+				<fk_column name="EXONERACION_ID" pk="ID" />
+			</fk>
+			<fk name="FK_3D6MWMTX35IPJKRGRW6PHLXBL" to_schema="PUBLIC" to_table="REGISTRO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REGISTRO_ID" pk="ID" />
+			</fk>
+			<fk name="FK_OPQT72YEPYOPDO60HHB8A7MLU" to_schema="PUBLIC" to_table="SEDE" delete_action="restrict" update_action="restrict" >
+				<fk_column name="SEDE_ID" pk="ID" />
+			</fk>
+			<fk name="FK_8OWAQJDY3NKVWVIVPF7ATBN8N" to_schema="PUBLIC" to_table="TASA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="TASA_ID" pk="ID" />
+			</fk>
+			<fk name="FK_4VVOFNDWCHQLXYM3877ISGJYQ" to_schema="PUBLIC" to_table="TIPODOCUMENTO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="TIPODOCUMENTO_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="DOCUMENTO_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="ANIO" type="integer" length="10" decimal="0" jt="4" />
+			<column name="AUTOS" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="BIS" type="integer" length="10" decimal="0" jt="4" />
+			<column name="FB" type="smallint" length="5" decimal="0" jt="5" />
+			<column name="FECHA" type="date" length="8" decimal="0" jt="91" />
+			<column name="FECHAEMISION" type="date" length="8" decimal="0" jt="91" />
+			<column name="FECHARESOLUCION" type="date" length="8" decimal="0" jt="91" />
+			<column name="FICHA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="FOLIO" type="integer" length="10" decimal="0" jt="4" />
+			<column name="LIBRO" type="smallint" length="5" decimal="0" jt="5" />
+			<column name="NUMERO" type="integer" length="10" decimal="0" jt="4" />
+			<column name="OBSERVACION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="OBSERVACIONDGR" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="OTRONUMERO" type="integer" length="10" decimal="0" jt="4" />
+			<column name="EMISOR_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="ESCRIBANO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="ESTADO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="EXONERACION_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="REGISTRO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="SEDE_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="TASA_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="TIPODOCUMENTO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_19" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_P1UOHBCRDB8REM39A4KF6FRFA_INDEX_1" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_P1UOHBCRDB8REM39A4KF6FRFA" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="EMISOR" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_7A" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_QDY9S2BDAW0BW7PF8N2KJLDHX_INDEX_7" unique="UNIQUE" >
+				<column name="CODIGO" />
+			</index>
+		</table>
+		<table name="EMISOR_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_C1" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_5P9FHN7NEI9U3E6LSVB57JE21_INDEX_C" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_5P9FHN7NEI9U3E6LSVB57JE21" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="ESCRIBANO" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="INHABILITADOFECHADESDE" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="INHABILITADOFECHAHASTA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="NOMBRE" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_CC" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_AL4A5TXPL3X5CNB43XU03IS3W_INDEX_C" unique="UNIQUE" >
+				<column name="CODIGO" />
+			</index>
+		</table>
+		<table name="ESCRIBANO_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="CODIGO" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="INHABILITADOFECHADESDE" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="INHABILITADOFECHAHASTA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="NOMBRE" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_6F" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_HVCNLVPSU4UR69PCAH8ARI9Q_INDEX_6" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_HVCNLVPSU4UR69PCAH8ARI9Q" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="ESTADO" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NOMBRE" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_7A7" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_AEXETLMO6VHUEXRQ87PIR3761_INDEX_7" unique="UNIQUE" >
+				<column name="CODIGO" />
+			</index>
+		</table>
+		<table name="ESTADO_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NOMBRE" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_E6" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_5XH5PK2HYJHS4F8LNFE0SBTAR_INDEX_E" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_5XH5PK2HYJHS4F8LNFE0SBTAR" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="ESTRUCTURA" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NOMBRE" type="varchar" length="60" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_8" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_P0JYHO963R5ENP34PMLGOAKN4_INDEX_8" unique="UNIQUE" >
+				<column name="NOMBRE" />
+			</index>
+		</table>
+		<table name="ESTRUCTURA_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="NOMBRE" type="varchar" length="60" decimal="0" jt="12" />
+			<index name="CONSTRAINT_8D" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_4Y935BXHWI4AUV1FOVTKV0BHC_INDEX_8" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_4Y935BXHWI4AUV1FOVTKV0BHC" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="EXONERACION" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_5" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_BFJUFD2VA8XXHE2MDEHTINUAK_INDEX_5" unique="UNIQUE" >
+				<column name="CODIGO" />
+			</index>
+		</table>
+		<table name="EXONERACION_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_A" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_QREVICQ4DMW4XUUDAHWDXBF7Y_INDEX_A" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_QREVICQ4DMW4XUUDAHWDXBF7Y" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="GROUPTYPEENTITY" >
+			<column name="ID" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="NAME" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="PATH" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="PARENT_ID" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_DB" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="FK_JD61H1PMEVGFDKJVXR3VYHDML_INDEX_D" unique="NORMAL" >
+				<column name="PARENT_ID" />
+			</index>
+			<fk name="FK_JD61H1PMEVGFDKJVXR3VYHDML" to_schema="PUBLIC" to_table="GROUPTYPEENTITY" delete_action="restrict" update_action="restrict" >
+				<fk_column name="PARENT_ID" pk="ID" />
+			</fk>
+			<fk name="FK_DCNN37F1V104DNXARQX2DIKW8" to_schema="PUBLIC" to_table="IDENTITYTYPEENTITY" delete_action="restrict" update_action="restrict" >
+				<fk_column name="ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="IDENTITYTYPEENTITY" >
+			<column name="ID" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="CREATEDDATE" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="ENABLED" type="boolean" length="1" decimal="0" jt="16" mandatory="y" />
+			<column name="EXPIRATIONDATE" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="TYPENAME" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="PARTITION_ID" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_F8" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="FK_G7E4B2KS8KB6TPJB1TBSFP42G_INDEX_F" unique="NORMAL" >
+				<column name="PARTITION_ID" />
+			</index>
+			<fk name="FK_F3D4BI3XN9KPH5UJ8P4RUFAY8" to_schema="PUBLIC" to_table="ATTRIBUTEDTYPEENTITY" delete_action="restrict" update_action="restrict" >
+				<fk_column name="ID" pk="ID" />
+			</fk>
+			<fk name="FK_G7E4B2KS8KB6TPJB1TBSFP42G" to_schema="PUBLIC" to_table="PARTITIONTYPEENTITY" delete_action="restrict" update_action="restrict" >
+				<fk_column name="PARTITION_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="INMUEBLE" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="BLOCK" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="MATRICULAREGISTRAL" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="PADRON" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="UNIDAD" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DEPARTAMENTO_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="LOCALIDAD_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="NIVEL_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_45" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="FK_EMSY3WFCWUFRU6DQSDRJ9AYCI_INDEX_4" unique="NORMAL" >
+				<column name="DEPARTAMENTO_ID" />
+			</index>
+			<index name="FK_L8XBU5DYO9I4M4TGJSACBEK9_INDEX_4" unique="NORMAL" >
+				<column name="NIVEL_ID" />
+			</index>
+			<index name="FK_MQVIC3RR3W0CN68ULAOT1CLWN_INDEX_4" unique="NORMAL" >
+				<column name="LOCALIDAD_ID" />
+			</index>
+			<fk name="FK_EMSY3WFCWUFRU6DQSDRJ9AYCI" to_schema="PUBLIC" to_table="DEPARTAMENTO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="DEPARTAMENTO_ID" pk="ID" />
+			</fk>
+			<fk name="FK_L8XBU5DYO9I4M4TGJSACBEK9" to_schema="PUBLIC" to_table="INMUEBLENIVEL" delete_action="restrict" update_action="restrict" >
+				<fk_column name="NIVEL_ID" pk="ID" />
+			</fk>
+			<fk name="FK_MQVIC3RR3W0CN68ULAOT1CLWN" to_schema="PUBLIC" to_table="LOCALIDAD" delete_action="restrict" update_action="restrict" >
+				<fk_column name="LOCALIDAD_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="INMUEBLENIVEL" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_2D" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_1A6WSJMEKFJL0TXVFXMQJ9C3B_INDEX_2" unique="UNIQUE" >
+				<column name="CODIGO" />
+			</index>
+		</table>
+		<table name="INMUEBLENIVEL_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_1C" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_43U9GN9LVDN5A2HLVKA90FN3Y_INDEX_1" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_43U9GN9LVDN5A2HLVKA90FN3Y" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="INMUEBLE_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="BLOCK" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="MATRICULAREGISTRAL" type="integer" length="10" decimal="0" jt="4" />
+			<column name="PADRON" type="integer" length="10" decimal="0" jt="4" />
+			<column name="UNIDAD" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DEPARTAMENTO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="LOCALIDAD_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="NIVEL_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_6C" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_JFRHPT2X0O79414V2W9EGD3PC_INDEX_6" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_JFRHPT2X0O79414V2W9EGD3PC" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="INSCRIPCION" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="OBSERVACION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="ORDINAL" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="ACTO_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="DOCUMENTO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="ESTADO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="MOVIMIENTO_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<index name="CONSTRAINT_98" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_535HSLBCN8SWI2770T3EDQJG1_INDEX_9" unique="UNIQUE" >
+				<column name="ORDINAL" />
+			</index>
+			<index name="FK_AAGE3VHFX563B5RLYN2Y522GF_INDEX_9" unique="NORMAL" >
+				<column name="DOCUMENTO_ID" />
+			</index>
+			<index name="FK_ALOWREK5RTF4DHD09YWQ10LKG_INDEX_9" unique="NORMAL" >
+				<column name="MOVIMIENTO_ID" />
+			</index>
+			<index name="FK_DSL4V0J150B3TPGFV1J6KVR4E_INDEX_9" unique="NORMAL" >
+				<column name="ACTO_ID" />
+			</index>
+			<index name="FK_KMHX33XLLG6UCQT4X2Q7QSG7W_INDEX_9" unique="NORMAL" >
+				<column name="ESTADO_ID" />
+			</index>
+			<fk name="FK_DSL4V0J150B3TPGFV1J6KVR4E" to_schema="PUBLIC" to_table="ACTO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="ACTO_ID" pk="ID" />
+			</fk>
+			<fk name="FK_AAGE3VHFX563B5RLYN2Y522GF" to_schema="PUBLIC" to_table="DOCUMENTO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="DOCUMENTO_ID" pk="ID" />
+			</fk>
+			<fk name="FK_KMHX33XLLG6UCQT4X2Q7QSG7W" to_schema="PUBLIC" to_table="ESTADO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="ESTADO_ID" pk="ID" />
+			</fk>
+			<fk name="FK_ALOWREK5RTF4DHD09YWQ10LKG" to_schema="PUBLIC" to_table="MOVIMIENTO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="MOVIMIENTO_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="INSCRIPCION_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="OBSERVACION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="ORDINAL" type="integer" length="10" decimal="0" jt="4" />
+			<column name="ACTO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="DOCUMENTO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="ESTADO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="MOVIMIENTO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_49" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_LYXQG3HW1K70NT33WRT4D0UWS_INDEX_4" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_LYXQG3HW1K70NT33WRT4D0UWS" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="INSCRIPCION_MONTO" >
+			<column name="INSCRIPCION_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="MONTOLIST_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<index name="UK_IBHUE8Y3PXQ79AU4V6MP7HUR2_INDEX_2" unique="UNIQUE" >
+				<column name="MONTOLIST_ID" />
+			</index>
+			<index name="FK_8KXEBB64GJR9ORSL16U37QYQU_INDEX_2" unique="NORMAL" >
+				<column name="INSCRIPCION_ID" />
+			</index>
+			<fk name="FK_8KXEBB64GJR9ORSL16U37QYQU" to_schema="PUBLIC" to_table="INSCRIPCION" delete_action="restrict" update_action="restrict" >
+				<fk_column name="INSCRIPCION_ID" pk="ID" />
+			</fk>
+			<fk name="FK_IBHUE8Y3PXQ79AU4V6MP7HUR2" to_schema="PUBLIC" to_table="MONTO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="MONTOLIST_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="INSCRIPCION_MONTO_AUD" >
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="INSCRIPCION_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="MONTOLIST_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<index name="CONSTRAINT_67" unique="PRIMARY_KEY" >
+				<column name="REV" />
+				<column name="INSCRIPCION_ID" />
+				<column name="MONTOLIST_ID" />
+			</index>
+			<fk name="FK_DA9V8T8MT01YOKSQ1RO1S0QDU" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="INSCRIPCION_SUJETO" >
+			<column name="INSCRIPCION_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="SUJETOLIST_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<index name="UK_MH3DBADHMRGD29509DJ27G3H7_INDEX_4" unique="UNIQUE" >
+				<column name="SUJETOLIST_ID" />
+			</index>
+			<index name="FK_D39J7CMIK4KRIF8QKOKJHBGL7_INDEX_4" unique="NORMAL" >
+				<column name="INSCRIPCION_ID" />
+			</index>
+			<fk name="FK_D39J7CMIK4KRIF8QKOKJHBGL7" to_schema="PUBLIC" to_table="INSCRIPCION" delete_action="restrict" update_action="restrict" >
+				<fk_column name="INSCRIPCION_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="INSCRIPCION_SUJETO_AUD" >
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="INSCRIPCION_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="SUJETOLIST_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<index name="CONSTRAINT_30" unique="PRIMARY_KEY" >
+				<column name="REV" />
+				<column name="INSCRIPCION_ID" />
+				<column name="SUJETOLIST_ID" />
+			</index>
+			<fk name="FK_67RH29CGVKS1ODHVL8VPXJVPU" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="INTERVINIENTE" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="OBSERVACIONES" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="SECCION_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_10" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_E6V866SJ1BI1WNSC4Y7PKSTNR_INDEX_1" unique="UNIQUE" >
+				<column name="CODIGO" />
+			</index>
+			<index name="FK_E1E5WRN710MACG49RJWRVXD1Y_INDEX_1" unique="NORMAL" >
+				<column name="SECCION_ID" />
+			</index>
+			<fk name="FK_E1E5WRN710MACG49RJWRVXD1Y" to_schema="PUBLIC" to_table="SECCION" delete_action="restrict" update_action="restrict" >
+				<fk_column name="SECCION_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="INTERVINIENTE_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="OBSERVACIONES" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="SECCION_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_EF" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_PMUX5603ASQ7KI454F2TN99GU_INDEX_E" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_PMUX5603ASQ7KI454F2TN99GU" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="LIBRORUBRICA" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_CB" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_H93WJQP34BOAV330B1NV9BIPB_INDEX_C" unique="UNIQUE" >
+				<column name="CODIGO" />
+			</index>
+		</table>
+		<table name="LIBRORUBRICATIPO" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_70" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_TB8YBJ4E7I0KCMEGRSROALNJG_INDEX_7" unique="UNIQUE" >
+				<column name="CODIGO" />
+			</index>
+		</table>
+		<table name="LIBRORUBRICATIPO_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_7A78" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_MHR7FDWY70W6JAHC9WM99EKCC_INDEX_7" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_MHR7FDWY70W6JAHC9WM99EKCC" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="LIBRORUBRICA_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_70F" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_DXV3XBDDJ06KOP3Y0FVYUCGRH_INDEX_7" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_DXV3XBDDJ06KOP3Y0FVYUCGRH" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="LOCALIDAD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_5E" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_CFR5T4RFAOP71VEUWG0BB3Q0Y_INDEX_5" unique="UNIQUE" >
+				<column name="CODIGO" />
+			</index>
+		</table>
+		<table name="LOCALIDAD_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_50" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_EVX1KEDDMIUV9G5RDQU7CYPCD_INDEX_5" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_EVX1KEDDMIUV9G5RDQU7CYPCD" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="MARCAAUTOMOTOR" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_FE" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_2IAN7LCHCHEI0E67KMTKBQ8ND_INDEX_F" unique="UNIQUE" >
+				<column name="CODIGO" />
+			</index>
+		</table>
+		<table name="MARCAAUTOMOTOR_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_A2" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_LCP9AQV0WFL3IXIX78WELDWKR_INDEX_A" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_LCP9AQV0WFL3IXIX78WELDWKR" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="MODELOAUTOMOTOR" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="MARCAAUTOMOTOR_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_C8" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_4TCX3L3YCKFV93NCMBHO3JJD_INDEX_C" unique="UNIQUE" >
+				<column name="CODIGO" />
+			</index>
+			<index name="FK_4T2R2W83015QHLBGGEXPVAFFO_INDEX_C" unique="NORMAL" >
+				<column name="MARCAAUTOMOTOR_ID" />
+			</index>
+			<fk name="FK_4T2R2W83015QHLBGGEXPVAFFO" to_schema="PUBLIC" to_table="MARCAAUTOMOTOR" delete_action="restrict" update_action="restrict" >
+				<fk_column name="MARCAAUTOMOTOR_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="MODELOAUTOMOTOR_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="MARCAAUTOMOTOR_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_85" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_229W7HYHA1P19LOE891K9EX75_INDEX_8" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_229W7HYHA1P19LOE891K9EX75" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="MONEDA" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_87" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_FV4X2CPTKCQ3SSTY5YAFVPE2K_INDEX_8" unique="UNIQUE" >
+				<column name="CODIGO" />
+			</index>
+		</table>
+		<table name="MONEDA_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_9B" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_9OQF9263T69BBEWLOJ3UQQ6FB_INDEX_9" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_9OQF9263T69BBEWLOJ3UQQ6FB" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="MONTO" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="MONTO" type="double" length="17" decimal="0" jt="8" mandatory="y" />
+			<column name="MONEDA_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_46" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_3Y6RB324EQLC8V5PK44JPRJWI_INDEX_4" unique="UNIQUE" >
+				<column name="MONEDA_ID" />
+				<column name="MONTO" />
+			</index>
+			<fk name="FK_4U7OQ26Q0Q3Q5BYSK03DFLOAW" to_schema="PUBLIC" to_table="MONEDA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="MONEDA_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="MONTO_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="MONTO" type="double" length="17" decimal="0" jt="8" />
+			<column name="MONEDA_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_59" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_PSFDHY6EVH062PYXWXNNI1UN2_INDEX_5" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_PSFDHY6EVH062PYXWXNNI1UN2" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="MOTORAERONAVE" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="MARCA" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="SERIE" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_B8" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_D4VKXM8H5TF9CMQ1784FUFWVW_INDEX_B" unique="UNIQUE" >
+				<column name="SERIE" />
+				<column name="MARCA" />
+			</index>
+		</table>
+		<table name="MOTORAERONAVE_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="MARCA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="SERIE" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_36" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_47RWEHGKWJ6PC0QV8VEGJ4PE2_INDEX_3" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_47RWEHGKWJ6PC0QV8VEGJ4PE2" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="MOVIMIENTO" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="ACCION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_BE" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_7D1JFOEGMEBIQQUBIBC584G4P_INDEX_B" unique="UNIQUE" >
+				<column name="CODIGO" />
+			</index>
+		</table>
+		<table name="MOVIMIENTO_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="ACCION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_857" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_FQ5KLRNONJW3NEC3NDMBKA4K0_INDEX_8" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_FQ5KLRNONJW3NEC3NDMBKA4K0" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="NODO" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="TIPO_NODO" type="varchar" length="31" decimal="0" jt="12" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="EPLFLUJODABT" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="ACCESO" type="clob" length="2147483647" decimal="0" jt="2005" />
+			<column name="ACCESOTORMENTA" type="boolean" length="1" decimal="0" jt="16" mandatory="y" />
+			<column name="ALIMENTACION" type="integer" length="10" decimal="0" jt="4" />
+			<column name="FECHAALTA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="FECHAINSTALACION" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="GWOAM" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="GWTELECOM" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="IPGRANDMASTER" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="IPOAM" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="IPSECONDARYMASTER" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="IPTELECOM" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="LLAVEEXTERIORALCATEL" type="boolean" length="1" decimal="0" jt="16" mandatory="y" />
+			<column name="LLAVEEXTERIORERICSSON" type="boolean" length="1" decimal="0" jt="16" mandatory="y" />
+			<column name="LLAVEMOVISTAR" type="boolean" length="1" decimal="0" jt="16" mandatory="y" />
+			<column name="LLAVESITIO" type="boolean" length="1" decimal="0" jt="16" mandatory="y" />
+			<column name="LLAVEUNIFICADA" type="boolean" length="1" decimal="0" jt="16" mandatory="y" />
+			<column name="MASKOAM" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="MASKTELECOM" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NUMCONTADORUTE" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NUMTORREROS" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="OBSERVACIONES" type="clob" length="2147483647" decimal="0" jt="2005" />
+			<column name="SIGLA" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="TARJETAPROXIMIDAD" type="boolean" length="1" decimal="0" jt="16" mandatory="y" />
+			<column name="TARJETASITIO" type="boolean" length="1" decimal="0" jt="16" mandatory="y" />
+			<column name="TINCO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="VLANOAM" type="integer" length="10" decimal="0" jt="4" />
+			<column name="VLANTELECOM" type="integer" length="10" decimal="0" jt="4" />
+			<column name="DEFAULTGATEWAY" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="FECHAALTAETHERNET" type="date" length="8" decimal="0" jt="91" />
+			<column name="EPIPE" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="IPPTP" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="MASKPTP" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="MME" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NSERVICIO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="INTERVINIENTE_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="SITIO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_24" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_GOOTTFCTKB7UBK6OM6AADXPXU_INDEX_2" unique="UNIQUE" >
+				<column name="SIGLA" />
+			</index>
+			<index name="FK_IQL4EN9351U6CMB4EM0RFY1YQ_INDEX_2" unique="NORMAL" >
+				<column name="SITIO_ID" />
+			</index>
+			<index name="FK_JR6RHOOPBIG236N8QJWJPW6M0_INDEX_2" unique="NORMAL" >
+				<column name="INTERVINIENTE_ID" />
+			</index>
+			<fk name="FK_JR6RHOOPBIG236N8QJWJPW6M0" to_schema="PUBLIC" to_table="INTERVINIENTE" delete_action="restrict" update_action="restrict" >
+				<fk_column name="INTERVINIENTE_ID" pk="ID" />
+			</fk>
+			<fk name="FK_IQL4EN9351U6CMB4EM0RFY1YQ" to_schema="PUBLIC" to_table="SITIO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="SITIO_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="NODO_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="TIPO_NODO" type="varchar" length="31" decimal="0" jt="12" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="EPLFLUJODABT" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="ACCESO" type="clob" length="2147483647" decimal="0" jt="2005" />
+			<column name="ACCESOTORMENTA" type="boolean" length="1" decimal="0" jt="16" />
+			<column name="ALIMENTACION" type="integer" length="10" decimal="0" jt="4" />
+			<column name="FECHAALTA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="FECHAINSTALACION" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="GWOAM" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="GWTELECOM" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="IPGRANDMASTER" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="IPOAM" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="IPSECONDARYMASTER" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="IPTELECOM" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="LLAVEEXTERIORALCATEL" type="boolean" length="1" decimal="0" jt="16" />
+			<column name="LLAVEEXTERIORERICSSON" type="boolean" length="1" decimal="0" jt="16" />
+			<column name="LLAVEMOVISTAR" type="boolean" length="1" decimal="0" jt="16" />
+			<column name="LLAVESITIO" type="boolean" length="1" decimal="0" jt="16" />
+			<column name="LLAVEUNIFICADA" type="boolean" length="1" decimal="0" jt="16" />
+			<column name="MASKOAM" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="MASKTELECOM" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NUMCONTADORUTE" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NUMTORREROS" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="OBSERVACIONES" type="clob" length="2147483647" decimal="0" jt="2005" />
+			<column name="SIGLA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="TARJETAPROXIMIDAD" type="boolean" length="1" decimal="0" jt="16" />
+			<column name="TARJETASITIO" type="boolean" length="1" decimal="0" jt="16" />
+			<column name="TINCO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="VLANOAM" type="integer" length="10" decimal="0" jt="4" />
+			<column name="VLANTELECOM" type="integer" length="10" decimal="0" jt="4" />
+			<column name="INTERVINIENTE_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="SITIO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="EPIPE" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="IPPTP" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="MASKPTP" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="MME" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NSERVICIO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DEFAULTGATEWAY" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="FECHAALTAETHERNET" type="date" length="8" decimal="0" jt="91" />
+			<index name="CONSTRAINT_72" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_APX0FAQ4HWMRTWK9BKKSLY0L_INDEX_7" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_APX0FAQ4HWMRTWK9BKKSLY0L" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="PARTITIONTYPEENTITY" >
+			<column name="ID" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="CONFIGURATIONNAME" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NAME" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="TYPENAME" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_6C4" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<fk name="FK_2LA0AJIKMQQ2OYLB9B3TXLAKB" to_schema="PUBLIC" to_table="ATTRIBUTEDTYPEENTITY" delete_action="restrict" update_action="restrict" >
+				<fk_column name="ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="PASSWORDCREDENTIALTYPEENTITY" >
+			<column name="ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="EFFECTIVEDATE" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="EXPIRYDATE" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="TYPENAME" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="PASSWORDENCODEDHASH" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="PASSWORDSALT" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="OWNER_ID" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_81" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="FK_8G31QSMLA607XJWNAMFQN1NF5_INDEX_8" unique="NORMAL" >
+				<column name="OWNER_ID" />
+			</index>
+			<fk name="FK_8G31QSMLA607XJWNAMFQN1NF5" to_schema="PUBLIC" to_table="ATTRIBUTEDTYPEENTITY" delete_action="restrict" update_action="restrict" >
+				<fk_column name="OWNER_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="PERMISSIONTYPEENTITY" >
+			<column name="ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="ASSIGNEE" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="OPERATION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="RESOURCECLASS" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="RESOURCEIDENTIFIER" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_62" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="PERSONAFISICA" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="APELLIDO1" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="APELLIDO2" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NOMBRE1" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="NOMBRE2" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_D2" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="PERFIS_UNI_INDEX_D" unique="UNIQUE" >
+				<column name="APELLIDO1" />
+				<column name="APELLIDO2" />
+				<column name="NOMBRE1" />
+				<column name="NOMBRE2" />
+			</index>
+			<index name="PERFIS_A1" unique="NORMAL" >
+				<column name="APELLIDO1" />
+			</index>
+			<index name="PERFIS_A1N1" unique="NORMAL" >
+				<column name="APELLIDO1" />
+				<column name="NOMBRE1" />
+			</index>
+		</table>
+		<table name="PERSONAFISICA_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="APELLIDO1" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="APELLIDO2" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NOMBRE1" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NOMBRE2" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_12" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_3B9CC0SM72YULH657LUVO5QLB_INDEX_1" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_3B9CC0SM72YULH657LUVO5QLB" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="PERSONAJURIDICA" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NOMBRE" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_7D" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="PERJUR_UNI_INDEX_7" unique="UNIQUE" >
+				<column name="NOMBRE" />
+			</index>
+		</table>
+		<table name="PERSONAJURIDICATIPOSOCIAL" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_65" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_LNA7087ROOSKC28K96FGQ7YXG_INDEX_6" unique="UNIQUE" >
+				<column name="CODIGO" />
+			</index>
+		</table>
+		<table name="PERSONAJURIDICATIPOSOCIAL_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_52" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_HY3P66O4FMAYE5M0KJ46L3QRT_INDEX_5" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_HY3P66O4FMAYE5M0KJ46L3QRT" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="PERSONAJURIDICA_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="NOMBRE" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_A8" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_3BWTUU45G3XC7SMTO5NU6NIQ7_INDEX_A" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_3BWTUU45G3XC7SMTO5NU6NIQ7" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="PREVENTIVO" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="FECHA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="OBSERVACIONESPRIVADO" type="clob" length="2147483647" decimal="0" jt="2005" />
+			<column name="OBSERVACIONESPUBLICO" type="clob" length="2147483647" decimal="0" jt="2005" />
+			<column name="RUTAFOTOS" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="TECNICO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="ALARMAPUERTA_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="ATERRAMIENTOS_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="BALIZAS_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="BATERIAS_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="BURLETEPUERTA_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="CABLEFEEDERJUMPERS_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="CABLEADOYCONECTORETH_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="CABLEADOYCONECTORES_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="CERRADURAPUERTA_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="CONECTORES_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="ENCINTADOS_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="ESTADOFILTRO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="LIMPIEZA_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="NODO_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="RRH_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="SEGURIDAD_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="TMA_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_14" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="FK_18PS1VUWPQ5ONMINM0S8AMR98_INDEX_1" unique="NORMAL" >
+				<column name="CONECTORES_ID" />
+			</index>
+			<index name="FK_1MLO7L1KR6N7SU91H90XT4G80_INDEX_1" unique="NORMAL" >
+				<column name="BURLETEPUERTA_ID" />
+			</index>
+			<index name="FK_2E24CHCM5SVQDVCGCC8VVHN80_INDEX_1" unique="NORMAL" >
+				<column name="ATERRAMIENTOS_ID" />
+			</index>
+			<index name="FK_2JBAUI0METIKCMMQHIDH9VRYU_INDEX_1" unique="NORMAL" >
+				<column name="TMA_ID" />
+			</index>
+			<index name="FK_5MIM4LR10HEIMEXCOMVA6G0X4_INDEX_1" unique="NORMAL" >
+				<column name="NODO_ID" />
+			</index>
+			<index name="FK_7DEU3L46UGCAV4TT4DFEYVU88_INDEX_1" unique="NORMAL" >
+				<column name="ENCINTADOS_ID" />
+			</index>
+			<index name="FK_7VBUK60FMDWC0A3QO8O7GRQ5C_INDEX_1" unique="NORMAL" >
+				<column name="ALARMAPUERTA_ID" />
+			</index>
+			<index name="FK_85G9A9VVE4TLQAR0WS2BKH147_INDEX_1" unique="NORMAL" >
+				<column name="CABLEADOYCONECTORES_ID" />
+			</index>
+			<index name="FK_88WN4BRFLHTNILT73PCQ6SN3N_INDEX_1" unique="NORMAL" >
+				<column name="RRH_ID" />
+			</index>
+			<index name="FK_K50L25EKJVGXD8YKI5W9KXBBH_INDEX_1" unique="NORMAL" >
+				<column name="CERRADURAPUERTA_ID" />
+			</index>
+			<index name="FK_LH9QX7WOK3RROPCPM93W2RBME_INDEX_1" unique="NORMAL" >
+				<column name="ESTADOFILTRO_ID" />
+			</index>
+			<index name="FK_PJY5V5GTHOQYPIVYOUIN724C2_INDEX_1" unique="NORMAL" >
+				<column name="CABLEFEEDERJUMPERS_ID" />
+			</index>
+			<index name="FK_QQ3RLK5OL5NC7NPR6UFO6KHON_INDEX_1" unique="NORMAL" >
+				<column name="CABLEADOYCONECTORETH_ID" />
+			</index>
+			<index name="FK_QW8JX5R92SHR7FUEK7APOW4D5_INDEX_1" unique="NORMAL" >
+				<column name="SEGURIDAD_ID" />
+			</index>
+			<index name="FK_R9WLN3W0NMYPTD5M6BM5N9MA5_INDEX_1" unique="NORMAL" >
+				<column name="BALIZAS_ID" />
+			</index>
+			<index name="FK_ROOQ72FAKF4I6K57F62148T4V_INDEX_1" unique="NORMAL" >
+				<column name="BATERIAS_ID" />
+			</index>
+			<index name="FK_T4W4GYXMSVBVI92N7DXDH6KG6_INDEX_1" unique="NORMAL" >
+				<column name="LIMPIEZA_ID" />
+			</index>
+			<fk name="FK_18PS1VUWPQ5ONMINM0S8AMR98" to_schema="PUBLIC" to_table="ESTADO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="CONECTORES_ID" pk="ID" />
+			</fk>
+			<fk name="FK_1MLO7L1KR6N7SU91H90XT4G80" to_schema="PUBLIC" to_table="ESTADO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="BURLETEPUERTA_ID" pk="ID" />
+			</fk>
+			<fk name="FK_2E24CHCM5SVQDVCGCC8VVHN80" to_schema="PUBLIC" to_table="ESTADO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="ATERRAMIENTOS_ID" pk="ID" />
+			</fk>
+			<fk name="FK_2JBAUI0METIKCMMQHIDH9VRYU" to_schema="PUBLIC" to_table="ESTADO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="TMA_ID" pk="ID" />
+			</fk>
+			<fk name="FK_7DEU3L46UGCAV4TT4DFEYVU88" to_schema="PUBLIC" to_table="ESTADO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="ENCINTADOS_ID" pk="ID" />
+			</fk>
+			<fk name="FK_7VBUK60FMDWC0A3QO8O7GRQ5C" to_schema="PUBLIC" to_table="ESTADO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="ALARMAPUERTA_ID" pk="ID" />
+			</fk>
+			<fk name="FK_85G9A9VVE4TLQAR0WS2BKH147" to_schema="PUBLIC" to_table="ESTADO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="CABLEADOYCONECTORES_ID" pk="ID" />
+			</fk>
+			<fk name="FK_88WN4BRFLHTNILT73PCQ6SN3N" to_schema="PUBLIC" to_table="ESTADO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="RRH_ID" pk="ID" />
+			</fk>
+			<fk name="FK_K50L25EKJVGXD8YKI5W9KXBBH" to_schema="PUBLIC" to_table="ESTADO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="CERRADURAPUERTA_ID" pk="ID" />
+			</fk>
+			<fk name="FK_LH9QX7WOK3RROPCPM93W2RBME" to_schema="PUBLIC" to_table="ESTADO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="ESTADOFILTRO_ID" pk="ID" />
+			</fk>
+			<fk name="FK_PJY5V5GTHOQYPIVYOUIN724C2" to_schema="PUBLIC" to_table="ESTADO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="CABLEFEEDERJUMPERS_ID" pk="ID" />
+			</fk>
+			<fk name="FK_QQ3RLK5OL5NC7NPR6UFO6KHON" to_schema="PUBLIC" to_table="ESTADO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="CABLEADOYCONECTORETH_ID" pk="ID" />
+			</fk>
+			<fk name="FK_QW8JX5R92SHR7FUEK7APOW4D5" to_schema="PUBLIC" to_table="ESTADO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="SEGURIDAD_ID" pk="ID" />
+			</fk>
+			<fk name="FK_R9WLN3W0NMYPTD5M6BM5N9MA5" to_schema="PUBLIC" to_table="ESTADO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="BALIZAS_ID" pk="ID" />
+			</fk>
+			<fk name="FK_ROOQ72FAKF4I6K57F62148T4V" to_schema="PUBLIC" to_table="ESTADO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="BATERIAS_ID" pk="ID" />
+			</fk>
+			<fk name="FK_T4W4GYXMSVBVI92N7DXDH6KG6" to_schema="PUBLIC" to_table="ESTADO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="LIMPIEZA_ID" pk="ID" />
+			</fk>
+			<fk name="FK_5MIM4LR10HEIMEXCOMVA6G0X4" to_schema="PUBLIC" to_table="NODO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="NODO_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="PREVENTIVO_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="FECHA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="OBSERVACIONESPRIVADO" type="clob" length="2147483647" decimal="0" jt="2005" />
+			<column name="OBSERVACIONESPUBLICO" type="clob" length="2147483647" decimal="0" jt="2005" />
+			<column name="RUTAFOTOS" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="TECNICO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="ALARMAPUERTA_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="ATERRAMIENTOS_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="BALIZAS_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="BATERIAS_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="BURLETEPUERTA_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="CABLEFEEDERJUMPERS_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="CABLEADOYCONECTORETH_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="CABLEADOYCONECTORES_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="CERRADURAPUERTA_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="CONECTORES_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="ENCINTADOS_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="ESTADOFILTRO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="LIMPIEZA_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="NODO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="RRH_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="SEGURIDAD_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="TMA_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_DA" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_HTTDE0HDC0V1UCPQAEMB48G3Y_INDEX_D" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_HTTDE0HDC0V1UCPQAEMB48G3Y" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="PREVENTIVO_TORRERO" >
+			<column name="PREVENTIVO_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="TORREROS_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<index name="CONSTRAINT_D9" unique="PRIMARY_KEY" >
+				<column name="PREVENTIVO_ID" />
+				<column name="TORREROS_ID" />
+			</index>
+			<index name="FK_OJ4FLOSQPYHJRFL9P3BAGR4CX_INDEX_D" unique="NORMAL" >
+				<column name="TORREROS_ID" />
+			</index>
+			<fk name="FK_G9KVWBNUSVT9SWEG5P4F0BER" to_schema="PUBLIC" to_table="PREVENTIVO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="PREVENTIVO_ID" pk="ID" />
+			</fk>
+			<fk name="FK_OJ4FLOSQPYHJRFL9P3BAGR4CX" to_schema="PUBLIC" to_table="TORRERO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="TORREROS_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="PREVENTIVO_TORRERO_AUD" >
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="PREVENTIVO_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="TORREROS_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<index name="CONSTRAINT_F5" unique="PRIMARY_KEY" >
+				<column name="REV" />
+				<column name="PREVENTIVO_ID" />
+				<column name="TORREROS_ID" />
+			</index>
+			<fk name="FK_7C4P0OS94E6M2IQLM34LDQ46S" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="REGISTRO" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_58" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_O7VATF52M675DKLMSHET734W0_INDEX_5" unique="UNIQUE" >
+				<column name="CODIGO" />
+			</index>
+		</table>
+		<table name="REGISTRO_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_3A" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_FKELTG8FDGDJ03NSK48B9IXOO_INDEX_3" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_FKELTG8FDGDJ03NSK48B9IXOO" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="RELATIONSHIPIDENTITYTYPEENTITY" >
+			<column name="IDENTIFIER" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="DESCRIPTOR" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="IDENTITYTYPE_ID" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="OWNER_ID" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_854" unique="PRIMARY_KEY" >
+				<column name="IDENTIFIER" />
+			</index>
+			<index name="FK_DI27WG0GRLX8BMLYR4JXFFW49_INDEX_8" unique="NORMAL" >
+				<column name="IDENTITYTYPE_ID" />
+			</index>
+			<index name="FK_RLK0QY8E3G13UD2RQONJMD9RT_INDEX_8" unique="NORMAL" >
+				<column name="OWNER_ID" />
+			</index>
+			<fk name="FK_DI27WG0GRLX8BMLYR4JXFFW49" to_schema="PUBLIC" to_table="IDENTITYTYPEENTITY" delete_action="restrict" update_action="restrict" >
+				<fk_column name="IDENTITYTYPE_ID" pk="ID" />
+			</fk>
+			<fk name="FK_RLK0QY8E3G13UD2RQONJMD9RT" to_schema="PUBLIC" to_table="RELATIONSHIPTYPEENTITY" delete_action="restrict" update_action="restrict" >
+				<fk_column name="OWNER_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="RELATIONSHIPTYPEENTITY" >
+			<column name="ID" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="TYPENAME" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_E4" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<fk name="FK_AY6H7H4E7T0MY7P7JSP6OBVQS" to_schema="PUBLIC" to_table="ATTRIBUTEDTYPEENTITY" delete_action="restrict" update_action="restrict" >
+				<fk_column name="ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="RESOURCEPERMISSION" >
+			<column name="ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="ASSIGNEE" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="OPERATION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="RESOURCECLASS" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="RESOURCEIDENTIFIER" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_195" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="REVCHANGES" >
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="ENTITYNAME" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="FK_T69KEA3HASJ6UC6DDN5CK5R9Y_INDEX_7" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_T69KEA3HASJ6UC6DDN5CK5R9Y" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="ROLETYPEENTITY" >
+			<column name="ID" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="NAME" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_44" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<fk name="FK_AWLH3UJRQY6RQSUD7P204O3D4" to_schema="PUBLIC" to_table="IDENTITYTYPEENTITY" delete_action="restrict" update_action="restrict" >
+				<fk_column name="ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="SECCION" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="REGISTRO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_A0" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_P59RDOS26PK2NAG37PXCMKBKK_INDEX_A" unique="UNIQUE" >
+				<column name="CODIGO" />
+				<column name="REGISTRO_ID" />
+			</index>
+			<index name="FK_TLYORFB977NRXISWNJGICF77F_INDEX_A" unique="NORMAL" >
+				<column name="REGISTRO_ID" />
+			</index>
+			<fk name="FK_TLYORFB977NRXISWNJGICF77F" to_schema="PUBLIC" to_table="REGISTRO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REGISTRO_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="SECCION_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="REGISTRO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_BC" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_PY4W2KDU9K3X6F30A77M4IC1U_INDEX_B" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_PY4W2KDU9K3X6F30A77M4IC1U" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="SEDE" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="ANIO" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_26" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_85DUDFQMRA75H2CQPCNVGU6TM_INDEX_2" unique="UNIQUE" >
+				<column name="CODIGO" />
+			</index>
+		</table>
+		<table name="SEDE_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="ANIO" type="integer" length="10" decimal="0" jt="4" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_68" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_1PPDQDYO7E95P1N96ARVT5WVN_INDEX_6" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_1PPDQDYO7E95P1N96ARVT5WVN" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="SITIO" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="ALTURAESTRUCTURA" type="double" length="17" decimal="0" jt="8" />
+			<column name="DIRECCION" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="FECHA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="LATITUD" type="double" length="17" decimal="0" jt="8" />
+			<column name="LOCALIDAD" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="LONGITUD" type="double" length="17" decimal="0" jt="8" />
+			<column name="NOMBRE" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="OBSERVACIONES" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="PERTENECEA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="SIGLA" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="ESTRUCTURA_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="SEDE_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="ZONA_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_4B" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="FK_22G3M8DOEBTY8YPCKCME6ROGR_INDEX_4" unique="NORMAL" >
+				<column name="ESTRUCTURA_ID" />
+			</index>
+			<index name="FK_6LFQMGDTRC91PECJHC0O9QIFE_INDEX_4" unique="NORMAL" >
+				<column name="SEDE_ID" />
+			</index>
+			<index name="FK_HM2NXRI3NQ3G7FELMWGP8DW26_INDEX_4" unique="NORMAL" >
+				<column name="ZONA_ID" />
+			</index>
+			<fk name="FK_22G3M8DOEBTY8YPCKCME6ROGR" to_schema="PUBLIC" to_table="ESTRUCTURA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="ESTRUCTURA_ID" pk="ID" />
+			</fk>
+			<fk name="FK_6LFQMGDTRC91PECJHC0O9QIFE" to_schema="PUBLIC" to_table="SEDE" delete_action="restrict" update_action="restrict" >
+				<fk_column name="SEDE_ID" pk="ID" />
+			</fk>
+			<fk name="FK_HM2NXRI3NQ3G7FELMWGP8DW26" to_schema="PUBLIC" to_table="ZONA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="ZONA_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="SITIO_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="ALTURAESTRUCTURA" type="double" length="17" decimal="0" jt="8" />
+			<column name="DIRECCION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="FECHA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="LATITUD" type="double" length="17" decimal="0" jt="8" />
+			<column name="LOCALIDAD" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="LONGITUD" type="double" length="17" decimal="0" jt="8" />
+			<column name="NOMBRE" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="OBSERVACIONES" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="PERTENECEA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="SIGLA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="ESTRUCTURA_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="SEDE_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="ZONA_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_8E" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_SJ96LR054783XF4YJIUOSFLXD_INDEX_8" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_SJ96LR054783XF4YJIUOSFLXD" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="SUJETOAERONAVE" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="OBSERVACIONES" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="SUJETO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="AERONAVE_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<index name="CONSTRAINT_E3" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="FK_38PXEFLSHWC8K14TW923EBIMV_INDEX_E" unique="NORMAL" >
+				<column name="AERONAVE_ID" />
+			</index>
+			<fk name="FK_38PXEFLSHWC8K14TW923EBIMV" to_schema="PUBLIC" to_table="AERONAVE" delete_action="restrict" update_action="restrict" >
+				<fk_column name="AERONAVE_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="SUJETOAERONAVE_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="OBSERVACIONES" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="SUJETO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="AERONAVE_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_69" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_IOSTE8PCV02D4J7WK5Y6WTCQ0_INDEX_6" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_IOSTE8PCV02D4J7WK5Y6WTCQ0" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="SUJETOAUTOMOTOR" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="OBSERVACIONES" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="SUJETO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="INEX" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="AUTOMOTOR_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_6D" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="FK_B0U9VB1XC4BA3EUDDOFS41CQ9_INDEX_6" unique="NORMAL" >
+				<column name="AUTOMOTOR_ID" />
+			</index>
+			<fk name="FK_B0U9VB1XC4BA3EUDDOFS41CQ9" to_schema="PUBLIC" to_table="AUTOMOTOR" delete_action="restrict" update_action="restrict" >
+				<fk_column name="AUTOMOTOR_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="SUJETOAUTOMOTOR_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="OBSERVACIONES" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="SUJETO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="INEX" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="AUTOMOTOR_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_28" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_178UHKIHBMHWAH6RQB6M0K5U8_INDEX_2" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_178UHKIHBMHWAH6RQB6M0K5U8" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="SUJETOINMUEBLE" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="OBSERVACIONES" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="SUJETO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="AREA" type="double" length="17" decimal="0" jt="8" />
+			<column name="COTA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CUOTAPARTE" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DOMICILIO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="EXTENSION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="INEX" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NATURALEZAJURIDICA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NUMEROCALLE" type="smallint" length="5" decimal="0" jt="5" mandatory="y" />
+			<column name="SECCIONJUDICIAL" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CALLE_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="INMUEBLE_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="INTERVINIENTE_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_F6" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="DEP_PAD_INDEX_F" unique="UNIQUE" >
+				<column name="INMUEBLE_ID" />
+			</index>
+			<index name="FK_AB3L8AH2IVXDR883XIYXPJUU2_INDEX_F" unique="NORMAL" >
+				<column name="INTERVINIENTE_ID" />
+			</index>
+			<index name="FK_GYMQ582M8XY7J9KCX6FBGW8JM_INDEX_F" unique="NORMAL" >
+				<column name="CALLE_ID" />
+			</index>
+			<fk name="FK_GYMQ582M8XY7J9KCX6FBGW8JM" to_schema="PUBLIC" to_table="CALLE" delete_action="restrict" update_action="restrict" >
+				<fk_column name="CALLE_ID" pk="ID" />
+			</fk>
+			<fk name="FK_EGNN2VNNNGN3YKYN4R7DEW3OA" to_schema="PUBLIC" to_table="INMUEBLE" delete_action="restrict" update_action="restrict" >
+				<fk_column name="INMUEBLE_ID" pk="ID" />
+			</fk>
+			<fk name="FK_AB3L8AH2IVXDR883XIYXPJUU2" to_schema="PUBLIC" to_table="INTERVINIENTE" delete_action="restrict" update_action="restrict" >
+				<fk_column name="INTERVINIENTE_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="SUJETOINMUEBLE_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="OBSERVACIONES" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="SUJETO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="AREA" type="double" length="17" decimal="0" jt="8" />
+			<column name="COTA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CUOTAPARTE" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DOMICILIO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="EXTENSION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="INEX" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NATURALEZAJURIDICA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NUMEROCALLE" type="smallint" length="5" decimal="0" jt="5" />
+			<column name="SECCIONJUDICIAL" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CALLE_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="INMUEBLE_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="INTERVINIENTE_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_141" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_Q6NBIX4I23CVGWMUANV4LM7J0_INDEX_1" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_Q6NBIX4I23CVGWMUANV4LM7J0" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="SUJETOLIBRO" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="OBSERVACIONES" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="SUJETO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="FECHA" type="date" length="8" decimal="0" jt="91" />
+			<column name="FICHAS" type="integer" length="10" decimal="0" jt="4" />
+			<column name="FOLIO" type="integer" length="10" decimal="0" jt="4" />
+			<column name="NUMEROINSCRIPCION" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="TOMO" type="integer" length="10" decimal="0" jt="4" />
+			<column name="USUARIO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NOMBRELIBRO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="TIPOLIBRO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_24A" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="FK_5TQB4I4883TE05WJXTV8C1HKS_INDEX_2" unique="NORMAL" >
+				<column name="NOMBRELIBRO_ID" />
+			</index>
+			<index name="FK_AI89EMUVSA5SXNFOTXYTRRAGP_INDEX_2" unique="NORMAL" >
+				<column name="TIPOLIBRO_ID" />
+			</index>
+			<fk name="FK_5TQB4I4883TE05WJXTV8C1HKS" to_schema="PUBLIC" to_table="LIBRORUBRICA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="NOMBRELIBRO_ID" pk="ID" />
+			</fk>
+			<fk name="FK_AI89EMUVSA5SXNFOTXYTRRAGP" to_schema="PUBLIC" to_table="LIBRORUBRICATIPO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="TIPOLIBRO_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="SUJETOLIBRO_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="OBSERVACIONES" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="SUJETO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="FECHA" type="date" length="8" decimal="0" jt="91" />
+			<column name="FICHAS" type="integer" length="10" decimal="0" jt="4" />
+			<column name="FOLIO" type="integer" length="10" decimal="0" jt="4" />
+			<column name="NUMEROINSCRIPCION" type="integer" length="10" decimal="0" jt="4" />
+			<column name="TOMO" type="integer" length="10" decimal="0" jt="4" />
+			<column name="USUARIO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NOMBRELIBRO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="TIPOLIBRO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_3A9" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_BQES0SXVLVVJ5F4OURV0I64Y7_INDEX_3" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_BQES0SXVLVVJ5F4OURV0I64Y7" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="SUJETOPERSONAFISICA" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="OBSERVACIONES" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="SUJETO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="CEDULAIDENTIDAD" type="varchar" length="9" decimal="0" jt="12" />
+			<column name="CLASE" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CONYUGE" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DOMICILIO" type="boolean" length="1" decimal="0" jt="16" mandatory="y" />
+			<column name="ESTADOCIVIL" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="FECHA" type="date" length="8" decimal="0" jt="91" />
+			<column name="FECHATIPO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="INEX" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NACIONALIDAD" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NUMEROESCRIBANO" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="NUPCIAS" type="smallint" length="5" decimal="0" jt="5" mandatory="y" />
+			<column name="PARTE" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="PREFESION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="INTERVINIENTE_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="PERSONAFISICA_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_123" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="FK_L47823EN496TV45SOJJUF6VCK_INDEX_1" unique="NORMAL" >
+				<column name="PERSONAFISICA_ID" />
+			</index>
+			<index name="FK_TLHSI40TY1GY02RRG8128DWCV_INDEX_1" unique="NORMAL" >
+				<column name="INTERVINIENTE_ID" />
+			</index>
+			<fk name="FK_TLHSI40TY1GY02RRG8128DWCV" to_schema="PUBLIC" to_table="INTERVINIENTE" delete_action="restrict" update_action="restrict" >
+				<fk_column name="INTERVINIENTE_ID" pk="ID" />
+			</fk>
+			<fk name="FK_L47823EN496TV45SOJJUF6VCK" to_schema="PUBLIC" to_table="PERSONAFISICA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="PERSONAFISICA_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="SUJETOPERSONAFISICA_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="OBSERVACIONES" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="SUJETO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CEDULAIDENTIDAD" type="varchar" length="9" decimal="0" jt="12" />
+			<column name="CLASE" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CONYUGE" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DOMICILIO" type="boolean" length="1" decimal="0" jt="16" />
+			<column name="ESTADOCIVIL" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="FECHA" type="date" length="8" decimal="0" jt="91" />
+			<column name="FECHATIPO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="INEX" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NACIONALIDAD" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NUMEROESCRIBANO" type="integer" length="10" decimal="0" jt="4" />
+			<column name="NUPCIAS" type="smallint" length="5" decimal="0" jt="5" />
+			<column name="PARTE" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="PREFESION" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="INTERVINIENTE_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="PERSONAFISICA_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_2C" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_IOX3STPPEIG8NG6T6L5GO8H2D_INDEX_2" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_IOX3STPPEIG8NG6T6L5GO8H2D" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="SUJETOPERSONAJURIDICA" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="OBSERVACIONES" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="SUJETO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="BPS" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHA" type="date" length="8" decimal="0" jt="91" />
+			<column name="NATURALEZAJURIDICA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="PARTE" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="RUT" type="varchar" length="12" decimal="0" jt="12" />
+			<column name="SEDE" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="TIPO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DOMICILIO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="INTERVINIENTE_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="PERSONAJURIDICA_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="TIPOSOCIAL_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_88" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="PERJUR_RUT_INDEX_8" unique="UNIQUE" >
+				<column name="RUT" />
+			</index>
+			<index name="FK_75X0LNU5T5IR2EYGXUNFPLMJD_INDEX_8" unique="NORMAL" >
+				<column name="TIPOSOCIAL_ID" />
+			</index>
+			<index name="FK_DTCEE4AOQQXOQ2XJ9XXQARU81_INDEX_8" unique="NORMAL" >
+				<column name="PERSONAJURIDICA_ID" />
+			</index>
+			<index name="FK_NKQBJYQGQMCRBSJBCN0E2S0BC_INDEX_8" unique="NORMAL" >
+				<column name="INTERVINIENTE_ID" />
+			</index>
+			<index name="FK_OVWMTDPTD2W4R4EUQR83OPJTS_INDEX_8" unique="NORMAL" >
+				<column name="DOMICILIO_ID" />
+			</index>
+			<fk name="FK_OVWMTDPTD2W4R4EUQR83OPJTS" to_schema="PUBLIC" to_table="DEPARTAMENTO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="DOMICILIO_ID" pk="ID" />
+			</fk>
+			<fk name="FK_NKQBJYQGQMCRBSJBCN0E2S0BC" to_schema="PUBLIC" to_table="INTERVINIENTE" delete_action="restrict" update_action="restrict" >
+				<fk_column name="INTERVINIENTE_ID" pk="ID" />
+			</fk>
+			<fk name="FK_DTCEE4AOQQXOQ2XJ9XXQARU81" to_schema="PUBLIC" to_table="PERSONAJURIDICA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="PERSONAJURIDICA_ID" pk="ID" />
+			</fk>
+			<fk name="FK_75X0LNU5T5IR2EYGXUNFPLMJD" to_schema="PUBLIC" to_table="PERSONAJURIDICATIPOSOCIAL" delete_action="restrict" update_action="restrict" >
+				<fk_column name="TIPOSOCIAL_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="SUJETOPERSONAJURIDICA_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="OBSERVACIONES" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="SUJETO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="BPS" type="integer" length="10" decimal="0" jt="4" />
+			<column name="FECHA" type="date" length="8" decimal="0" jt="91" />
+			<column name="NATURALEZAJURIDICA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="PARTE" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="RUT" type="varchar" length="12" decimal="0" jt="12" />
+			<column name="SEDE" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="TIPO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DOMICILIO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="INTERVINIENTE_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="PERSONAJURIDICA_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="TIPOSOCIAL_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_82" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_LVVNHC4IQ9GNTIG4HXCVK1KB6_INDEX_8" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_LVVNHC4IQ9GNTIG4HXCVK1KB6" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="TASA" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="FECHAVENCIMIENTO" type="timestamp" length="23" decimal="10" jt="93" mandatory="y" />
+			<column name="MONTO" type="decimal" length="19" decimal="2" jt="3" mandatory="y" />
+			<column name="NOMBRE" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_27" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_RTW5V3MRTNPXX2KP1OFV3IQYD_INDEX_2" unique="UNIQUE" >
+				<column name="CODIGO" />
+				<column name="FECHAVENCIMIENTO" />
+			</index>
+		</table>
+		<table name="TASA_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="FECHAVENCIMIENTO" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MONTO" type="decimal" length="19" decimal="2" jt="3" />
+			<column name="NOMBRE" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_15" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_4JB21W5JNYF2JQYE6VX3XD85B_INDEX_1" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_4JB21W5JNYF2JQYE6VX3XD85B" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="TIPOANTENA" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="MODELO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="OBSERVACIONES" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="TILTELECTRICOFIJO" type="double" length="17" decimal="0" jt="8" />
+			<index name="CONSTRAINT_AC" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_O76O2E8O7U7Y6RG05PGK7A7WP_INDEX_A" unique="UNIQUE" >
+				<column name="MODELO" />
+			</index>
+		</table>
+		<table name="TIPOANTENA_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="MODELO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="OBSERVACIONES" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="TILTELECTRICOFIJO" type="double" length="17" decimal="0" jt="8" />
+			<index name="CONSTRAINT_8E8" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_D5C9BSGL5TU847CS9D9XE9RCL_INDEX_8" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_D5C9BSGL5TU847CS9D9XE9RCL" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="TIPOAUTOMOTOR" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_68A" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_MBKB42Y7LQTJ33HXYANOSPAG6_INDEX_6" unique="UNIQUE" >
+				<column name="CODIGO" />
+			</index>
+		</table>
+		<table name="TIPOAUTOMOTOR_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_7B" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_H1KR9XGCUDYFXP8AM7DS6VVE0_INDEX_7" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_H1KR9XGCUDYFXP8AM7DS6VVE0" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="TIPODOCUMENTO" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_3D1" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_RN6370TKCBE2HITXGDUJ8OA7V_INDEX_3" unique="UNIQUE" >
+				<column name="CODIGO" />
+			</index>
+		</table>
+		<table name="TIPODOCUMENTO_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="CODIGO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="DESCRIPCION" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_AB" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_5NGCY5Q3L3VW5S654QB7VWQF5_INDEX_A" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_5NGCY5Q3L3VW5S654QB7VWQF5" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="TIPOFEEDER" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="ATENUACION" type="double" length="17" decimal="0" jt="8" />
+			<column name="MODELO" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_B4" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_QHEI6IX7O5D16C7EQ65O9MKMV_INDEX_B" unique="UNIQUE" >
+				<column name="MODELO" />
+			</index>
+		</table>
+		<table name="TIPOFEEDER_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="ATENUACION" type="double" length="17" decimal="0" jt="8" />
+			<column name="MODELO" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_C4" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_7F6HVHG036J2CTVM83K81NPDR_INDEX_C" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_7F6HVHG036J2CTVM83K81NPDR" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="TORRERO" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NOMBRE" type="varchar" length="100" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_E7" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_1BCSI8DC0HJ1615FCRCH3BQLP_INDEX_E" unique="UNIQUE" >
+				<column name="NOMBRE" />
+			</index>
+		</table>
+		<table name="TORRERO_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="NOMBRE" type="varchar" length="100" decimal="0" jt="12" />
+			<index name="CONSTRAINT_D4" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_M25A4U4RX6YK2GG0G1J1XNUQ8_INDEX_D" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_M25A4U4RX6YK2GG0G1J1XNUQ8" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="ULTIMOPREVENTIVO" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NODO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<column name="PREVENTIVO_ID" type="integer" length="10" decimal="0" jt="4" />
+			<index name="CONSTRAINT_9C" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="FK_4TLLG0C3PY06TDY2NVADBC5UR_INDEX_9" unique="NORMAL" >
+				<column name="NODO_ID" />
+			</index>
+			<index name="FK_O7KDMQ97QJJ16H2O941KJ9EJ2_INDEX_9" unique="NORMAL" >
+				<column name="PREVENTIVO_ID" />
+			</index>
+			<fk name="FK_4TLLG0C3PY06TDY2NVADBC5UR" to_schema="PUBLIC" to_table="NODO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="NODO_ID" pk="ID" />
+			</fk>
+			<fk name="FK_O7KDMQ97QJJ16H2O941KJ9EJ2" to_schema="PUBLIC" to_table="PREVENTIVO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="PREVENTIVO_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="USUARIOREGISTRO" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="USERID" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_57" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="USUARIOREGISTRO_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="USERID" type="varchar" length="255" decimal="0" jt="12" />
+			<index name="CONSTRAINT_18" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_114R3JLBVR28N9SAA6N1PO7DO_INDEX_1" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_114R3JLBVR28N9SAA6N1PO7DO" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="USUARIOREGISTRO_REGISTRO" >
+			<column name="USUARIOREGISTRO_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REGISTROS_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<index name="FK_GIHEPRPIK5T7BFPDQ392KM2HF_INDEX_8" unique="NORMAL" >
+				<column name="USUARIOREGISTRO_ID" />
+			</index>
+			<index name="FK_TNCW7XQJ3EV3F7G2BQ5BPTIS7_INDEX_8" unique="NORMAL" >
+				<column name="REGISTROS_ID" />
+			</index>
+			<fk name="FK_TNCW7XQJ3EV3F7G2BQ5BPTIS7" to_schema="PUBLIC" to_table="REGISTRO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REGISTROS_ID" pk="ID" />
+			</fk>
+			<fk name="FK_GIHEPRPIK5T7BFPDQ392KM2HF" to_schema="PUBLIC" to_table="USUARIOREGISTRO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="USUARIOREGISTRO_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="USUARIOREGISTRO_REGISTRO_AUD" >
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="USUARIOREGISTRO_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REGISTROS_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<index name="CONSTRAINT_F3" unique="PRIMARY_KEY" >
+				<column name="REV" />
+				<column name="USUARIOREGISTRO_ID" />
+				<column name="REGISTROS_ID" />
+			</index>
+			<fk name="FK_7C3GC656AQYS5UVHA17HJQDQI" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="USUARIOREGISTRO_SEDE" >
+			<column name="USUARIOREGISTRO_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="SEDES_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<index name="FK_DMMGYUMCGETVTE9PLRVJ1DI5B_INDEX_F" unique="NORMAL" >
+				<column name="USUARIOREGISTRO_ID" />
+			</index>
+			<index name="FK_RHMKYAKX54GOY62B7BN5ITMEA_INDEX_F" unique="NORMAL" >
+				<column name="SEDES_ID" />
+			</index>
+			<fk name="FK_RHMKYAKX54GOY62B7BN5ITMEA" to_schema="PUBLIC" to_table="SEDE" delete_action="restrict" update_action="restrict" >
+				<fk_column name="SEDES_ID" pk="ID" />
+			</fk>
+			<fk name="FK_DMMGYUMCGETVTE9PLRVJ1DI5B" to_schema="PUBLIC" to_table="USUARIOREGISTRO" delete_action="restrict" update_action="restrict" >
+				<fk_column name="USUARIOREGISTRO_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="USUARIOREGISTRO_SEDE_AUD" >
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="USUARIOREGISTRO_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="SEDES_ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<index name="CONSTRAINT_6B" unique="PRIMARY_KEY" >
+				<column name="REV" />
+				<column name="USUARIOREGISTRO_ID" />
+				<column name="SEDES_ID" />
+			</index>
+			<fk name="FK_9UAFW8TU01A5YSOGC0TABL7SG" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<table name="ZONA" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="FECHABAJA" type="timestamp" length="23" decimal="10" jt="93" />
+			<column name="MOTIVOBAJA" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="NOMBRE" type="varchar" length="50" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_2A" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_I5L7HFYMOEQ29IRJ15XQ8NNV6_INDEX_2" unique="UNIQUE" >
+				<column name="NOMBRE" />
+			</index>
+		</table>
+		<table name="ZONA_AUD" >
+			<column name="ID" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REV" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="REVTYPE" type="tinyint" length="3" decimal="0" jt="-6" />
+			<column name="NOMBRE" type="varchar" length="50" decimal="0" jt="12" />
+			<index name="CONSTRAINT_61" unique="PRIMARY_KEY" >
+				<column name="ID" />
+				<column name="REV" />
+			</index>
+			<index name="FK_SH4UTDV7B43IQCPCK7XW2NSH_INDEX_6" unique="NORMAL" >
+				<column name="REV" />
+			</index>
+			<fk name="FK_SH4UTDV7B43IQCPCK7XW2NSH" to_schema="PUBLIC" to_table="AUDITORIA" delete_action="restrict" update_action="restrict" >
+				<fk_column name="REV" pk="ID" />
+			</fk>
+		</table>
+		<sequence name="HIBERNATE_SEQUENCE" start="128" />
+	</schema>
+	<connector name="H2" database="H2" driver_class="org.h2.Driver" driver_jar="h2-1.4.192.jar" driver_desc="Server" host="localhost" port="-1" instance="sur" user="sa" />
+	<layout name="Default Layout" id="Layout_3830c905" show_relation="columns" >
+		<comment><![CDATA[Tablas]]></comment>
+		<entity schema="PUBLIC" name="DOCUMENTO" color="bfbff5" x="300" y="105" />
+		<entity schema="PUBLIC" name="USUARIOREGISTRO_SEDE" color="bfd4f5" x="765" y="90" />
+		<entity schema="PUBLIC" name="TASA" color="c8f5bf" x="45" y="255" />
+		<entity schema="PUBLIC" name="MODELOAUTOMOTOR" color="bfbff5" x="45" y="1710" />
+		<entity schema="PUBLIC" name="MARCAAUTOMOTOR" color="bfbff5" x="285" y="1890" />
+		<entity schema="PUBLIC" name="COMBUSTIBLE" color="c8f5bf" x="270" y="1680" />
+		<entity schema="PUBLIC" name="AERONAVE_MOTORAERONAVE" color="bcd5f1" x="1515" y="1620" />
+		<entity schema="PUBLIC" name="INSCRIPCION" color="c8f5bf" x="540" y="660" />
+		<entity schema="PUBLIC" name="SUJETOAUTOMOTOR" color="c8f5bf" x="45" y="1035" />
+		<entity schema="PUBLIC" name="INSCRIPCION_SUJETO" color="c8f5bf" x="525" y="915" />
+		<entity schema="PUBLIC" name="INMUEBLE" color="bfd4f5" x="495" y="1455" />
+		<entity schema="PUBLIC" name="SUJETOINMUEBLE" color="bfd4f5" x="510" y="1035" />
+		<entity schema="PUBLIC" name="MOTORAERONAVE" color="f5ddbf" x="1620" y="1350" />
+		<entity schema="PUBLIC" name="SUJETOAERONAVE" color="f5ddbf" x="1470" y="1035" />
+		<entity schema="PUBLIC" name="LIBRORUBRICA" color="f5ddbf" x="1815" y="1380" />
+		<entity schema="PUBLIC" name="LIBRORUBRICATIPO" color="f5ddbf" x="1770" y="1575" />
+		<entity schema="PUBLIC" name="SUJETOLIBRO" color="f5ddbf" x="1770" y="1035" />
+		<entity schema="PUBLIC" name="PERSONAFISICA" color="c8f5bf" x="1020" y="1545" />
+		<entity schema="PUBLIC" name="SUJETOPERSONAFISICA" color="c8f5bf" x="1005" y="1035" />
+		<entity schema="PUBLIC" name="PERSONAJURIDICA" color="f5ddbf" x="1305" y="1455" />
+		<entity schema="PUBLIC" name="PERSONAJURIDICATIPOSOCIAL" color="bfbff5" x="1215" y="1605" />
+		<entity schema="PUBLIC" name="TIPOAUTOMOTOR" color="bfbff5" x="60" y="1395" />
+		<entity schema="PUBLIC" name="AUTOMOTOR" color="c8f5bf" x="225" y="1275" />
+		<entity schema="PUBLIC" name="CALLE" color="bfd4f5" x="765" y="1230" />
+		<entity schema="PUBLIC" name="SUJETOPERSONAJURIDICA" color="f5ddbf" x="1245" y="1035" />
+		<entity schema="PUBLIC" name="ESCRIBANO" color="bfbff5" x="255" y="615" />
+		<entity schema="PUBLIC" name="TIPODOCUMENTO" color="bfbff5" x="45" y="105" />
+		<entity schema="PUBLIC" name="USUARIOREGISTRO" color="c8f5bf" x="1050" y="75" />
+		<entity schema="PUBLIC" name="MOVIMIENTO" color="c8f5bf" x="300" y="825" />
+		<entity schema="PUBLIC" name="ACTO" color="c8f5bf" x="780" y="750" />
+		<entity schema="PUBLIC" name="MONTO" color="d2bff5" x="645" y="480" />
+		<entity schema="PUBLIC" name="INSCRIPCION_MONTO" color="d2bff5" x="840" y="630" />
+		<entity schema="PUBLIC" name="USUARIOREGISTRO_REGISTRO" color="bfbff5" x="750" y="210" />
+		<entity schema="PUBLIC" name="AERONAVE" color="f5ddbf" x="1470" y="1275" />
+		<entity schema="PUBLIC" name="INMUEBLENIVEL" color="bfd4f5" x="735" y="1545" />
+		<entity schema="PUBLIC" name="LOCALIDAD" color="bfd4f5" x="480" y="1755" />
+		<entity schema="PUBLIC" name="REGISTRO" color="bfd4f5" x="1035" y="330" />
+		<entity schema="PUBLIC" name="SECCION" color="bfd4f5" x="1050" y="555" />
+		<entity schema="PUBLIC" name="MONEDA" color="d2bff5" x="870" y="480" />
+		<entity schema="PUBLIC" name="SEDE" color="d2bff5" x="555" y="90" />
+		<entity schema="PUBLIC" name="ESTADO" color="bfbff5" x="555" y="270" />
+		<entity schema="PUBLIC" name="EXONERACION" color="bfbff5" x="60" y="450" />
+		<entity schema="PUBLIC" name="EMISOR" color="bfbff5" x="105" y="615" />
+		<entity schema="PUBLIC" name="DEPARTAMENTO" color="c8f5bf" x="705" y="1755" />
+		<entity schema="PUBLIC" name="INTERVINIENTE" color="bfd4f5" x="1080" y="795" />
+		<group name="Automotores" color="c4e0f9" >
+			<entity schema="PUBLIC" name="AUTOMOTOR" />
+			<entity schema="PUBLIC" name="COMBUSTIBLE" />
+			<entity schema="PUBLIC" name="MARCAAUTOMOTOR" />
+			<entity schema="PUBLIC" name="MODELOAUTOMOTOR" />
+			<entity schema="PUBLIC" name="SUJETOAUTOMOTOR" />
+			<entity schema="PUBLIC" name="TIPOAUTOMOTOR" />
+		</group>
+		<group name="Inmuebles" color="ffffcc" >
+			<entity schema="PUBLIC" name="CALLE" />
+			<entity schema="PUBLIC" name="INMUEBLE" />
+			<entity schema="PUBLIC" name="INMUEBLENIVEL" />
+			<entity schema="PUBLIC" name="SUJETOINMUEBLE" />
+		</group>
+		<group name="Aeronave" color="c4e0f9" >
+			<entity schema="PUBLIC" name="AERONAVE" />
+			<entity schema="PUBLIC" name="AERONAVE_MOTORAERONAVE" />
+			<entity schema="PUBLIC" name="MOTORAERONAVE" />
+			<entity schema="PUBLIC" name="SUJETOAERONAVE" />
+		</group>
+		<group name="Libro" color="ccffcc" >
+			<entity schema="PUBLIC" name="LIBRORUBRICA" />
+			<entity schema="PUBLIC" name="LIBRORUBRICATIPO" />
+			<entity schema="PUBLIC" name="SUJETOLIBRO" />
+		</group>
+		<group name="Persona Física" color="ffcccc" >
+			<entity schema="PUBLIC" name="PERSONAFISICA" />
+			<entity schema="PUBLIC" name="SUJETOPERSONAFISICA" />
+		</group>
+		<group name="Persona Jurídica" color="ccccff" >
+			<entity schema="PUBLIC" name="PERSONAJURIDICA" />
+			<entity schema="PUBLIC" name="PERSONAJURIDICATIPOSOCIAL" />
+			<entity schema="PUBLIC" name="SUJETOPERSONAJURIDICA" />
+		</group>
+	</layout>
+	<layout name="Sample Layout with Groups" id="Layout_308e870f" show_relation="columns" >
+		<entity schema="PUBLIC" name="ACCOUNTTYPEENTITY" color="bfd4f5" x="1320" y="2625" />
+		<entity schema="PUBLIC" name="ACTO" color="d2bff5" x="855" y="1485" />
+		<entity schema="PUBLIC" name="AERONAVE" color="c8f5bf" x="1710" y="2430" />
+		<entity schema="PUBLIC" name="AUDITORIA" color="bfd4f5" x="1995" y="1065" />
+		<entity schema="PUBLIC" name="AUTOMOTOR" color="bfbff5" x="1050" y="1290" />
+		<entity schema="PUBLIC" name="CALLE" color="f5ddbf" x="1530" y="2010" />
+		<entity schema="PUBLIC" name="COMBUSTIBLE" color="bfbff5" x="1260" y="1650" />
+		<entity schema="PUBLIC" name="CONFIGURACION" color="bfd4f5" x="885" y="2625" />
+		<entity schema="PUBLIC" name="DEPARTAMENTO" color="bfbff5" x="1260" y="1290" />
+		<entity schema="PUBLIC" name="DOCUMENTO" color="c8f5bf" x="1050" y="555" />
+		<entity schema="PUBLIC" name="EMISOR" color="c8f5bf" x="1260" y="555" />
+		<entity schema="PUBLIC" name="ESCRIBANO" color="c8f5bf" x="1260" y="1035" />
+		<entity schema="PUBLIC" name="ESTADO" color="d2bff5" x="675" y="555" />
+		<entity schema="PUBLIC" name="EXONERACION" color="c8f5bf" x="1050" y="1035" />
+		<entity schema="PUBLIC" name="GROUPTYPEENTITY" color="bfd4f5" x="1320" y="2430" />
+		<entity schema="PUBLIC" name="IDENTITYTYPEENTITY" color="bfd4f5" x="1140" y="2430" />
+		<entity schema="PUBLIC" name="INMUEBLE" color="c8f5bf" x="645" y="75" />
+		<entity schema="PUBLIC" name="INMUEBLENIVEL" color="c8f5bf" x="855" y="330" />
+		<entity schema="PUBLIC" name="INSCRIPCION" color="d2bff5" x="840" y="555" />
+		<entity schema="PUBLIC" name="INSCRIPCION_MONTO" color="d2bff5" x="2160" y="1290" />
+		<entity schema="PUBLIC" name="INSCRIPCION_SUJETO" color="d2bff5" x="480" y="750" />
+		<entity schema="PUBLIC" name="LIBRORUBRICA" color="c8f5bf" x="675" y="1770" />
+		<entity schema="PUBLIC" name="LIBRORUBRICATIPO" color="c8f5bf" x="675" y="2070" />
+		<entity schema="PUBLIC" name="LOCALIDAD" color="c8f5bf" x="855" y="75" />
+		<entity schema="PUBLIC" name="MARCAAUTOMOTOR" color="bfbff5" x="45" y="1770" />
+		<entity schema="PUBLIC" name="MODELOAUTOMOTOR" color="bfbff5" x="225" y="1770" />
+		<entity schema="PUBLIC" name="MONEDA" color="d2bff5" x="2160" y="1470" />
+		<entity schema="PUBLIC" name="MONTO" color="d2bff5" x="1995" y="1290" />
+		<entity schema="PUBLIC" name="MOVIMIENTO" color="d2bff5" x="675" y="750" />
+		<entity schema="PUBLIC" name="NODO" color="f5ddbf" x="1530" y="1290" />
+		<entity schema="PUBLIC" name="PERSONAFISICA" color="bfbff5" x="2175" y="105" />
+		<entity schema="PUBLIC" name="PERSONAJURIDICA" color="d2bff5" x="1530" y="345" />
+		<entity schema="PUBLIC" name="PERSONAJURIDICATIPOSOCIAL" color="f5ddbf" x="1980" y="555" />
+		<entity schema="PUBLIC" name="REGISTRO" color="d2bff5" x="855" y="1290" />
+		<entity schema="PUBLIC" name="SECCION" color="d2bff5" x="690" y="1290" />
+		<entity schema="PUBLIC" name="SEDE" color="d2bff5" x="1050" y="315" />
+		<entity schema="PUBLIC" name="SUJETOAERONAVE" color="c8f5bf" x="1530" y="2430" />
+		<entity schema="PUBLIC" name="SUJETOAUTOMOTOR" color="bfbff5" x="1050" y="1650" />
+		<entity schema="PUBLIC" name="SUJETOINMUEBLE" color="f5ddbf" x="1755" y="2010" />
+		<entity schema="PUBLIC" name="SUJETOLIBRO" color="c8f5bf" x="465" y="1770" />
+		<entity schema="PUBLIC" name="SUJETOPERSONAFISICA" color="bfbff5" x="1980" y="105" />
+		<entity schema="PUBLIC" name="SUJETOPERSONAJURIDICA" color="bfd4f5" x="1530" y="555" />
+		<entity schema="PUBLIC" name="TASA" color="bfd4f5" x="1995" y="2430" />
+		<entity schema="PUBLIC" name="TIPOAUTOMOTOR" color="c8f5bf" x="645" y="330" />
+		<entity schema="PUBLIC" name="TIPODOCUMENTO" color="c8f5bf" x="1530" y="2625" />
+		<entity schema="PUBLIC" name="USUARIOREGISTRO" color="bfd4f5" x="1740" y="555" />
+		<entity schema="PUBLIC" name="USUARIOREGISTRO_REGISTRO" color="d2bff5" x="465" y="1485" />
+		<entity schema="PUBLIC" name="INTERVINIENTE" color="f5ddbf" x="1755" y="1290" />
+		<entity schema="PUBLIC" name="USUARIOREGISTRO_SEDE" color="bfd4f5" x="1740" y="900" />
+		<group name="DOCUMENTO" color="eef7ec" >
+			<entity schema="PUBLIC" name="DOCUMENTO" />
+			<entity schema="PUBLIC" name="EMISOR" />
+			<entity schema="PUBLIC" name="ESCRIBANO" />
+			<entity schema="PUBLIC" name="EXONERACION" />
+		</group>
+		<group name="SUJETOPERSONAJURIDICA" color="ecf0f7" >
+			<entity schema="PUBLIC" name="SUJETOPERSONAJURIDICA" />
+			<entity schema="PUBLIC" name="USUARIOREGISTRO" />
+			<entity schema="PUBLIC" name="USUARIOREGISTRO_SEDE" />
+		</group>
+		<group name="NODO" color="f7f3ec" >
+			<entity schema="PUBLIC" name="NODO" />
+			<entity schema="PUBLIC" name="INTERVINIENTE" />
+			<entity schema="PUBLIC" name="SUJETOINMUEBLE" />
+			<entity schema="PUBLIC" name="CALLE" />
+		</group>
+		<group name="AUTOMOTOR" color="ececf7" >
+			<entity schema="PUBLIC" name="AUTOMOTOR" />
+			<entity schema="PUBLIC" name="DEPARTAMENTO" />
+			<entity schema="PUBLIC" name="COMBUSTIBLE" />
+			<entity schema="PUBLIC" name="SUJETOAUTOMOTOR" />
+		</group>
+		<group name="SECCION" color="f0ecf7" >
+			<entity schema="PUBLIC" name="SECCION" />
+			<entity schema="PUBLIC" name="REGISTRO" />
+			<entity schema="PUBLIC" name="ACTO" />
+			<entity schema="PUBLIC" name="USUARIOREGISTRO_REGISTRO" />
+		</group>
+		<group name="ESTADO" color="f0ecf7" >
+			<entity schema="PUBLIC" name="ESTADO" />
+			<entity schema="PUBLIC" name="INSCRIPCION" />
+			<entity schema="PUBLIC" name="INSCRIPCION_SUJETO" />
+			<entity schema="PUBLIC" name="MOVIMIENTO" />
+		</group>
+		<group name="INMUEBLE" color="eef7ec" >
+			<entity schema="PUBLIC" name="INMUEBLE" />
+			<entity schema="PUBLIC" name="LOCALIDAD" />
+			<entity schema="PUBLIC" name="INMUEBLENIVEL" />
+			<entity schema="PUBLIC" name="TIPOAUTOMOTOR" />
+		</group>
+		<group name="SITIO" color="f0ecf7" >
+			<entity schema="PUBLIC" name="SEDE" />
+		</group>
+		<group name="COMBUSTIBLE_AUD" color="f0ecf7" >
+			<entity schema="PUBLIC" name="PERSONAJURIDICA" />
+		</group>
+		<group name="DOCUMENTO_AUD" color="f7f3ec" >
+			<entity schema="PUBLIC" name="PERSONAJURIDICATIPOSOCIAL" />
+		</group>
+		<group name="SUJETOPERSONAFISICA" color="ececf7" >
+			<entity schema="PUBLIC" name="SUJETOPERSONAFISICA" />
+			<entity schema="PUBLIC" name="PERSONAFISICA" />
+		</group>
+		<group name="MONTO" color="f0ecf7" >
+			<entity schema="PUBLIC" name="MONTO" />
+			<entity schema="PUBLIC" name="INSCRIPCION_MONTO" />
+			<entity schema="PUBLIC" name="MONEDA" />
+		</group>
+		<group name="PERSONAJURIDICATIPOSOCIAL_AUD" color="ecf0f7" >
+			<entity schema="PUBLIC" name="TASA" />
+		</group>
+		<group name="SUJETOAERONAVE" color="eef7ec" >
+			<entity schema="PUBLIC" name="SUJETOAERONAVE" />
+			<entity schema="PUBLIC" name="AERONAVE" />
+			<entity schema="PUBLIC" name="TIPODOCUMENTO" />
+		</group>
+		<group name="IDENTITYTYPEENTITY" color="ecf0f7" >
+			<entity schema="PUBLIC" name="IDENTITYTYPEENTITY" />
+			<entity schema="PUBLIC" name="GROUPTYPEENTITY" />
+			<entity schema="PUBLIC" name="ACCOUNTTYPEENTITY" />
+			<entity schema="PUBLIC" name="CONFIGURACION" />
+		</group>
+		<group name="AUDITORIA" color="ecf0f7" >
+			<entity schema="PUBLIC" name="AUDITORIA" />
+		</group>
+		<group name="SUJETOLIBRO" color="eef7ec" >
+			<entity schema="PUBLIC" name="SUJETOLIBRO" />
+			<entity schema="PUBLIC" name="LIBRORUBRICA" />
+			<entity schema="PUBLIC" name="LIBRORUBRICATIPO" />
+		</group>
+		<group name="MARCAAUTOMOTOR" color="ececf7" >
+			<entity schema="PUBLIC" name="MARCAAUTOMOTOR" />
+			<entity schema="PUBLIC" name="MODELOAUTOMOTOR" />
+		</group>
+	</layout>
+	<layout name="Sample Layout with Relational Data Browse" id="Layout_c44fbef" show_relation="columns" >
+		<entity schema="PUBLIC" name="ACCOUNTTYPEENTITY" color="bfd4f5" x="1125" y="1125" />
+		<entity schema="PUBLIC" name="ACTO" color="d2bff5" x="2760" y="1575" />
+		<entity schema="PUBLIC" name="ACTO_AUD" color="bfd4f5" x="1545" y="1560" />
+		<entity schema="PUBLIC" name="AERONAVE" color="c8f5bf" x="3330" y="1380" />
+		<entity schema="PUBLIC" name="AERONAVE_AUD" color="bfd4f5" x="1710" y="1380" />
+		<entity schema="PUBLIC" name="ATTRIBUTEDTYPEENTITY" color="c8f5bf" x="2625" y="1005" />
+		<entity schema="PUBLIC" name="ATTRIBUTETYPEENTITY" color="c8f5bf" x="2820" y="1005" />
+		<entity schema="PUBLIC" name="AUDITORIA" color="bfd4f5" x="1545" y="1380" />
+		<entity schema="PUBLIC" name="AUTOMOTOR" color="bfbff5" x="930" y="1380" />
+		<entity schema="PUBLIC" name="AUTOMOTOR_AUD" color="f5ddbf" x="2955" y="1845" />
+		<entity schema="PUBLIC" name="CALLE" color="f5ddbf" x="1905" y="2100" />
+		<entity schema="PUBLIC" name="CALLE_AUD" color="f5ddbf" x="3165" y="1845" />
+		<entity schema="PUBLIC" name="CELDA" color="bfbff5" x="900" y="3285" />
+		<entity schema="PUBLIC" name="CELDA_AUD" color="bfd4f5" x="1335" y="1560" />
+		<entity schema="PUBLIC" name="COMBUSTIBLE" color="bfbff5" x="1140" y="1740" />
+		<entity schema="PUBLIC" name="COMBUSTIBLE_AUD" color="d2bff5" x="495" y="1650" />
+		<entity schema="PUBLIC" name="CONFIGURACION" color="bfd4f5" x="690" y="1125" />
+		<entity schema="PUBLIC" name="DEPARTAMENTO" color="bfbff5" x="1140" y="1380" />
+		<entity schema="PUBLIC" name="DEPARTAMENTO_AUD" color="d2bff5" x="675" y="1650" />
+		<entity schema="PUBLIC" name="DIGESTCREDENTIALTYPEENTITY" color="c8f5bf" x="2385" y="1125" />
+		<entity schema="PUBLIC" name="DOCUMENTO" color="c8f5bf" x="1335" y="2055" />
+		<entity schema="PUBLIC" name="DOCUMENTO_AUD" color="f5ddbf" x="285" y="930" />
+		<entity schema="PUBLIC" name="EMISOR" color="c8f5bf" x="1545" y="2055" />
+		<entity schema="PUBLIC" name="EMISOR_AUD" color="f5ddbf" x="495" y="930" />
+		<entity schema="PUBLIC" name="ESCRIBANO" color="c8f5bf" x="1545" y="2535" />
+		<entity schema="PUBLIC" name="ESCRIBANO_AUD" color="bfbff5" x="2370" y="1845" />
+		<entity schema="PUBLIC" name="ESTADO" color="d2bff5" x="1530" y="945" />
+		<entity schema="PUBLIC" name="ESTADO_AUD" color="bfbff5" x="2610" y="1845" />
+		<entity schema="PUBLIC" name="ESTRUCTURA" color="d2bff5" x="2115" y="2850" />
+		<entity schema="PUBLIC" name="ESTRUCTURA_AUD" color="bfd4f5" x="3075" y="2505" />
+		<entity schema="PUBLIC" name="EXONERACION" color="c8f5bf" x="1335" y="2535" />
+		<entity schema="PUBLIC" name="EXONERACION_AUD" color="bfd4f5" x="3240" y="2505" />
+		<entity schema="PUBLIC" name="GROUPTYPEENTITY" color="bfd4f5" x="1125" y="930" />
+		<entity schema="PUBLIC" name="IDENTITYTYPEENTITY" color="bfd4f5" x="945" y="930" />
+		<entity schema="PUBLIC" name="INMUEBLE" color="c8f5bf" x="1335" y="2805" />
+		<entity schema="PUBLIC" name="INMUEBLENIVEL" color="c8f5bf" x="1545" y="3060" />
+		<entity schema="PUBLIC" name="INMUEBLENIVEL_AUD" color="f5ddbf" x="3075" y="3240" />
+		<entity schema="PUBLIC" name="INMUEBLE_AUD" color="f5ddbf" x="3255" y="3240" />
+		<entity schema="PUBLIC" name="INSCRIPCION" color="d2bff5" x="1695" y="945" />
+		<entity schema="PUBLIC" name="INSCRIPCION_AUD" color="bfbff5" x="450" y="255" />
+		<entity schema="PUBLIC" name="INSCRIPCION_MONTO" color="d2bff5" x="1065" y="345" />
+		<entity schema="PUBLIC" name="INSCRIPCION_MONTO_AUD" color="bfbff5" x="450" y="660" />
+		<entity schema="PUBLIC" name="INSCRIPCION_SUJETO" color="d2bff5" x="1335" y="1140" />
+		<entity schema="PUBLIC" name="INSCRIPCION_SUJETO_AUD" color="bfd4f5" x="3285" y="795" />
+		<entity schema="PUBLIC" name="INTERVINIENTE" color="f5ddbf" x="2130" y="1380" />
+		<entity schema="PUBLIC" name="INTERVINIENTE_AUD" color="bfd4f5" x="3495" y="795" />
+		<entity schema="PUBLIC" name="LIBRORUBRICA" color="c8f5bf" x="2160" y="255" />
+		<entity schema="PUBLIC" name="LIBRORUBRICATIPO" color="c8f5bf" x="2160" y="555" />
+		<entity schema="PUBLIC" name="LIBRORUBRICATIPO_AUD" color="c8f5bf" x="1950" y="555" />
+		<entity schema="PUBLIC" name="LIBRORUBRICA_AUD" color="bfbff5" x="2580" y="540" />
+		<entity schema="PUBLIC" name="LOCALIDAD" color="c8f5bf" x="1545" y="2805" />
+		<entity schema="PUBLIC" name="LOCALIDAD_AUD" color="f5ddbf" x="1140" y="2805" />
+		<entity schema="PUBLIC" name="MARCAAUTOMOTOR" color="bfbff5" x="2580" y="360" />
+		<entity schema="PUBLIC" name="MARCAAUTOMOTOR_AUD" color="f5ddbf" x="885" y="2970" />
+		<entity schema="PUBLIC" name="MODELOAUTOMOTOR" color="bfbff5" x="2760" y="360" />
+		<entity schema="PUBLIC" name="MODELOAUTOMOTOR_AUD" color="bfbff5" x="2370" y="540" />
+		<entity schema="PUBLIC" name="MONEDA" color="d2bff5" x="1065" y="525" />
+		<entity schema="PUBLIC" name="MONEDA_AUD" color="d2bff5" x="675" y="1830" />
+		<entity schema="PUBLIC" name="MONTO" color="d2bff5" x="900" y="345" />
+		<entity schema="PUBLIC" name="MONTO_AUD" color="f5ddbf" x="495" y="1410" />
+		<entity schema="PUBLIC" name="MOTORAERONAVE" color="f5ddbf" x="3165" y="2205" />
+		<entity schema="PUBLIC" name="MOTORAERONAVE_AUD" color="bfbff5" x="2610" y="2055" />
+		<entity schema="PUBLIC" name="MOVIMIENTO" color="d2bff5" x="1530" y="1140" />
+		<entity schema="PUBLIC" name="MOVIMIENTO_AUD" color="bfd4f5" x="3075" y="2670" />
+		<entity schema="PUBLIC" name="NODO" color="f5ddbf" x="1905" y="1380" />
+		<entity schema="PUBLIC" name="NODO_AUD" color="f5ddbf" x="2850" y="3420" />
+		<entity schema="PUBLIC" name="PARTITIONTYPEENTITY" color="bfbff5" x="1905" y="975" />
+		<entity schema="PUBLIC" name="PASSWORDCREDENTIALTYPEENTITY" color="c8f5bf" x="2370" y="795" />
+		<entity schema="PUBLIC" name="PERMISSIONTYPEENTITY" color="f5ddbf" x="2955" y="2205" />
+		<entity schema="PUBLIC" name="PERSONAFISICA" color="bfbff5" x="255" y="660" />
+		<entity schema="PUBLIC" name="PERSONAFISICA_AUD" color="bfd4f5" x="3285" y="960" />
+		<entity schema="PUBLIC" name="PERSONAJURIDICA" color="d2bff5" x="495" y="1830" />
+		<entity schema="PUBLIC" name="PERSONAJURIDICATIPOSOCIAL" color="f5ddbf" x="45" y="1410" />
+		<entity schema="PUBLIC" name="PERSONAJURIDICATIPOSOCIAL_AUD" color="bfd4f5" x="1335" y="480" />
+		<entity schema="PUBLIC" name="PERSONAJURIDICA_AUD" color="bfd4f5" x="1590" y="480" />
+		<entity schema="PUBLIC" name="PREVENTIVO" color="bfd4f5" x="2370" y="2505" />
+		<entity schema="PUBLIC" name="PREVENTIVO_AUD" color="c8f5bf" x="3045" y="45" />
+		<entity schema="PUBLIC" name="PREVENTIVO_TORRERO" color="bfd4f5" x="2625" y="2505" />
+		<entity schema="PUBLIC" name="PREVENTIVO_TORRERO_AUD" color="c8f5bf" x="3300" y="45" />
+		<entity schema="PUBLIC" name="REGISTRO" color="d2bff5" x="2760" y="1380" />
+		<entity schema="PUBLIC" name="REGISTRO_AUD" color="f5ddbf" x="1935" y="3285" />
+		<entity schema="PUBLIC" name="RELATIONSHIPIDENTITYTYPEENTITY" color="f5ddbf" x="885" y="2805" />
+		<entity schema="PUBLIC" name="RELATIONSHIPTYPEENTITY" color="bfbff5" x="2115" y="975" />
+		<entity schema="PUBLIC" name="RESOURCEPERMISSION" color="f5ddbf" x="2865" y="3240" />
+		<entity schema="PUBLIC" name="REVCHANGES" color="f5ddbf" x="2100" y="3285" />
+		<entity schema="PUBLIC" name="ROLETYPEENTITY" color="bfbff5" x="2115" y="1140" />
+		<entity schema="PUBLIC" name="SECCION" color="d2bff5" x="2595" y="1380" />
+		<entity schema="PUBLIC" name="SECCION_AUD" color="bfd4f5" x="2625" y="2985" />
+		<entity schema="PUBLIC" name="SEDE" color="d2bff5" x="2115" y="2505" />
+		<entity schema="PUBLIC" name="SEDE_AUD" color="bfbff5" x="1905" y="1140" />
+		<entity schema="PUBLIC" name="SITIO" color="d2bff5" x="1905" y="2505" />
+		<entity schema="PUBLIC" name="SITIO_AUD" color="d2bff5" x="690" y="525" />
+		<entity schema="PUBLIC" name="SUJETOAERONAVE" color="c8f5bf" x="3150" y="1380" />
+		<entity schema="PUBLIC" name="SUJETOAERONAVE_AUD" color="bfd4f5" x="1590" y="660" />
+		<entity schema="PUBLIC" name="SUJETOAUTOMOTOR" color="bfbff5" x="930" y="1740" />
+		<entity schema="PUBLIC" name="SUJETOAUTOMOTOR_AUD" color="c8f5bf" x="3300" y="525" />
+		<entity schema="PUBLIC" name="SUJETOINMUEBLE" color="f5ddbf" x="2130" y="2100" />
+		<entity schema="PUBLIC" name="SUJETOINMUEBLE_AUD" color="f5ddbf" x="2100" y="3465" />
+		<entity schema="PUBLIC" name="SUJETOLIBRO" color="c8f5bf" x="1950" y="255" />
+		<entity schema="PUBLIC" name="SUJETOLIBRO_AUD" color="bfbff5" x="2370" y="2055" />
+		<entity schema="PUBLIC" name="SUJETOPERSONAFISICA" color="bfbff5" x="255" y="255" />
+		<entity schema="PUBLIC" name="SUJETOPERSONAFISICA_AUD" color="bfd4f5" x="2850" y="2670" />
+		<entity schema="PUBLIC" name="SUJETOPERSONAJURIDICA" color="bfd4f5" x="885" y="2055" />
+		<entity schema="PUBLIC" name="SUJETOPERSONAJURIDICA_AUD" color="bfd4f5" x="3045" y="960" />
+		<entity schema="PUBLIC" name="TASA" color="bfd4f5" x="1335" y="660" />
+		<entity schema="PUBLIC" name="TASA_AUD" color="c8f5bf" x="3045" y="525" />
+		<entity schema="PUBLIC" name="TIPOANTENA" color="bfbff5" x="1110" y="3285" />
+		<entity schema="PUBLIC" name="TIPOANTENA_AUD" color="f5ddbf" x="1740" y="3465" />
+		<entity schema="PUBLIC" name="TIPOAUTOMOTOR" color="c8f5bf" x="1335" y="3060" />
+		<entity schema="PUBLIC" name="TIPOAUTOMOTOR_AUD" color="f5ddbf" x="690" y="2970" />
+		<entity schema="PUBLIC" name="TIPODOCUMENTO" color="c8f5bf" x="3150" y="1575" />
+		<entity schema="PUBLIC" name="TIPODOCUMENTO_AUD" color="c8f5bf" x="2955" y="1575" />
+		<entity schema="PUBLIC" name="TIPOFEEDER" color="bfbff5" x="1110" y="3735" />
+		<entity schema="PUBLIC" name="TIPOFEEDER_AUD" color="d2bff5" x="690" y="2055" />
+		<entity schema="PUBLIC" name="TORRERO" color="bfd4f5" x="2370" y="2985" />
+		<entity schema="PUBLIC" name="TORRERO_AUD" color="d2bff5" x="690" y="2235" />
+		<entity schema="PUBLIC" name="ULTIMOPREVENTIVO" color="d2bff5" x="510" y="2055" />
+		<entity schema="PUBLIC" name="USUARIOREGISTRO" color="bfd4f5" x="1095" y="2055" />
+		<entity schema="PUBLIC" name="USUARIOREGISTRO_AUD" color="c8f5bf" x="210" y="3195" />
+		<entity schema="PUBLIC" name="USUARIOREGISTRO_REGISTRO" color="d2bff5" x="2370" y="1575" />
+		<entity schema="PUBLIC" name="USUARIOREGISTRO_REGISTRO_AUD" color="c8f5bf" x="405" y="3195" />
+		<entity schema="PUBLIC" name="USUARIOREGISTRO_SEDE" color="bfd4f5" x="1095" y="2400" />
+		<entity schema="PUBLIC" name="USUARIOREGISTRO_SEDE_AUD" color="c8f5bf" x="405" y="3360" />
+		<entity schema="PUBLIC" name="ZONA" color="d2bff5" x="1905" y="2850" />
+		<entity schema="PUBLIC" name="ZONA_AUD" color="c8f5bf" x="210" y="3360" />
+		<callout x="1545" y="1260" pointer="NO" >
+			<comment><![CDATA[Use the Relational Data Browse for exploring data from multiple tables at a time.
+Tables should be bind by foreign keys - if they are not you can create VIRTUAL foreign keys in the layout. 
+Virtual foreign keys will be saved to project file.
+ 
+Descend into children tables by pressing the foreign key arrow icon near title.
+Right-click column headers in browse tables to set filters.]]></comment>
+		</callout>
+		<browser id="Browse_d9a3829" name="Sample Relational Data Browse" confirm_updates="y" >
+			<browse_table schema="PUBLIC" entity="AUDITORIA" x="10" y="10" width="400" height="300" >
+				<browse_table schema="PUBLIC" entity="USUARIOREGISTRO_AUD" fk="FK_114R3JLBVR28N9SAA6N1PO7DO" x="420" y="10" width="400" height="300" />
+			</browse_table>
+		</browser>
+	</layout>
+</project>
