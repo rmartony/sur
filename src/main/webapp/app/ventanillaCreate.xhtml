@@ -345,6 +345,23 @@
                                 </p:column>
                             </p:row>
                         </p:panelGrid>
+                        <p:tabView>
+                            <p:tab id="pfisica" title="Persona física"
+                                   disabled="#{not loginController.isRegistroAvailable4User('RGI')}">
+                            </p:tab>
+                            <p:tab id="pjuridica" title="Persona jurídica"
+                                   disabled="#{not loginController.isRegistroAvailable4User('RGI')}">
+                            </p:tab>
+                            <p:tab id="inmueble" title="Inmueble"
+                                   disabled="#{not loginController.isRegistroAvailable4User('RPI')}">
+                            </p:tab>
+                            <p:tab id="automotor" title="Automotor"
+                                   disabled="#{not loginController.isRegistroAvailable4User('RA')}">
+
+                            </p:tab>
+                            <p:tab title="Aeronave" disabled="#{not loginController.isRegistroAvailable4User('RAE')}">
+                            </p:tab>
+                        </p:tabView>
                     </p:column>
                 </p:row>
 

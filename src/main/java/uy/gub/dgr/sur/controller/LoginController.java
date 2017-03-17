@@ -161,6 +161,15 @@ public class LoginController implements Serializable {
         return results;
     }
 
+    public boolean isRegistroAvailable4User(String codigoRegistro) {
+        if (CollectionUtils.isEmpty(registrosUsuario)) return false;
+
+        for (Registro registro : registrosUsuario) {
+            if (registro.getCodigo().equals(codigoRegistro)) return true;
+        }
+        return false;
+    }
+
     public List<Sede> findSede4User(String query) {
         List<Sede> results = new ArrayList<>();
 
