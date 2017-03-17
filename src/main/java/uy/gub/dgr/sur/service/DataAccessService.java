@@ -139,6 +139,12 @@ public abstract class DataAccessService<T> implements Serializable {
         return result;
     }
 
+    public boolean existsResultNamedQuery(String namedQueryName, Map params) {
+        Query query = em.createNamedQuery(namedQueryName).setMaxResults(1);
+        setParameters(query, params);
+        return !query.getResultList().isEmpty();
+    }
+
     private void setParameters(Query query, Object[] params) {
         if (params != null) {
             for (int i = 0; i < params.length; i++) {

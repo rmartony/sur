@@ -174,8 +174,9 @@ public class VentanillaController extends BaseController {
     public void previousInscripcion() {
         if (inscripcionListIterator.hasPrevious()) {
             inscripcion = inscripcionListIterator.previous();
+            if (inscripcionListIterator.hasPrevious()) inscripcion = inscripcionListIterator.previous();
         } else {
-            Messages.addFlashGlobalInfo("Ya se encuentra en la primera inscripción.");
+            Messages.addFlashGlobalWarn("Ya se encuentra en la primera inscripción.");
         }
 
     }
@@ -183,14 +184,19 @@ public class VentanillaController extends BaseController {
     public void nextInscripcion() {
         if (inscripcionListIterator.hasNext()) {
             inscripcion = inscripcionListIterator.next();
+            if (inscripcionListIterator.hasNext()) inscripcion = inscripcionListIterator.next();
         } else {
-            Messages.addFlashGlobalInfo("Ya se encuentra en la última inscripción.");
+            Messages.addFlashGlobalWarn("Ya se encuentra en la última inscripción.");
         }
 
     }
 
     @Ventanilla
     public String doConfirmCreate() {
+        if (das.existsDocumento(item)) {
+            Messages.addFlashGlobalError("Atención, no es posible almacenar el documento en el sistema debido a que ya existe.");
+            return null;
+        }
         //das.update(item);
         Messages.addFlashGlobalInfo("Documento ventanilla creado con éxito.");
 
