@@ -366,14 +366,7 @@
                                     </p:row>
                                     <p:row>
                                         <p:column>
-                                            <p:inputText id="interviniente"
-                                                         value="#{ventanillaController.inscripcion.ordinal}"
-                                                         required="true"
-                                                         size="3" readonly="true">
-                                            </p:inputText>
-                                        </p:column>
-                                        <p:column>
-                                            <p:autoComplete id="apellido1"
+                                            <p:autoComplete id="interviniente"
                                                             value="#{ventanillaController.inscripcion.acto.seccion}"
                                                             dropdown="true" minQueryLength="1" scrollHeight="250"
                                                             required="true"
@@ -395,6 +388,13 @@
                                                         update="acto"
                                                         listener="#{ventanillaController.handleSeccionChange}"/>
                                             </p:autoComplete>
+                                        </p:column>
+                                        <p:column>
+                                            <p:inputText id="ci"
+                                                         value="#{ventanillaController.inscripcion.ordinal}"
+                                                         required="true"
+                                                         size="3" readonly="true">
+                                            </p:inputText>
 
                                         </p:column>
                                         <p:column>
