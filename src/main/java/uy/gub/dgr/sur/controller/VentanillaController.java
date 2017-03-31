@@ -62,6 +62,8 @@ public class VentanillaController extends BaseController {
     private TasaService tasaService;
     @Inject
     private MovimientoService movimientoService;
+    @Inject
+    private IntervinienteService intervinienteService;
 
 
     @Getter
@@ -102,6 +104,10 @@ public class VentanillaController extends BaseController {
 
     private ListIterator<Inscripcion> inscripcionListIterator;
 
+    @Getter
+    @Setter
+    private List<Interviniente> intervinienteList;
+
     /**
      * Default constructor
      */
@@ -120,6 +126,7 @@ public class VentanillaController extends BaseController {
         escribanoList = escribanoService.findWithNamedQuery(Escribano.ALL);
         tasaList = tasaService.findWithNamedQuery(Tasa.ALL);
         movimientoList = movimientoService.findWithNamedQuery(Movimiento.ALL);
+        intervinienteList = intervinienteService.findWithNamedQuery(Interviniente.ALL));
 
     }
 
@@ -288,6 +295,20 @@ public class VentanillaController extends BaseController {
             for (Seccion seccion : seccionList) {
                 if (seccion.getCodigo().contains(query) || seccion.getDescripcion().contains(query)) {
                     results.add(seccion);
+                }
+            }
+        }
+        return results;
+
+    }
+
+    public List<Interviniente> findInterviniente(String query) {
+        List<Interviniente> results = new ArrayList<>();
+
+        if (CollectionUtils.isNotEmpty(intervinienteList)) {
+            for (Interviniente interviniente : intervinienteList) {
+                if (interviniente.getCodigo().contains(query) || interviniente.getDescripcion().contains(query)) {
+                    results.add(interviniente);
                 }
             }
         }

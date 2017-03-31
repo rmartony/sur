@@ -370,7 +370,7 @@
                                                             value="#{ventanillaController.inscripcion.acto.seccion}"
                                                             dropdown="true" minQueryLength="1" scrollHeight="250"
                                                             required="true"
-                                                            completeMethod="#{ventanillaController.findSeccion}"
+                                                            completeMethod="#{ventanillaController.findInterviniente}"
                                                             forceSelection="true"
                                                             var="s"
                                                             itemLabel="#{s ne null ? s.codigo.concat(' - ').concat(s.descripcion) : ''}"
@@ -384,9 +384,6 @@
                                                 <p:column headerText="Descripción">
                                                     #{s.descripcion}
                                                 </p:column>
-                                                <p:ajax event="itemSelect"
-                                                        update="acto"
-                                                        listener="#{ventanillaController.handleSeccionChange}"/>
                                             </p:autoComplete>
                                         </p:column>
                                         <p:column>
