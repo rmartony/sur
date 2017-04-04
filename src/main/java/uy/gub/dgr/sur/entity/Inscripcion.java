@@ -36,8 +36,18 @@ public class Inscripcion extends BaseEntity {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     List<Monto> montoList;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Sujeto> sujetoList;
+    @OneToOne
+    SujetoAeronave sujetoAeronave;
+    @OneToOne
+    SujetoAutomotor sujetoAutomotor;
+    @OneToOne
+    SujetoInmueble sujetoInmueble;
+    @OneToOne
+    SujetoPersonaFisica sujetoPersonaFisica;
+    @OneToOne
+    SujetoPersonaJuridica sujetoPersonaJuridica;
+    @OneToOne
+    SujetoLibro sujetoLibro;
 
     private int ordinal;
 

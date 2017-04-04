@@ -126,7 +126,7 @@ public class VentanillaController extends BaseController {
         escribanoList = escribanoService.findWithNamedQuery(Escribano.ALL);
         tasaList = tasaService.findWithNamedQuery(Tasa.ALL);
         movimientoList = movimientoService.findWithNamedQuery(Movimiento.ALL);
-        intervinienteList = intervinienteService.findWithNamedQuery(Interviniente.ALL));
+        intervinienteList = intervinienteService.findWithNamedQuery(Interviniente.ALL);
 
     }
 
