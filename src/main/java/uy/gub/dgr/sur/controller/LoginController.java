@@ -170,6 +170,10 @@ public class LoginController implements Serializable {
         return false;
     }
 
+    public List<Registro> registrosAvailable4User() {
+        return registrosUsuario;
+    }
+
     public List<Sede> findSede4User(String query) {
         List<Sede> results = new ArrayList<>();
 
