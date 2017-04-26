@@ -395,61 +395,28 @@
 
                                         </p:column>
                                         <p:column>
-                                            <p:autoComplete id="acto" value="#{ventanillaController.inscripcion.acto}"
-                                                            dropdown="true" minQueryLength="1" scrollHeight="250"
-                                                            required="true"
-                                                            completeMethod="#{ventanillaController.findActo}"
-                                                            forceSelection="true"
-                                                            var="s"
-                                                            itemLabel="#{s ne null ? s.codigo.concat(' - ').concat(s.descripcion) : ''}"
-                                                            itemValue="#{s}"
-                                                            converter="genericMapConverter"
-                                                            cache="true"
-                                                            size="6">
-                                                <p:column headerText="Código">
-                                                    #{s.codigo}
-                                                </p:column>
-                                                <p:column headerText="Descripción">
-                                                    #{s.descripcion}
-                                                </p:column>
-                                                <!--
-                                                                                        <p:ajax event="itemSelect"
-                                                                                                update="nodo"
-                                                                                                listener="#{ventanillaController.handleSitioChange}"/>
-                                                -->
-                                            </p:autoComplete>
-
+                                            <p:inputText id="apellido1"
+                                                         value="#{ventanillaController.inscripcion.sujetoPersonaFisica.personaFisica.apellido1}"
+                                                         required="true">
+                                            </p:inputText>
+                                            <p:inputText id="apellido2"
+                                                         value="#{ventanillaController.inscripcion.sujetoPersonaFisica.personaFisica.apellido2}">
+                                            </p:inputText>
                                         </p:column>
                                         <p:column>
-                                            <p:autoComplete id="movimiento"
-                                                            value="#{ventanillaController.inscripcion.movimiento}"
-                                                            dropdown="true" minQueryLength="1" scrollHeight="250"
-                                                            required="true"
-                                                            completeMethod="#{ventanillaController.findMovimiento}"
-                                                            forceSelection="true"
-                                                            var="s"
-                                                            itemLabel="#{s ne null ? s.codigo.concat(' - ').concat(s.descripcion) : ''}"
-                                                            itemValue="#{s}"
-                                                            converter="genericMapConverter"
-                                                            cache="true"
-                                                            size="6">
-                                                <p:column headerText="Código">
-                                                    #{s.codigo}
-                                                </p:column>
-                                                <p:column headerText="Descripción">
-                                                    #{s.descripcion}
-                                                </p:column>
-                                                <!--
-                                                                                        <p:ajax event="itemSelect"
-                                                                                                update="nodo"
-                                                                                                listener="#{ventanillaController.handleSitioChange}"/>
-                                                -->
-                                            </p:autoComplete>
+                                            <p:inputText id="nombre1"
+                                                         value="#{ventanillaController.inscripcion.sujetoPersonaFisica.personaFisica.nombre1}"
+                                                         required="true">
+                                            </p:inputText>
+                                            <p:inputText id="nombre2"
+                                                         value="#{ventanillaController.inscripcion.sujetoPersonaFisica.personaFisica.nombre2}">
+                                            </p:inputText>
+                                            <p:inputText id="nombre3"
+                                                         value="#{ventanillaController.inscripcion.sujetoPersonaFisica.personaFisica.nombre3}">
+                                            </p:inputText>
                                         </p:column>
                                     </p:row>
                                 </p:panelGrid>
-
-
                             </p:tab>
                             <p:tab id="pjuridica" title="Persona jurídica"
                                    disabled="#{not loginController.isRegistroAvailable4User('RGI')}">
@@ -459,7 +426,6 @@
                             </p:tab>
                             <p:tab id="automotor" title="Automotor"
                                    disabled="#{not loginController.isRegistroAvailable4User('RA')}">
-
                             </p:tab>
                             <p:tab title="Aeronave" disabled="#{not loginController.isRegistroAvailable4User('RAE')}">
                             </p:tab>

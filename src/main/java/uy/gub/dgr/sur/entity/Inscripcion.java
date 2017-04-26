@@ -34,20 +34,20 @@ public class Inscripcion extends BaseEntity {
     public final static String ALL = "Inscripcion.all";
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Monto> montoList;
+    private List<Monto> montoList;
 
     @OneToOne
-    SujetoAeronave sujetoAeronave;
+    private SujetoAeronave sujetoAeronave = new SujetoAeronave();
     @OneToOne
-    SujetoAutomotor sujetoAutomotor;
+    private SujetoAutomotor sujetoAutomotor = new SujetoAutomotor();
     @OneToOne
-    SujetoInmueble sujetoInmueble;
+    private SujetoInmueble sujetoInmueble = new SujetoInmueble();
     @OneToOne
-    SujetoPersonaFisica sujetoPersonaFisica;
+    private SujetoPersonaFisica sujetoPersonaFisica = new SujetoPersonaFisica();
     @OneToOne
-    SujetoPersonaJuridica sujetoPersonaJuridica;
+    private SujetoPersonaJuridica sujetoPersonaJuridica = new SujetoPersonaJuridica();
     @OneToOne
-    SujetoLibro sujetoLibro;
+    private SujetoLibro sujetoLibro = new SujetoLibro();
 
     private int ordinal;
 

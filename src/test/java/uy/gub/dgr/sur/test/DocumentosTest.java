@@ -19,7 +19,9 @@ import uy.gub.dgr.sur.service.*;
 import javax.inject.Inject;
 import java.io.File;
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -225,10 +227,7 @@ public class DocumentosTest {
         automotor.setLocalidad(localidad);
 
         sujetoAutomotor.setAutomotor(automotor);
-
-        List<Sujeto> sujetoList = new ArrayList<>();
-        sujetoList.add(sujetoAutomotor);
-        inscripcion.setSujetoList(sujetoList);
+        inscripcion.setSujetoAutomotor(sujetoAutomotor);
 
         inscripcion = inscripcionService.update(inscripcion);
         assertNotNull("No se pudo crear documento con inscripción automotor", inscripcion);

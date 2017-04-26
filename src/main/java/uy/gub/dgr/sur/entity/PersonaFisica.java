@@ -41,5 +41,6 @@ public class PersonaFisica extends BaseEntity {
     @NotEmpty
     private String nombre1;
     private String nombre2;
+    private String nombre3;
 
 }

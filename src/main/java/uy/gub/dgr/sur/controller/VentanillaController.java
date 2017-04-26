@@ -149,6 +149,8 @@ public class VentanillaController extends BaseController {
         inscripcion.setDocumento(item);
         inscripcion.setOrdinal(1);
 
+        final List<Registro> registrosUsuario = loginController.getRegistrosUsuario();
+
         final ArrayList<Inscripcion> inscripcionList = new ArrayList<>();
         inscripcionList.add(inscripcion);
         item.setInscripcionList(inscripcionList);
