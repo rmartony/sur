@@ -348,25 +348,26 @@
                         <p:tabView>
                             <p:tab id="pfisica" title="Persona física"
                                    disabled="#{not loginController.isRegistroAvailable4User('RGI')}">
-
+                                <br/>
+                                <br/>
                                 <p:panelGrid id="pfPanel" styleClass="center">
                                     <p:row>
                                         <p:column>
-                                            <p:outputLabel for="interviniente" value="Interviniente"/>
+                                            <p:outputLabel for="pfInterviniente" value="Interviniente"/>
                                         </p:column>
                                         <p:column>
                                             <p:outputLabel for="ci" value="CI"/>
                                         </p:column>
                                         <p:column>
-                                            <p:outputLabel for="apellidos" value="Apellidos"/>
+                                            <p:outputLabel for="apellido1" value="Apellidos"/>
                                         </p:column>
                                         <p:column>
-                                            <p:outputLabel for="nombres" value="Nombres"/>
+                                            <p:outputLabel for="nombre1" value="Nombres"/>
                                         </p:column>
                                     </p:row>
                                     <p:row>
                                         <p:column>
-                                            <p:autoComplete id="interviniente"
+                                            <p:autoComplete id="pfInterviniente"
                                                             value="#{ventanillaController.inscripcion.acto.seccion}"
                                                             dropdown="true" minQueryLength="1" scrollHeight="250"
                                                             required="true"
@@ -397,22 +398,27 @@
                                         <p:column>
                                             <p:inputText id="apellido1"
                                                          value="#{ventanillaController.inscripcion.sujetoPersonaFisica.personaFisica.apellido1}"
+                                                         placeholder="1er. apellido"
                                                          required="true">
                                             </p:inputText>
                                             <p:inputText id="apellido2"
-                                                         value="#{ventanillaController.inscripcion.sujetoPersonaFisica.personaFisica.apellido2}">
+                                                         value="#{ventanillaController.inscripcion.sujetoPersonaFisica.personaFisica.apellido2}"
+                                                         placeholder="2do. apellido">
                                             </p:inputText>
                                         </p:column>
                                         <p:column>
                                             <p:inputText id="nombre1"
                                                          value="#{ventanillaController.inscripcion.sujetoPersonaFisica.personaFisica.nombre1}"
+                                                         placeholder="1er. nombre"
                                                          required="true">
                                             </p:inputText>
                                             <p:inputText id="nombre2"
-                                                         value="#{ventanillaController.inscripcion.sujetoPersonaFisica.personaFisica.nombre2}">
+                                                         value="#{ventanillaController.inscripcion.sujetoPersonaFisica.personaFisica.nombre2}"
+                                                         placeholder="2do. nombre">
                                             </p:inputText>
                                             <p:inputText id="nombre3"
-                                                         value="#{ventanillaController.inscripcion.sujetoPersonaFisica.personaFisica.nombre3}">
+                                                         value="#{ventanillaController.inscripcion.sujetoPersonaFisica.personaFisica.nombre3}"
+                                                         placeholder="3er. nombre">
                                             </p:inputText>
                                         </p:column>
                                     </p:row>
@@ -420,6 +426,60 @@
                             </p:tab>
                             <p:tab id="pjuridica" title="Persona jurídica"
                                    disabled="#{not loginController.isRegistroAvailable4User('RGI')}">
+
+                                <br/>
+                                <br/>
+                                <p:panelGrid id="pjPanel" styleClass="center">
+                                    <p:row>
+                                        <p:column>
+                                            <p:outputLabel for="pjInterviniente" value="Interviniente"/>
+                                        </p:column>
+                                        <p:column>
+                                            <p:outputLabel for="rut" value="RUT"/>
+                                        </p:column>
+                                        <p:column>
+                                            <p:outputLabel for="nombre" value="Nombre"/>
+                                        </p:column>
+                                    </p:row>
+                                    <p:row>
+                                        <p:column>
+                                            <p:autoComplete id="pjInterviniente"
+                                                            value="#{ventanillaController.inscripcion.acto.seccion}"
+                                                            dropdown="true" minQueryLength="1" scrollHeight="250"
+                                                            required="true"
+                                                            completeMethod="#{ventanillaController.findInterviniente}"
+                                                            forceSelection="true"
+                                                            var="s"
+                                                            itemLabel="#{s ne null ? s.codigo.concat(' - ').concat(s.descripcion) : ''}"
+                                                            itemValue="#{s}"
+                                                            converter="genericMapConverter"
+                                                            cache="true"
+                                                            size="3">
+                                                <p:column headerText="Código">
+                                                    #{s.codigo}
+                                                </p:column>
+                                                <p:column headerText="Descripción">
+                                                    #{s.descripcion}
+                                                </p:column>
+                                            </p:autoComplete>
+                                        </p:column>
+                                        <p:column>
+                                            <p:inputText id="rut"
+                                                         value="#{ventanillaController.inscripcion.ordinal}"
+                                                         required="true"
+                                                         size="3" readonly="true">
+                                            </p:inputText>
+
+                                        </p:column>
+                                        <p:column>
+                                            <p:inputText id="nombre"
+                                                         value="#{ventanillaController.inscripcion.sujetoPersonaFisica.personaFisica.apellido1}"
+                                                         placeholder="Nombre"
+                                                         required="true">
+                                            </p:inputText>
+                                        </p:column>
+                                    </p:row>
+                                </p:panelGrid>
                             </p:tab>
                             <p:tab id="inmueble" title="Inmueble"
                                    disabled="#{not loginController.isRegistroAvailable4User('RPI')}">
